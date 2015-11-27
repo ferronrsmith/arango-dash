@@ -1,0 +1,1298 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Collectd - Network usage | Cookbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="./styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="./MonitoringOtherRelevantMetrics.html" />
+    
+    
+    <link rel="prev" href="./MonitoringSlaveStatus.html" />
+    
+
+        <script type="text/javascript" src="styles/header.js"></script><link rel="stylesheet" type="text/css" href="styles/header.css">
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="9.3" data-chapter-title="Collectd - Network usage" data-filepath="MonitoringTrafficWithIPAccounting.md" data-basepath="." data-revision="Tue Nov 24 2015 11:06:54 GMT+0100 (CET)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="ModulDocumentInheritance.html">
+            
+                
+                    <a href="./ModulDocumentInheritance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Modelling Document Inheritance
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="AccessingShapesData.html">
+            
+                
+                    <a href="./AccessingShapesData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Accessing Shapes Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> AQL</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="JoinsInAQL.html">
+            
+                
+                    <a href="./JoinsInAQL.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Using Joins in AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="UsingDynamicAttributeNames.html">
+            
+                
+                    <a href="./UsingDynamicAttributeNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Using Dynamic Attribute Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="FindingLeafNodesGraph.html">
+            
+                
+                    <a href="./FindingLeafNodesGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Finding Leaf Nodes in a Graph
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="FilteringNodesGraph.html">
+            
+                
+                    <a href="./FilteringNodesGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Filtering Nodes in a Graph
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="CountingNodesEfficientlyGraph.html">
+            
+                
+                    <a href="./CountingNodesEfficientlyGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Counting Nodes efficiently
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="CreatingTestDataAQL.html">
+            
+                
+                    <a href="./CreatingTestDataAQL.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Creating Test-data using AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="DiffingDocuments.html">
+            
+                
+                    <a href="./DiffingDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Diffing Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="AvoidingInjection.html">
+            
+                
+                    <a href="./AvoidingInjection.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Avoiding Parameter Injection
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="MultilineQueryStrings.html">
+            
+                
+                    <a href="./MultilineQueryStrings.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Multiline Query Strings
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" >
+            
+            <span><b>4.</b> Graph-based Recipes</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Fulldepth.html">
+            
+                
+                    <a href="./Fulldepth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Fulldepth Graph-Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="FindingConnectedVerticesForSubgraphs.html">
+            
+                
+                    <a href="./FindingConnectedVerticesForSubgraphs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Vertices for Subgraphs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="JavaDriverGraphExampleVertex.html">
+            
+                
+                    <a href="./JavaDriverGraphExampleVertex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Vertex example with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="JavaDriverBaseDocument.html">
+            
+                
+                    <a href="./JavaDriverBaseDocument.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Accessing base documents with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="UsingCustomVisitorFromNodeJs.html">
+            
+                
+                    <a href="./UsingCustomVisitorFromNodeJs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Using a custom Visitor
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="GraphExampleActorsAndMovies.html">
+            
+                
+                    <a href="./GraphExampleActorsAndMovies.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Example AQL Queries for Graphs
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" >
+            
+            <span><b>5.</b> Foxx Framework</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="FoxxFirstSteps.html">
+            
+                
+                    <a href="./FoxxFirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        My first Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="FoxxFirstStepsLegacy.html">
+            
+                
+                    <a href="./FoxxFirstStepsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        My first Foxx App pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="FoxxAuth.html">
+            
+                
+                    <a href="./FoxxAuth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Adding Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="FoxxAuthLegacy.html">
+            
+                
+                    <a href="./FoxxAuthLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Adding Authentication pre-2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="MakingRequests.html">
+            
+                
+                    <a href="./MakingRequests.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Using external APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="FoxxQueues.html">
+            
+                
+                    <a href="./FoxxQueues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="FoxxQueuesLegacy.html">
+            
+                
+                    <a href="./FoxxQueuesLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        legacy background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="FoxxCustomQueueJobsLegacy.html">
+            
+                
+                    <a href="./FoxxCustomQueueJobsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        legacy custom Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="FoxxScripts.html">
+            
+                
+                    <a href="./FoxxScripts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        Creating a Foxx script
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="FoxxCustomQueueJobs.html">
+            
+                
+                    <a href="./FoxxCustomQueueJobs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        Custom job types for Queues
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="FoxxGeneratorFirstSteps.html">
+            
+                
+                    <a href="./FoxxGeneratorFirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        My first FoxxGenerator App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="FoxxDeploy.html">
+            
+                
+                    <a href="./FoxxDeploy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        How to deploy a Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.13" data-path="MakingFoxxAppAccessible.html">
+            
+                
+                    <a href="./MakingFoxxAppAccessible.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.13.</b>
+                        
+                        Apps accessible from the Web
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.14" data-path="FoxxApiKeys.html">
+            
+                
+                    <a href="./FoxxApiKeys.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.14.</b>
+                        
+                        API-Key Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.15" data-path="FoxxBinaryHttpPost.html">
+            
+                
+                    <a href="./FoxxBinaryHttpPost.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.15.</b>
+                        
+                        Binary HTTP documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.16" data-path="FoxxTesting.html">
+            
+                
+                    <a href="./FoxxTesting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.16.</b>
+                        
+                        Foxx Testing
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" >
+            
+            <span><b>6.</b> Use Cases, Examples</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="CrawlingGithubPromises.html">
+            
+                
+                    <a href="./CrawlingGithubPromises.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Crawling Github with Promises
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="UsingArangoDBWithSailsJS.html">
+            
+                
+                    <a href="./UsingArangoDBWithSailsJS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Using ArangoDB with Sails.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="PopulatingAnAutocompleteTextbox.html">
+            
+                
+                    <a href="./PopulatingAnAutocompleteTextbox.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Populating a Textbox
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="ExportingData.html">
+            
+                
+                    <a href="./ExportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Exporting Data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> ArangoDB Setup / Administration</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="UsingAuthentication.html">
+            
+                
+                    <a href="./UsingAuthentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Using Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="ImportingData.html">
+            
+                
+                    <a href="./ImportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Importing Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="ReplicatingData.html">
+            
+                
+                    <a href="./ReplicatingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Replicating Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="XCopyInstallWindows.html">
+            
+                
+                    <a href="./XCopyInstallWindows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        XCopy Install Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="Compiling.html">
+            
+                
+                    <a href="./Compiling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Compiling / Build
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.5.1" data-path="CompilingOnDebian.html">
+            
+                
+                    <a href="./CompilingOnDebian.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.1.</b>
+                        
+                        Compile on Debian
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.2" data-path="CompilingUnderWindows.html">
+            
+                
+                    <a href="./CompilingUnderWindows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.2.</b>
+                        
+                        Compile on Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.3" data-path="CompilingUnderWindowsLegacy.html">
+            
+                
+                    <a href="./CompilingUnderWindowsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.3.</b>
+                        
+                        Compile on Windows pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.4" data-path="RunningCustomBuild.html">
+            
+                
+                    <a href="./RunningCustomBuild.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.4.</b>
+                        
+                        Running Custom Build
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> Cloud, DCOS and Docker</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="RunningOnAWS.html">
+            
+                
+                    <a href="./RunningOnAWS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Running on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="UpdateArangoDBOnAWS.html">
+            
+                
+                    <a href="./UpdateArangoDBOnAWS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Update on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="UsingArangoDBAzure.html">
+            
+                
+                    <a href="./UsingArangoDBAzure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Running on Azure
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="RunningInDockerContainer.html">
+            
+                
+                    <a href="./RunningInDockerContainer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Docker ArangoDB
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="UsingArangoDBNodeJSDocker.html">
+            
+                
+                    <a href="./UsingArangoDBNodeJSDocker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        Docker with NodeJS App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="UsingArangoDBInGiantSwarm.html">
+            
+                
+                    <a href="./UsingArangoDBInGiantSwarm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                        In the GiantSwarm
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="UsingArangoDBMesosphere.html">
+            
+                
+                    <a href="./UsingArangoDBMesosphere.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.7.</b>
+                        
+                        ArangoDB in Mesos
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" >
+            
+            <span><b>9.</b> Monitoring</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="MonitoringWithCollectd.html">
+            
+                
+                    <a href="./MonitoringWithCollectd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Monitoring with Collectd
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="MonitoringSlaveStatus.html">
+            
+                
+                    <a href="./MonitoringSlaveStatus.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Collectd - Replication Slaves
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="9.3" data-path="MonitoringTrafficWithIPAccounting.html">
+            
+                
+                    <a href="./MonitoringTrafficWithIPAccounting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Collectd - Network usage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="MonitoringOtherRelevantMetrics.html">
+            
+                
+                    <a href="./MonitoringOtherRelevantMetrics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Collectd - more Metrics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="MonitoringFoxxApps.html">
+            
+                
+                    <a href="./MonitoringFoxxApps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Collectd - Monitoring Foxx
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >Cookbook</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="monitoring-arangodb-cluster-network-usage">Monitoring ArangoDB Cluster network usage</h1>
+<h2 id="problem">Problem</h2>
+<p>We run a cluster and want to know whether the traffic is unbalanced or something like that. We want a cheap estimate which host has how much traffic.</p>
+<h2 id="solution">Solution</h2>
+<p>As we already run <a href="http://collectd.org" target="_blank">Collectd</a> as our metric-hub, we want to utilize it to also give us these figures. A very cheap way to generate these values are the counters in the IPTables firewall of our system.</p>
+<h3 id="ingredients">Ingredients</h3>
+<p>For this recipe you need to install the following tools:</p>
+<ul>
+<li><a href="https://collectd.org/" target="_blank">collectd</a>: the aggregation Daemon</li>
+<li><a href="https://www.forwiss.uni-passau.de/~berberic/Linux/kcollectd.html" target="_blank">kcollectd</a> for inspecting the data</li>
+<li><a href="http://en.wikipedia.org/wiki/Iptables" target="_blank">iptables</a> - should come with your Linux distribution</li>
+<li><a href="http://ferm.foo-projects.org/download/2.2/ferm.html#basic_iptables_match_keywords" target="_blank">ferm</a> for compact firewall code</li>
+<li>we base on <a href="MonitoringWithCollectd.html">Monitoring with Collecd recipe</a> for understanding the basics about collectd</li>
+</ul>
+<h3 id="getting-the-state-and-the-ports-of-your-cluster">Getting the state and the Ports of your cluster</h3>
+<p>Now we need to find out the current configuration of our cluster. For the time being we assume you simply issued</p>
+<pre><code>./scripts/startLocalCluster.sh
+</code></pre><p>to get you set up. So you know you&apos;ve got two DB-Servers - one Coordinator, one agent:</p>
+<pre><code>ps -eaf |grep arango
+arangod    21406     1  1 16:59 pts/14   00:00:00 bin/etcd-arango --data-dir /var/tmp/tmp-21550-1347489353/shell_server/agentarango4001 --name agentarango4001 --bind-addr 127.0.0.1:4001 --addr 127.0.0.1:4001 --peer-bind-addr 127.0.0.1:7001 --peer-addr 127.0.0.1:7001 --initial-cluster-state new --initial-cluster agentarango4001=http://127.0.0.1:7001
+arangod    21408     1  4 16:56 pts/14   00:00:01 bin/arangod --database.directory cluster/data8629 --cluster.agency-endpoint tcp://localhost:4001 --cluster.my-address tcp://localhost:8629 --server.endpoint tcp://localhost:8629 --cluster.my-local-info dbserver:localhost:8629 --log.file cluster/8629.log --cluster.my-id Pavel
+arangod    21410     1  5 16:56 pts/14   00:00:02 bin/arangod --database.directory cluster/data8630 --cluster.agency-endpoint tcp://localhost:4001 --cluster.my-address tcp://localhost:8630 --server.endpoint tcp://localhost:8630 --cluster.my-local-info dbserver:localhost:8630 --log.file cluster/8630.log --cluster.my-id Perry
+arangod    21416     1  5 16:56 pts/14   00:00:02 bin/arangod --database.directory cluster/data8530 --cluster.agency-endpoint tcp://localhost:4001 --cluster.my-address tcp://localhost:8530 --server.endpoint tcp://localhost:8530 --cluster.my-local-info coordinator:localhost:8530 --log.file cluster/8530.log --cluster.my-id Claus
+</code></pre><p>We can now check which ports they occupied:</p>
+<pre><code>netstat -aplnt |grep arango
+tcp        0      0 127.0.0.1:7001          0.0.0.0:*               LISTEN      21406/etcd-arango
+tcp        0      0 127.0.0.1:4001          0.0.0.0:*               LISTEN      21406/etcd-arango
+tcp        0      0 127.0.0.1:8530          0.0.0.0:*               LISTEN      21416/arangod
+tcp        0      0 127.0.0.1:8629          0.0.0.0:*               LISTEN      21408/arangod
+tcp        0      0 127.0.0.1:8630          0.0.0.0:*               LISTEN      21410/arangod
+</code></pre><ul>
+<li>The agent has 7001 and 4001. Since it&apos;s running in single server mode its cluster port (7001) should not show any traffic, port 4001 is the interesting one.</li>
+<li>Claus - This is the coordinator. Your Application will talk to it on port 8530</li>
+<li>Pavel - This is the first DB-Server; Claus will talk to it on port 8629</li>
+<li>Perry - This is the second DB-Server; Claus will talk to it on port 8630</li>
+</ul>
+<h3 id="configuring-iptables--ferm">Configuring IPTables / ferm</h3>
+<p>Since the usual solution using shell scripts calling iptables brings the <a href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself" target="_blank">DRY principle</a> to a grinding hold, we need something better. Here <a href="http://ferm.foo-projects.org/download/2.2/ferm.html#basic_iptables_match_keywords" target="_blank">ferm</a> comes to the rescue - It enables you to produce very compact and well readable firewall configurations.</p>
+<p>According to the ports we found in the last section, we will configure our firewall in <code>/etc/ferm/ferm.conf</code>, and put the identities into the comments so we have a persistent naming scheme:</p>
+<pre><code># blindly forward these to the accounting chain:
+@def $ARANGO_RANGE=4000:9000;
+
+@def &amp;TCP_ACCOUNTING($PORT, $COMMENT, $SRCCHAIN) = {
+    @def $FULLCOMMENT=@cat($COMMENT, &quot;_&quot;, $SRCCHAIN);
+    dport $PORT mod comment comment $FULLCOMMENT NOP;
+}
+
+@def &amp;ARANGO_ACCOUNTING($CHAINNAME) = {
+# The coordinators:
+    &amp;TCP_ACCOUNTING(8530, &quot;Claus&quot;, $CHAINNAME);
+# The db-servers:
+    &amp;TCP_ACCOUNTING(8629, &quot;Pavel&quot;, $CHAINNAME);
+    &amp;TCP_ACCOUNTING(8630, &quot;Perry&quot;, $CHAINNAME);
+# The agency:
+    &amp;TCP_ACCOUNTING(4001, &quot;etcd_client&quot;, $CHAINNAME);
+# it shouldn&apos;t talk to itself if it is only running with a single instance:
+    &amp;TCP_ACCOUNTING(7007, &quot;etcd_cluster&quot;, $CHAINNAME);
+}
+
+table filter {
+    chain INPUT {
+        proto tcp dport $ARANGO_RANGE @subchain &quot;Accounting&quot; {
+            &amp;ARANGO_ACCOUNTING(&quot;input&quot;);
+        }
+        policy DROP;
+
+        # connection tracking
+        mod state state INVALID DROP;
+        mod state state (ESTABLISHED RELATED) ACCEPT;
+
+        # allow local packet
+        interface lo ACCEPT;
+
+        # respond to ping
+        proto icmp ACCEPT; 
+
+        # allow IPsec
+        proto udp dport 500 ACCEPT;
+        proto (esp ah) ACCEPT;
+
+        # allow SSH connections
+        proto tcp dport ssh ACCEPT;
+    }
+    chain OUTPUT {
+        policy ACCEPT;
+
+        proto tcp dport $ARANGO_RANGE @subchain &quot;Accounting&quot; {
+            &amp;ARANGO_ACCOUNTING(&quot;output&quot;);
+        }
+
+        # connection tracking
+        #mod state state INVALID DROP;
+        mod state state (ESTABLISHED RELATED) ACCEPT;
+    }
+    chain FORWARD {
+        policy DROP;
+
+        # connection tracking
+        mod state state INVALID DROP;
+        mod state state (ESTABLISHED RELATED) ACCEPT;
+    }
+}
+</code></pre><p><strong>Note</strong>: This is a very basic configuration, mainly with the purpose to demonstrate the accounting feature - so don&apos;t run this in production)</p>
+<p>After activating it interactively with</p>
+<pre><code>ferm -i /etc/ferm/ferm.conf
+</code></pre><p>We now use the iptables command line utility directly to review the status our current setting:</p>
+<pre><code>iptables -L -nvx
+Chain INPUT (policy DROP 85 packets, 6046 bytes)
+    pkts      bytes target     prot opt in     out     source               destination
+    7636  1821798 Accounting  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpts:4000:9000
+       0        0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            state INVALID
+   14700 14857709 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+     130     7800 ACCEPT     all  --  lo     *       0.0.0.0/0            0.0.0.0/0
+       0        0 ACCEPT     icmp --  *      *       0.0.0.0/0            0.0.0.0/0
+       0        0 ACCEPT     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp dpt:500
+       0        0 ACCEPT     esp  --  *      *       0.0.0.0/0            0.0.0.0/0
+       0        0 ACCEPT     ah   --  *      *       0.0.0.0/0            0.0.0.0/0
+       0        0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy DROP 0 packets, 0 bytes)
+    pkts      bytes target     prot opt in     out     source               destination
+       0        0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            state INVALID
+       0        0 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+
+Chain OUTPUT (policy ACCEPT 296 packets, 19404 bytes)
+    pkts      bytes target     prot opt in     out     source               destination
+    7720  1882404 Accounting  tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpts:4000:9000
+   14575 14884356 ACCEPT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            state RELATED,ESTABLISHED
+
+Chain Accounting (2 references)
+    pkts      bytes target     prot opt in     out     source               destination
+     204    57750            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8530 /* Claus_input */
+      20    17890            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8629 /* Pavel_input */
+     262    97352            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8630 /* Perry_input */
+    2604   336184            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:4001 /* etcd_client_input */
+       0        0            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:7007 /* etcd_cluster_input */
+     204    57750            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8530 /* Claus_output */
+      20    17890            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8629 /* Pavel_output */
+     262    97352            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:8630 /* Perry_output */
+    2604   336184            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:4001 /* etcd_client_output */
+       0        0            tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:7007 /* etcd_cluster_output */
+</code></pre><p>You can see nicely the Accounting sub-chain with our comments. These should be pretty straight forward to match.
+We also see the <strong>pkts</strong> and <strong>bytes</strong> columns. They contain the current value of these counters of your system.</p>
+<p>Read more about <a href="http://lartc.org" target="_blank">linux firewalling</a> and <a href="http://ferm.foo-projects.org/download/2.2/ferm.html" target="_blank">ferm configuration</a> to be sure you do the right thing.</p>
+<h3 id="configuring-collectd-to-pick-up-these-values">Configuring Collectd to pick up these values</h3>
+<p>Since your system now generates these numbers, we want to configure collectd with its <a href="https://collectd.org/wiki/index.php/Plugin:IPTables" target="_blank">iptables plugin</a> to aggregate them.</p>
+<p>We do so in the <code>/etc/collectd/collectd.conf.d/iptables.conf</code>:</p>
+<pre><code>LoadPlugin iptables
+&lt;Plugin iptables&gt;
+  Chain filter &quot;Accounting&quot; &quot;Claus_input&quot;
+  Chain filter &quot;Accounting&quot; &quot;Pavel_input&quot;
+  Chain filter &quot;Accounting&quot; &quot;Perry_input&quot;
+  Chain filter &quot;Accounting&quot; &quot;etcd_client_input&quot;
+  Chain filter &quot;Accounting&quot; &quot;etcd_cluster_input&quot;
+  Chain filter &quot;Accounting&quot; &quot;Claus_output&quot;
+  Chain filter &quot;Accounting&quot; &quot;Pavel_output&quot;
+  Chain filter &quot;Accounting&quot; &quot;Perry_output&quot;
+  Chain filter &quot;Accounting&quot; &quot;etcd_client_output&quot;
+  Chain filter &quot;Accounting&quot; &quot;etcd_cluster_output&quot;
+&lt;/Plugin&gt;
+</code></pre><p>Now we restart collectd with <code>/etc/init.d/collectd restart</code>, watch the syslog for errors. If everything is OK, our values should show up in:</p>
+<pre><code>/var/lib/collectd/rrd/localhost/iptables-filter-Accounting/ipt_packets-Claus_output.rrd
+</code></pre><p>We can inspect our values with kcollectd:</p>
+<p><img src="assets/MonitoringWithCollectd/KCollectdIPtablesAccounting.png" alt="Kcollectd screenshot"></p>
+<p><strong>Author:</strong> <a href="https://github.com/dothebart" target="_blank">Wilfried Goesgens</a></p>
+<p><strong>Tags:</strong>  #monitoring</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./MonitoringSlaveStatus.html" class="navigation navigation-prev " aria-label="Previous page: Collectd - Replication Slaves"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./MonitoringOtherRelevantMetrics.html" class="navigation navigation-next " aria-label="Next page: Collectd - more Metrics"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    
+</html>

@@ -1,0 +1,1354 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Monitoring with Collectd | Cookbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="./styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="./MonitoringSlaveStatus.html" />
+    
+    
+    <link rel="prev" href="./UsingArangoDBMesosphere.html" />
+    
+
+        <script type="text/javascript" src="styles/header.js"></script><link rel="stylesheet" type="text/css" href="styles/header.css">
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="9.1" data-chapter-title="Monitoring with Collectd" data-filepath="MonitoringWithCollectd.md" data-basepath="." data-revision="Tue Nov 24 2015 11:06:54 GMT+0100 (CET)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="ModulDocumentInheritance.html">
+            
+                
+                    <a href="./ModulDocumentInheritance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Modelling Document Inheritance
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="AccessingShapesData.html">
+            
+                
+                    <a href="./AccessingShapesData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Accessing Shapes Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> AQL</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="JoinsInAQL.html">
+            
+                
+                    <a href="./JoinsInAQL.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Using Joins in AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="UsingDynamicAttributeNames.html">
+            
+                
+                    <a href="./UsingDynamicAttributeNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Using Dynamic Attribute Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="FindingLeafNodesGraph.html">
+            
+                
+                    <a href="./FindingLeafNodesGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Finding Leaf Nodes in a Graph
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="FilteringNodesGraph.html">
+            
+                
+                    <a href="./FilteringNodesGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Filtering Nodes in a Graph
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="CountingNodesEfficientlyGraph.html">
+            
+                
+                    <a href="./CountingNodesEfficientlyGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Counting Nodes efficiently
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="CreatingTestDataAQL.html">
+            
+                
+                    <a href="./CreatingTestDataAQL.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Creating Test-data using AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="DiffingDocuments.html">
+            
+                
+                    <a href="./DiffingDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Diffing Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="AvoidingInjection.html">
+            
+                
+                    <a href="./AvoidingInjection.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Avoiding Parameter Injection
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="MultilineQueryStrings.html">
+            
+                
+                    <a href="./MultilineQueryStrings.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Multiline Query Strings
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" >
+            
+            <span><b>4.</b> Graph-based Recipes</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Fulldepth.html">
+            
+                
+                    <a href="./Fulldepth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Fulldepth Graph-Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="FindingConnectedVerticesForSubgraphs.html">
+            
+                
+                    <a href="./FindingConnectedVerticesForSubgraphs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Vertices for Subgraphs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="JavaDriverGraphExampleVertex.html">
+            
+                
+                    <a href="./JavaDriverGraphExampleVertex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Vertex example with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="JavaDriverBaseDocument.html">
+            
+                
+                    <a href="./JavaDriverBaseDocument.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Accessing base documents with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="UsingCustomVisitorFromNodeJs.html">
+            
+                
+                    <a href="./UsingCustomVisitorFromNodeJs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Using a custom Visitor
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="GraphExampleActorsAndMovies.html">
+            
+                
+                    <a href="./GraphExampleActorsAndMovies.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Example AQL Queries for Graphs
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" >
+            
+            <span><b>5.</b> Foxx Framework</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="FoxxFirstSteps.html">
+            
+                
+                    <a href="./FoxxFirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        My first Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="FoxxFirstStepsLegacy.html">
+            
+                
+                    <a href="./FoxxFirstStepsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        My first Foxx App pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="FoxxAuth.html">
+            
+                
+                    <a href="./FoxxAuth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Adding Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="FoxxAuthLegacy.html">
+            
+                
+                    <a href="./FoxxAuthLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Adding Authentication pre-2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="MakingRequests.html">
+            
+                
+                    <a href="./MakingRequests.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Using external APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="FoxxQueues.html">
+            
+                
+                    <a href="./FoxxQueues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="FoxxQueuesLegacy.html">
+            
+                
+                    <a href="./FoxxQueuesLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        legacy background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="FoxxCustomQueueJobsLegacy.html">
+            
+                
+                    <a href="./FoxxCustomQueueJobsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        legacy custom Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="FoxxScripts.html">
+            
+                
+                    <a href="./FoxxScripts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        Creating a Foxx script
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="FoxxCustomQueueJobs.html">
+            
+                
+                    <a href="./FoxxCustomQueueJobs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        Custom job types for Queues
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="FoxxGeneratorFirstSteps.html">
+            
+                
+                    <a href="./FoxxGeneratorFirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        My first FoxxGenerator App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="FoxxDeploy.html">
+            
+                
+                    <a href="./FoxxDeploy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        How to deploy a Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.13" data-path="MakingFoxxAppAccessible.html">
+            
+                
+                    <a href="./MakingFoxxAppAccessible.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.13.</b>
+                        
+                        Apps accessible from the Web
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.14" data-path="FoxxApiKeys.html">
+            
+                
+                    <a href="./FoxxApiKeys.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.14.</b>
+                        
+                        API-Key Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.15" data-path="FoxxBinaryHttpPost.html">
+            
+                
+                    <a href="./FoxxBinaryHttpPost.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.15.</b>
+                        
+                        Binary HTTP documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.16" data-path="FoxxTesting.html">
+            
+                
+                    <a href="./FoxxTesting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.16.</b>
+                        
+                        Foxx Testing
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" >
+            
+            <span><b>6.</b> Use Cases, Examples</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="CrawlingGithubPromises.html">
+            
+                
+                    <a href="./CrawlingGithubPromises.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Crawling Github with Promises
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="UsingArangoDBWithSailsJS.html">
+            
+                
+                    <a href="./UsingArangoDBWithSailsJS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Using ArangoDB with Sails.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="PopulatingAnAutocompleteTextbox.html">
+            
+                
+                    <a href="./PopulatingAnAutocompleteTextbox.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Populating a Textbox
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="ExportingData.html">
+            
+                
+                    <a href="./ExportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Exporting Data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> ArangoDB Setup / Administration</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="UsingAuthentication.html">
+            
+                
+                    <a href="./UsingAuthentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Using Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="ImportingData.html">
+            
+                
+                    <a href="./ImportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Importing Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="ReplicatingData.html">
+            
+                
+                    <a href="./ReplicatingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Replicating Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="XCopyInstallWindows.html">
+            
+                
+                    <a href="./XCopyInstallWindows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        XCopy Install Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="Compiling.html">
+            
+                
+                    <a href="./Compiling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Compiling / Build
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.5.1" data-path="CompilingOnDebian.html">
+            
+                
+                    <a href="./CompilingOnDebian.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.1.</b>
+                        
+                        Compile on Debian
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.2" data-path="CompilingUnderWindows.html">
+            
+                
+                    <a href="./CompilingUnderWindows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.2.</b>
+                        
+                        Compile on Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.3" data-path="CompilingUnderWindowsLegacy.html">
+            
+                
+                    <a href="./CompilingUnderWindowsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.3.</b>
+                        
+                        Compile on Windows pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.4" data-path="RunningCustomBuild.html">
+            
+                
+                    <a href="./RunningCustomBuild.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.4.</b>
+                        
+                        Running Custom Build
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> Cloud, DCOS and Docker</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="RunningOnAWS.html">
+            
+                
+                    <a href="./RunningOnAWS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Running on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="UpdateArangoDBOnAWS.html">
+            
+                
+                    <a href="./UpdateArangoDBOnAWS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Update on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="UsingArangoDBAzure.html">
+            
+                
+                    <a href="./UsingArangoDBAzure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Running on Azure
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="RunningInDockerContainer.html">
+            
+                
+                    <a href="./RunningInDockerContainer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Docker ArangoDB
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="UsingArangoDBNodeJSDocker.html">
+            
+                
+                    <a href="./UsingArangoDBNodeJSDocker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        Docker with NodeJS App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="UsingArangoDBInGiantSwarm.html">
+            
+                
+                    <a href="./UsingArangoDBInGiantSwarm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                        In the GiantSwarm
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="UsingArangoDBMesosphere.html">
+            
+                
+                    <a href="./UsingArangoDBMesosphere.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.7.</b>
+                        
+                        ArangoDB in Mesos
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" >
+            
+            <span><b>9.</b> Monitoring</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="9.1" data-path="MonitoringWithCollectd.html">
+            
+                
+                    <a href="./MonitoringWithCollectd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Monitoring with Collectd
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="MonitoringSlaveStatus.html">
+            
+                
+                    <a href="./MonitoringSlaveStatus.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Collectd - Replication Slaves
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="MonitoringTrafficWithIPAccounting.html">
+            
+                
+                    <a href="./MonitoringTrafficWithIPAccounting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Collectd - Network usage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="MonitoringOtherRelevantMetrics.html">
+            
+                
+                    <a href="./MonitoringOtherRelevantMetrics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Collectd - more Metrics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="MonitoringFoxxApps.html">
+            
+                
+                    <a href="./MonitoringFoxxApps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Collectd - Monitoring Foxx
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >Cookbook</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="monitoring-arangodb-using-collectd">Monitoring ArangoDB using collectd</h1>
+<h2 id="problem">Problem</h2>
+<p>The ArangoDB web interface shows a nice summary of the current state. I want to see similar numbers in my monitoring system so I can analyze the system usage post mortem or send alarms on failure.</p>
+<h2 id="solution">Solution</h2>
+<p><a href="http://collectd.org" target="_blank">Collectd</a> is an excellent tool to gather all kinds of metrics from a system and deliver it to a central monitoring like <a href="http://graphite.wikidot.com/screen-shots" target="_blank">Graphite</a> and / or <a href="http://www.nagios.org/" target="_blank">Nagios</a>.</p>
+<h3 id="ingredients">Ingredients</h3>
+<p>For this recipe you need to install the following tools:</p>
+<ul>
+<li><a href="https://collectd.org/" target="_blank">collectd &gt;= 5.4.2</a> The aggregation Daemon</li>
+<li><a href="https://www.forwiss.uni-passau.de/~berberic/Linux/kcollectd.html" target="_blank">kcollectd</a> for inspecting the data</li>
+</ul>
+<h3 id="configuring-collectd">Configuring collectd</h3>
+<p>For aggregating the values we will use the <a href="https://collectd.org/wiki/index.php/Plugin:cURL-JSON" target="_blank">cURL-JSON plug-in</a>. We will store the values using the <a href="https://collectd.org/wiki/index.php/RRD" target="_blank">Round-Robin-Database writer</a>(RRD) which <code>kcollectd</code> can later on present to you.</p>
+<p>We assume your <code>collectd</code> comes from your distribution and reads its config from <code>/etc/collectd/collectd.conf</code>. Since this file tends to become pretty unreadable quickly, we use the <code>include</code> mechanism:</p>
+<pre><code>&lt;Include &quot;/etc/collectd/collectd.conf.d&quot;&gt;
+  Filter &quot;*.conf&quot;
+&lt;/Include&gt;
+</code></pre><p>This way we can make each metric group on compact set config files. It consists of three components:</p>
+<ul>
+<li>loading the plug-in</li>
+<li>adding metrics to the TypesDB</li>
+<li>the configuration for the plug-in itself</li>
+</ul>
+<h3 id="rrdtool">rrdtool</h3>
+<p>We will use the <a href="http://oss.oetiker.ch/rrdtool/" target="_blank">Round-Robin-Database</a> as storage backend for now. It creates its own database files of fixed size for each specific time range. Later you may choose more advanced writer-plug-ins, which may do network distribution of your metrics or integrate the above mentioned Graphite or your already established monitoring, etc.</p>
+<p>For the RRD we will go pretty much with defaults:</p>
+<pre><code># Load the plug-in:
+LoadPlugin rrdtool
+&lt;Plugin rrdtool&gt;
+   DataDir &quot;/var/lib/collectd/rrd&quot;
+#  CacheTimeout 120
+#  CacheFlush 900
+#  WritesPerSecond 30
+#  CreateFilesAsync false
+#  RandomTimeout 0
+#
+# The following settings are rather advanced
+# and should usually not be touched:
+#   StepSize 10
+#   HeartBeat 20
+#   RRARows 1200
+#   RRATimespan 158112000
+#   XFF 0.1
+&lt;/Plugin&gt;
+</code></pre><h3 id="curl-json">cURL JSON</h3>
+<p><code>Collectd</code> comes with a wide range of metric aggregation plug-ins. Many tools today use <a href="http://json.org" target="_blank">JSON</a> as data formating grammar; so does ArangoDB. Therefore a plug-in offering to fetch JSON documents via HTTP is the perfect match as an integration interface:</p>
+<pre><code># Load the plug-in:
+LoadPlugin curl_json
+# we need to use our own types to generate individual names for our gauges:
+TypesDB &quot;/etc/collectd/collectd.conf.d/arangodb_types.db&quot;
+&lt;Plugin curl_json&gt;
+  # Adjust the URL so collectd can reach your arangod:
+  &lt;URL &quot;http://localhost:8529/_db/_system/_admin/aardvark/statistics/short&quot;&gt;
+   # Set your authentication to Aardvark here:
+   # User &quot;foo&quot;
+   # Password &quot;bar&quot;
+    &lt;Key &quot;totalTimeDistributionPercent/values/0&quot;&gt;
+       Type &quot;totalTimeDistributionPercent_values&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;totalTimeDistributionPercent/cuts/0&quot;&gt;
+       Type &quot;totalTimeDistributionPercent_cuts&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;requestTimeDistributionPercent/values/0&quot;&gt;
+       Type &quot;requestTimeDistributionPercent_values&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;requestTimeDistributionPercent/cuts/0&quot;&gt;
+       Type &quot;requestTimeDistributionPercent_cuts&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;queueTimeDistributionPercent/values/0&quot;&gt;
+       Type &quot;queueTimeDistributionPercent_values&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;queueTimeDistributionPercent/cuts/0&quot;&gt;
+       Type &quot;queueTimeDistributionPercent_cuts&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;bytesSentDistributionPercent/values/0&quot;&gt;
+       Type &quot;bytesSentDistributionPercent_values&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;bytesSentDistributionPercent/cuts/0&quot;&gt;
+       Type &quot;bytesSentDistributionPercent_cuts&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;bytesReceivedDistributionPercent/values/0&quot;&gt;
+       Type &quot;bytesReceivedDistributionPercent_values&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;bytesReceivedDistributionPercent/cuts/0&quot;&gt;
+       Type &quot;bytesReceivedDistributionPercent_cuts&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;numberOfThreadsCurrent&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;numberOfThreadsPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;virtualSizeCurrent&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;virtualSizePercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;residentSizeCurrent&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;residentSizePercent&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;asyncPerSecondCurrent&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;asyncPerSecondPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;syncPerSecondCurrent&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;syncPerSecondPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;clientConnectionsCurrent&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;clientConnectionsPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;physicalMemory&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;nextStart&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;waitFor&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;numberOfThreads15M&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;numberOfThreads15MPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;virtualSize15M&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;virtualSize15MPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;asyncPerSecond15M&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;asyncPerSecond15MPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;syncPerSecond15M&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;syncPerSecond15MPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;clientConnections15M&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+     &lt;Key &quot;clientConnections15MPercentChange&quot;&gt;
+       Type &quot;gauge&quot;
+     &lt;/Key&gt;
+  &lt;/URL&gt;
+&lt;/Plugin&gt;
+</code></pre><p>To circumvent the shortcoming of the curl_JSON plug-in to only take the last path element as name for the metric, we need to give them a name using our own <code>types.db</code> file in <code>/etc/collectd/collectd.conf.d/arangodb_types.db</code>:</p>
+<pre><code>totalTimeDistributionPercent_values        value:GAUGE:U:U
+totalTimeDistributionPercent_cuts        value:GAUGE:U:U
+requestTimeDistributionPercent_values        value:GAUGE:U:U
+requestTimeDistributionPercent_cuts        value:GAUGE:U:U
+queueTimeDistributionPercent_values        value:GAUGE:U:U
+queueTimeDistributionPercent_cuts        value:GAUGE:U:U
+bytesSentDistributionPercent_values        value:GAUGE:U:U
+bytesSentDistributionPercent_cuts        value:GAUGE:U:U
+bytesReceivedDistributionPercent_values        value:GAUGE:U:U
+bytesReceivedDistributionPercent_cuts        value:GAUGE:U:U
+</code></pre><h3 id="rolling-your-own">Rolling your own</h3>
+<p>You may want to monitor your own metrics from ArangoDB. Here is a simple example how to use the <code>config</code>:</p>
+<pre><code>{
+ &quot;testArray&quot;:[1,2],
+ &quot;testArrayInbetween&quot;:[{&quot;blarg&quot;:3},{&quot;blub&quot;:4}],
+ &quot;testDirectHit&quot;:5,
+ &quot;testSubLevelHit&quot;:{&quot;oneMoreLevel&quot;:6}
+}
+</code></pre><p>This <code>config</code> snippet will parse the JSON above:</p>
+<pre><code>&lt;Key &quot;testArray/0&quot;&gt;
+  Type &quot;gauge&quot;
+  # Expect: 1
+&lt;/Key&gt;
+&lt;Key &quot;testArray/1&quot;&gt;
+  Type &quot;gauge&quot;
+  # Expect: 2
+&lt;/Key&gt;
+&lt;Key &quot;testArrayInbetween/0/blarg&quot;&gt;
+  Type &quot;gauge&quot;
+  # Expect: 3
+&lt;/Key&gt;
+&lt;Key &quot;testArrayInbetween/1/blub&quot;&gt;
+  Type &quot;gauge&quot;
+  # Expect: 4
+&lt;/Key&gt;
+&lt;Key &quot;testDirectHit&quot;&gt;
+  Type &quot;gauge&quot;
+  # Expect: 5
+&lt;/Key&gt;
+&lt;Key &quot;testSubLevelHit/oneMoreLevel&quot;&gt;
+  Type &quot;gauge&quot;
+  # Expect: 6
+&lt;/Key
+</code></pre><h3 id="get-it-served">Get it served</h3>
+<p>Now we will (re)start <code>collectd</code> so it picks up our configuration:</p>
+<pre><code>/etc/init.d/collectd start
+</code></pre><p>We will inspect the syslog to revalidate nothing went wrong:</p>
+<pre><code>Mar  3 13:59:52 localhost collectd[11276]: Starting statistics collection and monitoring daemon: collectd.
+Mar  3 13:59:52 localhost systemd[1]: Started LSB: manage the statistics collection daemon.
+Mar  3 13:59:52 localhost collectd[11283]: Initialization complete, entering read-loop.
+</code></pre><p><code>Collectd</code> adds the hostname to the directory address, so now we should have files like these:</p>
+<pre><code> -rw-r--r-- 1 root root 154888 Mar  2 16:53 /var/lib/collectd/rrd/localhost/curl_json-default/gauge-numberOfThreads15M.rrd
+</code></pre><p>Now we start <code>kcollectd</code> to view the values in the RRD file:</p>
+<p><img src="assets/MonitoringWithCollectd/KCollectdJson.png" alt="Kcollectd screenshot"></p>
+<p>Since we started putting values in just now, we need to choose &apos;last hour&apos; and zoom in a little more to inspect the values.</p>
+<p>Finished with this dish, wait for more metrics to come in other recipes.</p>
+<p><strong>Author:</strong> <a href="https://github.com/dothebart" target="_blank">Wilfried Goesgens</a></p>
+<p><strong>Tags:</strong> #json #monitoring</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./UsingArangoDBMesosphere.html" class="navigation navigation-prev " aria-label="Previous page: ArangoDB in Mesos"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./MonitoringSlaveStatus.html" class="navigation navigation-next " aria-label="Next page: Collectd - Replication Slaves"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    
+</html>

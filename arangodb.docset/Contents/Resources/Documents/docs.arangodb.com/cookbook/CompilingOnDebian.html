@@ -1,0 +1,1208 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Compile on Debian | Cookbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="./styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="./CompilingUnderWindows.html" />
+    
+    
+    <link rel="prev" href="./Compiling.html" />
+    
+
+        <script type="text/javascript" src="styles/header.js"></script><link rel="stylesheet" type="text/css" href="styles/header.css">
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="7.5.1" data-chapter-title="Compile on Debian" data-filepath="CompilingOnDebian.md" data-basepath="." data-revision="Tue Nov 24 2015 11:06:54 GMT+0100 (CET)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="ModulDocumentInheritance.html">
+            
+                
+                    <a href="./ModulDocumentInheritance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Modelling Document Inheritance
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="AccessingShapesData.html">
+            
+                
+                    <a href="./AccessingShapesData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Accessing Shapes Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+            <span><b>3.</b> AQL</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="JoinsInAQL.html">
+            
+                
+                    <a href="./JoinsInAQL.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Using Joins in AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="UsingDynamicAttributeNames.html">
+            
+                
+                    <a href="./UsingDynamicAttributeNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Using Dynamic Attribute Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="FindingLeafNodesGraph.html">
+            
+                
+                    <a href="./FindingLeafNodesGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Finding Leaf Nodes in a Graph
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="FilteringNodesGraph.html">
+            
+                
+                    <a href="./FilteringNodesGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Filtering Nodes in a Graph
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="CountingNodesEfficientlyGraph.html">
+            
+                
+                    <a href="./CountingNodesEfficientlyGraph.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Counting Nodes efficiently
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="CreatingTestDataAQL.html">
+            
+                
+                    <a href="./CreatingTestDataAQL.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Creating Test-data using AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="DiffingDocuments.html">
+            
+                
+                    <a href="./DiffingDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Diffing Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="AvoidingInjection.html">
+            
+                
+                    <a href="./AvoidingInjection.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.8.</b>
+                        
+                        Avoiding Parameter Injection
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="MultilineQueryStrings.html">
+            
+                
+                    <a href="./MultilineQueryStrings.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                        Multiline Query Strings
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" >
+            
+            <span><b>4.</b> Graph-based Recipes</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Fulldepth.html">
+            
+                
+                    <a href="./Fulldepth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Fulldepth Graph-Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="FindingConnectedVerticesForSubgraphs.html">
+            
+                
+                    <a href="./FindingConnectedVerticesForSubgraphs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Vertices for Subgraphs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="JavaDriverGraphExampleVertex.html">
+            
+                
+                    <a href="./JavaDriverGraphExampleVertex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Vertex example with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="JavaDriverBaseDocument.html">
+            
+                
+                    <a href="./JavaDriverBaseDocument.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Accessing base documents with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="UsingCustomVisitorFromNodeJs.html">
+            
+                
+                    <a href="./UsingCustomVisitorFromNodeJs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Using a custom Visitor
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="GraphExampleActorsAndMovies.html">
+            
+                
+                    <a href="./GraphExampleActorsAndMovies.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Example AQL Queries for Graphs
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" >
+            
+            <span><b>5.</b> Foxx Framework</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="FoxxFirstSteps.html">
+            
+                
+                    <a href="./FoxxFirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        My first Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="FoxxFirstStepsLegacy.html">
+            
+                
+                    <a href="./FoxxFirstStepsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        My first Foxx App pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="FoxxAuth.html">
+            
+                
+                    <a href="./FoxxAuth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Adding Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="FoxxAuthLegacy.html">
+            
+                
+                    <a href="./FoxxAuthLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Adding Authentication pre-2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="MakingRequests.html">
+            
+                
+                    <a href="./MakingRequests.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Using external APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="FoxxQueues.html">
+            
+                
+                    <a href="./FoxxQueues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="FoxxQueuesLegacy.html">
+            
+                
+                    <a href="./FoxxQueuesLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        legacy background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="FoxxCustomQueueJobsLegacy.html">
+            
+                
+                    <a href="./FoxxCustomQueueJobsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        legacy custom Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="FoxxScripts.html">
+            
+                
+                    <a href="./FoxxScripts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        Creating a Foxx script
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="FoxxCustomQueueJobs.html">
+            
+                
+                    <a href="./FoxxCustomQueueJobs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        Custom job types for Queues
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="FoxxGeneratorFirstSteps.html">
+            
+                
+                    <a href="./FoxxGeneratorFirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        My first FoxxGenerator App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="FoxxDeploy.html">
+            
+                
+                    <a href="./FoxxDeploy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        How to deploy a Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.13" data-path="MakingFoxxAppAccessible.html">
+            
+                
+                    <a href="./MakingFoxxAppAccessible.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.13.</b>
+                        
+                        Apps accessible from the Web
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.14" data-path="FoxxApiKeys.html">
+            
+                
+                    <a href="./FoxxApiKeys.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.14.</b>
+                        
+                        API-Key Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.15" data-path="FoxxBinaryHttpPost.html">
+            
+                
+                    <a href="./FoxxBinaryHttpPost.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.15.</b>
+                        
+                        Binary HTTP documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.16" data-path="FoxxTesting.html">
+            
+                
+                    <a href="./FoxxTesting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.16.</b>
+                        
+                        Foxx Testing
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" >
+            
+            <span><b>6.</b> Use Cases, Examples</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="CrawlingGithubPromises.html">
+            
+                
+                    <a href="./CrawlingGithubPromises.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Crawling Github with Promises
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="UsingArangoDBWithSailsJS.html">
+            
+                
+                    <a href="./UsingArangoDBWithSailsJS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Using ArangoDB with Sails.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="PopulatingAnAutocompleteTextbox.html">
+            
+                
+                    <a href="./PopulatingAnAutocompleteTextbox.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Populating a Textbox
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="ExportingData.html">
+            
+                
+                    <a href="./ExportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Exporting Data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" >
+            
+            <span><b>7.</b> ArangoDB Setup / Administration</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="UsingAuthentication.html">
+            
+                
+                    <a href="./UsingAuthentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Using Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="ImportingData.html">
+            
+                
+                    <a href="./ImportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Importing Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="ReplicatingData.html">
+            
+                
+                    <a href="./ReplicatingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Replicating Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="XCopyInstallWindows.html">
+            
+                
+                    <a href="./XCopyInstallWindows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        XCopy Install Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="Compiling.html">
+            
+                
+                    <a href="./Compiling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Compiling / Build
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="7.5.1" data-path="CompilingOnDebian.html">
+            
+                
+                    <a href="./CompilingOnDebian.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.1.</b>
+                        
+                        Compile on Debian
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.2" data-path="CompilingUnderWindows.html">
+            
+                
+                    <a href="./CompilingUnderWindows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.2.</b>
+                        
+                        Compile on Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.3" data-path="CompilingUnderWindowsLegacy.html">
+            
+                
+                    <a href="./CompilingUnderWindowsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.3.</b>
+                        
+                        Compile on Windows pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5.4" data-path="RunningCustomBuild.html">
+            
+                
+                    <a href="./RunningCustomBuild.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.4.</b>
+                        
+                        Running Custom Build
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" >
+            
+            <span><b>8.</b> Cloud, DCOS and Docker</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="RunningOnAWS.html">
+            
+                
+                    <a href="./RunningOnAWS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Running on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="UpdateArangoDBOnAWS.html">
+            
+                
+                    <a href="./UpdateArangoDBOnAWS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Update on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="UsingArangoDBAzure.html">
+            
+                
+                    <a href="./UsingArangoDBAzure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Running on Azure
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="RunningInDockerContainer.html">
+            
+                
+                    <a href="./RunningInDockerContainer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Docker ArangoDB
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="UsingArangoDBNodeJSDocker.html">
+            
+                
+                    <a href="./UsingArangoDBNodeJSDocker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        Docker with NodeJS App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.6" data-path="UsingArangoDBInGiantSwarm.html">
+            
+                
+                    <a href="./UsingArangoDBInGiantSwarm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.6.</b>
+                        
+                        In the GiantSwarm
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.7" data-path="UsingArangoDBMesosphere.html">
+            
+                
+                    <a href="./UsingArangoDBMesosphere.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.7.</b>
+                        
+                        ArangoDB in Mesos
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" >
+            
+            <span><b>9.</b> Monitoring</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="MonitoringWithCollectd.html">
+            
+                
+                    <a href="./MonitoringWithCollectd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Monitoring with Collectd
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="MonitoringSlaveStatus.html">
+            
+                
+                    <a href="./MonitoringSlaveStatus.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Collectd - Replication Slaves
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="MonitoringTrafficWithIPAccounting.html">
+            
+                
+                    <a href="./MonitoringTrafficWithIPAccounting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Collectd - Network usage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="MonitoringOtherRelevantMetrics.html">
+            
+                
+                    <a href="./MonitoringOtherRelevantMetrics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Collectd - more Metrics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="MonitoringFoxxApps.html">
+            
+                
+                    <a href="./MonitoringFoxxApps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Collectd - Monitoring Foxx
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >Cookbook</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="compiling-on-debian">Compiling on Debian</h1>
+<h2 id="problem">Problem</h2>
+<p>You want to compile and run the devel branch, for example to test a bug fix. In this example the system is Debian based.</p>
+<h2 id="solution">Solution</h2>
+<p>This solution was made using a fresh Debian Testing machine on Amazon EC2. For completeness, the steps pertaining to AWS are also included in this recipe.</p>
+<h3 id="launch-the-vm">Launch the VM</h3>
+<p><em>Optional</em></p>
+<p>Login to your AWS account and launch an instance of Debian Testing. I used an &apos;m3.xlarge&apos; since that has a bunch of cores, more than enough memory, optimized network and the instance store is on SSDs which can be switched to provisioned IOPs.</p>
+<p>The Current AMI ID&apos;s can be found in the Debian Wiki: <a href="https://wiki.debian.org/Cloud/AmazonEC2Image/Wheezy" target="_blank">https://wiki.debian.org/Cloud/AmazonEC2Image/Wheezy</a></p>
+<h3 id="upgrade-to-the-very-latest-version">Upgrade to the very latest version</h3>
+<p><em>Optional</em></p>
+<p>Once your EC2 instance is up, login ad <code>admin</code> and <code>sudo su</code> to become <code>root</code>.</p>
+<p>First, we remove the backports and change the primary sources.list</p>
+<pre><code class="lang-bash">rm -rf /etc/apt/sources.list.d
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;deb     http://http.debian.net/debian testing main contrib&quot;</span>  &gt; /etc/apt/sources.list
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;deb-src http://http.debian.net/debian testing main contrib&quot;</span> &gt;&gt; /etc/apt/sources.list
+</code></pre>
+<p>Update and upgrade the system. Make sure you don&apos;t have any broken/unconfigured packages. Sometimes you need to run safe/full upgrade more than once. When you&apos;re done, reboot.</p>
+<pre><code class="lang-bash">aptitude update
+aptitude safe-upgrade
+aptitude full-upgrade
+reboot
+</code></pre>
+<h3 id="install-build-dependencies">Install Build dependencies</h3>
+<p><em>Mandatory</em></p>
+<p>Before you can build ArangoDB, you need a few packages pre-installed on your system. ArangoDB also bundles a few libraries, which can be enabled/used by using the &quot;all-in-one&quot; switches during the configuration state.</p>
+<p>More information on the dependencies is available in the official documentation: <a href="https://docs.arangodb.com/Installing/Compiling.html" target="_blank">https://docs.arangodb.com/Installing/Compiling.html</a></p>
+<p>Login again and install them.</p>
+<pre><code class="lang-bash">sudo aptitude install git-core \
+    build-essential \
+    autoconf automake \
+    libssl-dev libreadline-dev libboost-test-dev \
+    cmake \
+    python2.<span class="hljs-number">7</span> \
+    golang-go
+</code></pre>
+<h3 id="build-arangodb--autoconf-way">Build ArangoDB - autoconf way</h3>
+<p><em>Mandatory</em></p>
+<p>To build ArangoDB we <em>don&apos;t</em> need to be root. It&apos;s perfectly fine to build as admin.</p>
+<p>Depending on what you want to do with your build, it may make sense to set a few compiler flags. Below we include debug symbols and disable all optimization.</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">export</span> CFLAGS=<span class="hljs-string">&quot;-g -O0&quot;</span>
+<span class="hljs-built_in">export</span> CXXFLAGS=<span class="hljs-string">&quot;-g -O0&quot;</span>
+</code></pre>
+<p>Now, as normal user, we will clone and build ArangoDB</p>
+<pre><code class="lang-bash">git <span class="hljs-built_in">clone</span> -b devel git://github.com/arangodb/arangodb.git
+<span class="hljs-built_in">cd</span> ArangoDB
+make setup
+./configure
+</code></pre>
+<p>The configure summary should include a version and details for: readline, openssl, zlib, libev, v8, icu.</p>
+<p>Now we&apos;re ready to build, and let&apos;s make sure we max out the machine:</p>
+<pre><code class="lang-bash">make -j $(nproc)
+</code></pre>
+<h3 id="next-steps">Next steps?</h3>
+<p><em>Optional</em></p>
+<p>Now that you have a custom build, you probably want to run it. Have a look at <a href="RunningCustomBuild.html">Running Custom Build</a></p>
+<h2 id="build-arangodb--cmake-way-for-armtargets">Build ArangoDB - cmake way for ARM-targets</h2>
+<p>The cmake way will work on ARM systems, plus you will end up with <code>.deb</code> packages.</p>
+<p>You should configure your system to use the gold-ld, since its using far less resources:</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> /usr/bin
+rm ld
+ln <span class="hljs-operator">-s</span> ld.gold ld
+</code></pre>
+<p>First we need to compile the dependencies (V8, libev...) via the traditional configure / make style:</p>
+<pre><code class="lang-bash">./configure
+make
+</code></pre>
+<p>Once we got all the dependencies compiled we can continue using them for subsequent builds:</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> <span class="hljs-number">3</span>rdParty; make <span class="hljs-operator">-f</span> Makefile.v8-arm install
+</code></pre>
+<p>then continue with the main package building:</p>
+<pre><code class="lang-bash">make pack-arm
+</code></pre>
+<p>If you want to fiddle with the process, visit <code>GNUmakefile</code> and search for <code>pack-arm</code> to find its invocation of cmake.</p>
+<p><strong>Author:</strong> <a href="https://github.com/stackmagic" target="_blank">Patrick Huber</a></p>
+<p><strong>Tags:</strong> #debian #driver</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./Compiling.html" class="navigation navigation-prev " aria-label="Previous page: Compiling / Build"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./CompilingUnderWindows.html" class="navigation navigation-next " aria-label="Next page: Compile on Windows"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"highlight":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    
+</html>
