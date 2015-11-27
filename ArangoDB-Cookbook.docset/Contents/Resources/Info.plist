@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>ArangoDB-cookbook</string>
+	<string>arangodb-cookbook</string>
 	<key>CFBundleName</key>
-	<string>ArangoDB-cookbook</string>
+	<string>ArangoDB-Cookbook</string>
 	<key>DocSetPlatformFamily</key>
-	<string>ArangoDB-cookbook</string>
+	<string>arangodb-cookbook</string>
 	<key>isDashDocset</key>
 	<true/>
     <key>dashIndexFilePath</key>
