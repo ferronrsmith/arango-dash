@@ -8,22 +8,19 @@ import sys
 from bs4 import BeautifulSoup
 
 
-def main(arg):
+def main(argv):
     try:
-        opts, args = getopt.getopt(arg, "ht:", ["docType="])
+        opts, args = getopt.getopt(argv, "ht:", ["docType="])
     except getopt.GetoptError:
         print "arango_dash.py -t <docType>"
         sys.exit(2)
-
-    for opt, ag in args:
+    for opt, arg in opts:
         if opt == '-h':
             print "arango_dash.py -t <docType>"
             sys.exit()
         elif opt in ("-t", "-docType"):
 
-            docset_type = {'docs': 'ArangoDB', 'cookbook': 'ArangoDB-Cookbook'}[arg]
-
-            db = sqlite3.connect(docset_type + '.docset/Contents/Resources/docSet.dsidx')
+            db = sqlite3.connect(arg + '.docset/Contents/Resources/docSet.dsidx')
             cur = db.cursor()
 
             folder = 'docs.arangodb.com'
@@ -35,7 +32,7 @@ def main(arg):
             cur.execute('CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);')
             cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 
-            docpath = docset_type + '.docset/Contents/Resources/Documents/' + folder
+            docpath = arg + '.docset/Contents/Resources/Documents/' + folder
 
             page = open(os.path.join(docpath, 'index.html')).read()
             soup = BeautifulSoup(page)
