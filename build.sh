@@ -1,16 +1,19 @@
 #!/bin/bash
 
-filename="ArangoDB.tgz"
+archives=("ArangoDB" "ArangoDB-Cookbook")
 
 function build {
-    python arango_dash.py
-    tar -zcvf "${filename}" "ArangoDB.docset"
+    python arango_dash.py -t "${1}"
+    tar -zcvf "${1}.tgz" "${1}.docset"
 }
 
-if [ -f "${filename}" ]; then
-    echo "removing file"
-    rm "${filename}"
-    build
-else
-    build
-fi
+for archive in "${archives[@]}"
+do
+    if [ -f "${archive}" ]; then
+        echo "removing file"
+        rm "${archive}"
+        build "${archive}"
+    else
+        build "${archive}"
+    fi
+done
