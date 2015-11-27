@@ -24,11 +24,9 @@ soup = BeautifulSoup(page)
 
 any = re.compile('.*')
 for tag in soup.find_all('a', {'href': any}):
-    name = tag.text.strip()
-    name = re.sub("\n\s+", " ", name)
+    name = re.sub("\n\s+", " ", tag.text.strip())
     if len(name) > 0:
-        href = tag.attrs['href']
-        path = re.sub("(\./)", "", href)
+        path = re.sub("(\./)", "", tag.attrs['href'])
         path = folder + "/" + path
         if path.split('#')[0] not in ('index.html', 'biblio.html', 'bookindex.html'):
             cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (name, 'Guide', path))
