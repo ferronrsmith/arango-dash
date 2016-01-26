@@ -50,7 +50,7 @@
     <body>
         
         
-    <div class="book" data-level="7.5.2" data-chapter-title="Compile on Windows" data-filepath="CompilingUnderWindows.md" data-basepath="." data-revision="Tue Nov 24 2015 11:06:54 GMT+0100 (CET)">
+    <div class="book" data-level="7.5.2" data-chapter-title="Compile on Windows" data-filepath="CompilingUnderWindows.md" data-basepath="." data-revision="Tue Jan 19 2016 13:30:25 GMT+0100 (CET)">
     
 
 <div class="book-summary">
@@ -1256,8 +1256,16 @@ cmake -G &quot;Visual Studio 12 Win64&quot; ..
 <pre><code>cmake --build . --config Release
 </code></pre><p>In order to execute the binaries you need to copy the ICU datafile into the directory containing the
 executable</p>
-<pre><code>cp WindowsLibraries/64/icudtl.dat Build64/bin/Debug/icudt52l.dat
-</code></pre><p><strong>Authors</strong>:
+<pre><code>cp WindowsLibraries/64/icudtl.dat Build64/bin/Debug/icudt54l.dat
+</code></pre><p>If you intend to use the machine for development purposes, it may be more practical to copy it somewhere else:</p>
+<pre><code>cp WindowsLibraries/64/icudtl.dat /cygdrive/c/Windows/icudt54l.dat
+</code></pre><p>And configure your environment (yes this instruction remembers to the hitchhikers guide to the galaxy...) so that
+<code>ICU_DATA</code> points to <code>c:\\Windows</code>. You do that by opening the explorer,
+right click on <code>This PC</code> in the tree on the left, choose <code>Properties</code> in the opening window <code>Advanced system settings</code>,
+in the Popup <code>Environment Variables</code>, another popup opens, in the <code>System Variables</code> part you click <code>New</code>, 
+And Key: :<code>ICU_DATA</code> to value: <code>c:\\Windows</code></p>
+<p><img src="assets/CompilingUnderWindows/SetEnvironmentVar.png" alt="HowtoSetEnv"></p>
+<p><strong>Authors</strong>:
 <a href="https://github.com/fceller" target="_blank">Frank Celler</a>,
 <a href="https://github.com/dothebart" target="_blank">Wilfried Goesgens</a> and
 <a href="https://github.com/CoDEmanX" target="_blank">CoDEmanX</a>.</p>
