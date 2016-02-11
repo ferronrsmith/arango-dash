@@ -1,0 +1,5649 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Simple Queries | ArangoDB Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.4.2">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="https://www.arangodb.org/wp-content/themes/triagens/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <link rel="next" href="../HttpCollection/README.html" />
+    
+    
+    <link rel="prev" href="../HttpAqlUserFunctions/README.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-level="25.7" data-basepath=".." data-revision="1421610625430">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+      
+    	
+
+        
+        <li>
+            <a href="https://github.com/triAGENS/ArangoDB/issues" target="blank"class="issues-link"><i class="fa fa-github"></i> Have any issues? <i class="fa fa-external-link"></i></a>
+            <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank"><i class="fa fa-stack-overflow"></i> Have any questions? <i class="fa fa-external-link"></i></a>
+        </li>
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="Installing/README.html">
+            
+                
+                    <a href="../Installing/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Installing
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="Installing/Linux.html">
+            
+                
+                    <a href="../Installing/Linux.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         Linux
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" data-path="Installing/MacOSX.html">
+            
+                
+                    <a href="../Installing/MacOSX.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                         Mac OS X
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" data-path="Installing/Windows.html">
+            
+                
+                    <a href="../Installing/Windows.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                         Windows
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" data-path="Installing/Compiling.html">
+            
+                
+                    <a href="../Installing/Compiling.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                         Compiling
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="Installing/Upgrading.html">
+            
+                
+                    <a href="../Installing/Upgrading.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         Upgrading
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.5.1" data-path="Upgrading/UpgradingChanges23.html">
+            
+                
+                    <a href="../Upgrading/UpgradingChanges23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.1.</b>
+                        
+                         Incompatible changes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.2" data-path="Upgrading/Upgrading23.html">
+            
+                
+                    <a href="../Upgrading/Upgrading23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.2.</b>
+                        
+                         Upgrading to 2.3
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3" data-path="Upgrading/Upgrading22.html">
+            
+                
+                    <a href="../Upgrading/Upgrading22.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.3.</b>
+                        
+                         Upgrading to 2.2
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.4" data-path="Installing/Upgrading.html">
+            
+                
+                    <a href="../Installing/Upgrading.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.4.</b>
+                        
+                         Upgrading in general
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="Installing/Cluster.html">
+            
+                
+                    <a href="../Installing/Cluster.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         Cluster setup
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="NewFeatures/NewFeatures23.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Whats New
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="NewFeatures/NewFeatures22.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures22.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         Whats New in 2.2
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="NewFeatures/NewFeatures21.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures21.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         Whats New in 2.1
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="FirstSteps/README.html">
+            
+                
+                    <a href="../FirstSteps/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         First Steps
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="FirstSteps/GettingFamiliar.html">
+            
+                
+                    <a href="../FirstSteps/GettingFamiliar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Getting Familiar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="FirstSteps/Arangod.html">
+            
+                
+                    <a href="../FirstSteps/Arangod.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         The ArangoDB Server
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="Arangosh/README.html">
+            
+                
+                    <a href="../Arangosh/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         The ArangoDB Shell
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.3.1" data-path="Arangosh/Output.html">
+            
+                
+                    <a href="../Arangosh/Output.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                         Shell Output
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.2" data-path="Arangosh/Configuration.html">
+            
+                
+                    <a href="../Arangosh/Configuration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                         Configuration
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.3" data-path="FirstSteps/Arangosh.html">
+            
+                
+                    <a href="../FirstSteps/Arangosh.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.3.</b>
+                        
+                         Details
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4" data-path="FirstSteps/CollectionsAndDocuments.html">
+            
+                
+                    <a href="../FirstSteps/CollectionsAndDocuments.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                         Collections
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="WebInterface/README.html">
+            
+                
+                    <a href="../WebInterface/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         ArangoDB Web Interface
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="Databases/README.html">
+            
+                
+                    <a href="../Databases/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         Creating and Dropping Databases
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1" data-path="Databases/WorkingWith.html">
+            
+                
+                    <a href="../Databases/WorkingWith.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         Working with Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2" data-path="Databases/Notes.html">
+            
+                
+                    <a href="../Databases/Notes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                         Notes about Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="Collections/README.html">
+            
+                
+                    <a href="../Collections/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         Creating and Dropping Collections
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1" data-path="Collections/CollectionMethods.html">
+            
+                
+                    <a href="../Collections/CollectionMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         Collection Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2" data-path="Collections/DatabaseMethods.html">
+            
+                
+                    <a href="../Collections/DatabaseMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                         Database Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" data-path="Documents/README.html">
+            
+                
+                    <a href="../Documents/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         Working with Documents
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="Documents/DocumentAddress.html">
+            
+                
+                    <a href="../Documents/DocumentAddress.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.2" data-path="Documents/DocumentMethods.html">
+            
+                
+                    <a href="../Documents/DocumentMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                         Collection Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.3" data-path="Documents/DatabaseMethods.html">
+            
+                
+                    <a href="../Documents/DatabaseMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                         Database Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" data-path="Edges/README.html">
+            
+                
+                    <a href="../Edges/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         Working with Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" data-path="SimpleQueries/README.html">
+            
+                
+                    <a href="../SimpleQueries/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         Simple Queries
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1" data-path="SimpleQueries/GeoQueries.html">
+            
+                
+                    <a href="../SimpleQueries/GeoQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         Geo Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.2" data-path="SimpleQueries/FulltextQueries.html">
+            
+                
+                    <a href="../SimpleQueries/FulltextQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                         Fulltext Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.3" data-path="SimpleQueries/Pagination.html">
+            
+                
+                    <a href="../SimpleQueries/Pagination.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                         Pagination
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.4" data-path="SimpleQueries/Access.html">
+            
+                
+                    <a href="../SimpleQueries/Access.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                         Sequential Access
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.5" data-path="SimpleQueries/ModificationQueries.html">
+            
+                
+                    <a href="../SimpleQueries/ModificationQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                         Modification Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10" data-path="Transactions/README.html">
+            
+                
+                    <a href="../Transactions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                         Transactions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="10.1" data-path="Transactions/TransactionInvocation.html">
+            
+                
+                    <a href="../Transactions/TransactionInvocation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                         Transaction invocation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.2" data-path="Transactions/Passing.html">
+            
+                
+                    <a href="../Transactions/Passing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                         Passing parameters
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.3" data-path="Transactions/LockingAndIsolation.html">
+            
+                
+                    <a href="../Transactions/LockingAndIsolation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                         Locking and isolation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.4" data-path="Transactions/Durability.html">
+            
+                
+                    <a href="../Transactions/Durability.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                         Durability
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.5" data-path="Transactions/Limitations.html">
+            
+                
+                    <a href="../Transactions/Limitations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.</b>
+                        
+                         Limitations
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="11" data-path="WriteAheadLog/README.html">
+            
+                
+                    <a href="../WriteAheadLog/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                         Write-ahead log
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12" data-path="Aql/README.html">
+            
+                
+                    <a href="../Aql/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                         AQL
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.1" data-path="Aql/Invoke.html">
+            
+                
+                    <a href="../Aql/Invoke.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                         How to invoke AQL
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.2" data-path="Aql/DataModification.html">
+            
+                
+                    <a href="../Aql/DataModification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                         Data modification queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.3" data-path="Aql/Optimizer.html">
+            
+                
+                    <a href="../Aql/Optimizer.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                         The AQL query optimizer
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.4" data-path="Aql/Basics.html">
+            
+                
+                    <a href="../Aql/Basics.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.4.</b>
+                        
+                         Language Basics
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5" data-path="Aql/Functions.html">
+            
+                
+                    <a href="../Aql/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.</b>
+                        
+                         Functions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.5.1" data-path="Aql/TypeCastFunctions.html">
+            
+                
+                    <a href="../Aql/TypeCastFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.1.</b>
+                        
+                         Type cast
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.2" data-path="Aql/StringFunctions.html">
+            
+                
+                    <a href="../Aql/StringFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.2.</b>
+                        
+                         String
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.3" data-path="Aql/NumericFunctions.html">
+            
+                
+                    <a href="../Aql/NumericFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.3.</b>
+                        
+                         Numeric
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.4" data-path="Aql/DateFunctions.html">
+            
+                
+                    <a href="../Aql/DateFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.4.</b>
+                        
+                         Date
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.5" data-path="Aql/ListFunctions.html">
+            
+                
+                    <a href="../Aql/ListFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.5.</b>
+                        
+                         List
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.6" data-path="Aql/DocumentFunctions.html">
+            
+                
+                    <a href="../Aql/DocumentFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.6.</b>
+                        
+                         Document
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.7" data-path="Aql/GeoFunctions.html">
+            
+                
+                    <a href="../Aql/GeoFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.7.</b>
+                        
+                         Geo
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.8" data-path="Aql/FulltextFunctions.html">
+            
+                
+                    <a href="../Aql/FulltextFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.8.</b>
+                        
+                         Fulltext
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.9" data-path="Aql/GraphFunctions.html">
+            
+                
+                    <a href="../Aql/GraphFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.9.</b>
+                        
+                         Graph
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.10" data-path="Aql/MiscellaneousFunctions.html">
+            
+                
+                    <a href="../Aql/MiscellaneousFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.10.</b>
+                        
+                         Miscellaneous
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.6" data-path="Aql/QueryResults.html">
+            
+                
+                    <a href="../Aql/QueryResults.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.6.</b>
+                        
+                         Query Results
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.7" data-path="Aql/Operators.html">
+            
+                
+                    <a href="../Aql/Operators.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.7.</b>
+                        
+                         Operators
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.8" data-path="Aql/Operations.html">
+            
+                
+                    <a href="../Aql/Operations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.8.</b>
+                        
+                         High level Operations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.9" data-path="Aql/GraphOperations.html">
+            
+                
+                    <a href="../Aql/GraphOperations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.9.</b>
+                        
+                         Graph Operations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.10" data-path="Aql/Advanced.html">
+            
+                
+                    <a href="../Aql/Advanced.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.10.</b>
+                        
+                         Advanced Features
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.11" data-path="AqlExtending/README.html">
+            
+                
+                    <a href="../AqlExtending/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.</b>
+                        
+                         Extending AQL
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.11.1" data-path="AqlExtending/Conventions.html">
+            
+                
+                    <a href="../AqlExtending/Conventions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.1.</b>
+                        
+                         Conventions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.11.2" data-path="AqlExtending/Functions.html">
+            
+                
+                    <a href="../AqlExtending/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.2.</b>
+                        
+                         Registering Functions
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12" data-path="AqlExamples/README.html">
+            
+                
+                    <a href="../AqlExamples/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.</b>
+                        
+                         AQL Examples
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.12.1" data-path="AqlExamples/CollectionQueries.html">
+            
+                
+                    <a href="../AqlExamples/CollectionQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.1.</b>
+                        
+                         Collection based queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.2" data-path="AqlExamples/DataModificationQueries.html">
+            
+                
+                    <a href="../AqlExamples/DataModificationQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.2.</b>
+                        
+                         Data-modification queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.3" data-path="AqlExamples/ProjectionsAndFilters.html">
+            
+                
+                    <a href="../AqlExamples/ProjectionsAndFilters.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.3.</b>
+                        
+                         Projections and filters
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.4" data-path="AqlExamples/Join.html">
+            
+                
+                    <a href="../AqlExamples/Join.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.4.</b>
+                        
+                         Joins
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.5" data-path="AqlExamples/Grouping.html">
+            
+                
+                    <a href="../AqlExamples/Grouping.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.5.</b>
+                        
+                         Grouping
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13" data-path="General-Graphs/README.html">
+            
+                
+                    <a href="../General-Graphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                         General Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="13.1" data-path="General-Graphs/Management.html">
+            
+                
+                    <a href="../General-Graphs/Management.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                         Graph Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13.2" data-path="General-Graphs/Functions.html">
+            
+                
+                    <a href="../General-Graphs/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                         Graph Functions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13.3" data-path="General-Graphs/FluentAQLInterface.html">
+            
+                
+                    <a href="../General-Graphs/FluentAQLInterface.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.3.</b>
+                        
+                         Fluent Query Interface
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14" data-path="Blueprint-Graphs/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                         Blueprint Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="14.1" data-path="Blueprint-Graphs/GraphConstructor.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/GraphConstructor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.1.</b>
+                        
+                         Graph Constructor
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.2" data-path="Blueprint-Graphs/VertexMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/VertexMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.2.</b>
+                        
+                         Vertex Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.3" data-path="Blueprint-Graphs/EdgeMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/EdgeMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.3.</b>
+                        
+                         Edge Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15" data-path="Traversals/README.html">
+            
+                
+                    <a href="../Traversals/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                         Traversals
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="15.1" data-path="Traversals/UsingTraversalObjects.html">
+            
+                
+                    <a href="../Traversals/UsingTraversalObjects.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                         Using Traversal Objects
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15.2" data-path="Traversals/ExampleData.html">
+            
+                
+                    <a href="../Traversals/ExampleData.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                         Example Data
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16" data-path="Foxx/README.html">
+            
+                
+                    <a href="../Foxx/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                         Foxx
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="16.1" data-path="Foxx/HandlingRequest.html">
+            
+                
+                    <a href="../Foxx/HandlingRequest.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                         Handling Requests
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.2" data-path="Foxx/FoxxManifest.html">
+            
+                
+                    <a href="../Foxx/FoxxManifest.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                         Manifest
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.3" data-path="Foxx/FoxxController.html">
+            
+                
+                    <a href="../Foxx/FoxxController.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                         FoxxController
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.4" data-path="Foxx/FoxxModel.html">
+            
+                
+                    <a href="../Foxx/FoxxModel.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                         FoxxModel
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.5" data-path="Foxx/FoxxRepository.html">
+            
+                
+                    <a href="../Foxx/FoxxRepository.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                         FoxxRepository
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.6" data-path="Foxx/FoxxQueries.html">
+            
+                
+                    <a href="../Foxx/FoxxQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.6.</b>
+                        
+                         Foxx Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.7" data-path="Foxx/DeployingAnApplication.html">
+            
+                
+                    <a href="../Foxx/DeployingAnApplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.7.</b>
+                        
+                         Deploying Applications
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.8" data-path="Foxx/DevelopingAnApplication.html">
+            
+                
+                    <a href="../Foxx/DevelopingAnApplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.8.</b>
+                        
+                         Developing Applications
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.9" data-path="Foxx/FoxxInjection.html">
+            
+                
+                    <a href="../Foxx/FoxxInjection.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.9.</b>
+                        
+                         Dependency Injection
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.10" data-path="Foxx/FoxxExports.html">
+            
+                
+                    <a href="../Foxx/FoxxExports.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.10.</b>
+                        
+                         Foxx Exports
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.11" data-path="Foxx/FoxxQueues.html">
+            
+                
+                    <a href="../Foxx/FoxxQueues.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.11.</b>
+                        
+                         Foxx Job Queues
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.12" data-path="Foxx/FoxxSessions.html">
+            
+                
+                    <a href="../Foxx/FoxxSessions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.12.</b>
+                        
+                         Foxx Sessions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.13" data-path="Foxx/FoxxOptional.html">
+            
+                
+                    <a href="../Foxx/FoxxOptional.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.13.</b>
+                        
+                         Optional Functionality
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14" data-path="FoxxBundledApps/README.html">
+            
+                
+                    <a href="../FoxxBundledApps/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.</b>
+                        
+                         Bundled Applications
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="16.14.1" data-path="FoxxBundledApps/Sessions.html">
+            
+                
+                    <a href="../FoxxBundledApps/Sessions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.1.</b>
+                        
+                         Session Storage
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14.2" data-path="FoxxBundledApps/Users.html">
+            
+                
+                    <a href="../FoxxBundledApps/Users.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.2.</b>
+                        
+                         User Storage
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14.3" data-path="FoxxBundledApps/SimpleAuth.html">
+            
+                
+                    <a href="../FoxxBundledApps/SimpleAuth.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.3.</b>
+                        
+                         Simple Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17" data-path="FoxxManager/README.html">
+            
+                
+                    <a href="../FoxxManager/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                         Foxx Manager
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="17.1" data-path="FoxxManager/FirstSteps.html">
+            
+                
+                    <a href="../FoxxManager/FirstSteps.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.1.</b>
+                        
+                         First Steps
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.2" data-path="FoxxManager/BehindTheScenes.html">
+            
+                
+                    <a href="../FoxxManager/BehindTheScenes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.2.</b>
+                        
+                         Behind the scenes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.3" data-path="FoxxManager/MultipleDatabases.html">
+            
+                
+                    <a href="../FoxxManager/MultipleDatabases.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.3.</b>
+                        
+                         Multiple Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.4" data-path="FoxxManager/ManagerCommands.html">
+            
+                
+                    <a href="../FoxxManager/ManagerCommands.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.4.</b>
+                        
+                         Manager Commands
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.5" data-path="FoxxManager/FrequentlyUsedOptions.html">
+            
+                
+                    <a href="../FoxxManager/FrequentlyUsedOptions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.5.</b>
+                        
+                         Frequently Used Options
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18" data-path="ArangoActions/README.html">
+            
+                
+                    <a href="../ArangoActions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                         ArangoDB&#39;s Actions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="18.1" data-path="ArangoActions/HtmlExample.html">
+            
+                
+                    <a href="../ArangoActions/HtmlExample.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                         Delivering HTML Pages
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18.2" data-path="ArangoActions/JsonExample.html">
+            
+                
+                    <a href="../ArangoActions/JsonExample.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                         Json Objects
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18.3" data-path="ArangoActions/Modifying.html">
+            
+                
+                    <a href="../ArangoActions/Modifying.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                         Modifying
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19" data-path="Replication/README.html">
+            
+                
+                    <a href="../Replication/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                         Replication
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="19.1" data-path="Replication/Components.html">
+            
+                
+                    <a href="../Replication/Components.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.1.</b>
+                        
+                         Components
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.2" data-path="Replication/ExampleSetup.html">
+            
+                
+                    <a href="../Replication/ExampleSetup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.2.</b>
+                        
+                         Example Setup
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.3" data-path="Replication/Limitations.html">
+            
+                
+                    <a href="../Replication/Limitations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.3.</b>
+                        
+                         Replication Limitations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.4" data-path="Replication/Overhead.html">
+            
+                
+                    <a href="../Replication/Overhead.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.4.</b>
+                        
+                         Replication Overhead
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20" data-path="Sharding/README.html">
+            
+                
+                    <a href="../Sharding/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                         Sharding
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="20.1" data-path="Sharding/HowTo.html">
+            
+                
+                    <a href="../Sharding/HowTo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.1.</b>
+                        
+                         How to try it out
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.2" data-path="Sharding/StatusOfImplementation.html">
+            
+                
+                    <a href="../Sharding/StatusOfImplementation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.2.</b>
+                        
+                         Implementation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.3" data-path="Sharding/Authentication.html">
+            
+                
+                    <a href="../Sharding/Authentication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.3.</b>
+                        
+                         Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.4" data-path="Sharding/FirewallSetup.html">
+            
+                
+                    <a href="../Sharding/FirewallSetup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.4.</b>
+                        
+                         Firewall setup
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21" data-path="ConfigureArango/README.html">
+            
+                
+                    <a href="../ConfigureArango/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                         Server Configuration
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="21.1" data-path="ConfigureArango/Arangod.html">
+            
+                
+                    <a href="../ConfigureArango/Arangod.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.1.</b>
+                        
+                         Arangod options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.2" data-path="ConfigureArango/Wal.html">
+            
+                
+                    <a href="../ConfigureArango/Wal.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.2.</b>
+                        
+                         Write-ahead log options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.3" data-path="ConfigureArango/Endpoint.html">
+            
+                
+                    <a href="../ConfigureArango/Endpoint.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.3.</b>
+                        
+                         Endpoints options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.4" data-path="ConfigureArango/Cluster.html">
+            
+                
+                    <a href="../ConfigureArango/Cluster.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.4.</b>
+                        
+                         Cluster options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.5" data-path="ConfigureArango/Logging.html">
+            
+                
+                    <a href="../ConfigureArango/Logging.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.5.</b>
+                        
+                         Logging options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.6" data-path="ConfigureArango/Communication.html">
+            
+                
+                    <a href="../ConfigureArango/Communication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.6.</b>
+                        
+                         Communication options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.7" data-path="ConfigureArango/Authentication.html">
+            
+                
+                    <a href="../ConfigureArango/Authentication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.7.</b>
+                        
+                         Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.8" data-path="ConfigureArango/EmergencyConsole.html">
+            
+                
+                    <a href="../ConfigureArango/EmergencyConsole.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.8.</b>
+                        
+                         Emergency Console
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="22" data-path="Arangoimp/README.html">
+            
+                
+                    <a href="../Arangoimp/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                         Arangoimp
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="23" data-path="Arangodump/README.html">
+            
+                
+                    <a href="../Arangodump/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                         Arangodump
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="24" data-path="Arangorestore/README.html">
+            
+                
+                    <a href="../Arangorestore/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                         Arangorestore
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25" data-path="HttpApi/README.html">
+            
+                
+                    <a href="../HttpApi/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.</b>
+                        
+                         HTTP API
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.1" data-path="HttpDatabase/README.html">
+            
+                
+                    <a href="../HttpDatabase/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.</b>
+                        
+                         Databases
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.1.1" data-path="HttpDatabase/DatabaseEndpoint.html">
+            
+                
+                    <a href="../HttpDatabase/DatabaseEndpoint.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.1.</b>
+                        
+                         To-Endpoint
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.1.2" data-path="HttpDatabase/DatabaseManagement.html">
+            
+                
+                    <a href="../HttpDatabase/DatabaseManagement.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.2.</b>
+                        
+                         Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.1.3" data-path="HttpDatabase/NotesOnDatabases.html">
+            
+                
+                    <a href="../HttpDatabase/NotesOnDatabases.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.3.</b>
+                        
+                         Notes on Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.2" data-path="HttpDocument/README.html">
+            
+                
+                    <a href="../HttpDocument/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.</b>
+                        
+                         Documents
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.2.1" data-path="HttpDocument/AddressAndEtag.html">
+            
+                
+                    <a href="../HttpDocument/AddressAndEtag.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.2.2" data-path="HttpDocument/WorkingWithDocuments.html">
+            
+                
+                    <a href="../HttpDocument/WorkingWithDocuments.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.2.</b>
+                        
+                         Working with
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.3" data-path="HttpEdge/README.html">
+            
+                
+                    <a href="../HttpEdge/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.3.1" data-path="HttpEdge/AddressAndEtag.html">
+            
+                
+                    <a href="../HttpEdge/AddressAndEtag.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.3.2" data-path="HttpEdge/WorkingWithEdges.html">
+            
+                
+                    <a href="../HttpEdge/WorkingWithEdges.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.2.</b>
+                        
+                         Working with Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.4" data-path="HttpAqlQueryCursor/README.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.</b>
+                        
+                         AQL Query Cursors
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.4.1" data-path="HttpAqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/QueryResults.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.1.</b>
+                        
+                         Query Results
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.4.2" data-path="HttpAqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/AccessingCursors.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.2.</b>
+                        
+                         Accessing Cursors
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.5" data-path="HttpAqlQuery/README.html">
+            
+                
+                    <a href="../HttpAqlQuery/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.5.</b>
+                        
+                         AQL Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.6" data-path="HttpAqlUserFunctions/README.html">
+            
+                
+                    <a href="../HttpAqlUserFunctions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.6.</b>
+                        
+                         AQL User Functions Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="25.7" data-path="HttpSimpleQuery/README.html">
+            
+                
+                    <a href="../HttpSimpleQuery/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.7.</b>
+                        
+                         Simple Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8" data-path="HttpCollection/README.html">
+            
+                
+                    <a href="../HttpCollection/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.</b>
+                        
+                         Collections
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.8.1" data-path="HttpCollection/Creating.html">
+            
+                
+                    <a href="../HttpCollection/Creating.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.1.</b>
+                        
+                         Creating
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8.2" data-path="HttpCollection/Getting.html">
+            
+                
+                    <a href="../HttpCollection/Getting.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.2.</b>
+                        
+                         Getting Information
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8.3" data-path="HttpCollection/Modifying.html">
+            
+                
+                    <a href="../HttpCollection/Modifying.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.3.</b>
+                        
+                         Modifying
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9" data-path="HttpIndexes/README.html">
+            
+                
+                    <a href="../HttpIndexes/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.</b>
+                        
+                         Indexes
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.9.1" data-path="HttpIndexes/WorkingWith.html">
+            
+                
+                    <a href="../HttpIndexes/WorkingWith.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.1.</b>
+                        
+                         Working with Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.2" data-path="HttpIndexes/Cap.html">
+            
+                
+                    <a href="../HttpIndexes/Cap.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.2.</b>
+                        
+                         Cap Constraints
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.3" data-path="HttpIndexes/Hash.html">
+            
+                
+                    <a href="../HttpIndexes/Hash.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.3.</b>
+                        
+                         Hash
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.4" data-path="HttpIndexes/Skiplist.html">
+            
+                
+                    <a href="../HttpIndexes/Skiplist.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.4.</b>
+                        
+                         Skiplist
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.5" data-path="HttpIndexes/Geo.html">
+            
+                
+                    <a href="../HttpIndexes/Geo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.5.</b>
+                        
+                         Geo
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.6" data-path="HttpIndexes/Fulltext.html">
+            
+                
+                    <a href="../HttpIndexes/Fulltext.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.6.</b>
+                        
+                         Fulltext
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.10" data-path="HttpTransaction/README.html">
+            
+                
+                    <a href="../HttpTransaction/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.10.</b>
+                        
+                         Transactions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11" data-path="HttpGharial/README.html">
+            
+                
+                    <a href="../HttpGharial/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.</b>
+                        
+                         General Graph
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.11.1" data-path="HttpGharial/Management.html">
+            
+                
+                    <a href="../HttpGharial/Management.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.1.</b>
+                        
+                         Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11.2" data-path="HttpGharial/Vertices.html">
+            
+                
+                    <a href="../HttpGharial/Vertices.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.2.</b>
+                        
+                         Vertices
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11.3" data-path="HttpGharial/Edges.html">
+            
+                
+                    <a href="../HttpGharial/Edges.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.3.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.12" data-path="HttpGraphs/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.</b>
+                        
+                         Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.12.1" data-path="HttpGraphs/Vertex.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/Vertex.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.1.</b>
+                        
+                         Vertex
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.12.2" data-path="HttpGraphs/Edge.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/Edge.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.2.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.13" data-path="HttpTraversal/README.html">
+            
+                
+                    <a href="../HttpTraversal/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.13.</b>
+                        
+                         Traversals
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14" data-path="HttpReplications/README.html">
+            
+                
+                    <a href="../HttpReplications/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.</b>
+                        
+                         Replication
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.14.1" data-path="HttpReplications/ReplicationDump.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationDump.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.1.</b>
+                        
+                         Replication Dump
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.2" data-path="HttpReplications/ReplicationLogger.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationLogger.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.2.</b>
+                        
+                         Replication Logger
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.3" data-path="HttpReplications/ReplicationApplier.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationApplier.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.3.</b>
+                        
+                         Replication Applier
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.4" data-path="HttpReplications/OtherReplication.html">
+            
+                
+                    <a href="../HttpReplications/OtherReplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.4.</b>
+                        
+                         Other Replication Commands
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.15" data-path="HttpBulkImports/README.html">
+            
+                
+                    <a href="../HttpBulkImports/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.</b>
+                        
+                         Bulk Imports
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.15.1" data-path="HttpBulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../HttpBulkImports/ImportingSelfContained.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.1.</b>
+                        
+                         JSON Documents
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.15.2" data-path="HttpBulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../HttpBulkImports/ImportingHeadersAndValues.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.2.</b>
+                        
+                         Headers and Values
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.16" data-path="HttpBatchRequest/README.html">
+            
+                
+                    <a href="../HttpBatchRequest/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.16.</b>
+                        
+                         Batch Requests
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.17" data-path="HttpTasks/README.html">
+            
+                
+                    <a href="../HttpTasks/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.17.</b>
+                        
+                         Tasks
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.18" data-path="HttpAdministrationAndMonitoring/README.html">
+            
+                
+                    <a href="../HttpAdministrationAndMonitoring/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.18.</b>
+                        
+                         Monitoring
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.19" data-path="HttpUserManagement/README.html">
+            
+                
+                    <a href="../HttpUserManagement/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.19.</b>
+                        
+                         User Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.20" data-path="HttpAsyncResultsManagement/README.html">
+            
+                
+                    <a href="../HttpAsyncResultsManagement/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.20.</b>
+                        
+                         Async Result
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.21" data-path="HttpEndpoints/README.html">
+            
+                
+                    <a href="../HttpEndpoints/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.21.</b>
+                        
+                         Endpoints
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.22" data-path="HttpShardingInterface/README.html">
+            
+                
+                    <a href="../HttpShardingInterface/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.22.</b>
+                        
+                         Sharding
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.23" data-path="HttpMiscellaneousFunctions/README.html">
+            
+                
+                    <a href="../HttpMiscellaneousFunctions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.23.</b>
+                        
+                         Miscellaneous functions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.24" data-path="GeneralHttp/README.html">
+            
+                
+                    <a href="../GeneralHttp/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.24.</b>
+                        
+                         General Handling
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26" data-path="ModuleJavaScript/README.html">
+            
+                
+                    <a href="../ModuleJavaScript/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.</b>
+                        
+                         Javascript Modules
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="26.1" data-path="ModuleConsole/README.html">
+            
+                
+                    <a href="../ModuleConsole/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.1.</b>
+                        
+                         &quot;console&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.2" data-path="ModuleFs/README.html">
+            
+                
+                    <a href="../ModuleFs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.2.</b>
+                        
+                         &quot;fs&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3" data-path="ModuleGraph/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.</b>
+                        
+                         &quot;graph&quot;
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="26.3.1" data-path="ModuleGraph/GraphConstructor.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/GraphConstructor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.1.</b>
+                        
+                         Graph Constructors
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3.2" data-path="ModuleGraph/VertexMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/VertexMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.2.</b>
+                        
+                         Vertex Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3.3" data-path="ModuleGraph/EdgeMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/EdgeMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.3.</b>
+                        
+                         Edge Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.4" data-path="ModuleActions/README.html">
+            
+                
+                    <a href="../ModuleActions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.4.</b>
+                        
+                         &quot;actions&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.5" data-path="ModulePlanner/README.html">
+            
+                
+                    <a href="../ModulePlanner/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.5.</b>
+                        
+                         &quot;planner&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.6" data-path="ModuleWal/README.html">
+            
+                
+                    <a href="../ModuleWal/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.6.</b>
+                        
+                         Write-ahead log
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.7" data-path="ModuleTasks/README.html">
+            
+                
+                    <a href="../ModuleTasks/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.7.</b>
+                        
+                         Task Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.8" data-path="UsingJsUnity/README.html">
+            
+                
+                    <a href="../UsingJsUnity/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.8.</b>
+                        
+                         Using jsUnity
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="27" data-path="AdministratingArango/README.html">
+            
+                
+                    <a href="../AdministratingArango/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>27.</b>
+                        
+                         Administrating ArangoDB
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28" data-path="IndexHandling/README.html">
+            
+                
+                    <a href="../IndexHandling/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.</b>
+                        
+                         Indexing
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="28.1" data-path="IndexHandling/IndexBasics.html">
+            
+                
+                    <a href="../IndexHandling/IndexBasics.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.1.</b>
+                        
+                         Index Basics
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2" data-path="IndexHandling/WorkingWithIndexes.html">
+            
+                
+                    <a href="../IndexHandling/WorkingWithIndexes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.</b>
+                        
+                         Working with Indexes
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="28.2.1" data-path="IndexHandling/Hash.html">
+            
+                
+                    <a href="../IndexHandling/Hash.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.1.</b>
+                        
+                         Hash Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.2" data-path="IndexHandling/Skiplist.html">
+            
+                
+                    <a href="../IndexHandling/Skiplist.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.2.</b>
+                        
+                         Skiplists
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.3" data-path="IndexHandling/Fulltext.html">
+            
+                
+                    <a href="../IndexHandling/Fulltext.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.3.</b>
+                        
+                         Fulltext Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.4" data-path="IndexHandling/Geo.html">
+            
+                
+                    <a href="../IndexHandling/Geo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.4.</b>
+                        
+                         Geo Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.5" data-path="IndexHandling/Cap.html">
+            
+                
+                    <a href="../IndexHandling/Cap.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.5.</b>
+                        
+                         Cap Constraint
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="29" data-path="DatafileDebugger/README.html">
+            
+                
+                    <a href="../DatafileDebugger/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>29.</b>
+                        
+                         Datafile Debugger
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30" data-path="NamingConventions/README.html">
+            
+                
+                    <a href="../NamingConventions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.</b>
+                        
+                         Naming Conventions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="30.1" data-path="NamingConventions/DatabaseNames.html">
+            
+                
+                    <a href="../NamingConventions/DatabaseNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.1.</b>
+                        
+                         Database Names
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.2" data-path="NamingConventions/CollectionNames.html">
+            
+                
+                    <a href="../NamingConventions/CollectionNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.2.</b>
+                        
+                         Collection Names
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.3" data-path="NamingConventions/DocumentKeys.html">
+            
+                
+                    <a href="../NamingConventions/DocumentKeys.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.3.</b>
+                        
+                         Document Keys
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.4" data-path="NamingConventions/AttributeNames.html">
+            
+                
+                    <a href="../NamingConventions/AttributeNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.4.</b>
+                        
+                         Attribute Names
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="31" data-path="ErrorCodes/README.html">
+            
+                
+                    <a href="../ErrorCodes/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>31.</b>
+                        
+                         Error codes and meanings
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="32" data-path="Glossary/README.html">
+            
+                
+                    <a href="../Glossary/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>32.</b>
+                        
+                         Glossary
+                    </a>
+                
+            
+            
+        </li>
+    
+
+    </ul>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  jQuery(".summary>li").each(function(){
+    var flag = true;
+    var x = window.location.href.split("/");
+    x = x[x.length - 2] + '/' + x[x.length - 1];
+    jQuery('a',this).each(function(){
+      var str = jQuery(this).attr('href');
+      if(str.search(x) != -1){
+        flag = false;
+      }
+    });
+    if(flag){
+      jQuery('ul',this).hide();
+    }
+    else {
+      jQuery(this).show();
+      jQuery("ul", this).show();
+      $(this).get(0).scrollIntoView();
+    }
+  });
+});
+</script>
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    <!-- Title -->
+    <h1><a href="https://www.arangodb.com" target="blank" style="margin-left:5px"> <img src="../Arangodb_Logo.png" alt="ArangoDB" style="position:relative; border:0px; top:7px; margin-left: -80px; margin-right:15px">2.3.5
+</a></h1>
+</div>
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_151">
+                    
+                        <p><a name="http_interface_for_simple_queries"></a></p>
+<h1 id="http-interface-for-simple-queries">HTTP Interface for Simple Queries</h1>
+<p><a name="simple_queries"></a></p>
+<h3 id="simple-queries">Simple Queries</h3>
+<p>This is an introduction to ArangoDB&#39;s Http interface for simple queries.</p>
+<p>Simple queries can be used if the query condition is straight forward simple,
+i.e., a document reference, all documents, a query-by-example, or a simple geo
+query. In a simple query you can specify exactly one collection and one
+condition. The result can then be sorted and can be split into pages.</p>
+<p><a name="working_with_simples_queries_using_http"></a></p>
+<h2 id="working-with-simples-queries-using-http">Working with Simples Queries using HTTP</h2>
+<p>To limit the amount of results to be transferred in one batch, simple queries
+support a <em>batchSize</em> parameter that can optionally be used to tell the server
+to limit the number of results to be transferred in one batch to a certain
+value. If the query has more results than were transferred in one go, more
+results are waiting on the server so they can be fetched subsequently. If no
+value for the <em>batchSize</em> parameter is specified, the server will use a
+reasonable default value.</p>
+<p>If the server has more documents than should be returned in a single batch, the
+server will set the <em>hasMore</em> attribute in the result. It will also return the
+id of the server-side cursor in the <em>id</em> attribute in the result.  This id can
+be used with the cursor API to fetch any outstanding results from the server and
+dispose the server-side cursor afterwards.</p>
+<p> returns all documents of a collection</p>
+<h3 id="return-all">Return all</h3>
+<p><code>PUT /_api/simple/all</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>Returns all documents of a collections. The call expects a JSON object
+as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to query.</li>
+</ul>
+<ul>
+<li><em>skip</em>: The number of documents to skip in the query (optional).</li>
+</ul>
+<ul>
+<li><em>limit</em>: The maximal amount of documents to return. The <em>skip</em>
+is applied before the <em>limit</em> restriction. (optional)</li>
+</ul>
+<p>Returns a cursor containing the result, see <a href="../HttpAqlQueryCursor/README.html">Http Cursor</a> for details.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Limit the amount of documents using <em>limit</em></p>
+<div id="RestSimpleAllSkipLimit_container">
+<div id="RestSimpleAllSkipLimit_long" onclick="$('#RestSimpleAllSkipLimit_long').hide(); $('#RestSimpleAllSkipLimit_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/all
+{ &quot;collection&quot;: &quot;products&quot;, &quot;skip&quot;: 2, &quot;limit&quot; : 2 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1167991774&quot;, 
+      &quot;_key&quot; : &quot;1167991774&quot;, 
+      &quot;_rev&quot; : &quot;1167991774&quot;, 
+      &quot;Hello1&quot; : &quot;World1&quot; 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1168319454&quot;, 
+      &quot;_key&quot; : &quot;1168319454&quot;, 
+      &quot;_rev&quot; : &quot;1168319454&quot;, 
+      &quot;Hello2&quot; : &quot;World2&quot; 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 2, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleAllSkipLimit_short" onclick="$('#RestSimpleAllSkipLimit_short').hide(); $('#RestSimpleAllSkipLimit_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/all
+{ &quot;collection&quot;: &quot;products&quot;, &quot;skip&quot;: 2, &quot;limit&quot; : 2 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+
+<p>Using a <em>batchSize</em> value</p>
+<div id="RestSimpleAllBatch_container">
+<div id="RestSimpleAllBatch_long" onclick="$('#RestSimpleAllBatch_long').hide(); $('#RestSimpleAllBatch_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/all
+{ &quot;collection&quot;: &quot;products&quot;, &quot;batchSize&quot; : 3 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1169957854&quot;, 
+      &quot;_key&quot; : &quot;1169957854&quot;, 
+      &quot;_rev&quot; : &quot;1169957854&quot;, 
+      &quot;Hello1&quot; : &quot;World1&quot; 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1170940894&quot;, 
+      &quot;_key&quot; : &quot;1170940894&quot;, 
+      &quot;_rev&quot; : &quot;1170940894&quot;, 
+      &quot;Hello4&quot; : &quot;World4&quot; 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1171268574&quot;, 
+      &quot;_key&quot; : &quot;1171268574&quot;, 
+      &quot;_rev&quot; : &quot;1171268574&quot;, 
+      &quot;Hello5&quot; : &quot;World5&quot; 
+    } 
+  ], 
+  &quot;hasMore&quot; : true, 
+  &quot;id&quot; : &quot;1171465182&quot;, 
+  &quot;count&quot; : 5, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleAllBatch_short" onclick="$('#RestSimpleAllBatch_short').hide(); $('#RestSimpleAllBatch_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/all
+{ &quot;collection&quot;: &quot;products&quot;, &quot;batchSize&quot; : 3 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns all documents of a collection matching a given example</p>
+<h3 id="simple-query-by-example">Simple query by-example</h3>
+<p><code>PUT /_api/simple/by-example</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will find all documents matching a given example.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to query.</li>
+</ul>
+<ul>
+<li><em>example</em>: The example document.</li>
+</ul>
+<ul>
+<li><em>skip</em>: The number of documents to skip in the query (optional).</li>
+</ul>
+<ul>
+<li><em>limit</em>: The maximal amount of documents to return. The <em>skip</em>
+is applied before the <em>limit</em> restriction. (optional)</li>
+</ul>
+<p>Returns a cursor containing the result, see <a href="../HttpAqlQueryCursor/README.html">Http Cursor</a> for details.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Matching an attribute:</p>
+<div id="RestSimpleByExample_container">
+<div id="RestSimpleByExample_long" onclick="$('#RestSimpleByExample_long').hide(); $('#RestSimpleByExample_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; :  { &quot;i&quot; : 1 }  }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1190863838&quot;, 
+      &quot;_key&quot; : &quot;1190863838&quot;, 
+      &quot;_rev&quot; : &quot;1190863838&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;j&quot; : 1 
+      } 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1190536158&quot;, 
+      &quot;_key&quot; : &quot;1190536158&quot;, 
+      &quot;_rev&quot; : &quot;1190536158&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;k&quot; : 1, 
+        &quot;j&quot; : 1 
+      } 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1191125982&quot;, 
+      &quot;_key&quot; : &quot;1191125982&quot;, 
+      &quot;_rev&quot; : &quot;1191125982&quot;, 
+      &quot;i&quot; : 1 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1191322590&quot;, 
+      &quot;_key&quot; : &quot;1191322590&quot;, 
+      &quot;_rev&quot; : &quot;1191322590&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;k&quot; : 2, 
+        &quot;j&quot; : 2 
+      } 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 4, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleByExample_short" onclick="$('#RestSimpleByExample_short').hide(); $('#RestSimpleByExample_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; :  { &quot;i&quot; : 1 }  }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+
+<p>Matching an attribute which is a sub-document:</p>
+<div id="RestSimpleByExample2_container">
+<div id="RestSimpleByExample2_long" onclick="$('#RestSimpleByExample2_long').hide(); $('#RestSimpleByExample2_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a.j&quot; : 1 } }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1192829918&quot;, 
+      &quot;_key&quot; : &quot;1192829918&quot;, 
+      &quot;_rev&quot; : &quot;1192829918&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;j&quot; : 1 
+      } 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1192502238&quot;, 
+      &quot;_key&quot; : &quot;1192502238&quot;, 
+      &quot;_rev&quot; : &quot;1192502238&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;k&quot; : 1, 
+        &quot;j&quot; : 1 
+      } 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 2, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleByExample2_short" onclick="$('#RestSimpleByExample2_short').hide(); $('#RestSimpleByExample2_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a.j&quot; : 1 } }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+
+<p>Matching an attribute within a sub-document:</p>
+<div id="RestSimpleByExample3_container">
+<div id="RestSimpleByExample3_long" onclick="$('#RestSimpleByExample3_long').hide(); $('#RestSimpleByExample3_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } } }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1194795998&quot;, 
+      &quot;_key&quot; : &quot;1194795998&quot;, 
+      &quot;_rev&quot; : &quot;1194795998&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;j&quot; : 1 
+      } 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 1, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleByExample3_short" onclick="$('#RestSimpleByExample3_short').hide(); $('#RestSimpleByExample3_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } } }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns one document of a collection matching a given example</p>
+<h3 id="document-matching-an-example">Document matching an example</h3>
+<p><code>PUT /_api/simple/first-example</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will return the first document matching a given example.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to query.</li>
+</ul>
+<ul>
+<li><em>example</em>: The example document.</li>
+</ul>
+<p>Returns a result containing the document or <em>HTTP 404</em> if no
+document matched the example.</p>
+<p>If more than one document in the collection matches the specified example, only
+one of these documents will be returned, and it is undefined which of the matching
+documents is returned.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned when the query was successfully executed.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>If a matching document was found:</p>
+<div id="RestSimpleFirstExample_container">
+<div id="RestSimpleFirstExample_long" onclick="$('#RestSimpleFirstExample_long').hide(); $('#RestSimpleFirstExample_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; :  { &quot;i&quot; : 1 }  }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;document&quot; : { 
+    &quot;_id&quot; : &quot;products/1196434398&quot;, 
+    &quot;_key&quot; : &quot;1196434398&quot;, 
+    &quot;_rev&quot; : &quot;1196434398&quot;, 
+    &quot;i&quot; : 1, 
+    &quot;a&quot; : { 
+      &quot;k&quot; : 1, 
+      &quot;j&quot; : 1 
+    } 
+  }, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleFirstExample_short" onclick="$('#RestSimpleFirstExample_short').hide(); $('#RestSimpleFirstExample_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; :  { &quot;i&quot; : 1 }  }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+
+<p>If no document was found:</p>
+<div id="RestSimpleFirstExampleNotFound_container">
+<div id="RestSimpleFirstExampleNotFound_long" onclick="$('#RestSimpleFirstExampleNotFound_long').hide(); $('#RestSimpleFirstExampleNotFound_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; :  { &quot;l&quot; : 1 }  }
+
+HTTP/1.1 404 Not Found
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;error&quot; : true, 
+  &quot;code&quot; : 404, 
+  &quot;errorNum&quot; : 404, 
+  &quot;errorMessage&quot; : &quot;no match&quot; 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleFirstExampleNotFound_short" onclick="$('#RestSimpleFirstExampleNotFound_short').hide(); $('#RestSimpleFirstExampleNotFound_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; :  { &quot;l&quot; : 1 }  }
+
+HTTP/1.1 404 Not Found
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns a random document from a collection</p>
+<h3 id="random-document">Random document</h3>
+<p><code>PUT /_api/simple/any</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>Returns a random document from a collection. The call expects a JSON object
+as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The identifier or name of the collection to query.</li>
+</ul>
+<p>Returns a JSON object with the document stored in the attribute
+<em>document</em> if the collection contains at least one document. If
+the collection is empty, the <em>document</em> attrbute contains null.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="RestSimpleAny_container">
+<div id="RestSimpleAny_long" onclick="$('#RestSimpleAny_long').hide(); $('#RestSimpleAny_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/any
+{ &quot;collection&quot;: &quot;products&quot; }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;document&quot; : { 
+    &quot;_id&quot; : &quot;products/1172579294&quot;, 
+    &quot;_key&quot; : &quot;1172579294&quot;, 
+    &quot;_rev&quot; : &quot;1172579294&quot;, 
+    &quot;Hello3&quot; : &quot;World3&quot; 
+  }, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleAny_short" onclick="$('#RestSimpleAny_short').hide(); $('#RestSimpleAny_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/any
+{ &quot;collection&quot;: &quot;products&quot; }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns all documents of a collection within a range</p>
+<h3 id="simple-range-query">Simple range query</h3>
+<p><code>PUT /_api/simple/range</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will find all documents within a given range. In order to execute a
+range query, a skip-list index on the queried attribute must be present.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to query.</li>
+</ul>
+<ul>
+<li><em>attribute</em>: The attribute path to check.</li>
+</ul>
+<ul>
+<li><em>left</em>: The lower bound.</li>
+</ul>
+<ul>
+<li><em>right</em>: The upper bound.</li>
+</ul>
+<ul>
+<li><em>closed</em>: If <em>true</em>, use interval including <em>left</em> and <em>right</em>,
+otherwise exclude <em>right</em>, but include <em>left</em>.</li>
+</ul>
+<ul>
+<li><em>skip</em>: The number of documents to skip in the query (optional).</li>
+</ul>
+<ul>
+<li><em>limit</em>: The maximal amount of documents to return. The <em>skip</em>
+is applied before the <em>limit</em> restriction. (optional)</li>
+</ul>
+<p>Returns a cursor containing the result, see <a href="../HttpAqlQueryCursor/README.html">Http Cursor</a> for details.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="RestSimpleRange_container">
+<div id="RestSimpleRange_long" onclick="$('#RestSimpleRange_long').hide(); $('#RestSimpleRange_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/range
+{ &quot;collection&quot;: &quot;products&quot;, &quot;attribute&quot; : &quot;i&quot;, &quot;left&quot; : 2, &quot;right&quot; : 4 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1206920158&quot;, 
+      &quot;_key&quot; : &quot;1206920158&quot;, 
+      &quot;_rev&quot; : &quot;1206920158&quot;, 
+      &quot;i&quot; : 2 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1207116766&quot;, 
+      &quot;_key&quot; : &quot;1207116766&quot;, 
+      &quot;_rev&quot; : &quot;1207116766&quot;, 
+      &quot;i&quot; : 3 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 2, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleRange_short" onclick="$('#RestSimpleRange_short').hide(); $('#RestSimpleRange_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/range
+{ &quot;collection&quot;: &quot;products&quot;, &quot;attribute&quot; : &quot;i&quot;, &quot;left&quot; : 2, &quot;right&quot; : 4 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns all documents of a collection near a given location</p>
+<h3 id="near-query">Near query</h3>
+<p><code>PUT /_api/simple/near</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>The default will find at most 100 documents near the given coordinate.  The
+returned list is sorted according to the distance, with the nearest document
+being first in the list. If there are near documents of equal distance, documents
+are chosen randomly from this set until the limit is reached.</p>
+<p>In order to use the <em>near</em> operator, a geo index must be defined for the
+collection. This index also defines which attribute holds the coordinates
+for the document.  If you have more than one geo-spatial index, you can use
+the <em>geo</em> field to select a particular index.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to query.</li>
+</ul>
+<ul>
+<li><em>latitude</em>: The latitude of the coordinate.</li>
+</ul>
+<ul>
+<li><em>longitude</em>: The longitude of the coordinate.</li>
+</ul>
+<ul>
+<li><em>distance</em>: If given, the attribute key used to return the distance to
+the given coordinate. (optional). If specified, distances are returned in meters.</li>
+</ul>
+<ul>
+<li><em>skip</em>: The number of documents to skip in the query. (optional)</li>
+</ul>
+<ul>
+<li><em>limit</em>: The maximal amount of documents to return. The <em>skip</em> is
+applied before the <em>limit</em> restriction. The default is 100. (optional)</li>
+</ul>
+<ul>
+<li><em>geo</em>: If given, the identifier of the geo-index to use. (optional)</li>
+</ul>
+<p>Returns a cursor containing the result, see <a href="../HttpAqlQueryCursor/README.html">Http Cursor</a> for details.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Without distance:</p>
+<div id="RestSimpleNear_container">
+<div id="RestSimpleNear_long" onclick="$('#RestSimpleNear_long').hide(); $('#RestSimpleNear_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near
+{ &quot;collection&quot;: &quot;products&quot;, &quot;latitude&quot; : 0, &quot;longitude&quot; : 0, &quot;skip&quot; : 1, &quot;limit&quot; : 2 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1175331806&quot;, 
+      &quot;_key&quot; : &quot;1175331806&quot;, 
+      &quot;_rev&quot; : &quot;1175331806&quot;, 
+      &quot;name&quot; : &quot;Name/0.002/&quot;, 
+      &quot;loc&quot; : [ 
+        0.002, 
+        0 
+      ] 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1174938590&quot;, 
+      &quot;_key&quot; : &quot;1174938590&quot;, 
+      &quot;_rev&quot; : &quot;1174938590&quot;, 
+      &quot;name&quot; : &quot;Name/-0.002/&quot;, 
+      &quot;loc&quot; : [ 
+        -0.002, 
+        0 
+      ] 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 2, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleNear_short" onclick="$('#RestSimpleNear_short').hide(); $('#RestSimpleNear_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near
+{ &quot;collection&quot;: &quot;products&quot;, &quot;latitude&quot; : 0, &quot;longitude&quot; : 0, &quot;skip&quot; : 1, &quot;limit&quot; : 2 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+
+<p>With distance:</p>
+<div id="RestSimpleNearDistance_container">
+<div id="RestSimpleNearDistance_long" onclick="$('#RestSimpleNearDistance_long').hide(); $('#RestSimpleNearDistance_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near
+{ &quot;collection&quot;: &quot;products&quot;, &quot;latitude&quot; : 0, &quot;longitude&quot; : 0, &quot;skip&quot; : 1, &quot;limit&quot; : 3, &quot;distance&quot; : &quot;distance&quot; }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1177953246&quot;, 
+      &quot;_key&quot; : &quot;1177953246&quot;, 
+      &quot;_rev&quot; : &quot;1177953246&quot;, 
+      &quot;name&quot; : &quot;Name/-0.002/&quot;, 
+      &quot;loc&quot; : [ 
+        -0.002, 
+        0 
+      ], 
+      &quot;distance&quot; : 222.38985328911744 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1178346462&quot;, 
+      &quot;_key&quot; : &quot;1178346462&quot;, 
+      &quot;_rev&quot; : &quot;1178346462&quot;, 
+      &quot;name&quot; : &quot;Name/0.002/&quot;, 
+      &quot;loc&quot; : [ 
+        0.002, 
+        0 
+      ], 
+      &quot;distance&quot; : 222.38985328911744 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1177756638&quot;, 
+      &quot;_key&quot; : &quot;1177756638&quot;, 
+      &quot;_rev&quot; : &quot;1177756638&quot;, 
+      &quot;name&quot; : &quot;Name/-0.004/&quot;, 
+      &quot;loc&quot; : [ 
+        -0.004, 
+        0 
+      ], 
+      &quot;distance&quot; : 444.779706578235 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 3, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleNearDistance_short" onclick="$('#RestSimpleNearDistance_short').hide(); $('#RestSimpleNearDistance_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near
+{ &quot;collection&quot;: &quot;products&quot;, &quot;latitude&quot; : 0, &quot;longitude&quot; : 0, &quot;skip&quot; : 1, &quot;limit&quot; : 3, &quot;distance&quot; : &quot;distance&quot; }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns all documents of a collection within a given radius</p>
+<h3 id="within-query">Within query</h3>
+<p><code>PUT /_api/simple/within</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will find all documents within a given radius around the coordinate
+(<em>latitude</em>, <em>longitude</em>). The returned list is sorted by distance.</p>
+<p>In order to use the <em>within</em> operator, a geo index must be defined for
+the collection. This index also defines which attribute holds the
+coordinates for the document.  If you have more than one geo-spatial index,
+you can use the <em>geo</em> field to select a particular index.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to query.</li>
+</ul>
+<ul>
+<li><em>latitude</em>: The latitude of the coordinate.</li>
+</ul>
+<ul>
+<li><em>longitude</em>: The longitude of the coordinate.</li>
+</ul>
+<ul>
+<li><em>radius</em>: The maximal radius (in meters).</li>
+</ul>
+<ul>
+<li><em>distance</em>: If given, the attribute key used to return the distance to
+the given coordinate. (optional). If specified, distances are returned in meters.</li>
+</ul>
+<ul>
+<li><em>skip</em>: The number of documents to skip in the query. (optional)</li>
+</ul>
+<ul>
+<li><em>limit</em>: The maximal amount of documents to return. The <em>skip</em> is
+applied before the <em>limit</em> restriction. The default is 100. (optional)</li>
+</ul>
+<ul>
+<li><em>geo</em>: If given, the identifier of the geo-index to use. (optional)</li>
+</ul>
+<p>Returns a cursor containing the result, see <a href="../HttpAqlQueryCursor/README.html">Http Cursor</a> for details.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Without distance:</p>
+<div id="RestSimpleWithin_container">
+<div id="RestSimpleWithin_long" onclick="$('#RestSimpleWithin_long').hide(); $('#RestSimpleWithin_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near
+{ &quot;collection&quot;: &quot;products&quot;, &quot;latitude&quot; : 0, &quot;longitude&quot; : 0, &quot;skip&quot; : 1, &quot;limit&quot; : 2, &quot;radius&quot; : 500 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1181361118&quot;, 
+      &quot;_key&quot; : &quot;1181361118&quot;, 
+      &quot;_rev&quot; : &quot;1181361118&quot;, 
+      &quot;name&quot; : &quot;Name/0.002/&quot;, 
+      &quot;loc&quot; : [ 
+        0.002, 
+        0 
+      ] 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1180967902&quot;, 
+      &quot;_key&quot; : &quot;1180967902&quot;, 
+      &quot;_rev&quot; : &quot;1180967902&quot;, 
+      &quot;name&quot; : &quot;Name/-0.002/&quot;, 
+      &quot;loc&quot; : [ 
+        -0.002, 
+        0 
+      ] 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 2, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleWithin_short" onclick="$('#RestSimpleWithin_short').hide(); $('#RestSimpleWithin_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near
+{ &quot;collection&quot;: &quot;products&quot;, &quot;latitude&quot; : 0, &quot;longitude&quot; : 0, &quot;skip&quot; : 1, &quot;limit&quot; : 2, &quot;radius&quot; : 500 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+
+<p>With distance:</p>
+<div id="RestSimpleWithinDistance_container">
+<div id="RestSimpleWithinDistance_long" onclick="$('#RestSimpleWithinDistance_long').hide(); $('#RestSimpleWithinDistance_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near
+{ &quot;collection&quot;: &quot;products&quot;, &quot;latitude&quot; : 0, &quot;longitude&quot; : 0, &quot;skip&quot; : 1, &quot;limit&quot; : 3, &quot;distance&quot; : &quot;distance&quot;, &quot;radius&quot; : 300 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1183982558&quot;, 
+      &quot;_key&quot; : &quot;1183982558&quot;, 
+      &quot;_rev&quot; : &quot;1183982558&quot;, 
+      &quot;name&quot; : &quot;Name/-0.002/&quot;, 
+      &quot;loc&quot; : [ 
+        -0.002, 
+        0 
+      ], 
+      &quot;distance&quot; : 222.38985328911744 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1184375774&quot;, 
+      &quot;_key&quot; : &quot;1184375774&quot;, 
+      &quot;_rev&quot; : &quot;1184375774&quot;, 
+      &quot;name&quot; : &quot;Name/0.002/&quot;, 
+      &quot;loc&quot; : [ 
+        0.002, 
+        0 
+      ], 
+      &quot;distance&quot; : 222.38985328911744 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1183785950&quot;, 
+      &quot;_key&quot; : &quot;1183785950&quot;, 
+      &quot;_rev&quot; : &quot;1183785950&quot;, 
+      &quot;name&quot; : &quot;Name/-0.004/&quot;, 
+      &quot;loc&quot; : [ 
+        -0.004, 
+        0 
+      ], 
+      &quot;distance&quot; : 444.779706578235 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 3, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleWithinDistance_short" onclick="$('#RestSimpleWithinDistance_short').hide(); $('#RestSimpleWithinDistance_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near
+{ &quot;collection&quot;: &quot;products&quot;, &quot;latitude&quot; : 0, &quot;longitude&quot; : 0, &quot;skip&quot; : 1, &quot;limit&quot; : 3, &quot;distance&quot; : &quot;distance&quot;, &quot;radius&quot; : 300 }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns documents of a collection as a result of a fulltext query</p>
+<h3 id="fulltext-index-query">Fulltext index query</h3>
+<p><code>PUT /_api/simple/fulltext</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will find all documents from the collection that match the fulltext
+query specified in <em>query</em>.</p>
+<p>In order to use the <em>fulltext</em> operator, a fulltext index must be defined
+for the collection and the specified attribute.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to query.</li>
+</ul>
+<ul>
+<li><em>attribute</em>: The attribute that contains the texts.</li>
+</ul>
+<ul>
+<li><em>query</em>: The fulltext query. Please refer to <a href="../SimpleQueries/FulltextQueries.html">Fulltext queries</a>
+for details.</li>
+</ul>
+<ul>
+<li><em>skip</em>: The number of documents to skip in the query (optional).</li>
+</ul>
+<ul>
+<li><em>limit</em>: The maximal amount of documents to return. The <em>skip</em>
+is applied before the <em>limit</em> restriction. (optional)</li>
+</ul>
+<ul>
+<li><em>index</em>: The identifier of the fulltext-index to use.</li>
+</ul>
+<p>Returns a cursor containing the result, see <a href="../HttpAqlQueryCursor/README.html">Http Cursor</a> for details.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="RestSimpleFulltext_container">
+<div id="RestSimpleFulltext_long" onclick="$('#RestSimpleFulltext_long').hide(); $('#RestSimpleFulltext_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/fulltext
+{ &quot;collection&quot;: &quot;products&quot;, &quot;attribute&quot; : &quot;text&quot;, &quot;query&quot; : &quot;word&quot; }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1188963294&quot;, 
+      &quot;_key&quot; : &quot;1188963294&quot;, 
+      &quot;_rev&quot; : &quot;1188963294&quot;, 
+      &quot;text&quot; : &quot;this text contains word&quot; 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1189159902&quot;, 
+      &quot;_key&quot; : &quot;1189159902&quot;, 
+      &quot;_rev&quot; : &quot;1189159902&quot;, 
+      &quot;text&quot; : &quot;this text also has a word&quot; 
+    } 
+  ], 
+  &quot;hasMore&quot; : false, 
+  &quot;count&quot; : 2, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 201 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleFulltext_short" onclick="$('#RestSimpleFulltext_short').hide(); $('#RestSimpleFulltext_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/fulltext
+{ &quot;collection&quot;: &quot;products&quot;, &quot;attribute&quot; : &quot;text&quot;, &quot;query&quot; : &quot;word&quot; }
+
+HTTP/1.1 201 Created
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> removes all documents of a collection that match an example</p>
+<h3 id="remove-documents-by-example">Remove documents by example</h3>
+<p><code>PUT /_api/simple/remove-by-example</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will find all documents in the collection that match the specified
+example object.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to remove from.</li>
+</ul>
+<ul>
+<li><em>example</em>: An example document that all collection documents are compared
+against.</li>
+</ul>
+<ul>
+<li>options: an json object which can contains following attributes:</li>
+</ul>
+<ul>
+<li><em>waitForSync</em>: if set to true, then all removal operations will
+instantly be synchronised to disk. If this is not specified, then the
+collection&#39;s default sync behavior will be applied.</li>
+</ul>
+<ul>
+<li><em>limit</em>: an optional value that determines how many documents to
+delete at most. If <em>limit</em> is specified but is less than the number
+of documents in the collection, it is undefined which of the documents
+will be deleted.</li>
+</ul>
+<p>Note: the <em>limit</em> attribute is not supported on sharded collections.
+Using it will result in an error.
+The options attributes waitForSync and limit can given yet without
+an ecapsulation into a json object. but this may be deprecated in future
+versions of arango</p>
+<p>Returns the number of documents that were deleted.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="RestSimpleRemoveByExample_container">
+<div id="RestSimpleRemoveByExample_long" onclick="$('#RestSimpleRemoveByExample_long').hide(); $('#RestSimpleRemoveByExample_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } } }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;deleted&quot; : 1, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleRemoveByExample_short" onclick="$('#RestSimpleRemoveByExample_short').hide(); $('#RestSimpleRemoveByExample_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } } }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using Parameter: waitForSync and limit</p>
+<div id="RestSimpleRemoveByExample_1_container">
+<div id="RestSimpleRemoveByExample_1_long" onclick="$('#RestSimpleRemoveByExample_1_long').hide(); $('#RestSimpleRemoveByExample_1_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } },&quot;waitForSync&quot;: true, &quot;limit&quot;: 2 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;deleted&quot; : 1, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleRemoveByExample_1_short" onclick="$('#RestSimpleRemoveByExample_1_short').hide(); $('#RestSimpleRemoveByExample_1_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } },&quot;waitForSync&quot;: true, &quot;limit&quot;: 2 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using Parameter: waitForSync and limit with new signature</p>
+<div id="RestSimpleRemoveByExample_2_container">
+<div id="RestSimpleRemoveByExample_2_long" onclick="$('#RestSimpleRemoveByExample_2_long').hide(); $('#RestSimpleRemoveByExample_2_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example
+{&quot;collection&quot;: &quot;products&quot;,&quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } },&quot;options&quot;: {&quot;waitForSync&quot;: true, &quot;limit&quot;: 2} }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;deleted&quot; : 1, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleRemoveByExample_2_short" onclick="$('#RestSimpleRemoveByExample_2_short').hide(); $('#RestSimpleRemoveByExample_2_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example
+{&quot;collection&quot;: &quot;products&quot;,&quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } },&quot;options&quot;: {&quot;waitForSync&quot;: true, &quot;limit&quot;: 2} }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> replaces the body of all documents of a collection that match an
+example</p>
+<h3 id="replace-documents-by-example">Replace documents by example</h3>
+<p><code>PUT /_api/simple/replace-by-example</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will find all documents in the collection that match the specified
+example object, and replace the entire document body with the new value
+specified. Note that document meta-attributes such as <em>_id</em>, <em>_key</em>,
+<em>_from</em>, <em>_to</em> etc. cannot be replaced.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to replace within.</li>
+</ul>
+<ul>
+<li><em>example</em>: An example document that all collection documents are compared
+against.</li>
+</ul>
+<ul>
+<li><em>newValue</em>: The replacement document that will get inserted in place
+of the &quot;old&quot; documents.</li>
+</ul>
+<ul>
+<li><em>options</em>: an json object which can contain following attributes</li>
+</ul>
+<ul>
+<li><em>waitForSync</em>: if set to true, then all removal operations will
+instantly be synchronised to disk. If this is not specified, then the
+collection&#39;s default sync behavior will be applied.</li>
+</ul>
+<ul>
+<li><em>limit</em>: an optional value that determines how many documents to
+replace at most. If <em>limit</em> is specified but is less than the number
+of documents in the collection, it is undefined which of the documents
+will be replaced.</li>
+</ul>
+<p>Note: the <em>limit</em> attribute is not supported on sharded collections.
+Using it will result in an error.
+The options attributes waitForSync and limit can given yet without
+an ecapsulation into a json object. but this may be deprecated in future
+versions of arango</p>
+<p>Returns the number of documents that were replaced.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the query was executed successfully.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="RestSimpleReplaceByExample_container">
+<div id="RestSimpleReplaceByExample_long" onclick="$('#RestSimpleReplaceByExample_long').hide(); $('#RestSimpleReplaceByExample_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/replace-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } }, &quot;newValue&quot; : {&quot;foo&quot; : &quot;bar&quot;}, &quot;limit&quot; : 3 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;replaced&quot; : 1, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleReplaceByExample_short" onclick="$('#RestSimpleReplaceByExample_short').hide(); $('#RestSimpleReplaceByExample_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/replace-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } }, &quot;newValue&quot; : {&quot;foo&quot; : &quot;bar&quot;}, &quot;limit&quot; : 3 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using new Signature for attributes WaitForSync and limit</p>
+<div id="RestSimpleReplaceByExampleWaitForSync_container">
+<div id="RestSimpleReplaceByExampleWaitForSync_long" onclick="$('#RestSimpleReplaceByExampleWaitForSync_long').hide(); $('#RestSimpleReplaceByExampleWaitForSync_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/replace-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } }, &quot;newValue&quot; : {&quot;foo&quot; : &quot;bar&quot;}, &quot;options&quot;: {&quot;limit&quot; : 3,  &quot;waitForSync&quot;: true  }}
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;replaced&quot; : 1, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleReplaceByExampleWaitForSync_short" onclick="$('#RestSimpleReplaceByExampleWaitForSync_short').hide(); $('#RestSimpleReplaceByExampleWaitForSync_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/replace-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } }, &quot;newValue&quot; : {&quot;foo&quot; : &quot;bar&quot;}, &quot;options&quot;: {&quot;limit&quot; : 3,  &quot;waitForSync&quot;: true  }}
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> partially updates the body of all documents of a collection that
+match an example</p>
+<h3 id="update-documents-by-example">Update documents by example</h3>
+<p><code>PUT /_api/simple/update-by-example</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will find all documents in the collection that match the specified
+example object, and partially update the document body with the new value
+specified. Note that document meta-attributes such as <em>_id</em>, <em>_key</em>,
+<em>_from</em>, <em>_to</em> etc. cannot be replaced.</p>
+<p>The call expects a JSON object as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to update within.</li>
+</ul>
+<ul>
+<li><em>example</em>: An example document that all collection documents are compared
+against.</li>
+</ul>
+<ul>
+<li><em>newValue</em>: A document containing all the attributes to update in the
+found documents.</li>
+</ul>
+<ul>
+<li><em>options</em>: a json object wich can contains following attributes:</li>
+</ul>
+<ul>
+<li><em>keepNull</em>: This parameter can be used to modify the behavior when
+handling <em>null</em> values. Normally, <em>null</em> values are stored in the
+database. By setting the <em>keepNull</em> parameter to <em>false</em>, this
+behavior can be changed so that all attributes in <em>data</em> with <em>null</em>
+values will be removed from the updated document.</li>
+</ul>
+<ul>
+<li><em>waitForSync</em>: if set to true, then all removal operations will
+instantly be synchronised to disk. If this is not specified, then the
+collection&#39;s default sync behavior will be applied.</li>
+</ul>
+<ul>
+<li><em>limit</em>: an optional value that determines how many documents to
+update at most. If <em>limit</em> is specified but is less than the number
+of documents in the collection, it is undefined which of the documents
+will be updated.</li>
+</ul>
+<p>Note: the <em>limit</em> attribute is not supported on sharded collections.
+Using it will result in an error.</p>
+<p>Returns the number of documents that were updated.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the collection was updated successfully and <em>waitForSync</em> was
+<em>true</em>.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong>
+using old syntax for options</p>
+<div id="RestSimpleUpdateByExample_container">
+<div id="RestSimpleUpdateByExample_long" onclick="$('#RestSimpleUpdateByExample_long').hide(); $('#RestSimpleUpdateByExample_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/update-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } }, &quot;newValue&quot; : { &quot;a&quot; : { &quot;j&quot; : 22 } }, &quot;limit&quot; : 3 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;updated&quot; : 1, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleUpdateByExample_short" onclick="$('#RestSimpleUpdateByExample_short').hide(); $('#RestSimpleUpdateByExample_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/update-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } }, &quot;newValue&quot; : { &quot;a&quot; : { &quot;j&quot; : 22 } }, &quot;limit&quot; : 3 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>using new signature for options</p>
+<div id="RestSimpleUpdateByExample_1_container">
+<div id="RestSimpleUpdateByExample_1_long" onclick="$('#RestSimpleUpdateByExample_1_long').hide(); $('#RestSimpleUpdateByExample_1_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/update-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } }, &quot;newValue&quot; : { &quot;a&quot; : { &quot;j&quot; : 22 } }, &quot;options&quot; :  { &quot;limit&quot; : 3, &quot;waitForSync&quot;: true }  }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;updated&quot; : 1, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleUpdateByExample_1_short" onclick="$('#RestSimpleUpdateByExample_1_short').hide(); $('#RestSimpleUpdateByExample_1_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/update-by-example
+{ &quot;collection&quot;: &quot;products&quot;, &quot;example&quot; : { &quot;a&quot; : { &quot;j&quot; : 1 } }, &quot;newValue&quot; : { &quot;a&quot; : { &quot;j&quot; : 22 } }, &quot;options&quot; :  { &quot;limit&quot; : 3, &quot;waitForSync&quot;: true }  }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns the first document(s) of a collection</p>
+<h3 id="first-document-of-a-collection">First document of a collection</h3>
+<p><code>PUT /_api/simple/first</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will return the first document(s) from the collection, in the order of
+insertion/update time. When the <em>count</em> argument is supplied, the result
+will be a list of documents, with the &quot;oldest&quot; document being first in the
+result list.
+If the <em>count</em> argument is not supplied, the result is the &quot;oldest&quot; document
+of the collection, or <em>null</em> if the collection is empty.</p>
+<p>The request body must be a JSON object with the following attributes:</p>
+<ul>
+<li><em>collection</em>: the name of the collection</li>
+</ul>
+<ul>
+<li><em>count</em>: the number of documents to return at most. Specifiying count is
+optional. If it is not specified, it defaults to 1.</li>
+</ul>
+<p>Note: this method is not supported for sharded collections with more than
+one shard.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned when the query was successfully executed.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Retrieving the first n documents:</p>
+<div id="RestSimpleFirst_container">
+<div id="RestSimpleFirst_long" onclick="$('#RestSimpleFirst_long').hide(); $('#RestSimpleFirst_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first
+{ &quot;collection&quot;: &quot;products&quot;, &quot;count&quot; : 2 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1200235486&quot;, 
+      &quot;_key&quot; : &quot;1200235486&quot;, 
+      &quot;_rev&quot; : &quot;1200235486&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;k&quot; : 1, 
+        &quot;j&quot; : 1 
+      } 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1200563166&quot;, 
+      &quot;_key&quot; : &quot;1200563166&quot;, 
+      &quot;_rev&quot; : &quot;1200563166&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;j&quot; : 1 
+      } 
+    } 
+  ], 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleFirst_short" onclick="$('#RestSimpleFirst_short').hide(); $('#RestSimpleFirst_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first
+{ &quot;collection&quot;: &quot;products&quot;, &quot;count&quot; : 2 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+
+<p>Retrieving the first document:</p>
+<div id="RestSimpleFirstSingle_container">
+<div id="RestSimpleFirstSingle_long" onclick="$('#RestSimpleFirstSingle_long').hide(); $('#RestSimpleFirstSingle_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first
+{ &quot;collection&quot;: &quot;products&quot; }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : { 
+    &quot;_id&quot; : &quot;products/1201873886&quot;, 
+    &quot;_key&quot; : &quot;1201873886&quot;, 
+    &quot;_rev&quot; : &quot;1201873886&quot;, 
+    &quot;i&quot; : 1, 
+    &quot;a&quot; : { 
+      &quot;k&quot; : 1, 
+      &quot;j&quot; : 1 
+    } 
+  }, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleFirstSingle_short" onclick="$('#RestSimpleFirstSingle_short').hide(); $('#RestSimpleFirstSingle_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first
+{ &quot;collection&quot;: &quot;products&quot; }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<p> returns the last document(s) of a collection</p>
+<h3 id="last-document-of-a-collection">Last document of a collection</h3>
+<p><code>PUT /_api/simple/last</code></p>
+<ul>
+<li><em>query</em>:
+Contains the query.</li>
+</ul>
+<p>This will return the last documents from the collection, in the order of
+insertion/update time. When the <em>count</em> argument is supplied, the result
+will be a list of documents, with the &quot;latest&quot; document being first in the
+result list.</p>
+<p>The request body must be a JSON object with the following attributes:</p>
+<ul>
+<li><em>collection</em>: the name of the collection</li>
+</ul>
+<ul>
+<li><em>count</em>: the number of documents to return at most. Specifiying count is
+optional. If it is not specified, it defaults to 1.</li>
+</ul>
+<p>If the <em>count</em> argument is not supplied, the result is the &quot;latest&quot; document
+of the collection, or <em>null</em> if the collection is empty.</p>
+<p>Note: this method is not supported for sharded collections with more than
+one shard.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned when the query was successfully executed.</li>
+</ul>
+<ul>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+</ul>
+<ul>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Retrieving the last n documents:</p>
+<div id="RestSimpleLast_container">
+<div id="RestSimpleLast_long" onclick="$('#RestSimpleLast_long').hide(); $('#RestSimpleLast_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/last
+{ &quot;collection&quot;: &quot;products&quot;, &quot;count&quot; : 2 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : [ 
+    { 
+      &quot;_id&quot; : &quot;products/1204298718&quot;, 
+      &quot;_key&quot; : &quot;1204298718&quot;, 
+      &quot;_rev&quot; : &quot;1204298718&quot;, 
+      &quot;i&quot; : 1, 
+      &quot;a&quot; : { 
+        &quot;k&quot; : 2, 
+        &quot;j&quot; : 2 
+      } 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;products/1204102110&quot;, 
+      &quot;_key&quot; : &quot;1204102110&quot;, 
+      &quot;_rev&quot; : &quot;1204102110&quot;, 
+      &quot;i&quot; : 1 
+    } 
+  ], 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleLast_short" onclick="$('#RestSimpleLast_short').hide(); $('#RestSimpleLast_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/last
+{ &quot;collection&quot;: &quot;products&quot;, &quot;count&quot; : 2 }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+
+<p>Retrieving the first document:</p>
+<div id="RestSimpleLastSingle_container">
+<div id="RestSimpleLastSingle_long" onclick="$('#RestSimpleLastSingle_long').hide(); $('#RestSimpleLastSingle_short').show();" style="Display: none;">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/last
+{ &quot;collection&quot;: &quot;products&quot; }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8
+
+{ 
+  &quot;result&quot; : { 
+    &quot;_id&quot; : &quot;products/1205937118&quot;, 
+    &quot;_key&quot; : &quot;1205937118&quot;, 
+    &quot;_rev&quot; : &quot;1205937118&quot;, 
+    &quot;i&quot; : 1, 
+    &quot;a&quot; : { 
+      &quot;k&quot; : 2, 
+      &quot;j&quot; : 2 
+    } 
+  }, 
+  &quot;error&quot; : false, 
+  &quot;code&quot; : 200 
+}</code>
+</pre>
+</div>
+<div id="RestSimpleLastSingle_short" onclick="$('#RestSimpleLastSingle_short').hide(); $('#RestSimpleLastSingle_long').show();">
+<pre>
+<code>shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/last
+{ &quot;collection&quot;: &quot;products&quot; }
+
+HTTP/1.1 200 OK
+content-type: application/json; charset=utf-8</code>
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../HttpAqlUserFunctions/README.html" class="navigation navigation-prev " aria-label="Previous page: AQL User Functions Management"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../HttpCollection/README.html" class="navigation navigation-next " aria-label="Next page: Collections"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"piwik":{"URL":"www.arangodb.org/piwik/","siteId":12}};
+    gitbook.start(config);
+});
+</script>
+
+        <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.org/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.org/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    
+</html>

@@ -1,0 +1,4397 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Language Basics | ArangoDB Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.4.2">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="https://www.arangodb.org/wp-content/themes/triagens/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <link rel="next" href="../Aql/Functions.html" />
+    
+    
+    <link rel="prev" href="../Aql/Optimizer.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-level="12.4" data-basepath=".." data-revision="1421610625430">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+      
+    	
+
+        
+        <li>
+            <a href="https://github.com/triAGENS/ArangoDB/issues" target="blank"class="issues-link"><i class="fa fa-github"></i> Have any issues? <i class="fa fa-external-link"></i></a>
+            <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank"><i class="fa fa-stack-overflow"></i> Have any questions? <i class="fa fa-external-link"></i></a>
+        </li>
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="Installing/README.html">
+            
+                
+                    <a href="../Installing/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Installing
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="Installing/Linux.html">
+            
+                
+                    <a href="../Installing/Linux.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         Linux
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" data-path="Installing/MacOSX.html">
+            
+                
+                    <a href="../Installing/MacOSX.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                         Mac OS X
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" data-path="Installing/Windows.html">
+            
+                
+                    <a href="../Installing/Windows.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                         Windows
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" data-path="Installing/Compiling.html">
+            
+                
+                    <a href="../Installing/Compiling.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                         Compiling
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="Installing/Upgrading.html">
+            
+                
+                    <a href="../Installing/Upgrading.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         Upgrading
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.5.1" data-path="Upgrading/UpgradingChanges23.html">
+            
+                
+                    <a href="../Upgrading/UpgradingChanges23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.1.</b>
+                        
+                         Incompatible changes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.2" data-path="Upgrading/Upgrading23.html">
+            
+                
+                    <a href="../Upgrading/Upgrading23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.2.</b>
+                        
+                         Upgrading to 2.3
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3" data-path="Upgrading/Upgrading22.html">
+            
+                
+                    <a href="../Upgrading/Upgrading22.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.3.</b>
+                        
+                         Upgrading to 2.2
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.4" data-path="Installing/Upgrading.html">
+            
+                
+                    <a href="../Installing/Upgrading.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.4.</b>
+                        
+                         Upgrading in general
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="Installing/Cluster.html">
+            
+                
+                    <a href="../Installing/Cluster.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         Cluster setup
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="NewFeatures/NewFeatures23.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Whats New
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="NewFeatures/NewFeatures22.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures22.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         Whats New in 2.2
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="NewFeatures/NewFeatures21.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures21.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         Whats New in 2.1
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="FirstSteps/README.html">
+            
+                
+                    <a href="../FirstSteps/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         First Steps
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="FirstSteps/GettingFamiliar.html">
+            
+                
+                    <a href="../FirstSteps/GettingFamiliar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Getting Familiar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="FirstSteps/Arangod.html">
+            
+                
+                    <a href="../FirstSteps/Arangod.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         The ArangoDB Server
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="Arangosh/README.html">
+            
+                
+                    <a href="../Arangosh/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         The ArangoDB Shell
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.3.1" data-path="Arangosh/Output.html">
+            
+                
+                    <a href="../Arangosh/Output.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                         Shell Output
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.2" data-path="Arangosh/Configuration.html">
+            
+                
+                    <a href="../Arangosh/Configuration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                         Configuration
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.3" data-path="FirstSteps/Arangosh.html">
+            
+                
+                    <a href="../FirstSteps/Arangosh.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.3.</b>
+                        
+                         Details
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4" data-path="FirstSteps/CollectionsAndDocuments.html">
+            
+                
+                    <a href="../FirstSteps/CollectionsAndDocuments.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                         Collections
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="WebInterface/README.html">
+            
+                
+                    <a href="../WebInterface/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         ArangoDB Web Interface
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="Databases/README.html">
+            
+                
+                    <a href="../Databases/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         Creating and Dropping Databases
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1" data-path="Databases/WorkingWith.html">
+            
+                
+                    <a href="../Databases/WorkingWith.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         Working with Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2" data-path="Databases/Notes.html">
+            
+                
+                    <a href="../Databases/Notes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                         Notes about Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="Collections/README.html">
+            
+                
+                    <a href="../Collections/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         Creating and Dropping Collections
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1" data-path="Collections/CollectionMethods.html">
+            
+                
+                    <a href="../Collections/CollectionMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         Collection Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2" data-path="Collections/DatabaseMethods.html">
+            
+                
+                    <a href="../Collections/DatabaseMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                         Database Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" data-path="Documents/README.html">
+            
+                
+                    <a href="../Documents/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         Working with Documents
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="Documents/DocumentAddress.html">
+            
+                
+                    <a href="../Documents/DocumentAddress.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.2" data-path="Documents/DocumentMethods.html">
+            
+                
+                    <a href="../Documents/DocumentMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                         Collection Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.3" data-path="Documents/DatabaseMethods.html">
+            
+                
+                    <a href="../Documents/DatabaseMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                         Database Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" data-path="Edges/README.html">
+            
+                
+                    <a href="../Edges/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         Working with Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" data-path="SimpleQueries/README.html">
+            
+                
+                    <a href="../SimpleQueries/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         Simple Queries
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1" data-path="SimpleQueries/GeoQueries.html">
+            
+                
+                    <a href="../SimpleQueries/GeoQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         Geo Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.2" data-path="SimpleQueries/FulltextQueries.html">
+            
+                
+                    <a href="../SimpleQueries/FulltextQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                         Fulltext Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.3" data-path="SimpleQueries/Pagination.html">
+            
+                
+                    <a href="../SimpleQueries/Pagination.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                         Pagination
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.4" data-path="SimpleQueries/Access.html">
+            
+                
+                    <a href="../SimpleQueries/Access.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                         Sequential Access
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.5" data-path="SimpleQueries/ModificationQueries.html">
+            
+                
+                    <a href="../SimpleQueries/ModificationQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                         Modification Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10" data-path="Transactions/README.html">
+            
+                
+                    <a href="../Transactions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                         Transactions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="10.1" data-path="Transactions/TransactionInvocation.html">
+            
+                
+                    <a href="../Transactions/TransactionInvocation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                         Transaction invocation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.2" data-path="Transactions/Passing.html">
+            
+                
+                    <a href="../Transactions/Passing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                         Passing parameters
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.3" data-path="Transactions/LockingAndIsolation.html">
+            
+                
+                    <a href="../Transactions/LockingAndIsolation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                         Locking and isolation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.4" data-path="Transactions/Durability.html">
+            
+                
+                    <a href="../Transactions/Durability.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                         Durability
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.5" data-path="Transactions/Limitations.html">
+            
+                
+                    <a href="../Transactions/Limitations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.</b>
+                        
+                         Limitations
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="11" data-path="WriteAheadLog/README.html">
+            
+                
+                    <a href="../WriteAheadLog/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                         Write-ahead log
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12" data-path="Aql/README.html">
+            
+                
+                    <a href="../Aql/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                         AQL
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.1" data-path="Aql/Invoke.html">
+            
+                
+                    <a href="../Aql/Invoke.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                         How to invoke AQL
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.2" data-path="Aql/DataModification.html">
+            
+                
+                    <a href="../Aql/DataModification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                         Data modification queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.3" data-path="Aql/Optimizer.html">
+            
+                
+                    <a href="../Aql/Optimizer.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                         The AQL query optimizer
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="12.4" data-path="Aql/Basics.html">
+            
+                
+                    <a href="../Aql/Basics.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.4.</b>
+                        
+                         Language Basics
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5" data-path="Aql/Functions.html">
+            
+                
+                    <a href="../Aql/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.</b>
+                        
+                         Functions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.5.1" data-path="Aql/TypeCastFunctions.html">
+            
+                
+                    <a href="../Aql/TypeCastFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.1.</b>
+                        
+                         Type cast
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.2" data-path="Aql/StringFunctions.html">
+            
+                
+                    <a href="../Aql/StringFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.2.</b>
+                        
+                         String
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.3" data-path="Aql/NumericFunctions.html">
+            
+                
+                    <a href="../Aql/NumericFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.3.</b>
+                        
+                         Numeric
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.4" data-path="Aql/DateFunctions.html">
+            
+                
+                    <a href="../Aql/DateFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.4.</b>
+                        
+                         Date
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.5" data-path="Aql/ListFunctions.html">
+            
+                
+                    <a href="../Aql/ListFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.5.</b>
+                        
+                         List
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.6" data-path="Aql/DocumentFunctions.html">
+            
+                
+                    <a href="../Aql/DocumentFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.6.</b>
+                        
+                         Document
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.7" data-path="Aql/GeoFunctions.html">
+            
+                
+                    <a href="../Aql/GeoFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.7.</b>
+                        
+                         Geo
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.8" data-path="Aql/FulltextFunctions.html">
+            
+                
+                    <a href="../Aql/FulltextFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.8.</b>
+                        
+                         Fulltext
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.9" data-path="Aql/GraphFunctions.html">
+            
+                
+                    <a href="../Aql/GraphFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.9.</b>
+                        
+                         Graph
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.10" data-path="Aql/MiscellaneousFunctions.html">
+            
+                
+                    <a href="../Aql/MiscellaneousFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.10.</b>
+                        
+                         Miscellaneous
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.6" data-path="Aql/QueryResults.html">
+            
+                
+                    <a href="../Aql/QueryResults.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.6.</b>
+                        
+                         Query Results
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.7" data-path="Aql/Operators.html">
+            
+                
+                    <a href="../Aql/Operators.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.7.</b>
+                        
+                         Operators
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.8" data-path="Aql/Operations.html">
+            
+                
+                    <a href="../Aql/Operations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.8.</b>
+                        
+                         High level Operations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.9" data-path="Aql/GraphOperations.html">
+            
+                
+                    <a href="../Aql/GraphOperations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.9.</b>
+                        
+                         Graph Operations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.10" data-path="Aql/Advanced.html">
+            
+                
+                    <a href="../Aql/Advanced.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.10.</b>
+                        
+                         Advanced Features
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.11" data-path="AqlExtending/README.html">
+            
+                
+                    <a href="../AqlExtending/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.</b>
+                        
+                         Extending AQL
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.11.1" data-path="AqlExtending/Conventions.html">
+            
+                
+                    <a href="../AqlExtending/Conventions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.1.</b>
+                        
+                         Conventions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.11.2" data-path="AqlExtending/Functions.html">
+            
+                
+                    <a href="../AqlExtending/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.2.</b>
+                        
+                         Registering Functions
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12" data-path="AqlExamples/README.html">
+            
+                
+                    <a href="../AqlExamples/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.</b>
+                        
+                         AQL Examples
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.12.1" data-path="AqlExamples/CollectionQueries.html">
+            
+                
+                    <a href="../AqlExamples/CollectionQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.1.</b>
+                        
+                         Collection based queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.2" data-path="AqlExamples/DataModificationQueries.html">
+            
+                
+                    <a href="../AqlExamples/DataModificationQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.2.</b>
+                        
+                         Data-modification queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.3" data-path="AqlExamples/ProjectionsAndFilters.html">
+            
+                
+                    <a href="../AqlExamples/ProjectionsAndFilters.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.3.</b>
+                        
+                         Projections and filters
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.4" data-path="AqlExamples/Join.html">
+            
+                
+                    <a href="../AqlExamples/Join.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.4.</b>
+                        
+                         Joins
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.5" data-path="AqlExamples/Grouping.html">
+            
+                
+                    <a href="../AqlExamples/Grouping.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.5.</b>
+                        
+                         Grouping
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13" data-path="General-Graphs/README.html">
+            
+                
+                    <a href="../General-Graphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                         General Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="13.1" data-path="General-Graphs/Management.html">
+            
+                
+                    <a href="../General-Graphs/Management.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                         Graph Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13.2" data-path="General-Graphs/Functions.html">
+            
+                
+                    <a href="../General-Graphs/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                         Graph Functions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13.3" data-path="General-Graphs/FluentAQLInterface.html">
+            
+                
+                    <a href="../General-Graphs/FluentAQLInterface.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.3.</b>
+                        
+                         Fluent Query Interface
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14" data-path="Blueprint-Graphs/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                         Blueprint Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="14.1" data-path="Blueprint-Graphs/GraphConstructor.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/GraphConstructor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.1.</b>
+                        
+                         Graph Constructor
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.2" data-path="Blueprint-Graphs/VertexMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/VertexMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.2.</b>
+                        
+                         Vertex Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.3" data-path="Blueprint-Graphs/EdgeMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/EdgeMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.3.</b>
+                        
+                         Edge Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15" data-path="Traversals/README.html">
+            
+                
+                    <a href="../Traversals/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                         Traversals
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="15.1" data-path="Traversals/UsingTraversalObjects.html">
+            
+                
+                    <a href="../Traversals/UsingTraversalObjects.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                         Using Traversal Objects
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15.2" data-path="Traversals/ExampleData.html">
+            
+                
+                    <a href="../Traversals/ExampleData.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                         Example Data
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16" data-path="Foxx/README.html">
+            
+                
+                    <a href="../Foxx/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                         Foxx
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="16.1" data-path="Foxx/HandlingRequest.html">
+            
+                
+                    <a href="../Foxx/HandlingRequest.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                         Handling Requests
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.2" data-path="Foxx/FoxxManifest.html">
+            
+                
+                    <a href="../Foxx/FoxxManifest.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                         Manifest
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.3" data-path="Foxx/FoxxController.html">
+            
+                
+                    <a href="../Foxx/FoxxController.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                         FoxxController
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.4" data-path="Foxx/FoxxModel.html">
+            
+                
+                    <a href="../Foxx/FoxxModel.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                         FoxxModel
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.5" data-path="Foxx/FoxxRepository.html">
+            
+                
+                    <a href="../Foxx/FoxxRepository.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                         FoxxRepository
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.6" data-path="Foxx/FoxxQueries.html">
+            
+                
+                    <a href="../Foxx/FoxxQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.6.</b>
+                        
+                         Foxx Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.7" data-path="Foxx/DeployingAnApplication.html">
+            
+                
+                    <a href="../Foxx/DeployingAnApplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.7.</b>
+                        
+                         Deploying Applications
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.8" data-path="Foxx/DevelopingAnApplication.html">
+            
+                
+                    <a href="../Foxx/DevelopingAnApplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.8.</b>
+                        
+                         Developing Applications
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.9" data-path="Foxx/FoxxInjection.html">
+            
+                
+                    <a href="../Foxx/FoxxInjection.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.9.</b>
+                        
+                         Dependency Injection
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.10" data-path="Foxx/FoxxExports.html">
+            
+                
+                    <a href="../Foxx/FoxxExports.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.10.</b>
+                        
+                         Foxx Exports
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.11" data-path="Foxx/FoxxQueues.html">
+            
+                
+                    <a href="../Foxx/FoxxQueues.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.11.</b>
+                        
+                         Foxx Job Queues
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.12" data-path="Foxx/FoxxSessions.html">
+            
+                
+                    <a href="../Foxx/FoxxSessions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.12.</b>
+                        
+                         Foxx Sessions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.13" data-path="Foxx/FoxxOptional.html">
+            
+                
+                    <a href="../Foxx/FoxxOptional.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.13.</b>
+                        
+                         Optional Functionality
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14" data-path="FoxxBundledApps/README.html">
+            
+                
+                    <a href="../FoxxBundledApps/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.</b>
+                        
+                         Bundled Applications
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="16.14.1" data-path="FoxxBundledApps/Sessions.html">
+            
+                
+                    <a href="../FoxxBundledApps/Sessions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.1.</b>
+                        
+                         Session Storage
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14.2" data-path="FoxxBundledApps/Users.html">
+            
+                
+                    <a href="../FoxxBundledApps/Users.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.2.</b>
+                        
+                         User Storage
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14.3" data-path="FoxxBundledApps/SimpleAuth.html">
+            
+                
+                    <a href="../FoxxBundledApps/SimpleAuth.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.3.</b>
+                        
+                         Simple Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17" data-path="FoxxManager/README.html">
+            
+                
+                    <a href="../FoxxManager/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                         Foxx Manager
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="17.1" data-path="FoxxManager/FirstSteps.html">
+            
+                
+                    <a href="../FoxxManager/FirstSteps.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.1.</b>
+                        
+                         First Steps
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.2" data-path="FoxxManager/BehindTheScenes.html">
+            
+                
+                    <a href="../FoxxManager/BehindTheScenes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.2.</b>
+                        
+                         Behind the scenes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.3" data-path="FoxxManager/MultipleDatabases.html">
+            
+                
+                    <a href="../FoxxManager/MultipleDatabases.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.3.</b>
+                        
+                         Multiple Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.4" data-path="FoxxManager/ManagerCommands.html">
+            
+                
+                    <a href="../FoxxManager/ManagerCommands.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.4.</b>
+                        
+                         Manager Commands
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.5" data-path="FoxxManager/FrequentlyUsedOptions.html">
+            
+                
+                    <a href="../FoxxManager/FrequentlyUsedOptions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.5.</b>
+                        
+                         Frequently Used Options
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18" data-path="ArangoActions/README.html">
+            
+                
+                    <a href="../ArangoActions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                         ArangoDB&#39;s Actions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="18.1" data-path="ArangoActions/HtmlExample.html">
+            
+                
+                    <a href="../ArangoActions/HtmlExample.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                         Delivering HTML Pages
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18.2" data-path="ArangoActions/JsonExample.html">
+            
+                
+                    <a href="../ArangoActions/JsonExample.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                         Json Objects
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18.3" data-path="ArangoActions/Modifying.html">
+            
+                
+                    <a href="../ArangoActions/Modifying.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                         Modifying
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19" data-path="Replication/README.html">
+            
+                
+                    <a href="../Replication/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                         Replication
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="19.1" data-path="Replication/Components.html">
+            
+                
+                    <a href="../Replication/Components.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.1.</b>
+                        
+                         Components
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.2" data-path="Replication/ExampleSetup.html">
+            
+                
+                    <a href="../Replication/ExampleSetup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.2.</b>
+                        
+                         Example Setup
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.3" data-path="Replication/Limitations.html">
+            
+                
+                    <a href="../Replication/Limitations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.3.</b>
+                        
+                         Replication Limitations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.4" data-path="Replication/Overhead.html">
+            
+                
+                    <a href="../Replication/Overhead.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.4.</b>
+                        
+                         Replication Overhead
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20" data-path="Sharding/README.html">
+            
+                
+                    <a href="../Sharding/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                         Sharding
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="20.1" data-path="Sharding/HowTo.html">
+            
+                
+                    <a href="../Sharding/HowTo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.1.</b>
+                        
+                         How to try it out
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.2" data-path="Sharding/StatusOfImplementation.html">
+            
+                
+                    <a href="../Sharding/StatusOfImplementation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.2.</b>
+                        
+                         Implementation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.3" data-path="Sharding/Authentication.html">
+            
+                
+                    <a href="../Sharding/Authentication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.3.</b>
+                        
+                         Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.4" data-path="Sharding/FirewallSetup.html">
+            
+                
+                    <a href="../Sharding/FirewallSetup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.4.</b>
+                        
+                         Firewall setup
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21" data-path="ConfigureArango/README.html">
+            
+                
+                    <a href="../ConfigureArango/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                         Server Configuration
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="21.1" data-path="ConfigureArango/Arangod.html">
+            
+                
+                    <a href="../ConfigureArango/Arangod.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.1.</b>
+                        
+                         Arangod options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.2" data-path="ConfigureArango/Wal.html">
+            
+                
+                    <a href="../ConfigureArango/Wal.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.2.</b>
+                        
+                         Write-ahead log options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.3" data-path="ConfigureArango/Endpoint.html">
+            
+                
+                    <a href="../ConfigureArango/Endpoint.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.3.</b>
+                        
+                         Endpoints options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.4" data-path="ConfigureArango/Cluster.html">
+            
+                
+                    <a href="../ConfigureArango/Cluster.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.4.</b>
+                        
+                         Cluster options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.5" data-path="ConfigureArango/Logging.html">
+            
+                
+                    <a href="../ConfigureArango/Logging.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.5.</b>
+                        
+                         Logging options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.6" data-path="ConfigureArango/Communication.html">
+            
+                
+                    <a href="../ConfigureArango/Communication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.6.</b>
+                        
+                         Communication options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.7" data-path="ConfigureArango/Authentication.html">
+            
+                
+                    <a href="../ConfigureArango/Authentication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.7.</b>
+                        
+                         Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.8" data-path="ConfigureArango/EmergencyConsole.html">
+            
+                
+                    <a href="../ConfigureArango/EmergencyConsole.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.8.</b>
+                        
+                         Emergency Console
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="22" data-path="Arangoimp/README.html">
+            
+                
+                    <a href="../Arangoimp/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                         Arangoimp
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="23" data-path="Arangodump/README.html">
+            
+                
+                    <a href="../Arangodump/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                         Arangodump
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="24" data-path="Arangorestore/README.html">
+            
+                
+                    <a href="../Arangorestore/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                         Arangorestore
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25" data-path="HttpApi/README.html">
+            
+                
+                    <a href="../HttpApi/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.</b>
+                        
+                         HTTP API
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.1" data-path="HttpDatabase/README.html">
+            
+                
+                    <a href="../HttpDatabase/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.</b>
+                        
+                         Databases
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.1.1" data-path="HttpDatabase/DatabaseEndpoint.html">
+            
+                
+                    <a href="../HttpDatabase/DatabaseEndpoint.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.1.</b>
+                        
+                         To-Endpoint
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.1.2" data-path="HttpDatabase/DatabaseManagement.html">
+            
+                
+                    <a href="../HttpDatabase/DatabaseManagement.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.2.</b>
+                        
+                         Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.1.3" data-path="HttpDatabase/NotesOnDatabases.html">
+            
+                
+                    <a href="../HttpDatabase/NotesOnDatabases.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.3.</b>
+                        
+                         Notes on Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.2" data-path="HttpDocument/README.html">
+            
+                
+                    <a href="../HttpDocument/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.</b>
+                        
+                         Documents
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.2.1" data-path="HttpDocument/AddressAndEtag.html">
+            
+                
+                    <a href="../HttpDocument/AddressAndEtag.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.2.2" data-path="HttpDocument/WorkingWithDocuments.html">
+            
+                
+                    <a href="../HttpDocument/WorkingWithDocuments.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.2.</b>
+                        
+                         Working with
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.3" data-path="HttpEdge/README.html">
+            
+                
+                    <a href="../HttpEdge/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.3.1" data-path="HttpEdge/AddressAndEtag.html">
+            
+                
+                    <a href="../HttpEdge/AddressAndEtag.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.3.2" data-path="HttpEdge/WorkingWithEdges.html">
+            
+                
+                    <a href="../HttpEdge/WorkingWithEdges.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.2.</b>
+                        
+                         Working with Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.4" data-path="HttpAqlQueryCursor/README.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.</b>
+                        
+                         AQL Query Cursors
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.4.1" data-path="HttpAqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/QueryResults.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.1.</b>
+                        
+                         Query Results
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.4.2" data-path="HttpAqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/AccessingCursors.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.2.</b>
+                        
+                         Accessing Cursors
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.5" data-path="HttpAqlQuery/README.html">
+            
+                
+                    <a href="../HttpAqlQuery/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.5.</b>
+                        
+                         AQL Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.6" data-path="HttpAqlUserFunctions/README.html">
+            
+                
+                    <a href="../HttpAqlUserFunctions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.6.</b>
+                        
+                         AQL User Functions Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.7" data-path="HttpSimpleQuery/README.html">
+            
+                
+                    <a href="../HttpSimpleQuery/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.7.</b>
+                        
+                         Simple Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8" data-path="HttpCollection/README.html">
+            
+                
+                    <a href="../HttpCollection/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.</b>
+                        
+                         Collections
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.8.1" data-path="HttpCollection/Creating.html">
+            
+                
+                    <a href="../HttpCollection/Creating.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.1.</b>
+                        
+                         Creating
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8.2" data-path="HttpCollection/Getting.html">
+            
+                
+                    <a href="../HttpCollection/Getting.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.2.</b>
+                        
+                         Getting Information
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8.3" data-path="HttpCollection/Modifying.html">
+            
+                
+                    <a href="../HttpCollection/Modifying.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.3.</b>
+                        
+                         Modifying
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9" data-path="HttpIndexes/README.html">
+            
+                
+                    <a href="../HttpIndexes/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.</b>
+                        
+                         Indexes
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.9.1" data-path="HttpIndexes/WorkingWith.html">
+            
+                
+                    <a href="../HttpIndexes/WorkingWith.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.1.</b>
+                        
+                         Working with Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.2" data-path="HttpIndexes/Cap.html">
+            
+                
+                    <a href="../HttpIndexes/Cap.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.2.</b>
+                        
+                         Cap Constraints
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.3" data-path="HttpIndexes/Hash.html">
+            
+                
+                    <a href="../HttpIndexes/Hash.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.3.</b>
+                        
+                         Hash
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.4" data-path="HttpIndexes/Skiplist.html">
+            
+                
+                    <a href="../HttpIndexes/Skiplist.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.4.</b>
+                        
+                         Skiplist
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.5" data-path="HttpIndexes/Geo.html">
+            
+                
+                    <a href="../HttpIndexes/Geo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.5.</b>
+                        
+                         Geo
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.6" data-path="HttpIndexes/Fulltext.html">
+            
+                
+                    <a href="../HttpIndexes/Fulltext.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.6.</b>
+                        
+                         Fulltext
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.10" data-path="HttpTransaction/README.html">
+            
+                
+                    <a href="../HttpTransaction/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.10.</b>
+                        
+                         Transactions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11" data-path="HttpGharial/README.html">
+            
+                
+                    <a href="../HttpGharial/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.</b>
+                        
+                         General Graph
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.11.1" data-path="HttpGharial/Management.html">
+            
+                
+                    <a href="../HttpGharial/Management.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.1.</b>
+                        
+                         Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11.2" data-path="HttpGharial/Vertices.html">
+            
+                
+                    <a href="../HttpGharial/Vertices.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.2.</b>
+                        
+                         Vertices
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11.3" data-path="HttpGharial/Edges.html">
+            
+                
+                    <a href="../HttpGharial/Edges.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.3.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.12" data-path="HttpGraphs/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.</b>
+                        
+                         Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.12.1" data-path="HttpGraphs/Vertex.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/Vertex.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.1.</b>
+                        
+                         Vertex
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.12.2" data-path="HttpGraphs/Edge.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/Edge.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.2.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.13" data-path="HttpTraversal/README.html">
+            
+                
+                    <a href="../HttpTraversal/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.13.</b>
+                        
+                         Traversals
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14" data-path="HttpReplications/README.html">
+            
+                
+                    <a href="../HttpReplications/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.</b>
+                        
+                         Replication
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.14.1" data-path="HttpReplications/ReplicationDump.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationDump.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.1.</b>
+                        
+                         Replication Dump
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.2" data-path="HttpReplications/ReplicationLogger.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationLogger.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.2.</b>
+                        
+                         Replication Logger
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.3" data-path="HttpReplications/ReplicationApplier.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationApplier.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.3.</b>
+                        
+                         Replication Applier
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.4" data-path="HttpReplications/OtherReplication.html">
+            
+                
+                    <a href="../HttpReplications/OtherReplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.4.</b>
+                        
+                         Other Replication Commands
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.15" data-path="HttpBulkImports/README.html">
+            
+                
+                    <a href="../HttpBulkImports/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.</b>
+                        
+                         Bulk Imports
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.15.1" data-path="HttpBulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../HttpBulkImports/ImportingSelfContained.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.1.</b>
+                        
+                         JSON Documents
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.15.2" data-path="HttpBulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../HttpBulkImports/ImportingHeadersAndValues.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.2.</b>
+                        
+                         Headers and Values
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.16" data-path="HttpBatchRequest/README.html">
+            
+                
+                    <a href="../HttpBatchRequest/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.16.</b>
+                        
+                         Batch Requests
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.17" data-path="HttpTasks/README.html">
+            
+                
+                    <a href="../HttpTasks/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.17.</b>
+                        
+                         Tasks
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.18" data-path="HttpAdministrationAndMonitoring/README.html">
+            
+                
+                    <a href="../HttpAdministrationAndMonitoring/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.18.</b>
+                        
+                         Monitoring
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.19" data-path="HttpUserManagement/README.html">
+            
+                
+                    <a href="../HttpUserManagement/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.19.</b>
+                        
+                         User Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.20" data-path="HttpAsyncResultsManagement/README.html">
+            
+                
+                    <a href="../HttpAsyncResultsManagement/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.20.</b>
+                        
+                         Async Result
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.21" data-path="HttpEndpoints/README.html">
+            
+                
+                    <a href="../HttpEndpoints/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.21.</b>
+                        
+                         Endpoints
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.22" data-path="HttpShardingInterface/README.html">
+            
+                
+                    <a href="../HttpShardingInterface/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.22.</b>
+                        
+                         Sharding
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.23" data-path="HttpMiscellaneousFunctions/README.html">
+            
+                
+                    <a href="../HttpMiscellaneousFunctions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.23.</b>
+                        
+                         Miscellaneous functions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.24" data-path="GeneralHttp/README.html">
+            
+                
+                    <a href="../GeneralHttp/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.24.</b>
+                        
+                         General Handling
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26" data-path="ModuleJavaScript/README.html">
+            
+                
+                    <a href="../ModuleJavaScript/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.</b>
+                        
+                         Javascript Modules
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="26.1" data-path="ModuleConsole/README.html">
+            
+                
+                    <a href="../ModuleConsole/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.1.</b>
+                        
+                         &quot;console&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.2" data-path="ModuleFs/README.html">
+            
+                
+                    <a href="../ModuleFs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.2.</b>
+                        
+                         &quot;fs&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3" data-path="ModuleGraph/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.</b>
+                        
+                         &quot;graph&quot;
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="26.3.1" data-path="ModuleGraph/GraphConstructor.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/GraphConstructor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.1.</b>
+                        
+                         Graph Constructors
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3.2" data-path="ModuleGraph/VertexMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/VertexMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.2.</b>
+                        
+                         Vertex Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3.3" data-path="ModuleGraph/EdgeMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/EdgeMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.3.</b>
+                        
+                         Edge Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.4" data-path="ModuleActions/README.html">
+            
+                
+                    <a href="../ModuleActions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.4.</b>
+                        
+                         &quot;actions&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.5" data-path="ModulePlanner/README.html">
+            
+                
+                    <a href="../ModulePlanner/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.5.</b>
+                        
+                         &quot;planner&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.6" data-path="ModuleWal/README.html">
+            
+                
+                    <a href="../ModuleWal/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.6.</b>
+                        
+                         Write-ahead log
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.7" data-path="ModuleTasks/README.html">
+            
+                
+                    <a href="../ModuleTasks/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.7.</b>
+                        
+                         Task Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.8" data-path="UsingJsUnity/README.html">
+            
+                
+                    <a href="../UsingJsUnity/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.8.</b>
+                        
+                         Using jsUnity
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="27" data-path="AdministratingArango/README.html">
+            
+                
+                    <a href="../AdministratingArango/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>27.</b>
+                        
+                         Administrating ArangoDB
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28" data-path="IndexHandling/README.html">
+            
+                
+                    <a href="../IndexHandling/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.</b>
+                        
+                         Indexing
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="28.1" data-path="IndexHandling/IndexBasics.html">
+            
+                
+                    <a href="../IndexHandling/IndexBasics.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.1.</b>
+                        
+                         Index Basics
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2" data-path="IndexHandling/WorkingWithIndexes.html">
+            
+                
+                    <a href="../IndexHandling/WorkingWithIndexes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.</b>
+                        
+                         Working with Indexes
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="28.2.1" data-path="IndexHandling/Hash.html">
+            
+                
+                    <a href="../IndexHandling/Hash.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.1.</b>
+                        
+                         Hash Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.2" data-path="IndexHandling/Skiplist.html">
+            
+                
+                    <a href="../IndexHandling/Skiplist.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.2.</b>
+                        
+                         Skiplists
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.3" data-path="IndexHandling/Fulltext.html">
+            
+                
+                    <a href="../IndexHandling/Fulltext.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.3.</b>
+                        
+                         Fulltext Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.4" data-path="IndexHandling/Geo.html">
+            
+                
+                    <a href="../IndexHandling/Geo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.4.</b>
+                        
+                         Geo Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.5" data-path="IndexHandling/Cap.html">
+            
+                
+                    <a href="../IndexHandling/Cap.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.5.</b>
+                        
+                         Cap Constraint
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="29" data-path="DatafileDebugger/README.html">
+            
+                
+                    <a href="../DatafileDebugger/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>29.</b>
+                        
+                         Datafile Debugger
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30" data-path="NamingConventions/README.html">
+            
+                
+                    <a href="../NamingConventions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.</b>
+                        
+                         Naming Conventions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="30.1" data-path="NamingConventions/DatabaseNames.html">
+            
+                
+                    <a href="../NamingConventions/DatabaseNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.1.</b>
+                        
+                         Database Names
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.2" data-path="NamingConventions/CollectionNames.html">
+            
+                
+                    <a href="../NamingConventions/CollectionNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.2.</b>
+                        
+                         Collection Names
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.3" data-path="NamingConventions/DocumentKeys.html">
+            
+                
+                    <a href="../NamingConventions/DocumentKeys.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.3.</b>
+                        
+                         Document Keys
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.4" data-path="NamingConventions/AttributeNames.html">
+            
+                
+                    <a href="../NamingConventions/AttributeNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.4.</b>
+                        
+                         Attribute Names
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="31" data-path="ErrorCodes/README.html">
+            
+                
+                    <a href="../ErrorCodes/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>31.</b>
+                        
+                         Error codes and meanings
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="32" data-path="Glossary/README.html">
+            
+                
+                    <a href="../Glossary/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>32.</b>
+                        
+                         Glossary
+                    </a>
+                
+            
+            
+        </li>
+    
+
+    </ul>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  jQuery(".summary>li").each(function(){
+    var flag = true;
+    var x = window.location.href.split("/");
+    x = x[x.length - 2] + '/' + x[x.length - 1];
+    jQuery('a',this).each(function(){
+      var str = jQuery(this).attr('href');
+      if(str.search(x) != -1){
+        flag = false;
+      }
+    });
+    if(flag){
+      jQuery('ul',this).hide();
+    }
+    else {
+      jQuery(this).show();
+      jQuery("ul", this).show();
+      $(this).get(0).scrollIntoView();
+    }
+  });
+});
+</script>
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    <!-- Title -->
+    <h1><a href="https://www.arangodb.com" target="blank" style="margin-left:5px"> <img src="../Arangodb_Logo.png" alt="ArangoDB" style="position:relative; border:0px; top:7px; margin-left: -80px; margin-right:15px">2.3.5
+</a></h1>
+</div>
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_110">
+                    
+                        <p><a name="language_basics"></a></p>
+<h1 id="language-basics">Language basics</h1>
+<p><a name="query_types"></a></p>
+<h3 id="query-types">Query types</h3>
+<p>An AQL query must either return a result (indicated by usage of the <em>RETURN</em>
+keyword) or execute a data-modification operation (indicated by usage
+of one of the keywords <em>INSERT</em>, <em>UPDATE</em>, <em>REPLACE</em> or <em>REMOVE</em>). The AQL
+parser will return an error if it detects more than one data-modification 
+operation in the same query or if it cannot figure out if the query is meant
+to be a data retrieval or a modification operation.</p>
+<p>AQL only allows <em>one</em> query in a single query string; thus semicolons to
+indicate the end of one query and separate multiple queries (as seen in SQL) are
+not allowed.</p>
+<p><a name="whitespace"></a></p>
+<h3 id="whitespace">Whitespace</h3>
+<p>Whitespaces (blanks, carriage returns, line feeds, and tab stops) can be used
+in the query text to increase its readability. Tokens have to be separated by
+any number of whitespaces. Whitespace within strings or names must be enclosed
+in quotes in order to be preserved.</p>
+<p><a name="comments"></a></p>
+<h3 id="comments">Comments</h3>
+<p>Comments can be embedded at any position in a query. The text contained in the
+comment is ignored by the AQL parser.</p>
+<p>Multi-line comments cannot be nested, which means subsequent comment starts within
+comments are ignored, comment ends will end the comment.</p>
+<p>AQL supports two types of comments:</p>
+<ul>
+<li>Single line comments: These start with a double forward slash and end at
+the end of the line, or the end of the query string (whichever is first).</li>
+<li>Multi line comments: These start with a forward slash and asterisk, and
+end with an asterisk and a following forward slash. They can span as many
+lines as necessary.</li>
+</ul>
+<pre><code>/* this is a comment */ RETURN 1
+/* these */ RETURN /* are */ 1 /* multiple */ + /* comments */ 1    
+/* this is
+   a multi line
+   comment */
+// a single line comment
+</code></pre><p><a name="keywords"></a></p>
+<h3 id="keywords">Keywords</h3>
+<p>On the top level, AQL offers the following operations:</p>
+<ul>
+<li><code>FOR</code>: list iteration</li>
+<li><code>RETURN</code>: results projection</li>
+<li><code>FILTER</code>: results filtering</li>
+<li><code>SORT</code>: result sorting</li>
+<li><code>LIMIT</code>: result slicing</li>
+<li><code>LET</code>: variable assignment</li>
+<li><code>COLLECT</code>: result grouping</li>
+<li><code>INSERT</code>: insertion of new documents</li>
+<li><code>UPDATE</code>: (partial) update of existing documents</li>
+<li><code>REPLACE</code>: replacement of existing documents</li>
+<li><code>REMOVE</code>: removal of existing documents</li>
+</ul>
+<p>Each of the above operations can be initiated in a query by using a keyword of
+the same name. An AQL query can (and typically does) consist of multiple of the
+above operations.</p>
+<p>An example AQL query may look like this:</p>
+<pre><code>FOR u IN users
+  FILTER u.type == &quot;newbie&quot; &amp;&amp; u.active == true
+  RETURN u.name
+</code></pre><p>In this example query, the terms <em>FOR</em>, <em>FILTER</em>, and <em>RETURN</em> initiate the
+higher-level operation according to their name. These terms are also keywords,
+meaning that they have a special meaning in the language.</p>
+<p>For example, the query parser will use the keywords to find out which high-level
+operations to execute. That also means keywords can only be used at certain
+locations in a query. This also makes all keywords reserved words that must not
+be used for other purposes than they are intended for.</p>
+<p>For example, it is not possible to use a keyword as a collection or attribute
+name. If a collection or attribute need to have the same name as a keyword, the
+collection or attribute name needs to be quoted.</p>
+<p>Keywords are case-insensitive, meaning they can be specified in lower, upper, or
+mixed case in queries. In this documentation, all keywords are written in upper
+case to make them distinguishable from other query parts.</p>
+<p>In addition to the higher-level operations keywords, there are other keywords.
+The current list of keywords is:</p>
+<ul>
+<li>FOR</li>
+<li>RETURN</li>
+<li>FILTER</li>
+<li>SORT</li>
+<li>LIMIT</li>
+<li>LET</li>
+<li>COLLECT</li>
+<li>INSERT</li>
+<li>UPDATE</li>
+<li>REPLACE</li>
+<li>REMOVE</li>
+<li>WITH</li>
+<li>ASC</li>
+<li>DESC</li>
+<li>IN</li>
+<li>INTO</li>
+<li>NOT</li>
+<li>AND</li>
+<li>OR</li>
+<li>NULL</li>
+<li>TRUE</li>
+<li>FALSE</li>
+</ul>
+<p>Additional keywords may be added in future versions of ArangoDB. </p>
+<p><a name="names"></a></p>
+<h3 id="names">Names</h3>
+<p>In general, names are used to identify objects (collections, attributes,
+variables, and functions) in AQL queries.</p>
+<p>The maximum supported length of any name is 64 bytes. Names in AQL are always
+case-sensitive.</p>
+<p>Keywords must not be used as names. If a reserved keyword should be used as a
+name, the name must be enclosed in backticks. Enclosing a name in backticks
+makes it possible to use otherwise reserved keywords as names. An example for this is:</p>
+<pre><code>FOR f IN `filter` 
+  RETURN f.`sort`
+</code></pre><p>Due to the backticks, <em>filter</em> and <em>sort</em> are interpreted as names and not as
+keywords here.</p>
+<p><a name="collection_names"></a></p>
+<h4 id="collection-names">Collection names</h4>
+<p>Collection names can be used in queries as they are. If a collection happens to
+have the same name as a keyword, the name must be enclosed in backticks.</p>
+<p>Please refer to the <a href="../NamingConventions/CollectionNames.html">Naming Conventions in ArangoDB</a> about collection naming
+conventions.</p>
+<p><a name="attribute_names"></a></p>
+<h4 id="attribute-names">Attribute names</h4>
+<p>When referring to attributes of documents from a collection, the fully qualified
+attribute name must be used. This is because multiple collections with ambiguous
+attribute names may be used in a query.  To avoid any ambiguity, it is not
+allowed to refer to an unqualified attribute name.</p>
+<p>Please refer to the <a href="../NamingConventions/AttributeNames.html">Naming Conventions in ArangoDB</a> for more information about the
+attribute naming conventions.</p>
+<pre><code>FOR u IN users
+  FOR f IN friends
+FILTER u.active == true &amp;&amp; f.active == true &amp;&amp; u.id == f.userId
+RETURN u.name
+</code></pre><p>In the above example, the attribute names <em>active</em>, <em>name</em>, <em>id</em>, and <em>userId</em>
+are qualified using the collection names they belong to (<em>u</em> and <em>f</em>
+respectively).</p>
+<p><a name="variable_names"></a></p>
+<h4 id="variable-names">Variable names</h4>
+<p>AQL allows the user to assign values to additional variables in a query.  All
+variables that are assigned a value must have a name that is unique within the
+context of the query. Variable names must be different from the names of any
+collection name used in the same query.</p>
+<pre><code>FOR u IN users
+  LET friends = u.friends
+  RETURN { &quot;name&quot; : u.name, &quot;friends&quot; : friends }
+</code></pre><p>In the above query, <em>users</em> is a collection name, and both <em>u</em> and <em>friends</em> are
+variable names. This is because the <em>FOR</em> and <em>LET</em> operations need target
+variables to store their intermediate results.</p>
+<p>Allowed characters in variable names are the letters <em>a</em> to <em>z</em> (both in lower
+and upper case), the numbers <em>0</em> to <em>9</em> and the underscore (<em>_</em>) symbol. A
+variable name must not start with a number.  If a variable name starts with the
+underscore character, it must also contain at least one letter (a-z or A-Z).</p>
+<p><a name="data_types"></a></p>
+<h3 id="data-types">Data types</h3>
+<p>AQL supports both primitive and compound data types. The following types are
+available:</p>
+<ul>
+<li>Primitive types: Consisting of exactly one value<ul>
+<li>null: An empty value, also: The absence of a value</li>
+<li>bool: Boolean truth value with possible values <em>false</em> and <em>true</em></li>
+<li>number: Signed (real) number</li>
+<li>string: UTF-8 encoded text value</li>
+</ul>
+</li>
+<li>Compound types: Consisting of multiple values<ul>
+<li>list: Sequence of values, referred to by their positions</li>
+<li>document: Sequence of values, referred to by their names</li>
+</ul>
+</li>
+</ul>
+<p><a name="numeric_literals"></a></p>
+<h4 id="numeric-literals">Numeric literals</h4>
+<p>Numeric literals can be integers or real values. They can optionally be signed
+using the <em>+</em> or <em>-</em> symbols. The scientific notation is also supported.</p>
+<pre><code>1
+42
+-1
+-42
+1.23
+-99.99
+0.1
+-4.87e103
+</code></pre><p>All numeric values are treated as 64-bit double-precision values internally.
+The internal format used is IEEE 754.</p>
+<p><a name="string_literals"></a></p>
+<h4 id="string-literals">String literals</h4>
+<p>String literals must be enclosed in single or double quotes. If the used quote
+character is to be used itself within the string literal, it must be escaped
+using the backslash symbol.  Backslash literals themselves also be escaped using
+a backslash.</p>
+<pre><code>&quot;yikes!&quot;
+&quot;don&#39;t know&quot;
+&quot;this is a \&quot;quoted\&quot; word&quot;
+&quot;this is a longer string.&quot;
+&quot;the path separator on Windows is \\&quot;
+
+&#39;yikes!&#39;
+&#39;don\&#39;t know&#39;
+&#39;this is a longer string.&quot;
+&#39;the path separator on Windows is \\&#39;
+</code></pre><p>All string literals must be UTF-8 encoded. It is currently not possible to use
+arbitrary binary data if it is not UTF-8 encoded. A workaround to use binary
+data is to encode the data using base64 or other algorithms on the application
+side before storing, and decoding it on application side after retrieval.</p>
+<p><a name="lists"></a></p>
+<h4 id="lists">Lists</h4>
+<p>AQL supports two compound types:</p>
+<ul>
+<li>lists: A composition of unnamed values, each accessible by their positions</li>
+<li>documents: A composition of named values, each accessible by their names</li>
+</ul>
+<p>The first supported compound type is the list type. Lists are effectively
+sequences of (unnamed/anonymous) values. Individual list elements can be
+accessed by their positions. The order of elements in a list is important.</p>
+<p>A <em>list-declaration</em> starts with the <em>[</em> symbol and ends with the <em>]</em> symbol. A
+<em>list-declaration</em> contains zero or many <em>expression</em>s, separated from each
+other with the <em>,</em> symbol.</p>
+<p>In the easiest case, a list is empty and thus looks like:</p>
+<pre><code>[ ]
+</code></pre><p>List elements can be any legal <em>expression</em> values. Nesting of lists is
+supported.</p>
+<pre><code>[ 1, 2, 3 ]
+[ -99, &quot;yikes!&quot;, [ true, [ &quot;no&quot;], [ ] ], 1 ]
+[ [ &quot;fox&quot;, &quot;marshal&quot; ] ] 
+</code></pre><p>Individual list values can later be accesses by their positions using the <em>[]</em>
+accessor. The position of the accessed element must be a numeric
+value. Positions start at 0.  It is also possible to use negative index values
+to access list values starting from the end of the list. This is convenient if
+the length of the list is unknown and access to elements at the end of the list
+is required.</p>
+<pre><code>// access 1st list element (element start at index 0)
+u.friends[0]
+
+// access 3rd list element
+u.friends[2]
+
+// access last list element 
+u.friends[-1]
+
+// access second last list element 
+u.friends[-2]
+</code></pre><p><a name="documents"></a></p>
+<h4 id="documents">Documents</h4>
+<p>The other supported compound type is the document type. Documents are a
+composition of zero to many attributes. Each attribute is a name/value pair.
+Document attributes can be accessed individually by their names.</p>
+<p>Document declarations start with the <em>{</em> symbol and end with the <em>}</em> symbol. A
+document contains zero to many attribute declarations, separated from each other
+with the <em>,</em> symbol.  In the simplest case, a document is empty. Its
+declaration would then be:</p>
+<pre><code>{ }
+</code></pre><p>Each attribute in a document is a name/value pair. Name and value of an
+attribute are separated using the <em>:</em> symbol.</p>
+<p>The attribute name is mandatory and must be specified as a quoted or unquoted
+string. If a keyword is to be used as an attribute name, the name must be
+quoted.</p>
+<p>Any valid expression can be used as an attribute value. That also means nested
+documents can be used as attribute values</p>
+<pre><code>{ name : &quot;Peter&quot; }
+{ &quot;name&quot; : &quot;Vanessa&quot;, &quot;age&quot; : 15 }
+{ &quot;name&quot; : &quot;John&quot;, likes : [ &quot;Swimming&quot;, &quot;Skiing&quot; ], &quot;address&quot; : { &quot;street&quot; : &quot;Cucumber lane&quot;, &quot;zip&quot; : &quot;94242&quot; } }
+</code></pre><p>Individual document attributes can later be accesses by their names using the
+<em>.</em> accessor. If a non-existing attribute is accessed, the result is <em>null</em>.</p>
+<pre><code>u.address.city.name
+u.friends[0].name.first
+</code></pre><p><a name="bind_parameters"></a></p>
+<h3 id="bind-parameters">Bind parameters</h3>
+<p>AQL supports the usage of bind parameters, thus allowing to separate the query
+text from literal values used in the query. It is good practice to separate the
+query text from the literal values because this will prevent (malicious)
+injection of keywords and other collection names into an existing query. This
+injection would be dangerous because it may change the meaning of an existing
+query.</p>
+<p>Using bind parameters, the meaning of an existing query cannot be changed. Bind
+parameters can be used everywhere in a query where literals can be used.</p>
+<p>The syntax for bind parameters is <em>@nameparameter</em> where <em>nameparameter</em> is the
+actual parameter name. The bind parameter values need to be passed along with
+the query when it is executed, but not as part of the query text itself.</p>
+<pre><code>FOR u IN users
+  FILTER u.id == @id &amp;&amp; u.name == @nameparameter
+  RETURN u
+</code></pre><p>Bind parameter names must start with any of the letters <em>a</em> to <em>z</em> (both in
+lower and upper case) or a digit (<em>0</em> to <em>9</em>), and can be followed by any
+letter, digit or the underscore symbol.</p>
+<p>A special type of bind parameter exists for injecting collection names. This
+type of bind parameter has a name prefixed with an additional <em>@</em> symbol (thus
+when using the bind parameter in a query, two <em>@</em> symbols must be used).</p>
+<pre><code>FOR u IN @@collection
+  FILTER u.active == true
+RETURN u
+</code></pre><p><a name="type_and_value_order"></a></p>
+<h3 id="type-and-value-order">Type and value order</h3>
+<p>When checking for equality or inequality or when determining the sort order of
+values, AQL uses a deterministic algorithm that takes both the data types and
+the actual values into account.</p>
+<p>The compared operands are first compared by their data types, and only by their
+data values if the operands have the same data types.</p>
+<p>The following type order is used when comparing data types:</p>
+<pre><code>null &lt; bool  &lt; number &lt; string &lt; list &lt; document
+</code></pre><p>This means <em>null</em> is the smallest type in AQL and <em>document</em> is the type with
+the highest order. If the compared operands have a different type, then the
+comparison result is determined and the comparison is finished.</p>
+<p>For example, the boolean <em>true</em> value will always be less than any numeric or
+string value, any list (even an empty list) or any document. Additionally, any
+string value (even an empty string) will always be greater than any numeric
+value, a boolean value, <em>true</em> or <em>false</em>.</p>
+<pre><code>null &lt; false
+null &lt; true
+null &lt; 0
+null &lt; &#39;&#39;
+null &lt; &#39; &#39;
+null &lt; &#39;0&#39;
+null &lt; &#39;abc&#39;
+null &lt; [ ]
+null &lt; { }
+
+false &lt; true
+false &lt; 0
+false &lt; &#39;&#39;
+false &lt; &#39; &#39;
+false &lt; &#39;0&#39;
+false &lt; &#39;abc&#39;
+false &lt; [ ]
+false &lt; { }
+
+true &lt; 0
+true &lt; &#39;&#39;
+true &lt; &#39; &#39;
+true &lt; &#39;0&#39;
+true &lt; &#39;abc&#39;
+true &lt; [ ]
+true &lt; { }
+
+0 &lt; &#39;&#39;
+0 &lt; &#39; &#39;
+0 &lt; &#39;0&#39;
+0 &lt; &#39;abc&#39;
+0 &lt; [ ]
+0 &lt; { }
+
+&#39;&#39; &lt; &#39; &#39;
+&#39;&#39; &lt; &#39;0&#39;
+&#39;&#39; &lt; &#39;abc&#39;
+&#39;&#39; &lt; [ ]
+&#39;&#39; &lt; { }
+
+[ ] &lt; { }
+</code></pre><p>If the two compared operands have the same data types, then the operands values
+are compared. For the primitive types (null, boolean, number, and string), the
+result is defined as follows:</p>
+<ul>
+<li>null: <em>null</em> is equal to <em>null</em></li>
+<li>boolean: <em>false</em> is less than <em>true</em></li>
+<li>number: numeric values are ordered by their cardinal value</li>
+<li>string: string values are ordered using a localized comparison,</li>
+</ul>
+<p>Note: unlike in SQL, <em>null</em> can be compared to any value, including <em>null</em>
+itself, without the result being converted into <em>null</em> automatically.</p>
+<p>For compound, types the following special rules are applied:</p>
+<p>Two list values are compared by comparing their individual elements position by
+position, starting at the first element. For each position, the element types
+are compared first. If the types are not equal, the comparison result is
+determined, and the comparison is finished. If the types are equal, then the
+values of the two elements are compared.  If one of the lists is finished and
+the other list still has an element at a compared position, then <em>null</em> will be
+used as the element value of the fully traversed list.</p>
+<p>If a list element is itself a compound value (a list or a document), then the
+comparison algorithm will check the element&#39;s sub values recursively. The element&#39;s
+sub elements are compared recursively.</p>
+<pre><code>[ ] &lt; [ 0 ]
+[ 1 ] &lt; [ 2 ]
+[ 1, 2 ] &lt; [ 2 ]
+[ 99, 99 ] &lt; [ 100 ]
+[ false ] &lt; [ true ]
+[ false, 1 ] &lt; [ false, &#39;&#39; ]
+</code></pre><p>Two documents operands are compared by checking attribute names and value. The
+attribute names are compared first. Before attribute names are compared, a
+combined list of all attribute names from both operands is created and sorted
+lexicographically.  This means that the order in which attributes are declared
+in a document is not relevant when comparing two documents.</p>
+<p>The combined and sorted list of attribute names is then traversed, and the
+respective attributes from the two compared operands are then looked up. If one
+of the documents does not have an attribute with the sought name, its attribute
+value is considered to be <em>null</em>.  Finally, the attribute value of both
+documents is compared using the before mentioned data type and value comparison.
+The comparisons are performed for all document attributes until there is an
+unambiguous comparison result. If an unambiguous comparison result is found, the
+comparison is finished. If there is no unambiguous comparison result, the two
+compared documents are considered equal.</p>
+<pre><code>{ } &lt; { &quot;a&quot; : 1 }
+{ } &lt; { &quot;a&quot; : null }
+{ &quot;a&quot; : 1 } &lt; { &quot;a&quot; : 2 }
+{ &quot;b&quot; : 1 } &lt; { &quot;a&quot; : 0 }
+{ &quot;a&quot; : { &quot;c&quot; : true } } &lt; { &quot;a&quot; : { &quot;c&quot; : 0 } }
+{ &quot;a&quot; : { &quot;c&quot; : true, &quot;a&quot; : 0 } } &lt; { &quot;a&quot; : { &quot;c&quot; : false, &quot;a&quot; : 1 } }
+
+{ &quot;a&quot; : 1, &quot;b&quot; : 2 } == { &quot;b&quot; : 2, &quot;a&quot; : 1 }
+</code></pre><p><a name="accessing_data_from_collections"></a></p>
+<h3 id="accessing-data-from-collections">Accessing data from collections</h3>
+<p>Collection data can be accessed by specifying a collection name in a query.  A
+collection can be understood as a list of documents, and that is how they are
+treated in AQL. Documents from collections are normally accessing using the
+<em>FOR</em> keyword. Note that when iterating over documents from a collection, the
+order of documents is undefined. To traverse documents in an explicit and
+deterministic order, the <em>SORT</em> keyword should be used in addition.</p>
+<p>Data in collections is stored in documents, with each document potentially
+having different attributes than other documents. This is true even for
+documents of the same collection.</p>
+<p>It is therefore quite normal to encounter documents that do not have some or all
+of the attributes that are queried in an AQL query. In this case, the
+non-existing attributes in the document will be treated as if they would exist
+with a value of <em>null</em>.  That means that comparing a document attribute to
+<em>null</em> will return true if the document has the particular attribute and the
+attribute has a value of <em>null</em>, or that the document does not have the
+particular attribute at all.</p>
+<p>For example, the following query will return all documents from the collection
+<em>users</em> that have a value of <em>null</em> in the attribute <em>name</em>, plus all documents
+from <em>users</em> that do not have the <em>name</em> attribute at all:</p>
+<pre><code>FOR u IN users
+  FILTER u.name == null
+  RETURN u
+</code></pre><p>Furthermore, <em>null</em> is less than any other value (excluding <em>null</em> itself). That
+means documents with non-existing attributes may be included in the result
+when comparing attribute values with the less than or less equal operators.</p>
+<p>For example, the following query will return all documents from the collection
+<em>users</em> that have an attribute <em>age</em> with a value less than <em>39</em>, but also all
+documents from the collection that do not have the attribute <em>age</em> at all.</p>
+<pre><code>FOR u IN users
+  FILTER u.age &lt; 39
+  RETURN u
+</code></pre><p>This behavior should always be taken into account when writing queries.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Aql/Optimizer.html" class="navigation navigation-prev " aria-label="Previous page: The AQL query optimizer"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Aql/Functions.html" class="navigation navigation-next " aria-label="Next page: Functions"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"piwik":{"URL":"www.arangodb.org/piwik/","siteId":12}};
+    gitbook.start(config);
+});
+</script>
+
+        <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.org/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.org/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    
+</html>

@@ -50,7 +50,7 @@
     <body>
         
         
-    <div class="book" data-level="4.2" data-chapter-title="Vertices for Subgraphs" data-filepath="FindingConnectedVerticesForSubgraphs.md" data-basepath="." data-revision="Tue Jan 19 2016 13:30:25 GMT+0100 (CET)">
+    <div class="book" data-level="4.2" data-chapter-title="Vertices for Subgraphs" data-filepath="FindingConnectedVerticesForSubgraphs.md" data-basepath="." data-revision="Fri Jan 29 2016 14:30:11 GMT+0100 (CET)">
     
 
 <div class="book-summary">
@@ -354,6 +354,21 @@
             
         </li>
     
+        <li class="chapter " data-level="4.7" data-path="JavaDriverXmlData.html">
+            
+                
+                    <a href="./JavaDriverXmlData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Add XML data to ArangoDB with Java
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -577,29 +592,44 @@
             
         </li>
     
-        <li class="chapter " data-level="5.15" data-path="FoxxBinaryHttpPost.html">
+        <li class="chapter " data-level="5.15" data-path="FoxxBinaryFileUploads.html">
+            
+                
+                    <a href="./FoxxBinaryFileUploads.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.15.</b>
+                        
+                        Handling Binary HTTP documents in Foxx
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.16" data-path="FoxxBinaryHttpPost.html">
             
                 
                     <a href="./FoxxBinaryHttpPost.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.15.</b>
+                            <b>5.16.</b>
                         
-                        Binary HTTP documents
+                        Sending Binary HTTP documents from Foxx
                     </a>
             
             
         </li>
     
-        <li class="chapter " data-level="5.16" data-path="FoxxTesting.html">
+        <li class="chapter " data-level="5.17" data-path="FoxxTesting.html">
             
                 
                     <a href="./FoxxTesting.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.16.</b>
+                            <b>5.17.</b>
                         
                         Foxx Testing
                     </a>
@@ -1117,6 +1147,7 @@ graph.crosses.save({<span class="hljs-string">&quot;_key&quot;</span>: <span cla
 
 <span class="hljs-comment">// Add relevant edges</span>
 graph.edges.save(<span class="hljs-string">&quot;circles/A&quot;</span>, <span class="hljs-string">&quot;crosses/E&quot;</span>, {});
+graph.edges.save(<span class="hljs-string">&quot;circles/A&quot;</span>, <span class="hljs-string">&quot;crosses/F&quot;</span>, {});
 graph.edges.save(<span class="hljs-string">&quot;circles/B&quot;</span>, <span class="hljs-string">&quot;crosses/E&quot;</span>, {});
 graph.edges.save(<span class="hljs-string">&quot;circles/C&quot;</span>, <span class="hljs-string">&quot;crosses/E&quot;</span>, {});
 graph.edges.save(<span class="hljs-string">&quot;circles/D&quot;</span>, <span class="hljs-string">&quot;crosses/E&quot;</span>, {});
@@ -1186,7 +1217,7 @@ The last thing to do is to put everything together:</p>
   (
      LET circles = [&quot;circles/A&quot;, &quot;circles/B&quot;, &quot;circles/C&quot;, &quot;circles/D&quot;]
      LET condition = {&quot;vertexCollectionRestriction&quot;: &quot;crosses&quot;}
-     FOR n IN GRAPH_COMMON_NEIGHBORS(&quot;myGraph&quot;,circles, circles, condition, condition)
+     FOR n IN GRAPH_COMMON_NEIGHBORS(&quot;myGraph&quot;, circles, circles, condition, condition)
        FOR f IN VALUES(n)
          FOR s IN VALUES(f)
            FOR candidate IN s 

@@ -1,0 +1,5720 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Fluent Query Interface | ArangoDB Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.4.2">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="https://www.arangodb.org/wp-content/themes/triagens/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <link rel="next" href="../Blueprint-Graphs/README.html" />
+    
+    
+    <link rel="prev" href="../General-Graphs/Functions.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-level="13.3" data-basepath=".." data-revision="1421610625430">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+      
+    	
+
+        
+        <li>
+            <a href="https://github.com/triAGENS/ArangoDB/issues" target="blank"class="issues-link"><i class="fa fa-github"></i> Have any issues? <i class="fa fa-external-link"></i></a>
+            <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank"><i class="fa fa-stack-overflow"></i> Have any questions? <i class="fa fa-external-link"></i></a>
+        </li>
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="Installing/README.html">
+            
+                
+                    <a href="../Installing/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Installing
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="Installing/Linux.html">
+            
+                
+                    <a href="../Installing/Linux.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         Linux
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" data-path="Installing/MacOSX.html">
+            
+                
+                    <a href="../Installing/MacOSX.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                         Mac OS X
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" data-path="Installing/Windows.html">
+            
+                
+                    <a href="../Installing/Windows.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                         Windows
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" data-path="Installing/Compiling.html">
+            
+                
+                    <a href="../Installing/Compiling.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                         Compiling
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="Installing/Upgrading.html">
+            
+                
+                    <a href="../Installing/Upgrading.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         Upgrading
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.5.1" data-path="Upgrading/UpgradingChanges23.html">
+            
+                
+                    <a href="../Upgrading/UpgradingChanges23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.1.</b>
+                        
+                         Incompatible changes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.2" data-path="Upgrading/Upgrading23.html">
+            
+                
+                    <a href="../Upgrading/Upgrading23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.2.</b>
+                        
+                         Upgrading to 2.3
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3" data-path="Upgrading/Upgrading22.html">
+            
+                
+                    <a href="../Upgrading/Upgrading22.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.3.</b>
+                        
+                         Upgrading to 2.2
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.4" data-path="Installing/Upgrading.html">
+            
+                
+                    <a href="../Installing/Upgrading.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.4.</b>
+                        
+                         Upgrading in general
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="Installing/Cluster.html">
+            
+                
+                    <a href="../Installing/Cluster.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         Cluster setup
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="NewFeatures/NewFeatures23.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures23.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Whats New
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="NewFeatures/NewFeatures22.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures22.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         Whats New in 2.2
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="NewFeatures/NewFeatures21.html">
+            
+                
+                    <a href="../NewFeatures/NewFeatures21.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         Whats New in 2.1
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="FirstSteps/README.html">
+            
+                
+                    <a href="../FirstSteps/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         First Steps
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="FirstSteps/GettingFamiliar.html">
+            
+                
+                    <a href="../FirstSteps/GettingFamiliar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Getting Familiar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="FirstSteps/Arangod.html">
+            
+                
+                    <a href="../FirstSteps/Arangod.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         The ArangoDB Server
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="Arangosh/README.html">
+            
+                
+                    <a href="../Arangosh/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         The ArangoDB Shell
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.3.1" data-path="Arangosh/Output.html">
+            
+                
+                    <a href="../Arangosh/Output.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                         Shell Output
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.2" data-path="Arangosh/Configuration.html">
+            
+                
+                    <a href="../Arangosh/Configuration.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                         Configuration
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.3" data-path="FirstSteps/Arangosh.html">
+            
+                
+                    <a href="../FirstSteps/Arangosh.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.3.</b>
+                        
+                         Details
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4" data-path="FirstSteps/CollectionsAndDocuments.html">
+            
+                
+                    <a href="../FirstSteps/CollectionsAndDocuments.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                         Collections
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="WebInterface/README.html">
+            
+                
+                    <a href="../WebInterface/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         ArangoDB Web Interface
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="Databases/README.html">
+            
+                
+                    <a href="../Databases/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         Creating and Dropping Databases
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1" data-path="Databases/WorkingWith.html">
+            
+                
+                    <a href="../Databases/WorkingWith.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         Working with Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2" data-path="Databases/Notes.html">
+            
+                
+                    <a href="../Databases/Notes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                         Notes about Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="Collections/README.html">
+            
+                
+                    <a href="../Collections/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         Creating and Dropping Collections
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1" data-path="Collections/CollectionMethods.html">
+            
+                
+                    <a href="../Collections/CollectionMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         Collection Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2" data-path="Collections/DatabaseMethods.html">
+            
+                
+                    <a href="../Collections/DatabaseMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                         Database Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" data-path="Documents/README.html">
+            
+                
+                    <a href="../Documents/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         Working with Documents
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="Documents/DocumentAddress.html">
+            
+                
+                    <a href="../Documents/DocumentAddress.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.2" data-path="Documents/DocumentMethods.html">
+            
+                
+                    <a href="../Documents/DocumentMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                         Collection Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.3" data-path="Documents/DatabaseMethods.html">
+            
+                
+                    <a href="../Documents/DatabaseMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                         Database Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" data-path="Edges/README.html">
+            
+                
+                    <a href="../Edges/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         Working with Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" data-path="SimpleQueries/README.html">
+            
+                
+                    <a href="../SimpleQueries/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         Simple Queries
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1" data-path="SimpleQueries/GeoQueries.html">
+            
+                
+                    <a href="../SimpleQueries/GeoQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         Geo Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.2" data-path="SimpleQueries/FulltextQueries.html">
+            
+                
+                    <a href="../SimpleQueries/FulltextQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                         Fulltext Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.3" data-path="SimpleQueries/Pagination.html">
+            
+                
+                    <a href="../SimpleQueries/Pagination.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                         Pagination
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.4" data-path="SimpleQueries/Access.html">
+            
+                
+                    <a href="../SimpleQueries/Access.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                         Sequential Access
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9.5" data-path="SimpleQueries/ModificationQueries.html">
+            
+                
+                    <a href="../SimpleQueries/ModificationQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                         Modification Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10" data-path="Transactions/README.html">
+            
+                
+                    <a href="../Transactions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                         Transactions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="10.1" data-path="Transactions/TransactionInvocation.html">
+            
+                
+                    <a href="../Transactions/TransactionInvocation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                         Transaction invocation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.2" data-path="Transactions/Passing.html">
+            
+                
+                    <a href="../Transactions/Passing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                         Passing parameters
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.3" data-path="Transactions/LockingAndIsolation.html">
+            
+                
+                    <a href="../Transactions/LockingAndIsolation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                         Locking and isolation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.4" data-path="Transactions/Durability.html">
+            
+                
+                    <a href="../Transactions/Durability.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                         Durability
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="10.5" data-path="Transactions/Limitations.html">
+            
+                
+                    <a href="../Transactions/Limitations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.</b>
+                        
+                         Limitations
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="11" data-path="WriteAheadLog/README.html">
+            
+                
+                    <a href="../WriteAheadLog/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                         Write-ahead log
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12" data-path="Aql/README.html">
+            
+                
+                    <a href="../Aql/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                         AQL
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.1" data-path="Aql/Invoke.html">
+            
+                
+                    <a href="../Aql/Invoke.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                         How to invoke AQL
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.2" data-path="Aql/DataModification.html">
+            
+                
+                    <a href="../Aql/DataModification.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                         Data modification queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.3" data-path="Aql/Optimizer.html">
+            
+                
+                    <a href="../Aql/Optimizer.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                         The AQL query optimizer
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.4" data-path="Aql/Basics.html">
+            
+                
+                    <a href="../Aql/Basics.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.4.</b>
+                        
+                         Language Basics
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5" data-path="Aql/Functions.html">
+            
+                
+                    <a href="../Aql/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.</b>
+                        
+                         Functions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.5.1" data-path="Aql/TypeCastFunctions.html">
+            
+                
+                    <a href="../Aql/TypeCastFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.1.</b>
+                        
+                         Type cast
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.2" data-path="Aql/StringFunctions.html">
+            
+                
+                    <a href="../Aql/StringFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.2.</b>
+                        
+                         String
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.3" data-path="Aql/NumericFunctions.html">
+            
+                
+                    <a href="../Aql/NumericFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.3.</b>
+                        
+                         Numeric
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.4" data-path="Aql/DateFunctions.html">
+            
+                
+                    <a href="../Aql/DateFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.4.</b>
+                        
+                         Date
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.5" data-path="Aql/ListFunctions.html">
+            
+                
+                    <a href="../Aql/ListFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.5.</b>
+                        
+                         List
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.6" data-path="Aql/DocumentFunctions.html">
+            
+                
+                    <a href="../Aql/DocumentFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.6.</b>
+                        
+                         Document
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.7" data-path="Aql/GeoFunctions.html">
+            
+                
+                    <a href="../Aql/GeoFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.7.</b>
+                        
+                         Geo
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.8" data-path="Aql/FulltextFunctions.html">
+            
+                
+                    <a href="../Aql/FulltextFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.8.</b>
+                        
+                         Fulltext
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.9" data-path="Aql/GraphFunctions.html">
+            
+                
+                    <a href="../Aql/GraphFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.9.</b>
+                        
+                         Graph
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.5.10" data-path="Aql/MiscellaneousFunctions.html">
+            
+                
+                    <a href="../Aql/MiscellaneousFunctions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.10.</b>
+                        
+                         Miscellaneous
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.6" data-path="Aql/QueryResults.html">
+            
+                
+                    <a href="../Aql/QueryResults.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.6.</b>
+                        
+                         Query Results
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.7" data-path="Aql/Operators.html">
+            
+                
+                    <a href="../Aql/Operators.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.7.</b>
+                        
+                         Operators
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.8" data-path="Aql/Operations.html">
+            
+                
+                    <a href="../Aql/Operations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.8.</b>
+                        
+                         High level Operations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.9" data-path="Aql/GraphOperations.html">
+            
+                
+                    <a href="../Aql/GraphOperations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.9.</b>
+                        
+                         Graph Operations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.10" data-path="Aql/Advanced.html">
+            
+                
+                    <a href="../Aql/Advanced.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.10.</b>
+                        
+                         Advanced Features
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.11" data-path="AqlExtending/README.html">
+            
+                
+                    <a href="../AqlExtending/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.</b>
+                        
+                         Extending AQL
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.11.1" data-path="AqlExtending/Conventions.html">
+            
+                
+                    <a href="../AqlExtending/Conventions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.1.</b>
+                        
+                         Conventions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.11.2" data-path="AqlExtending/Functions.html">
+            
+                
+                    <a href="../AqlExtending/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.2.</b>
+                        
+                         Registering Functions
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12" data-path="AqlExamples/README.html">
+            
+                
+                    <a href="../AqlExamples/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.</b>
+                        
+                         AQL Examples
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="12.12.1" data-path="AqlExamples/CollectionQueries.html">
+            
+                
+                    <a href="../AqlExamples/CollectionQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.1.</b>
+                        
+                         Collection based queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.2" data-path="AqlExamples/DataModificationQueries.html">
+            
+                
+                    <a href="../AqlExamples/DataModificationQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.2.</b>
+                        
+                         Data-modification queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.3" data-path="AqlExamples/ProjectionsAndFilters.html">
+            
+                
+                    <a href="../AqlExamples/ProjectionsAndFilters.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.3.</b>
+                        
+                         Projections and filters
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.4" data-path="AqlExamples/Join.html">
+            
+                
+                    <a href="../AqlExamples/Join.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.4.</b>
+                        
+                         Joins
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="12.12.5" data-path="AqlExamples/Grouping.html">
+            
+                
+                    <a href="../AqlExamples/Grouping.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.5.</b>
+                        
+                         Grouping
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13" data-path="General-Graphs/README.html">
+            
+                
+                    <a href="../General-Graphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                         General Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="13.1" data-path="General-Graphs/Management.html">
+            
+                
+                    <a href="../General-Graphs/Management.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                         Graph Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="13.2" data-path="General-Graphs/Functions.html">
+            
+                
+                    <a href="../General-Graphs/Functions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                         Graph Functions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="13.3" data-path="General-Graphs/FluentAQLInterface.html">
+            
+                
+                    <a href="../General-Graphs/FluentAQLInterface.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.3.</b>
+                        
+                         Fluent Query Interface
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14" data-path="Blueprint-Graphs/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                         Blueprint Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="14.1" data-path="Blueprint-Graphs/GraphConstructor.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/GraphConstructor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.1.</b>
+                        
+                         Graph Constructor
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.2" data-path="Blueprint-Graphs/VertexMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/VertexMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.2.</b>
+                        
+                         Vertex Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="14.3" data-path="Blueprint-Graphs/EdgeMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../Blueprint-Graphs/EdgeMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.3.</b>
+                        
+                         Edge Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15" data-path="Traversals/README.html">
+            
+                
+                    <a href="../Traversals/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                         Traversals
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="15.1" data-path="Traversals/UsingTraversalObjects.html">
+            
+                
+                    <a href="../Traversals/UsingTraversalObjects.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                         Using Traversal Objects
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="15.2" data-path="Traversals/ExampleData.html">
+            
+                
+                    <a href="../Traversals/ExampleData.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                         Example Data
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16" data-path="Foxx/README.html">
+            
+                
+                    <a href="../Foxx/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                         Foxx
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="16.1" data-path="Foxx/HandlingRequest.html">
+            
+                
+                    <a href="../Foxx/HandlingRequest.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                         Handling Requests
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.2" data-path="Foxx/FoxxManifest.html">
+            
+                
+                    <a href="../Foxx/FoxxManifest.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                         Manifest
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.3" data-path="Foxx/FoxxController.html">
+            
+                
+                    <a href="../Foxx/FoxxController.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                         FoxxController
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.4" data-path="Foxx/FoxxModel.html">
+            
+                
+                    <a href="../Foxx/FoxxModel.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                         FoxxModel
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.5" data-path="Foxx/FoxxRepository.html">
+            
+                
+                    <a href="../Foxx/FoxxRepository.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                         FoxxRepository
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.6" data-path="Foxx/FoxxQueries.html">
+            
+                
+                    <a href="../Foxx/FoxxQueries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.6.</b>
+                        
+                         Foxx Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.7" data-path="Foxx/DeployingAnApplication.html">
+            
+                
+                    <a href="../Foxx/DeployingAnApplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.7.</b>
+                        
+                         Deploying Applications
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.8" data-path="Foxx/DevelopingAnApplication.html">
+            
+                
+                    <a href="../Foxx/DevelopingAnApplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.8.</b>
+                        
+                         Developing Applications
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.9" data-path="Foxx/FoxxInjection.html">
+            
+                
+                    <a href="../Foxx/FoxxInjection.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.9.</b>
+                        
+                         Dependency Injection
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.10" data-path="Foxx/FoxxExports.html">
+            
+                
+                    <a href="../Foxx/FoxxExports.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.10.</b>
+                        
+                         Foxx Exports
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.11" data-path="Foxx/FoxxQueues.html">
+            
+                
+                    <a href="../Foxx/FoxxQueues.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.11.</b>
+                        
+                         Foxx Job Queues
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.12" data-path="Foxx/FoxxSessions.html">
+            
+                
+                    <a href="../Foxx/FoxxSessions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.12.</b>
+                        
+                         Foxx Sessions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.13" data-path="Foxx/FoxxOptional.html">
+            
+                
+                    <a href="../Foxx/FoxxOptional.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.13.</b>
+                        
+                         Optional Functionality
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14" data-path="FoxxBundledApps/README.html">
+            
+                
+                    <a href="../FoxxBundledApps/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.</b>
+                        
+                         Bundled Applications
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="16.14.1" data-path="FoxxBundledApps/Sessions.html">
+            
+                
+                    <a href="../FoxxBundledApps/Sessions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.1.</b>
+                        
+                         Session Storage
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14.2" data-path="FoxxBundledApps/Users.html">
+            
+                
+                    <a href="../FoxxBundledApps/Users.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.2.</b>
+                        
+                         User Storage
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="16.14.3" data-path="FoxxBundledApps/SimpleAuth.html">
+            
+                
+                    <a href="../FoxxBundledApps/SimpleAuth.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.14.3.</b>
+                        
+                         Simple Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17" data-path="FoxxManager/README.html">
+            
+                
+                    <a href="../FoxxManager/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                         Foxx Manager
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="17.1" data-path="FoxxManager/FirstSteps.html">
+            
+                
+                    <a href="../FoxxManager/FirstSteps.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.1.</b>
+                        
+                         First Steps
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.2" data-path="FoxxManager/BehindTheScenes.html">
+            
+                
+                    <a href="../FoxxManager/BehindTheScenes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.2.</b>
+                        
+                         Behind the scenes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.3" data-path="FoxxManager/MultipleDatabases.html">
+            
+                
+                    <a href="../FoxxManager/MultipleDatabases.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.3.</b>
+                        
+                         Multiple Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.4" data-path="FoxxManager/ManagerCommands.html">
+            
+                
+                    <a href="../FoxxManager/ManagerCommands.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.4.</b>
+                        
+                         Manager Commands
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="17.5" data-path="FoxxManager/FrequentlyUsedOptions.html">
+            
+                
+                    <a href="../FoxxManager/FrequentlyUsedOptions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.5.</b>
+                        
+                         Frequently Used Options
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18" data-path="ArangoActions/README.html">
+            
+                
+                    <a href="../ArangoActions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                         ArangoDB&#39;s Actions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="18.1" data-path="ArangoActions/HtmlExample.html">
+            
+                
+                    <a href="../ArangoActions/HtmlExample.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                         Delivering HTML Pages
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18.2" data-path="ArangoActions/JsonExample.html">
+            
+                
+                    <a href="../ArangoActions/JsonExample.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                         Json Objects
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="18.3" data-path="ArangoActions/Modifying.html">
+            
+                
+                    <a href="../ArangoActions/Modifying.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                         Modifying
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19" data-path="Replication/README.html">
+            
+                
+                    <a href="../Replication/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                         Replication
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="19.1" data-path="Replication/Components.html">
+            
+                
+                    <a href="../Replication/Components.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.1.</b>
+                        
+                         Components
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.2" data-path="Replication/ExampleSetup.html">
+            
+                
+                    <a href="../Replication/ExampleSetup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.2.</b>
+                        
+                         Example Setup
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.3" data-path="Replication/Limitations.html">
+            
+                
+                    <a href="../Replication/Limitations.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.3.</b>
+                        
+                         Replication Limitations
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="19.4" data-path="Replication/Overhead.html">
+            
+                
+                    <a href="../Replication/Overhead.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.4.</b>
+                        
+                         Replication Overhead
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20" data-path="Sharding/README.html">
+            
+                
+                    <a href="../Sharding/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                         Sharding
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="20.1" data-path="Sharding/HowTo.html">
+            
+                
+                    <a href="../Sharding/HowTo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.1.</b>
+                        
+                         How to try it out
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.2" data-path="Sharding/StatusOfImplementation.html">
+            
+                
+                    <a href="../Sharding/StatusOfImplementation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.2.</b>
+                        
+                         Implementation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.3" data-path="Sharding/Authentication.html">
+            
+                
+                    <a href="../Sharding/Authentication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.3.</b>
+                        
+                         Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="20.4" data-path="Sharding/FirewallSetup.html">
+            
+                
+                    <a href="../Sharding/FirewallSetup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.4.</b>
+                        
+                         Firewall setup
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21" data-path="ConfigureArango/README.html">
+            
+                
+                    <a href="../ConfigureArango/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                         Server Configuration
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="21.1" data-path="ConfigureArango/Arangod.html">
+            
+                
+                    <a href="../ConfigureArango/Arangod.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.1.</b>
+                        
+                         Arangod options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.2" data-path="ConfigureArango/Wal.html">
+            
+                
+                    <a href="../ConfigureArango/Wal.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.2.</b>
+                        
+                         Write-ahead log options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.3" data-path="ConfigureArango/Endpoint.html">
+            
+                
+                    <a href="../ConfigureArango/Endpoint.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.3.</b>
+                        
+                         Endpoints options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.4" data-path="ConfigureArango/Cluster.html">
+            
+                
+                    <a href="../ConfigureArango/Cluster.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.4.</b>
+                        
+                         Cluster options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.5" data-path="ConfigureArango/Logging.html">
+            
+                
+                    <a href="../ConfigureArango/Logging.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.5.</b>
+                        
+                         Logging options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.6" data-path="ConfigureArango/Communication.html">
+            
+                
+                    <a href="../ConfigureArango/Communication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.6.</b>
+                        
+                         Communication options
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.7" data-path="ConfigureArango/Authentication.html">
+            
+                
+                    <a href="../ConfigureArango/Authentication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.7.</b>
+                        
+                         Authentication
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="21.8" data-path="ConfigureArango/EmergencyConsole.html">
+            
+                
+                    <a href="../ConfigureArango/EmergencyConsole.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.8.</b>
+                        
+                         Emergency Console
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="22" data-path="Arangoimp/README.html">
+            
+                
+                    <a href="../Arangoimp/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                         Arangoimp
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="23" data-path="Arangodump/README.html">
+            
+                
+                    <a href="../Arangodump/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                         Arangodump
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="24" data-path="Arangorestore/README.html">
+            
+                
+                    <a href="../Arangorestore/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                         Arangorestore
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25" data-path="HttpApi/README.html">
+            
+                
+                    <a href="../HttpApi/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.</b>
+                        
+                         HTTP API
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.1" data-path="HttpDatabase/README.html">
+            
+                
+                    <a href="../HttpDatabase/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.</b>
+                        
+                         Databases
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.1.1" data-path="HttpDatabase/DatabaseEndpoint.html">
+            
+                
+                    <a href="../HttpDatabase/DatabaseEndpoint.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.1.</b>
+                        
+                         To-Endpoint
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.1.2" data-path="HttpDatabase/DatabaseManagement.html">
+            
+                
+                    <a href="../HttpDatabase/DatabaseManagement.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.2.</b>
+                        
+                         Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.1.3" data-path="HttpDatabase/NotesOnDatabases.html">
+            
+                
+                    <a href="../HttpDatabase/NotesOnDatabases.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.1.3.</b>
+                        
+                         Notes on Databases
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.2" data-path="HttpDocument/README.html">
+            
+                
+                    <a href="../HttpDocument/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.</b>
+                        
+                         Documents
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.2.1" data-path="HttpDocument/AddressAndEtag.html">
+            
+                
+                    <a href="../HttpDocument/AddressAndEtag.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.2.2" data-path="HttpDocument/WorkingWithDocuments.html">
+            
+                
+                    <a href="../HttpDocument/WorkingWithDocuments.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.2.2.</b>
+                        
+                         Working with
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.3" data-path="HttpEdge/README.html">
+            
+                
+                    <a href="../HttpEdge/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.3.1" data-path="HttpEdge/AddressAndEtag.html">
+            
+                
+                    <a href="../HttpEdge/AddressAndEtag.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.1.</b>
+                        
+                         Address and ETag
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.3.2" data-path="HttpEdge/WorkingWithEdges.html">
+            
+                
+                    <a href="../HttpEdge/WorkingWithEdges.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.3.2.</b>
+                        
+                         Working with Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.4" data-path="HttpAqlQueryCursor/README.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.</b>
+                        
+                         AQL Query Cursors
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.4.1" data-path="HttpAqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/QueryResults.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.1.</b>
+                        
+                         Query Results
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.4.2" data-path="HttpAqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../HttpAqlQueryCursor/AccessingCursors.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.4.2.</b>
+                        
+                         Accessing Cursors
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.5" data-path="HttpAqlQuery/README.html">
+            
+                
+                    <a href="../HttpAqlQuery/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.5.</b>
+                        
+                         AQL Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.6" data-path="HttpAqlUserFunctions/README.html">
+            
+                
+                    <a href="../HttpAqlUserFunctions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.6.</b>
+                        
+                         AQL User Functions Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.7" data-path="HttpSimpleQuery/README.html">
+            
+                
+                    <a href="../HttpSimpleQuery/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.7.</b>
+                        
+                         Simple Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8" data-path="HttpCollection/README.html">
+            
+                
+                    <a href="../HttpCollection/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.</b>
+                        
+                         Collections
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.8.1" data-path="HttpCollection/Creating.html">
+            
+                
+                    <a href="../HttpCollection/Creating.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.1.</b>
+                        
+                         Creating
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8.2" data-path="HttpCollection/Getting.html">
+            
+                
+                    <a href="../HttpCollection/Getting.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.2.</b>
+                        
+                         Getting Information
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.8.3" data-path="HttpCollection/Modifying.html">
+            
+                
+                    <a href="../HttpCollection/Modifying.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.8.3.</b>
+                        
+                         Modifying
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9" data-path="HttpIndexes/README.html">
+            
+                
+                    <a href="../HttpIndexes/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.</b>
+                        
+                         Indexes
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.9.1" data-path="HttpIndexes/WorkingWith.html">
+            
+                
+                    <a href="../HttpIndexes/WorkingWith.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.1.</b>
+                        
+                         Working with Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.2" data-path="HttpIndexes/Cap.html">
+            
+                
+                    <a href="../HttpIndexes/Cap.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.2.</b>
+                        
+                         Cap Constraints
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.3" data-path="HttpIndexes/Hash.html">
+            
+                
+                    <a href="../HttpIndexes/Hash.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.3.</b>
+                        
+                         Hash
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.4" data-path="HttpIndexes/Skiplist.html">
+            
+                
+                    <a href="../HttpIndexes/Skiplist.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.4.</b>
+                        
+                         Skiplist
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.5" data-path="HttpIndexes/Geo.html">
+            
+                
+                    <a href="../HttpIndexes/Geo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.5.</b>
+                        
+                         Geo
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.9.6" data-path="HttpIndexes/Fulltext.html">
+            
+                
+                    <a href="../HttpIndexes/Fulltext.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.9.6.</b>
+                        
+                         Fulltext
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.10" data-path="HttpTransaction/README.html">
+            
+                
+                    <a href="../HttpTransaction/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.10.</b>
+                        
+                         Transactions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11" data-path="HttpGharial/README.html">
+            
+                
+                    <a href="../HttpGharial/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.</b>
+                        
+                         General Graph
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.11.1" data-path="HttpGharial/Management.html">
+            
+                
+                    <a href="../HttpGharial/Management.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.1.</b>
+                        
+                         Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11.2" data-path="HttpGharial/Vertices.html">
+            
+                
+                    <a href="../HttpGharial/Vertices.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.2.</b>
+                        
+                         Vertices
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.11.3" data-path="HttpGharial/Edges.html">
+            
+                
+                    <a href="../HttpGharial/Edges.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.11.3.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.12" data-path="HttpGraphs/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.</b>
+                        
+                         Graphs
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.12.1" data-path="HttpGraphs/Vertex.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/Vertex.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.1.</b>
+                        
+                         Vertex
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.12.2" data-path="HttpGraphs/Edge.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../HttpGraphs/Edge.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.12.2.</b>
+                        
+                         Edges
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.13" data-path="HttpTraversal/README.html">
+            
+                
+                    <a href="../HttpTraversal/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.13.</b>
+                        
+                         Traversals
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14" data-path="HttpReplications/README.html">
+            
+                
+                    <a href="../HttpReplications/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.</b>
+                        
+                         Replication
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.14.1" data-path="HttpReplications/ReplicationDump.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationDump.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.1.</b>
+                        
+                         Replication Dump
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.2" data-path="HttpReplications/ReplicationLogger.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationLogger.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.2.</b>
+                        
+                         Replication Logger
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.3" data-path="HttpReplications/ReplicationApplier.html">
+            
+                
+                    <a href="../HttpReplications/ReplicationApplier.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.3.</b>
+                        
+                         Replication Applier
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.14.4" data-path="HttpReplications/OtherReplication.html">
+            
+                
+                    <a href="../HttpReplications/OtherReplication.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.14.4.</b>
+                        
+                         Other Replication Commands
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.15" data-path="HttpBulkImports/README.html">
+            
+                
+                    <a href="../HttpBulkImports/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.</b>
+                        
+                         Bulk Imports
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="25.15.1" data-path="HttpBulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../HttpBulkImports/ImportingSelfContained.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.1.</b>
+                        
+                         JSON Documents
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.15.2" data-path="HttpBulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../HttpBulkImports/ImportingHeadersAndValues.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.15.2.</b>
+                        
+                         Headers and Values
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.16" data-path="HttpBatchRequest/README.html">
+            
+                
+                    <a href="../HttpBatchRequest/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.16.</b>
+                        
+                         Batch Requests
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.17" data-path="HttpTasks/README.html">
+            
+                
+                    <a href="../HttpTasks/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.17.</b>
+                        
+                         Tasks
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.18" data-path="HttpAdministrationAndMonitoring/README.html">
+            
+                
+                    <a href="../HttpAdministrationAndMonitoring/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.18.</b>
+                        
+                         Monitoring
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.19" data-path="HttpUserManagement/README.html">
+            
+                
+                    <a href="../HttpUserManagement/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.19.</b>
+                        
+                         User Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.20" data-path="HttpAsyncResultsManagement/README.html">
+            
+                
+                    <a href="../HttpAsyncResultsManagement/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.20.</b>
+                        
+                         Async Result
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.21" data-path="HttpEndpoints/README.html">
+            
+                
+                    <a href="../HttpEndpoints/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.21.</b>
+                        
+                         Endpoints
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.22" data-path="HttpShardingInterface/README.html">
+            
+                
+                    <a href="../HttpShardingInterface/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.22.</b>
+                        
+                         Sharding
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.23" data-path="HttpMiscellaneousFunctions/README.html">
+            
+                
+                    <a href="../HttpMiscellaneousFunctions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.23.</b>
+                        
+                         Miscellaneous functions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="25.24" data-path="GeneralHttp/README.html">
+            
+                
+                    <a href="../GeneralHttp/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>25.24.</b>
+                        
+                         General Handling
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26" data-path="ModuleJavaScript/README.html">
+            
+                
+                    <a href="../ModuleJavaScript/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.</b>
+                        
+                         Javascript Modules
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="26.1" data-path="ModuleConsole/README.html">
+            
+                
+                    <a href="../ModuleConsole/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.1.</b>
+                        
+                         &quot;console&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.2" data-path="ModuleFs/README.html">
+            
+                
+                    <a href="../ModuleFs/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.2.</b>
+                        
+                         &quot;fs&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3" data-path="ModuleGraph/README.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.</b>
+                        
+                         &quot;graph&quot;
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="26.3.1" data-path="ModuleGraph/GraphConstructor.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/GraphConstructor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.1.</b>
+                        
+                         Graph Constructors
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3.2" data-path="ModuleGraph/VertexMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/VertexMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.2.</b>
+                        
+                         Vertex Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.3.3" data-path="ModuleGraph/EdgeMethods.html">
+            
+                
+                    <a class="fa fa-exclamation-triangle" style="color:rgba(240,210,0,1)" href="../ModuleGraph/EdgeMethods.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.3.3.</b>
+                        
+                         Edge Methods
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.4" data-path="ModuleActions/README.html">
+            
+                
+                    <a href="../ModuleActions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.4.</b>
+                        
+                         &quot;actions&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.5" data-path="ModulePlanner/README.html">
+            
+                
+                    <a href="../ModulePlanner/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.5.</b>
+                        
+                         &quot;planner&quot;
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.6" data-path="ModuleWal/README.html">
+            
+                
+                    <a href="../ModuleWal/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.6.</b>
+                        
+                         Write-ahead log
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.7" data-path="ModuleTasks/README.html">
+            
+                
+                    <a href="../ModuleTasks/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.7.</b>
+                        
+                         Task Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="26.8" data-path="UsingJsUnity/README.html">
+            
+                
+                    <a href="../UsingJsUnity/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>26.8.</b>
+                        
+                         Using jsUnity
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="27" data-path="AdministratingArango/README.html">
+            
+                
+                    <a href="../AdministratingArango/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>27.</b>
+                        
+                         Administrating ArangoDB
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28" data-path="IndexHandling/README.html">
+            
+                
+                    <a href="../IndexHandling/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.</b>
+                        
+                         Indexing
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="28.1" data-path="IndexHandling/IndexBasics.html">
+            
+                
+                    <a href="../IndexHandling/IndexBasics.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.1.</b>
+                        
+                         Index Basics
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2" data-path="IndexHandling/WorkingWithIndexes.html">
+            
+                
+                    <a href="../IndexHandling/WorkingWithIndexes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.</b>
+                        
+                         Working with Indexes
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="28.2.1" data-path="IndexHandling/Hash.html">
+            
+                
+                    <a href="../IndexHandling/Hash.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.1.</b>
+                        
+                         Hash Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.2" data-path="IndexHandling/Skiplist.html">
+            
+                
+                    <a href="../IndexHandling/Skiplist.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.2.</b>
+                        
+                         Skiplists
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.3" data-path="IndexHandling/Fulltext.html">
+            
+                
+                    <a href="../IndexHandling/Fulltext.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.3.</b>
+                        
+                         Fulltext Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.4" data-path="IndexHandling/Geo.html">
+            
+                
+                    <a href="../IndexHandling/Geo.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.4.</b>
+                        
+                         Geo Indexes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="28.2.5" data-path="IndexHandling/Cap.html">
+            
+                
+                    <a href="../IndexHandling/Cap.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>28.2.5.</b>
+                        
+                         Cap Constraint
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="29" data-path="DatafileDebugger/README.html">
+            
+                
+                    <a href="../DatafileDebugger/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>29.</b>
+                        
+                         Datafile Debugger
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30" data-path="NamingConventions/README.html">
+            
+                
+                    <a href="../NamingConventions/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.</b>
+                        
+                         Naming Conventions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="30.1" data-path="NamingConventions/DatabaseNames.html">
+            
+                
+                    <a href="../NamingConventions/DatabaseNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.1.</b>
+                        
+                         Database Names
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.2" data-path="NamingConventions/CollectionNames.html">
+            
+                
+                    <a href="../NamingConventions/CollectionNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.2.</b>
+                        
+                         Collection Names
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.3" data-path="NamingConventions/DocumentKeys.html">
+            
+                
+                    <a href="../NamingConventions/DocumentKeys.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.3.</b>
+                        
+                         Document Keys
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="30.4" data-path="NamingConventions/AttributeNames.html">
+            
+                
+                    <a href="../NamingConventions/AttributeNames.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>30.4.</b>
+                        
+                         Attribute Names
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="31" data-path="ErrorCodes/README.html">
+            
+                
+                    <a href="../ErrorCodes/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>31.</b>
+                        
+                         Error codes and meanings
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="32" data-path="Glossary/README.html">
+            
+                
+                    <a href="../Glossary/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>32.</b>
+                        
+                         Glossary
+                    </a>
+                
+            
+            
+        </li>
+    
+
+    </ul>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  jQuery(".summary>li").each(function(){
+    var flag = true;
+    var x = window.location.href.split("/");
+    x = x[x.length - 2] + '/' + x[x.length - 1];
+    jQuery('a',this).each(function(){
+      var str = jQuery(this).attr('href');
+      if(str.search(x) != -1){
+        flag = false;
+      }
+    });
+    if(flag){
+      jQuery('ul',this).hide();
+    }
+    else {
+      jQuery(this).show();
+      jQuery("ul", this).show();
+      $(this).get(0).scrollIntoView();
+    }
+  });
+});
+</script>
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    <!-- Title -->
+    <h1><a href="https://www.arangodb.com" target="blank" style="margin-left:5px"> <img src="../Arangodb_Logo.png" alt="ArangoDB" style="position:relative; border:0px; top:7px; margin-left: -80px; margin-right:15px">2.3.5
+</a></h1>
+</div>
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_77">
+                    
+                        <p><a name="fluent_aql_interface"></a></p>
+<h1 id="fluent-aql-interface">Fluent AQL Interface</h1>
+<p>This chapter describes a fluent interface to query your graph.
+The philosophy of this interface is to select a group of starting elements (vertices or edges) at first and from there on explore the graph with your query by selecting connected elements.</p>
+<p>As an example you can start with a set of vertices, select their direct neighbors and finally their outgoing edges.</p>
+<p>The result of this query will be the set of outgoing edges.
+For each part of the query it is possible to further refine the resulting set of elements by giving examples for them.</p>
+<p><a name="definition_of_examples"></a></p>
+<h2 id="definition-of-examples">Definition of examples</h2>
+<p>For many of the following functions <em>examples</em> can be passed in as a parameter.
+<em>Examples</em> are used to filter the result set for objects that match the conditions.
+These <em>examples</em> can have the following values:</p>
+<ul>
+<li><em>null</em>, there is no matching executed all found results are valid.</li>
+<li>A <em>string</em>, only results are returned, which <em>_id</em> equal the value of the string</li>
+<li>An example <em>object</em>, defining a set of attributes.
+  Only results having these attributes are matched.</li>
+<li>A <em>list</em> containing example <em>objects</em> and/or <em>strings</em>.
+  All results matching at least one of the elements in the list are returned.</li>
+</ul>
+<p><a name="starting_points"></a></p>
+<h2 id="starting-points">Starting Points</h2>
+<p>This section describes the entry points for the fluent interface.
+The philosophy of this module is to start with a specific subset of vertices or edges and from there on iterate over the graph.</p>
+<p>Therefore you get exactly this two entry points:</p>
+<ul>
+<li>Select a set of edges</li>
+<li>Select a set of vertices</li>
+</ul>
+<p><a name="edges"></a></p>
+<h3 id="edges">Edges</h3>
+<p> Select some edges from the graph.</p>
+<p><code>graph._edges(examples)</code></p>
+<p>Creates an AQL statement to select a subset of the edges stored in the graph.
+This is one of the entry points for the fluent AQL interface.
+It will return a mutable AQL statement which can be further refined, using the
+functions described below.
+The resulting set of edges can be filtered by defining one or more <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>In the examples the <em>toArray</em> function is used to print the result.
+The description of this function can be found below.</p>
+<div id="generalGraphEdgesUnfiltered_container">
+<div id="generalGraphEdgesUnfiltered_long" onclick="$('#generalGraphEdgesUnfiltered_long').hide(); $('#generalGraphEdgesUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; graph._edges().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;737223646&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndCharly&quot;, 
+    &quot;_key&quot; : &quot;aliceAndCharly&quot;, 
+    &quot;_rev&quot; : &quot;737485790&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/charly&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/bobAndDiana&quot;, 
+    &quot;_key&quot; : &quot;bobAndDiana&quot;, 
+    &quot;_rev&quot; : &quot;737879006&quot;, 
+    &quot;_from&quot; : &quot;male/bob&quot;, 
+    &quot;_to&quot; : &quot;female/diana&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/charlyAndDiana&quot;, 
+    &quot;_key&quot; : &quot;charlyAndDiana&quot;, 
+    &quot;_rev&quot; : &quot;737682398&quot;, 
+    &quot;_from&quot; : &quot;male/charly&quot;, 
+    &quot;_to&quot; : &quot;female/diana&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphEdgesUnfiltered_short" onclick="$('#generalGraphEdgesUnfiltered_short').hide(); $('#generalGraphEdgesUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; graph._edges().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered edges:</p>
+<div id="generalGraphEdgesFiltered_container">
+<div id="generalGraphEdgesFiltered_long" onclick="$('#generalGraphEdgesFiltered_long').hide(); $('#generalGraphEdgesFiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; graph._edges({type: &quot;married&quot;}).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;177611742&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/charlyAndDiana&quot;, 
+    &quot;_key&quot; : &quot;charlyAndDiana&quot;, 
+    &quot;_rev&quot; : &quot;178070494&quot;, 
+    &quot;_from&quot; : &quot;male/charly&quot;, 
+    &quot;_to&quot; : &quot;female/diana&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphEdgesFiltered_short" onclick="$('#generalGraphEdgesFiltered_short').hide(); $('#generalGraphEdgesFiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; graph._edges({type: &quot;married&quot;}).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="vertices"></a></p>
+<h3 id="vertices">Vertices</h3>
+<p> Select some vertices from the graph.</p>
+<p><code>graph._vertices(examples)</code></p>
+<p>Creates an AQL statement to select a subset of the vertices stored in the graph.
+This is one of the entry points for the fluent AQL interface.
+It will return a mutable AQL statement which can be further refined, using the
+functions described below.
+The resulting set of edges can be filtered by defining one or more <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>In the examples the <em>toArray</em> function is used to print the result.
+The description of this function can be found below.</p>
+<p>To request unfiltered vertices:</p>
+<div id="generalGraphVerticesUnfiltered_container">
+<div id="generalGraphVerticesUnfiltered_long" onclick="$('#generalGraphVerticesUnfiltered_long').hide(); $('#generalGraphVerticesUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; graph._vertices().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/diana&quot;, 
+    &quot;_key&quot; : &quot;diana&quot;, 
+    &quot;_rev&quot; : &quot;1058284510&quot;, 
+    &quot;name&quot; : &quot;Diana&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;1057563614&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;1057891294&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;1058087902&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphVerticesUnfiltered_short" onclick="$('#generalGraphVerticesUnfiltered_short').hide(); $('#generalGraphVerticesUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; graph._vertices().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered vertices:</p>
+<div id="generalGraphVerticesFiltered_container">
+<div id="generalGraphVerticesFiltered_long" onclick="$('#generalGraphVerticesFiltered_long').hide(); $('#generalGraphVerticesFiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;732439518&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;732767198&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphVerticesFiltered_short" onclick="$('#generalGraphVerticesFiltered_short').hide(); $('#generalGraphVerticesFiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="working_with_the_query_cursor"></a></p>
+<h2 id="working-with-the-query-cursor">Working with the query cursor</h2>
+<p>The fluent query object handles cursor creation and maintenance for you.
+A cursor will be created as soon as you request the first result.
+If you are unhappy with the current result and want to refine it further you can execute a further step in the query which cleans up the cursor for you.
+In this interface you get the complete functionality available for general AQL cursors directly on your query.
+The cursor functionality is described in this section.</p>
+<p><a name="toarray"></a></p>
+<h3 id="toarray">ToArray</h3>
+<p> Returns an array containing the complete result.</p>
+<p><code>graph_query.toArray()</code></p>
+<p>This function executes the generated query and returns the
+entire result as one array.
+ToArray does not return the generated query anymore and
+hence can only be the endpoint of a query.
+However keeping a reference to the query before
+executing allows to chain further statements to it.</p>
+<p><strong>Examples</strong></p>
+<p>To collect the entire result of a query toArray can be used:</p>
+<div id="generalGraphFluentAQLToArray_container">
+<div id="generalGraphFluentAQLToArray_long" onclick="$('#generalGraphFluentAQLToArray_long').hide(); $('#generalGraphFluentAQLToArray_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; query.toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/diana&quot;, 
+    &quot;_key&quot; : &quot;diana&quot;, 
+    &quot;_rev&quot; : &quot;589112286&quot;, 
+    &quot;name&quot; : &quot;Diana&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;588391390&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;588719070&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;588915678&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLToArray_short" onclick="$('#generalGraphFluentAQLToArray_short').hide(); $('#generalGraphFluentAQLToArray_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; query.toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="hasnext"></a></p>
+<h3 id="hasnext">HasNext</h3>
+<p> Checks if the query has further results.</p>
+<p><code>graph_query.hasNext()</code></p>
+<p>The generated statement maintains a cursor for you.
+If this cursor is already present <em>hasNext()</em> will
+use this cursors position to determine if there are
+further results available.
+If the query has not yet been executed <em>hasNext()</em>
+will execute it and create the cursor for you.</p>
+<p><strong>Examples</strong></p>
+<p>Start query execution with hasNext:</p>
+<div id="generalGraphFluentAQLHasNext_container">
+<div id="generalGraphFluentAQLHasNext_long">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; query.hasNext();
+true</code>
+</pre>
+</div>
+</div>
+
+
+
+<p>Iterate over the result as long as it has more elements:</p>
+<div id="generalGraphFluentAQLHasNextIteration_container">
+<div id="generalGraphFluentAQLHasNextIteration_long">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; while (query.hasNext()) {
+........&gt;   var entry = query.next();
+........&gt;   // Do something with the entry
+........&gt; }</code>
+</pre>
+</div>
+</div>
+
+<p><a name="next"></a></p>
+<h3 id="next">Next</h3>
+<p> Request the next element in the result.</p>
+<p><code>graph_query.next()</code></p>
+<p>The generated statement maintains a cursor for you.
+If this cursor is already present <em>next()</em> will
+use this cursors position to deliver the next result.
+Also the cursor position will be moved by one.
+If the query has not yet been executed <em>next()</em>
+will execute it and create the cursor for you.
+It will throw an error of your query has no further results.</p>
+<p><strong>Examples</strong></p>
+<p>Request some elements with next:</p>
+<div id="generalGraphFluentAQLNext_container">
+<div id="generalGraphFluentAQLNext_long" onclick="$('#generalGraphFluentAQLNext_long').hide(); $('#generalGraphFluentAQLNext_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; query.next();
+{ 
+  &quot;_id&quot; : &quot;female/diana&quot;, 
+  &quot;_key&quot; : &quot;diana&quot;, 
+  &quot;_rev&quot; : &quot;1105339358&quot;, 
+  &quot;name&quot; : &quot;Diana&quot; 
+}
+arangosh&gt; query.next();
+{ 
+  &quot;_id&quot; : &quot;female/alice&quot;, 
+  &quot;_key&quot; : &quot;alice&quot;, 
+  &quot;_rev&quot; : &quot;1104618462&quot;, 
+  &quot;name&quot; : &quot;Alice&quot; 
+}
+arangosh&gt; query.next();
+{ 
+  &quot;_id&quot; : &quot;male/bob&quot;, 
+  &quot;_key&quot; : &quot;bob&quot;, 
+  &quot;_rev&quot; : &quot;1104946142&quot;, 
+  &quot;name&quot; : &quot;Bob&quot; 
+}
+arangosh&gt; query.next();
+{ 
+  &quot;_id&quot; : &quot;male/charly&quot;, 
+  &quot;_key&quot; : &quot;charly&quot;, 
+  &quot;_rev&quot; : &quot;1105142750&quot;, 
+  &quot;name&quot; : &quot;Charly&quot; 
+}</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLNext_short" onclick="$('#generalGraphFluentAQLNext_short').hide(); $('#generalGraphFluentAQLNext_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; query.next();
+arangosh&gt; query.next();
+arangosh&gt; query.next();
+arangosh&gt; query.next();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>The cursor is recreated if the query is changed:</p>
+<div id="generalGraphFluentAQLNextRecreate_container">
+<div id="generalGraphFluentAQLNextRecreate_long" onclick="$('#generalGraphFluentAQLNextRecreate_long').hide(); $('#generalGraphFluentAQLNextRecreate_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; query.next();
+{ 
+  &quot;_id&quot; : &quot;female/diana&quot;, 
+  &quot;_key&quot; : &quot;diana&quot;, 
+  &quot;_rev&quot; : &quot;600974302&quot;, 
+  &quot;name&quot; : &quot;Diana&quot; 
+}
+arangosh&gt; query.edges();
+[ GraphAQL social
+.vertices()
+.edges() ] 
+arangosh&gt; query.next();
+{ 
+  &quot;_id&quot; : &quot;relation/charlyAndDiana&quot;, 
+  &quot;_key&quot; : &quot;charlyAndDiana&quot;, 
+  &quot;_rev&quot; : &quot;601760734&quot;, 
+  &quot;_from&quot; : &quot;male/charly&quot;, 
+  &quot;_to&quot; : &quot;female/diana&quot;, 
+  &quot;type&quot; : &quot;married&quot; 
+}</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLNextRecreate_short" onclick="$('#generalGraphFluentAQLNextRecreate_short').hide(); $('#generalGraphFluentAQLNextRecreate_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; query.next();
+arangosh&gt; query.edges();
+arangosh&gt; query.next();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="count"></a></p>
+<h3 id="count">Count</h3>
+<p> Returns the number of returned elements if the query is executed.</p>
+<p><code>graph_query.count()</code></p>
+<p>This function determines the amount of elements to be expected within the result of the query.
+It can be used at the beginning of execution of the query
+before using <em>next()</em> or in between <em>next()</em> calls.
+The query object maintains a cursor of the query for you.
+<em>count()</em> does not change the cursor position.</p>
+<p><strong>Examples</strong></p>
+<p>To count the number of matched elements:</p>
+<div id="generalGraphFluentAQLCount_container">
+<div id="generalGraphFluentAQLCount_long">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices();
+arangosh&gt; query.count();
+4</code>
+</pre>
+</div>
+</div>
+
+<p><a name="fluent_queries"></a></p>
+<h2 id="fluent-queries">Fluent queries</h2>
+<p>After the selection of the entry point you can now query your graph in
+a fluent way, meaning each of the functions on your query returns the query again.
+Hence it is possible to chain arbitrary many executions one after the other.
+In this section all available query statements are described.</p>
+<p><a name="edges"></a></p>
+<h3 id="edges">Edges</h3>
+<p> Select all edges for the vertices selected before.</p>
+<p><code>graph_query.edges(examples)</code></p>
+<p>Creates an AQL statement to select all edges for each of the vertices selected
+in the step before.
+This will include <em>inbound</em> as well as <em>outbound</em> edges.
+The resulting set of edges can be filtered by defining one or more <em>examples</em>.</p>
+<p>The complexity of this method is <strong>O(n*m^x)</strong> with <em>n</em> being the vertices defined by the
+parameter vertexExamplex, <em>m</em> the average amount of edges of a vertex and <em>x</em> the maximal depths.
+Hence the default call would have a complexity of <strong>O(n*m)</strong>;</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>To request unfiltered edges:</p>
+<div id="generalGraphFluentAQLEdgesUnfiltered_container">
+<div id="generalGraphFluentAQLEdgesUnfiltered_long" onclick="$('#generalGraphFluentAQLEdgesUnfiltered_long').hide(); $('#generalGraphFluentAQLEdgesUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.edges().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;377562078&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndCharly&quot;, 
+    &quot;_key&quot; : &quot;aliceAndCharly&quot;, 
+    &quot;_rev&quot; : &quot;377824222&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/charly&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;377562078&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/bobAndDiana&quot;, 
+    &quot;_key&quot; : &quot;bobAndDiana&quot;, 
+    &quot;_rev&quot; : &quot;378217438&quot;, 
+    &quot;_from&quot; : &quot;male/bob&quot;, 
+    &quot;_to&quot; : &quot;female/diana&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLEdgesUnfiltered_short" onclick="$('#generalGraphFluentAQLEdgesUnfiltered_short').hide(); $('#generalGraphFluentAQLEdgesUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.edges().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered edges by a single example:</p>
+<div id="generalGraphFluentAQLEdgesFilteredSingle_container">
+<div id="generalGraphFluentAQLEdgesFilteredSingle_long" onclick="$('#generalGraphFluentAQLEdgesFilteredSingle_long').hide(); $('#generalGraphFluentAQLEdgesFilteredSingle_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.edges({type: &quot;married&quot;}).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;780805086&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;780805086&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLEdgesFilteredSingle_short" onclick="$('#generalGraphFluentAQLEdgesFilteredSingle_short').hide(); $('#generalGraphFluentAQLEdgesFilteredSingle_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.edges({type: &quot;married&quot;}).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered edges by multiple examples:</p>
+<div id="generalGraphFluentAQLEdgesFilteredMultiple_container">
+<div id="generalGraphFluentAQLEdgesFilteredMultiple_long" onclick="$('#generalGraphFluentAQLEdgesFilteredMultiple_long').hide(); $('#generalGraphFluentAQLEdgesFilteredMultiple_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.edges([{type: &quot;married&quot;}, {type: &quot;friend&quot;}]).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;1081222110&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndCharly&quot;, 
+    &quot;_key&quot; : &quot;aliceAndCharly&quot;, 
+    &quot;_rev&quot; : &quot;1081484254&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/charly&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;1081222110&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/bobAndDiana&quot;, 
+    &quot;_key&quot; : &quot;bobAndDiana&quot;, 
+    &quot;_rev&quot; : &quot;1081877470&quot;, 
+    &quot;_from&quot; : &quot;male/bob&quot;, 
+    &quot;_to&quot; : &quot;female/diana&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLEdgesFilteredMultiple_short" onclick="$('#generalGraphFluentAQLEdgesFilteredMultiple_short').hide(); $('#generalGraphFluentAQLEdgesFilteredMultiple_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.edges([{type: &quot;married&quot;}, {type: &quot;friend&quot;}]).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="outedges"></a></p>
+<h3 id="outedges">OutEdges</h3>
+<p> Select all outbound edges for the vertices selected before.</p>
+<p><code>graph_query.outEdges(examples)</code></p>
+<p>Creates an AQL statement to select all <em>outbound</em> edges for each of the vertices selected
+in the step before.
+The resulting set of edges can be filtered by defining one or more <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>To request unfiltered outbound edges:</p>
+<div id="generalGraphFluentAQLOutEdgesUnfiltered_container">
+<div id="generalGraphFluentAQLOutEdgesUnfiltered_long" onclick="$('#generalGraphFluentAQLOutEdgesUnfiltered_long').hide(); $('#generalGraphFluentAQLOutEdgesUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.outEdges().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;363078622&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndCharly&quot;, 
+    &quot;_key&quot; : &quot;aliceAndCharly&quot;, 
+    &quot;_rev&quot; : &quot;363340766&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/charly&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/bobAndDiana&quot;, 
+    &quot;_key&quot; : &quot;bobAndDiana&quot;, 
+    &quot;_rev&quot; : &quot;363733982&quot;, 
+    &quot;_from&quot; : &quot;male/bob&quot;, 
+    &quot;_to&quot; : &quot;female/diana&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLOutEdgesUnfiltered_short" onclick="$('#generalGraphFluentAQLOutEdgesUnfiltered_short').hide(); $('#generalGraphFluentAQLOutEdgesUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.outEdges().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered outbound edges by a single example:</p>
+<div id="generalGraphFluentAQLOutEdgesFilteredSingle_container">
+<div id="generalGraphFluentAQLOutEdgesFilteredSingle_long" onclick="$('#generalGraphFluentAQLOutEdgesFilteredSingle_long').hide(); $('#generalGraphFluentAQLOutEdgesFilteredSingle_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.outEdges({type: &quot;married&quot;}).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;636363742&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLOutEdgesFilteredSingle_short" onclick="$('#generalGraphFluentAQLOutEdgesFilteredSingle_short').hide(); $('#generalGraphFluentAQLOutEdgesFilteredSingle_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.outEdges({type: &quot;married&quot;}).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered outbound edges by multiple examples:</p>
+<div id="generalGraphFluentAQLOutEdgesFilteredMultiple_container">
+<div id="generalGraphFluentAQLOutEdgesFilteredMultiple_long" onclick="$('#generalGraphFluentAQLOutEdgesFilteredMultiple_long').hide(); $('#generalGraphFluentAQLOutEdgesFilteredMultiple_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.outEdges([{type: &quot;married&quot;}, {type: &quot;friend&quot;}]).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;876422110&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndCharly&quot;, 
+    &quot;_key&quot; : &quot;aliceAndCharly&quot;, 
+    &quot;_rev&quot; : &quot;876684254&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/charly&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;relation/bobAndDiana&quot;, 
+    &quot;_key&quot; : &quot;bobAndDiana&quot;, 
+    &quot;_rev&quot; : &quot;877077470&quot;, 
+    &quot;_from&quot; : &quot;male/bob&quot;, 
+    &quot;_to&quot; : &quot;female/diana&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLOutEdgesFilteredMultiple_short" onclick="$('#generalGraphFluentAQLOutEdgesFilteredMultiple_short').hide(); $('#generalGraphFluentAQLOutEdgesFilteredMultiple_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.outEdges([{type: &quot;married&quot;}, {type: &quot;friend&quot;}]).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="inedges"></a></p>
+<h3 id="inedges">InEdges</h3>
+<p> Select all inbound edges for the vertices selected before.</p>
+<p><code>graph_query.inEdges(examples)</code></p>
+<p>Creates an AQL statement to select all <em>inbound</em> edges for each of the vertices selected
+in the step before.
+The resulting set of edges can be filtered by defining one or more <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>To request unfiltered inbound edges:</p>
+<div id="generalGraphFluentAQLInEdgesUnfiltered_container">
+<div id="generalGraphFluentAQLInEdgesUnfiltered_long" onclick="$('#generalGraphFluentAQLInEdgesUnfiltered_long').hide(); $('#generalGraphFluentAQLInEdgesUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.inEdges().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;334898142&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLInEdgesUnfiltered_short" onclick="$('#generalGraphFluentAQLInEdgesUnfiltered_short').hide(); $('#generalGraphFluentAQLInEdgesUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.inEdges().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered inbound edges by a single example:</p>
+<div id="generalGraphFluentAQLInEdgesFilteredSingle_container">
+<div id="generalGraphFluentAQLInEdgesFilteredSingle_long" onclick="$('#generalGraphFluentAQLInEdgesFilteredSingle_long').hide(); $('#generalGraphFluentAQLInEdgesFilteredSingle_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.inEdges({type: &quot;married&quot;}).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;148841438&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLInEdgesFilteredSingle_short" onclick="$('#generalGraphFluentAQLInEdgesFilteredSingle_short').hide(); $('#generalGraphFluentAQLInEdgesFilteredSingle_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.inEdges({type: &quot;married&quot;}).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered inbound edges by multiple examples:</p>
+<div id="generalGraphFluentAQLInEdgesFilteredMultiple_container">
+<div id="generalGraphFluentAQLInEdgesFilteredMultiple_long" onclick="$('#generalGraphFluentAQLInEdgesFilteredMultiple_long').hide(); $('#generalGraphFluentAQLInEdgesFilteredMultiple_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.inEdges([{type: &quot;married&quot;}, {type: &quot;friend&quot;}]).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+    &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+    &quot;_rev&quot; : &quot;303375326&quot;, 
+    &quot;_from&quot; : &quot;female/alice&quot;, 
+    &quot;_to&quot; : &quot;male/bob&quot;, 
+    &quot;type&quot; : &quot;married&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLInEdgesFilteredMultiple_short" onclick="$('#generalGraphFluentAQLInEdgesFilteredMultiple_short').hide(); $('#generalGraphFluentAQLInEdgesFilteredMultiple_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices([{name: &quot;Alice&quot;}, {name: &quot;Bob&quot;}]);
+arangosh&gt; query.inEdges([{type: &quot;married&quot;}, {type: &quot;friend&quot;}]).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="vertices"></a></p>
+<h3 id="vertices">Vertices</h3>
+<p> Select all vertices connected to the edges selected before.</p>
+<p><code>graph_query.vertices(examples)</code></p>
+<p>Creates an AQL statement to select all vertices for each of the edges selected
+in the step before.
+This includes all vertices contained in <em>_from</em> as well as <em>_to</em> attribute of the edges.
+The resulting set of vertices can be filtered by defining one or more <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>To request unfiltered vertices:</p>
+<div id="generalGraphFluentAQLVerticesUnfiltered_container">
+<div id="generalGraphFluentAQLVerticesUnfiltered_long" onclick="$('#generalGraphFluentAQLVerticesUnfiltered_long').hide(); $('#generalGraphFluentAQLVerticesUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.vertices().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;726148062&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;726475742&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;female/diana&quot;, 
+    &quot;_key&quot; : &quot;diana&quot;, 
+    &quot;_rev&quot; : &quot;726868958&quot;, 
+    &quot;name&quot; : &quot;Diana&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;726672350&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLVerticesUnfiltered_short" onclick="$('#generalGraphFluentAQLVerticesUnfiltered_short').hide(); $('#generalGraphFluentAQLVerticesUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.vertices().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered vertices by a single example:</p>
+<div id="generalGraphFluentAQLVerticesFilteredSingle_container">
+<div id="generalGraphFluentAQLVerticesFilteredSingle_long" onclick="$('#generalGraphFluentAQLVerticesFilteredSingle_long').hide(); $('#generalGraphFluentAQLVerticesFilteredSingle_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.vertices({name: &quot;Alice&quot;}).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;584655838&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLVerticesFilteredSingle_short" onclick="$('#generalGraphFluentAQLVerticesFilteredSingle_short').hide(); $('#generalGraphFluentAQLVerticesFilteredSingle_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.vertices({name: &quot;Alice&quot;}).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered vertices by multiple examples:</p>
+<div id="generalGraphFluentAQLVerticesFilteredMultiple_container">
+<div id="generalGraphFluentAQLVerticesFilteredMultiple_long" onclick="$('#generalGraphFluentAQLVerticesFilteredMultiple_long').hide(); $('#generalGraphFluentAQLVerticesFilteredMultiple_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.vertices([{name: &quot;Alice&quot;}, {name: &quot;Charly&quot;}]).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;372712414&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;373236702&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLVerticesFilteredMultiple_short" onclick="$('#generalGraphFluentAQLVerticesFilteredMultiple_short').hide(); $('#generalGraphFluentAQLVerticesFilteredMultiple_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.vertices([{name: &quot;Alice&quot;}, {name: &quot;Charly&quot;}]).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="fromvertices"></a></p>
+<h3 id="fromvertices">FromVertices</h3>
+<p> Select all source vertices of the edges selected before.</p>
+<p><code>graph_query.fromVertices(examples)</code></p>
+<p>Creates an AQL statement to select the set of vertices where the edges selected
+in the step before start at.
+This includes all vertices contained in <em>_from</em> attribute of the edges.
+The resulting set of vertices can be filtered by defining one or more <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>To request unfiltered source vertices:</p>
+<div id="generalGraphFluentAQLFromVerticesUnfiltered_container">
+<div id="generalGraphFluentAQLFromVerticesUnfiltered_long" onclick="$('#generalGraphFluentAQLFromVerticesUnfiltered_long').hide(); $('#generalGraphFluentAQLFromVerticesUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.fromVertices().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;292496350&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;293020638&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLFromVerticesUnfiltered_short" onclick="$('#generalGraphFluentAQLFromVerticesUnfiltered_short').hide(); $('#generalGraphFluentAQLFromVerticesUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.fromVertices().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered source vertices by a single example:</p>
+<div id="generalGraphFluentAQLFromVerticesFilteredSingle_container">
+<div id="generalGraphFluentAQLFromVerticesFilteredSingle_long" onclick="$('#generalGraphFluentAQLFromVerticesFilteredSingle_long').hide(); $('#generalGraphFluentAQLFromVerticesFilteredSingle_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.fromVertices({name: &quot;Alice&quot;}).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;1040917470&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLFromVerticesFilteredSingle_short" onclick="$('#generalGraphFluentAQLFromVerticesFilteredSingle_short').hide(); $('#generalGraphFluentAQLFromVerticesFilteredSingle_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.fromVertices({name: &quot;Alice&quot;}).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered source vertices by multiple examples:</p>
+<div id="generalGraphFluentAQLFromVerticesFilteredMultiple_container">
+<div id="generalGraphFluentAQLFromVerticesFilteredMultiple_long" onclick="$('#generalGraphFluentAQLFromVerticesFilteredMultiple_long').hide(); $('#generalGraphFluentAQLFromVerticesFilteredMultiple_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.fromVertices([{name: &quot;Alice&quot;}, {name: &quot;Charly&quot;}]).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;1084761054&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;1085285342&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLFromVerticesFilteredMultiple_short" onclick="$('#generalGraphFluentAQLFromVerticesFilteredMultiple_short').hide(); $('#generalGraphFluentAQLFromVerticesFilteredMultiple_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.fromVertices([{name: &quot;Alice&quot;}, {name: &quot;Charly&quot;}]).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="tovertices"></a></p>
+<h3 id="tovertices">ToVertices</h3>
+<p> Select all vertices targeted by the edges selected before.</p>
+<p><code>graph_query.toVertices(examples)</code></p>
+<p>Creates an AQL statement to select the set of vertices where the edges selected
+in the step before end in.
+This includes all vertices contained in <em>_to</em> attribute of the edges.
+The resulting set of vertices can be filtered by defining one or more <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>To request unfiltered target vertices:</p>
+<div id="generalGraphFluentAQLToVerticesUnfiltered_container">
+<div id="generalGraphFluentAQLToVerticesUnfiltered_long" onclick="$('#generalGraphFluentAQLToVerticesUnfiltered_long').hide(); $('#generalGraphFluentAQLToVerticesUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;851387358&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;female/diana&quot;, 
+    &quot;_key&quot; : &quot;diana&quot;, 
+    &quot;_rev&quot; : &quot;851780574&quot;, 
+    &quot;name&quot; : &quot;Diana&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLToVerticesUnfiltered_short" onclick="$('#generalGraphFluentAQLToVerticesUnfiltered_short').hide(); $('#generalGraphFluentAQLToVerticesUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered target vertices by a single example:</p>
+<div id="generalGraphFluentAQLToVerticesFilteredSingle_container">
+<div id="generalGraphFluentAQLToVerticesFilteredSingle_long" onclick="$('#generalGraphFluentAQLToVerticesFilteredSingle_long').hide(); $('#generalGraphFluentAQLToVerticesFilteredSingle_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices({name: &quot;Bob&quot;}).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;750265310&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLToVerticesFilteredSingle_short" onclick="$('#generalGraphFluentAQLToVerticesFilteredSingle_short').hide(); $('#generalGraphFluentAQLToVerticesFilteredSingle_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices({name: &quot;Bob&quot;}).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered target vertices by multiple examples:</p>
+<div id="generalGraphFluentAQLToVerticesFilteredMultiple_container">
+<div id="generalGraphFluentAQLToVerticesFilteredMultiple_long" onclick="$('#generalGraphFluentAQLToVerticesFilteredMultiple_long').hide(); $('#generalGraphFluentAQLToVerticesFilteredMultiple_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices([{name: &quot;Bob&quot;}, {name: &quot;Diana&quot;}]).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;112927710&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;female/diana&quot;, 
+    &quot;_key&quot; : &quot;diana&quot;, 
+    &quot;_rev&quot; : &quot;113320926&quot;, 
+    &quot;name&quot; : &quot;Diana&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLToVerticesFilteredMultiple_short" onclick="$('#generalGraphFluentAQLToVerticesFilteredMultiple_short').hide(); $('#generalGraphFluentAQLToVerticesFilteredMultiple_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices([{name: &quot;Bob&quot;}, {name: &quot;Diana&quot;}]).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="neighbors"></a></p>
+<h3 id="neighbors">Neighbors</h3>
+<p> Select all neighbors of the vertices selected in the step before.</p>
+<p><code>graph_query.neighbors(examples, options)</code></p>
+<p>Creates an AQL statement to select all neighbors for each of the vertices selected
+in the step before.
+The resulting set of vertices can be filtered by defining one or more <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<ul>
+<li><em>options</em>:
+An object defining further options. Can have the following values:<ul>
+<li><em>direction</em>: The direction of the edges. Possible values are <em>outbound</em>, <em>inbound</em> and <em>any</em> (default).</li>
+<li><em>edgeExamples</em>: Filter the edges to be followed, see <a href="#definition_of_examples">Definition of examples</a></li>
+<li><em>edgeCollectionRestriction</em> : One or a list of edge-collection names that should be
+  considered to be on the path.</li>
+<li><em>vertexCollectionRestriction</em> : One or a list of vertex-collection names that should be
+  considered on the intermediate vertex steps.</li>
+<li><em>minDepth</em>: Defines the minimal number of intermediate steps to neighbors (default is 1).</li>
+<li><em>maxDepth</em>: Defines the maximal number of intermediate steps to neighbors (default is 1).</li>
+</ul>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>To request unfiltered neighbors:</p>
+<div id="generalGraphFluentAQLNeighborsUnfiltered_container">
+<div id="generalGraphFluentAQLNeighborsUnfiltered_long" onclick="$('#generalGraphFluentAQLNeighborsUnfiltered_long').hide(); $('#generalGraphFluentAQLNeighborsUnfiltered_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.neighbors().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;607331294&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;607527902&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLNeighborsUnfiltered_short" onclick="$('#generalGraphFluentAQLNeighborsUnfiltered_short').hide(); $('#generalGraphFluentAQLNeighborsUnfiltered_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.neighbors().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered neighbors by a single example:</p>
+<div id="generalGraphFluentAQLNeighborsFilteredSingle_container">
+<div id="generalGraphFluentAQLNeighborsFilteredSingle_long" onclick="$('#generalGraphFluentAQLNeighborsFilteredSingle_long').hide(); $('#generalGraphFluentAQLNeighborsFilteredSingle_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.neighbors({name: &quot;Bob&quot;}).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;236135390&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLNeighborsFilteredSingle_short" onclick="$('#generalGraphFluentAQLNeighborsFilteredSingle_short').hide(); $('#generalGraphFluentAQLNeighborsFilteredSingle_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.neighbors({name: &quot;Bob&quot;}).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To request filtered neighbors by multiple examples:</p>
+<div id="generalGraphFluentAQLNeighborsFilteredMultiple_container">
+<div id="generalGraphFluentAQLNeighborsFilteredMultiple_long" onclick="$('#generalGraphFluentAQLNeighborsFilteredMultiple_long').hide(); $('#generalGraphFluentAQLNeighborsFilteredMultiple_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.vertices([{name: &quot;Bob&quot;}, {name: &quot;Charly&quot;}]).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;134554590&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;134751198&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLNeighborsFilteredMultiple_short" onclick="$('#generalGraphFluentAQLNeighborsFilteredMultiple_short').hide(); $('#generalGraphFluentAQLNeighborsFilteredMultiple_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.vertices([{name: &quot;Bob&quot;}, {name: &quot;Charly&quot;}]).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<p><a name="restrict"></a></p>
+<h3 id="restrict">Restrict</h3>
+<p> Restricts the last statement in the chain to return
+only elements of a specified set of collections</p>
+<p><code>graph_query.restrict(restrictions)</code></p>
+<p>By default all collections in the graph are searched for matching elements
+whenever vertices and edges are requested.
+Using <em>restrict</em> after such a statement allows to restrict the search
+to a specific set of collections within the graph.
+Restriction is only applied to this one part of the query.
+It does not effect earlier or later statements.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>restrictions</em>:
+Define either one or a list of collections in the graph.
+Only elements from these collections are taken into account for the result.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Request all directly connected vertices unrestricted:</p>
+<div id="generalGraphFluentAQLUnrestricted_container">
+<div id="generalGraphFluentAQLUnrestricted_long" onclick="$('#generalGraphFluentAQLUnrestricted_long').hide(); $('#generalGraphFluentAQLUnrestricted_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.edges().vertices().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;1139024862&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;1139352542&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;1139024862&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;male/charly&quot;, 
+    &quot;_key&quot; : &quot;charly&quot;, 
+    &quot;_rev&quot; : &quot;1139549150&quot;, 
+    &quot;name&quot; : &quot;Charly&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLUnrestricted_short" onclick="$('#generalGraphFluentAQLUnrestricted_short').hide(); $('#generalGraphFluentAQLUnrestricted_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.edges().vertices().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>Apply a restriction to the directly connected vertices:</p>
+<div id="generalGraphFluentAQLRestricted_container">
+<div id="generalGraphFluentAQLRestricted_long" onclick="$('#generalGraphFluentAQLRestricted_long').hide(); $('#generalGraphFluentAQLRestricted_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.edges().vertices().restrict(&quot;female&quot;).toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;592126942&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;female/alice&quot;, 
+    &quot;_key&quot; : &quot;alice&quot;, 
+    &quot;_rev&quot; : &quot;592126942&quot;, 
+    &quot;name&quot; : &quot;Alice&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLRestricted_short" onclick="$('#generalGraphFluentAQLRestricted_short').hide(); $('#generalGraphFluentAQLRestricted_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.edges().vertices().restrict(&quot;female&quot;).toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>Restriction of a query is only valid for collections known to the graph:
+//</p>
+<div id="generalGraphFluentAQLRestrictedUnknown_container">
+<div id="generalGraphFluentAQLRestrictedUnknown_long">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.edges().vertices().restrict([&quot;female&quot;, &quot;male&quot;, &quot;products&quot;]).toArray();
+[ArangoError 10: vertex collections: products are not known to the graph]</code>
+</pre>
+</div>
+</div>
+
+<p><a name="filter"></a></p>
+<h3 id="filter">Filter</h3>
+<p> Filter the result of the query</p>
+<p><code>graph_query.filter(examples)</code></p>
+<p>This can be used to further specfiy the expected result of the query.
+The result set is reduced to the set of elements that matches the given <em>examples</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><em>examples</em>:
+See <a href="#definition_of_examples">Definition of examples</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Request vertices unfiltered:</p>
+<div id="generalGraphFluentAQLUnfilteredVertices_container">
+<div id="generalGraphFluentAQLUnfilteredVertices_long" onclick="$('#generalGraphFluentAQLUnfilteredVertices_long').hide(); $('#generalGraphFluentAQLUnfilteredVertices_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;male/bob&quot;, 
+    &quot;_key&quot; : &quot;bob&quot;, 
+    &quot;_rev&quot; : &quot;1075127262&quot;, 
+    &quot;name&quot; : &quot;Bob&quot; 
+  }, 
+  { 
+    &quot;_id&quot; : &quot;female/diana&quot;, 
+    &quot;_key&quot; : &quot;diana&quot;, 
+    &quot;_rev&quot; : &quot;1075520478&quot;, 
+    &quot;name&quot; : &quot;Diana&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLUnfilteredVertices_short" onclick="$('#generalGraphFluentAQLUnfilteredVertices_short').hide(); $('#generalGraphFluentAQLUnfilteredVertices_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>Request vertices filtered:</p>
+<div id="generalGraphFluentAQLFilteredVertices_container">
+<div id="generalGraphFluentAQLFilteredVertices_long">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices().filter({name: &quot;Alice&quot;}).toArray();
+[ ]</code>
+</pre>
+</div>
+</div>
+
+
+
+<p>Request edges unfiltered:</p>
+<div id="generalGraphFluentAQLUnfilteredEdges_container">
+<div id="generalGraphFluentAQLUnfilteredEdges_long" onclick="$('#generalGraphFluentAQLUnfilteredEdges_long').hide(); $('#generalGraphFluentAQLUnfilteredEdges_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices().outEdges().toArray();
+[ 
+  { 
+    &quot;_id&quot; : &quot;relation/bobAndDiana&quot;, 
+    &quot;_key&quot; : &quot;bobAndDiana&quot;, 
+    &quot;_rev&quot; : &quot;597631966&quot;, 
+    &quot;_from&quot; : &quot;male/bob&quot;, 
+    &quot;_to&quot; : &quot;female/diana&quot;, 
+    &quot;type&quot; : &quot;friend&quot; 
+  } 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLUnfilteredEdges_short" onclick="$('#generalGraphFluentAQLUnfilteredEdges_short').hide(); $('#generalGraphFluentAQLUnfilteredEdges_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices().outEdges().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>Request edges filtered:</p>
+<div id="generalGraphFluentAQLFilteredEdges_container">
+<div id="generalGraphFluentAQLFilteredEdges_long">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._edges({type: &quot;married&quot;});
+arangosh&gt; query.toVertices().outEdges().filter({type: &quot;married&quot;}).toArray();
+[ ]</code>
+</pre>
+</div>
+</div>
+
+<p><a name="path"></a></p>
+<h3 id="path">Path</h3>
+<p> The result of the query is the path to all elements.</p>
+<p><code>graph_query.path()</code></p>
+<p>By defaut the result of the generated AQL query is the set of elements passing the last matches.
+So having a <code>vertices()</code> query as the last step the result will be set of vertices.
+Using <code>path()</code> as the last action before requesting the result
+will modify the result such that the path required to find the set vertices is returned.</p>
+<p><strong>Examples</strong></p>
+<p>Request the iteratively explored path using vertices and edges:</p>
+<div id="generalGraphFluentAQLPathSimple_container">
+<div id="generalGraphFluentAQLPathSimple_long" onclick="$('#generalGraphFluentAQLPathSimple_long').hide(); $('#generalGraphFluentAQLPathSimple_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.outEdges().toVertices().path().toArray();
+[ 
+  [ 
+    { 
+      &quot;_id&quot; : &quot;female/alice&quot;, 
+      &quot;_key&quot; : &quot;alice&quot;, 
+      &quot;_rev&quot; : &quot;393094110&quot;, 
+      &quot;name&quot; : &quot;Alice&quot; 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+      &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+      &quot;_rev&quot; : &quot;394142686&quot;, 
+      &quot;_from&quot; : &quot;female/alice&quot;, 
+      &quot;_to&quot; : &quot;male/bob&quot;, 
+      &quot;type&quot; : &quot;married&quot; 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;male/bob&quot;, 
+      &quot;_key&quot; : &quot;bob&quot;, 
+      &quot;_rev&quot; : &quot;393421790&quot;, 
+      &quot;name&quot; : &quot;Bob&quot; 
+    } 
+  ], 
+  [ 
+    { 
+      &quot;_id&quot; : &quot;female/alice&quot;, 
+      &quot;_key&quot; : &quot;alice&quot;, 
+      &quot;_rev&quot; : &quot;393094110&quot;, 
+      &quot;name&quot; : &quot;Alice&quot; 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;relation/aliceAndCharly&quot;, 
+      &quot;_key&quot; : &quot;aliceAndCharly&quot;, 
+      &quot;_rev&quot; : &quot;394404830&quot;, 
+      &quot;_from&quot; : &quot;female/alice&quot;, 
+      &quot;_to&quot; : &quot;male/charly&quot;, 
+      &quot;type&quot; : &quot;friend&quot; 
+    }, 
+    { 
+      &quot;_id&quot; : &quot;male/charly&quot;, 
+      &quot;_key&quot; : &quot;charly&quot;, 
+      &quot;_rev&quot; : &quot;393618398&quot;, 
+      &quot;name&quot; : &quot;Charly&quot; 
+    } 
+  ] 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLPathSimple_short" onclick="$('#generalGraphFluentAQLPathSimple_short').hide(); $('#generalGraphFluentAQLPathSimple_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.outEdges().toVertices().path().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>When requesting neighbors the path to these neighbors is expanded:</p>
+<div id="generalGraphFluentAQLPathNeighbors_container">
+<div id="generalGraphFluentAQLPathNeighbors_long" onclick="$('#generalGraphFluentAQLPathNeighbors_long').hide(); $('#generalGraphFluentAQLPathNeighbors_short').show();" style="Display: none;">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.neighbors().path().toArray();
+[ 
+  [ 
+    { 
+      &quot;_id&quot; : &quot;female/alice&quot;, 
+      &quot;_key&quot; : &quot;alice&quot;, 
+      &quot;_rev&quot; : &quot;137962462&quot;, 
+      &quot;name&quot; : &quot;Alice&quot; 
+    }, 
+    { 
+      &quot;edges&quot; : [ 
+        { 
+          &quot;_id&quot; : &quot;relation/aliceAndBob&quot;, 
+          &quot;_key&quot; : &quot;aliceAndBob&quot;, 
+          &quot;_rev&quot; : &quot;139011038&quot;, 
+          &quot;_from&quot; : &quot;female/alice&quot;, 
+          &quot;_to&quot; : &quot;male/bob&quot;, 
+          &quot;type&quot; : &quot;married&quot; 
+        } 
+      ], 
+      &quot;vertices&quot; : [ 
+        { 
+          &quot;_id&quot; : &quot;female/alice&quot;, 
+          &quot;_key&quot; : &quot;alice&quot;, 
+          &quot;_rev&quot; : &quot;137962462&quot;, 
+          &quot;name&quot; : &quot;Alice&quot; 
+        }, 
+        { 
+          &quot;_id&quot; : &quot;male/bob&quot;, 
+          &quot;_key&quot; : &quot;bob&quot;, 
+          &quot;_rev&quot; : &quot;138290142&quot;, 
+          &quot;name&quot; : &quot;Bob&quot; 
+        } 
+      ] 
+    } 
+  ], 
+  [ 
+    { 
+      &quot;_id&quot; : &quot;female/alice&quot;, 
+      &quot;_key&quot; : &quot;alice&quot;, 
+      &quot;_rev&quot; : &quot;137962462&quot;, 
+      &quot;name&quot; : &quot;Alice&quot; 
+    }, 
+    { 
+      &quot;edges&quot; : [ 
+        { 
+          &quot;_id&quot; : &quot;relation/aliceAndCharly&quot;, 
+          &quot;_key&quot; : &quot;aliceAndCharly&quot;, 
+          &quot;_rev&quot; : &quot;139273182&quot;, 
+          &quot;_from&quot; : &quot;female/alice&quot;, 
+          &quot;_to&quot; : &quot;male/charly&quot;, 
+          &quot;type&quot; : &quot;friend&quot; 
+        } 
+      ], 
+      &quot;vertices&quot; : [ 
+        { 
+          &quot;_id&quot; : &quot;female/alice&quot;, 
+          &quot;_key&quot; : &quot;alice&quot;, 
+          &quot;_rev&quot; : &quot;137962462&quot;, 
+          &quot;name&quot; : &quot;Alice&quot; 
+        }, 
+        { 
+          &quot;_id&quot; : &quot;male/charly&quot;, 
+          &quot;_key&quot; : &quot;charly&quot;, 
+          &quot;_rev&quot; : &quot;138486750&quot;, 
+          &quot;name&quot; : &quot;Charly&quot; 
+        } 
+      ] 
+    } 
+  ] 
+]</code>
+</pre>
+</div>
+<div id="generalGraphFluentAQLPathNeighbors_short" onclick="$('#generalGraphFluentAQLPathNeighbors_short').hide(); $('#generalGraphFluentAQLPathNeighbors_long').show();">
+<pre>
+<code>arangosh&gt; var examples = require(&quot;org/arangodb/graph-examples/example-graph.js&quot;);
+arangosh&gt; var graph = examples.loadGraph(&quot;social&quot;);
+arangosh&gt; var query = graph._vertices({name: &quot;Alice&quot;});
+arangosh&gt; query.neighbors().path().toArray();</code>
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../General-Graphs/Functions.html" class="navigation navigation-prev " aria-label="Previous page: Graph Functions"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Blueprint-Graphs/README.html" class="navigation navigation-next " aria-label="Next page: Blueprint Graphs"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"piwik":{"URL":"www.arangodb.org/piwik/","siteId":12}};
+    gitbook.start(config);
+});
+</script>
+
+        <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.org/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.org/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    
+</html>
