@@ -1,0 +1,1366 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Miscellaneous functions | ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    
+    <link rel="prev" href="../Tasks/index.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="24"
+        data-chapter-title="Miscellaneous functions"
+        data-filepath="MiscellaneousFunctions/README.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:44 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="General/index.html">
+            
+                
+                    <a href="../General/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        General HTTP Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Api/index.html">
+            
+                
+                    <a href="../Api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        HTTP Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Database/index.html">
+            
+                
+                    <a href="../Database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Database/DatabaseEndpoint.html">
+            
+                
+                    <a href="../Database/DatabaseEndpoint.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        To-Endpoint
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Database/DatabaseManagement.html">
+            
+                
+                    <a href="../Database/DatabaseManagement.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Database/NotesOnDatabases.html">
+            
+                
+                    <a href="../Database/NotesOnDatabases.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Notes on Databases
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Collection/index.html">
+            
+                
+                    <a href="../Collection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Collections
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Collection/Creating.html">
+            
+                
+                    <a href="../Collection/Creating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Creating
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Collection/Getting.html">
+            
+                
+                    <a href="../Collection/Getting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Getting Information
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Collection/Modifying.html">
+            
+                
+                    <a href="../Collection/Modifying.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Modifying
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Document/index.html">
+            
+                
+                    <a href="../Document/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Documents
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Document/AddressAndEtag.html">
+            
+                
+                    <a href="../Document/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Basics and Terminology
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Document/WorkingWithDocuments.html">
+            
+                
+                    <a href="../Document/WorkingWithDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Working with Documents
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Edge/index.html">
+            
+                
+                    <a href="../Edge/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Edge/AddressAndEtag.html">
+            
+                
+                    <a href="../Edge/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Address and ETag
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Edge/WorkingWithEdges.html">
+            
+                
+                    <a href="../Edge/WorkingWithEdges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Working with Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Gharial/index.html">
+            
+                
+                    <a href="../Gharial/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        General Graph
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Gharial/Management.html">
+            
+                
+                    <a href="../Gharial/Management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Gharial/Vertices.html">
+            
+                
+                    <a href="../Gharial/Vertices.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Vertices
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Gharial/Edges.html">
+            
+                
+                    <a href="../Gharial/Edges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Traversal/index.html">
+            
+                
+                    <a href="../Traversal/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="AqlQueryCursor/index.html">
+            
+                
+                    <a href="../AqlQueryCursor/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        AQL Query Cursors
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="AqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../AqlQueryCursor/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="AqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../AqlQueryCursor/AccessingCursors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Accessing Cursors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="AqlQuery/index.html">
+            
+                
+                    <a href="../AqlQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        AQL Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="AqlQueryCache/index.html">
+            
+                
+                    <a href="../AqlQueryCache/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        AQL Query Cache
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="AqlUserFunctions/index.html">
+            
+                
+                    <a href="../AqlUserFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        AQL User Functions Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="SimpleQuery/index.html">
+            
+                
+                    <a href="../SimpleQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Simple Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="AsyncResultsManagement/index.html">
+            
+                
+                    <a href="../AsyncResultsManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        Async Result Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="BulkImports/index.html">
+            
+                
+                    <a href="../BulkImports/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        Bulk Import / Export
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1" data-path="BulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../BulkImports/ImportingSelfContained.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                        JSON Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.2" data-path="BulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../BulkImports/ImportingHeadersAndValues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                        Headers &amp; Values
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.3" data-path="BatchRequest/index.html">
+            
+                
+                    <a href="../BatchRequest/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.3.</b>
+                        
+                        Batch Requests
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.4" data-path="Export/index.html">
+            
+                
+                    <a href="../Export/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.4.</b>
+                        
+                        Exporting data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="Indexes/index.html">
+            
+                
+                    <a href="../Indexes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        Indexes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="Indexes/WorkingWith.html">
+            
+                
+                    <a href="../Indexes/WorkingWith.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        Working with Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="Indexes/Hash.html">
+            
+                
+                    <a href="../Indexes/Hash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                        Hash
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="Indexes/Skiplist.html">
+            
+                
+                    <a href="../Indexes/Skiplist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                        Skiplist
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="Indexes/Geo.html">
+            
+                
+                    <a href="../Indexes/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="Indexes/Fulltext.html">
+            
+                
+                    <a href="../Indexes/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="Transaction/index.html">
+            
+                
+                    <a href="../Transaction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        Transactions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="Replications/index.html">
+            
+                
+                    <a href="../Replications/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        Replication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="18.1" data-path="Replications/ReplicationDump.html">
+            
+                
+                    <a href="../Replications/ReplicationDump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                        Replication Dump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.2" data-path="Replications/ReplicationLogger.html">
+            
+                
+                    <a href="../Replications/ReplicationLogger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                        Replication Logger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.3" data-path="Replications/ReplicationApplier.html">
+            
+                
+                    <a href="../Replications/ReplicationApplier.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                        Replication Applier
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.4" data-path="Replications/OtherReplication.html">
+            
+                
+                    <a href="../Replications/OtherReplication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.4.</b>
+                        
+                        Other Replication Commands
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="19" data-path="ShardingInterface/index.html">
+            
+                
+                    <a href="../ShardingInterface/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                        Sharding
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="20" data-path="AdministrationAndMonitoring/index.html">
+            
+                
+                    <a href="../AdministrationAndMonitoring/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                        Monitoring
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="21" data-path="Endpoints/index.html">
+            
+                
+                    <a href="../Endpoints/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                        Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="22" data-path="UserManagement/index.html">
+            
+                
+                    <a href="../UserManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                        User Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="23" data-path="Tasks/index.html">
+            
+                
+                    <a href="../Tasks/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                        Tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="24" data-path="MiscellaneousFunctions/index.html">
+            
+                
+                    <a href="../MiscellaneousFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                        Miscellaneous functions
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="http_interface_for_miscellaneous_functions"></a></p>
+<h1 id="http-interface-for-miscellaneous-functions">HTTP Interface for Miscellaneous functions</h1>
+<p>This is an overview of ArangoDB&apos;s HTTP interface for miscellaneous functions.</p>
+<!-- lib/Admin/RestVersionHandler.cpp -->
+<h3 id="return-server-version">Return server version</h3>
+<p> returns the server version number</p>
+<p><code>GET /_api/version</code></p>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>details</em> (optional):
+If set to <em>true</em>, the response will contain a <em>details</em> attribute with
+additional information about included components and their versions. The
+attribute names and internals of the <em>details</em> object may vary depending on
+platform and ArangoDB version.</li>
+</ul>
+<p>Returns the server name and version number. The response is a JSON object
+with the following attributes:</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned in all cases.</li>
+</ul>
+<p><strong>Reply Body</strong></p>
+<ul>
+<li><strong>version</strong>: the server version string. The string has the format
+&quot;<em>major</em>.<em>minor</em>.<em>sub</em>&quot;. <em>major</em> and <em>minor</em> will be numeric, and <em>sub</em>
+may contain a number or a textual version.</li>
+<li><strong>details</strong>: an optional JSON object with additional details. This is
+returned only if the <em>details</em> query parameter is set to <em>true</em> in the
+request.</li>
+<li><strong>server</strong>: will always contain <em>arango</em></li>
+</ul>
+<div id="RestVersion_container">
+<div id="RestVersion_long">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/version
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;server&quot;</span> : <span class="hljs-string">&quot;arango&quot;</span>, 
+  <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;3.0.x-devel&quot;</span> 
+}
+</pre>
+</div>
+</div>
+
+<p>Return the version information with details</p>
+<div id="RestVersionDetails_container">
+<div id="RestVersionDetails_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/version?details=true
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;server&quot;</span> : <span class="hljs-string">&quot;arango&quot;</span>, 
+  <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;3.0.x-devel&quot;</span>, 
+  <span class="hljs-string">&quot;details&quot;</span> : { 
+    <span class="hljs-string">&quot;architecture&quot;</span> : <span class="hljs-string">&quot;64bit&quot;</span>, 
+    <span class="hljs-string">&quot;asan&quot;</span> : <span class="hljs-string">&quot;false&quot;</span>, 
+    <span class="hljs-string">&quot;asm-crc32&quot;</span> : <span class="hljs-string">&quot;true&quot;</span>, 
+    <span class="hljs-string">&quot;boost-version&quot;</span> : <span class="hljs-string">&quot;1.61.0b1&quot;</span>, 
+    <span class="hljs-string">&quot;build-date&quot;</span> : <span class="hljs-string">&quot;2016-06-02 08:34:51&quot;</span>, 
+    <span class="hljs-string">&quot;compiler&quot;</span> : <span class="hljs-string">&quot;gcc&quot;</span>, 
+    <span class="hljs-string">&quot;cplusplus&quot;</span> : <span class="hljs-string">&quot;201103&quot;</span>, 
+    <span class="hljs-string">&quot;endianness&quot;</span> : <span class="hljs-string">&quot;little&quot;</span>, 
+    <span class="hljs-string">&quot;fd-client-event-handler&quot;</span> : <span class="hljs-string">&quot;poll&quot;</span>, 
+    <span class="hljs-string">&quot;fd-setsize&quot;</span> : <span class="hljs-string">&quot;1024&quot;</span>, 
+    <span class="hljs-string">&quot;icu-version&quot;</span> : <span class="hljs-string">&quot;54.1&quot;</span>, 
+    <span class="hljs-string">&quot;jemalloc&quot;</span> : <span class="hljs-string">&quot;true&quot;</span>, 
+    <span class="hljs-string">&quot;libev-version&quot;</span> : <span class="hljs-string">&quot;4.22&quot;</span>, 
+    <span class="hljs-string">&quot;maintainer-mode&quot;</span> : <span class="hljs-string">&quot;false&quot;</span>, 
+    <span class="hljs-string">&quot;openssl-version&quot;</span> : <span class="hljs-string">&quot;OpenSSL 1.0.1f 6 Jan 2014&quot;</span>, 
+    <span class="hljs-string">&quot;rocksdb-version&quot;</span> : <span class="hljs-string">&quot;4.8.0&quot;</span>, 
+    <span class="hljs-string">&quot;server-version&quot;</span> : <span class="hljs-string">&quot;3.0.x-devel&quot;</span>, 
+    <span class="hljs-string">&quot;sizeof int&quot;</span> : <span class="hljs-string">&quot;4&quot;</span>, 
+    <span class="hljs-string">&quot;sizeof void*&quot;</span> : <span class="hljs-string">&quot;8&quot;</span>, 
+    <span class="hljs-string">&quot;sse42&quot;</span> : <span class="hljs-string">&quot;true&quot;</span>, 
+    <span class="hljs-string">&quot;tcmalloc&quot;</span> : <span class="hljs-string">&quot;false&quot;</span>, 
+    <span class="hljs-string">&quot;v8-version&quot;</span> : <span class="hljs-string">&quot;5.0.71.39&quot;</span>, 
+    <span class="hljs-string">&quot;vpack-version&quot;</span> : <span class="hljs-string">&quot;0.1.30&quot;</span>, 
+    <span class="hljs-string">&quot;zlib-version&quot;</span> : <span class="hljs-string">&quot;1.2.8&quot;</span>, 
+    <span class="hljs-string">&quot;mode&quot;</span> : <span class="hljs-string">&quot;server&quot;</span> 
+  } 
+}
+</pre>
+</div>
+<div id="RestVersionDetails_short" onclick="$(&apos;#RestVersionDetails_short&apos;).hide(); $(&apos;#RestVersionDetails_long&apos;).show();">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/version?details=true
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- ljs/actions/api-system.js -->
+<h3 id="flushes-the-writeahead-log">Flushes the write-ahead log</h3>
+<p> Sync the WAL to disk.</p>
+<p><code>PUT /_admin/wal/flush</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>waitForSync</em> (optional):
+Whether or not the operation should block until the not-yet synchronized
+data in the write-ahead log was synchronized to disk.</li>
+<li><em>waitForCollector</em> (optional):
+Whether or not the operation should block until the data in the flushed
+log has been collected by the write-ahead log garbage collector. Note that
+setting this option to <em>true</em> might block for a long time if there are
+long-running transactions and the write-ahead log garbage collector cannot
+finish garbage collection.</li>
+</ul>
+<p>Flushes the write-ahead log. By flushing the currently active write-ahead
+logfile, the data in it can be transferred to collection journals and
+datafiles. This is useful to ensure that all data for a collection is
+present in the collection journals and datafiles, for example, when dumping
+the data of a collection.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Is returned if the operation succeeds.</li>
+<li><em>405</em>:
+is returned when an invalid HTTP method is used.<!-- ljs/actions/api-system.js -->
+</li>
+</ul>
+<h3 id="retrieves-the-configuration-of-the-writeahead-log">Retrieves the configuration of the write-ahead log</h3>
+<p> fetch the current configuration.</p>
+<p><code>GET /_admin/wal/properties</code></p>
+<p>Retrieves the configuration of the write-ahead log. The result is a JSON
+object with the following attributes:</p>
+<ul>
+<li><em>allowOversizeEntries</em>: whether or not operations that are bigger than a
+single logfile can be executed and stored</li>
+<li><em>logfileSize</em>: the size of each write-ahead logfile</li>
+<li><em>historicLogfiles</em>: the maximum number of historic logfiles to keep</li>
+<li><em>reserveLogfiles</em>: the maximum number of reserve logfiles that ArangoDB
+allocates in the background</li>
+<li><em>syncInterval</em>: the interval for automatic synchronization of not-yet
+synchronized write-ahead log data (in milliseconds)</li>
+<li><em>throttleWait</em>: the maximum wait time that operations will wait before
+they get aborted if case of write-throttling (in milliseconds)</li>
+<li><em>throttleWhenPending</em>: the number of unprocessed garbage-collection
+operations that, when reached, will activate write-throttling. A value of
+<em>0</em> means that write-throttling will not be triggered.</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Is returned if the operation succeeds.</li>
+<li><em>405</em>:
+is returned when an invalid HTTP method is used.<!-- ljs/actions/api-system.js -->
+</li>
+</ul>
+<h3 id="configures-the-writeahead-log">Configures the write-ahead log</h3>
+<p> configure parameters of the wal</p>
+<p><code>PUT /_admin/wal/properties</code></p>
+<p>Configures the behavior of the write-ahead log. The body of the request
+must be a JSON object with the following attributes:</p>
+<ul>
+<li><em>allowOversizeEntries</em>: whether or not operations that are bigger than a
+single logfile can be executed and stored</li>
+<li><em>logfileSize</em>: the size of each write-ahead logfile</li>
+<li><em>historicLogfiles</em>: the maximum number of historic logfiles to keep</li>
+<li><em>reserveLogfiles</em>: the maximum number of reserve logfiles that ArangoDB
+allocates in the background</li>
+<li><em>throttleWait</em>: the maximum wait time that operations will wait before
+they get aborted if case of write-throttling (in milliseconds)</li>
+<li><em>throttleWhenPending</em>: the number of unprocessed garbage-collection
+operations that, when reached, will activate write-throttling. A value of
+<em>0</em> means that write-throttling will not be triggered.
+Specifying any of the above attributes is optional. Not specified attributes
+will be ignored and the configuration for them will not be modified.</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Is returned if the operation succeeds.</li>
+<li><em>405</em>:
+is returned when an invalid HTTP method is used.<!-- ljs/actions/api-system.js -->
+</li>
+</ul>
+<h3 id="returns-information-about-the-currently-running-transactions">Returns information about the currently running transactions</h3>
+<p> returns information about the currently running transactions</p>
+<p><code>GET /_admin/wal/transactions</code></p>
+<p>Returns information about the currently running transactions. The result
+is a JSON object with the following attributes:</p>
+<ul>
+<li><em>runningTransactions</em>: number of currently running transactions</li>
+<li><em>minLastCollected</em>: minimum id of the last collected logfile (at the
+start of each running transaction). This is <em>null</em> if no transaction is
+running.</li>
+<li><em>minLastSealed</em>: minimum id of the last sealed logfile (at the
+start of each running transaction). This is <em>null</em> if no transaction is
+running.</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Is returned if the operation succeeds.</li>
+<li><em>405</em>:
+is returned when an invalid HTTP method is used.<!-- js/actions/api-system.js -->
+</li>
+</ul>
+<h3 id="return-system-time">Return system time</h3>
+<p> Get the current time of the system</p>
+<p><code>GET /_admin/time</code></p>
+<p>The call returns an object with the attribute <em>time</em>. This contains the
+current system time as a Unix timestamp with microsecond precision.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Time was returned successfully.<!-- js/actions/api-system.js -->
+</li>
+</ul>
+<h3 id="return-current-request">Return current request</h3>
+<p> Send back what was sent in, headers, post body etc.</p>
+<p><code>GET /_admin/echo</code></p>
+<p>The call returns an object with the following attributes:</p>
+<ul>
+<li><em>headers</em>: object with HTTP headers received</li>
+<li><em>requestType</em>: the HTTP request method (e.g. GET)</li>
+<li><em>parameters</em>: object with query parameters received</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Echo was returned successfully.</li>
+</ul>
+<h3 id="return-current-request-and-continues">Return current request and continues</h3>
+<p> Send back what was sent in, headers, post body etc.</p>
+<p><code>GET /_admin/long_echo</code></p>
+<p>The call returns an object with the following attributes:</p>
+<ul>
+<li><em>headers</em>: object with HTTP headers received</li>
+<li><em>requestType</em>: the HTTP request method (e.g. GET)</li>
+<li><em>parameters</em>: object with query parameters received</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Echo was returned successfully.</li>
+</ul>
+<h3 id="return-the-required-version-of-the-database">Return the required version of the database</h3>
+<p> returns the version of the database.</p>
+<p><code>GET /_admin/database/target-version</code></p>
+<p>Returns the database-version that this server requires.
+The version is returned in the <em>version</em> attribute of the result.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Is returned in all cases.</li>
+</ul>
+<h3 id="sleep-for-a-specified-amount-of-seconds">Sleep for a specified amount of seconds</h3>
+<p> Suspend the execution for a specified duration before returnig</p>
+<p><code>GET /_admin/sleep</code></p>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>duration</em> (required):
+wait <code>duration</code> seconds until the reply is sent.</li>
+</ul>
+<p>The call returns an object with the attribute <em>duration</em>. This takes
+as many seconds as the duration argument says.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+Sleep was conducted successfully.<!-- lib/Admin/RestShutdownHandler.cpp -->
+</li>
+</ul>
+<h3 id="initiate-shutdown-sequence">Initiate shutdown sequence</h3>
+<p> initiates the shutdown sequence</p>
+<p><code>GET /_admin/shutdown</code></p>
+<p>This call initiates a clean shutdown sequence.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned in all cases.<!-- js/actions/api-system.js -->
+</li>
+</ul>
+<h3 id="runs-tests-on-server">Runs tests on server</h3>
+<p> show the available unittests on the server.</p>
+<p><code>POST /_admin/test</code>
+<strong>Post Body</strong>
+ <em>body</em> (required):
+A JSON object containing an attribute <em>tests</em> which lists the files
+containing the test suites.</p>
+<p>Executes the specified tests on the server and returns an object with the
+test results. The object has an attribute &quot;error&quot; which states whether
+any error occurred. The object also has an attribute &quot;passed&quot; which
+indicates which tests passed and which did not.
+<!-- js/actions/api-system.js --></p>
+<h3 id="execute-program">Execute program</h3>
+<p> Execute a script on the server.</p>
+<p><code>POST /_admin/execute</code>
+<strong>Post Body</strong>
+ <em>body</em> (required):
+The body to be executed.</p>
+<p>Executes the javascript code in the body on the server as the body
+of a function with no arguments. If you have a <em>return</em> statement
+then the return value you produce will be returned as content type
+<em>application/json</em>. If the parameter <em>returnAsJSON</em> is set to
+<em>true</em>, the result will be a JSON object describing the return value
+directly, otherwise a string produced by JSON.stringify will be
+returned.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Tasks/index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Tasks"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+</html>

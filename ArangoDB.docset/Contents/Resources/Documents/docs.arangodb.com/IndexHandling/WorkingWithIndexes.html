@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Working with Indexes | ArangoDB 2.8.2 Documentation</title>
+        <title>Working with Indexes | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="8.4" data-chapter-title="Working with Indexes" data-filepath="IndexHandling/WorkingWithIndexes.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="8.4" data-chapter-title="Working with Indexes" data-filepath="IndexHandling/WorkingWithIndexes.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4104,7 +4104,7 @@ arangosh&gt; db.test.getIndexes();
     <span class="hljs-string">&quot;sparse&quot;</span> : <span class="hljs-literal">false</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1091542136&quot;</span>, 
+    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1090842856&quot;</span>, 
     <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
     <span class="hljs-string">&quot;fields&quot;</span> : [ 
       <span class="hljs-string">&quot;skiplistAttribute&quot;</span> 
@@ -4113,7 +4113,7 @@ arangosh&gt; db.test.getIndexes();
     <span class="hljs-string">&quot;sparse&quot;</span> : <span class="hljs-literal">false</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1091804280&quot;</span>, 
+    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1091105000&quot;</span>, 
     <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
     <span class="hljs-string">&quot;fields&quot;</span> : [ 
       <span class="hljs-string">&quot;skiplistUniqueAttribute&quot;</span> 
@@ -4122,7 +4122,7 @@ arangosh&gt; db.test.getIndexes();
     <span class="hljs-string">&quot;sparse&quot;</span> : <span class="hljs-literal">false</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1092197496&quot;</span>, 
+    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1091498216&quot;</span>, 
     <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;hash&quot;</span>, 
     <span class="hljs-string">&quot;fields&quot;</span> : [ 
       <span class="hljs-string">&quot;hashListAttribute&quot;</span>, 
@@ -4175,7 +4175,7 @@ object existed before the call is indicated in the return attribute
 <pre>
 arangosh&gt; db.test.ensureIndex({ type: <span class="hljs-string">&quot;hash&quot;</span>, fields: [ <span class="hljs-string">&quot;a&quot;</span> ], sparse: <span class="hljs-literal">true</span> });
 { 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1087872120&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1087172840&quot;</span>, 
   <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;hash&quot;</span>, 
   <span class="hljs-string">&quot;fields&quot;</span> : [ 
     <span class="hljs-string">&quot;a&quot;</span> 
@@ -4188,7 +4188,7 @@ arangosh&gt; db.test.ensureIndex({ type: <span class="hljs-string">&quot;hash&qu
 }
 arangosh&gt; db.test.ensureIndex({ type: <span class="hljs-string">&quot;hash&quot;</span>, fields: [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span> ], unique: <span class="hljs-literal">true</span> });
 { 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1088134264&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;test/1087434984&quot;</span>, 
   <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;hash&quot;</span>, 
   <span class="hljs-string">&quot;fields&quot;</span> : [ 
     <span class="hljs-string">&quot;a&quot;</span>, 
@@ -4225,7 +4225,7 @@ index of a collection or the edge index of an edge collection).</p>
 <pre>
 arangosh&gt; db.example.ensureSkiplist(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>);
 { 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/1076010104&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/1075310824&quot;</span>, 
   <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
   <span class="hljs-string">&quot;fields&quot;</span> : [ 
     <span class="hljs-string">&quot;a&quot;</span>, 
@@ -4250,7 +4250,7 @@ arangosh&gt; indexInfo;
     <span class="hljs-string">&quot;sparse&quot;</span> : <span class="hljs-literal">false</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/1076010104&quot;</span>, 
+    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/1075310824&quot;</span>, 
     <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
     <span class="hljs-string">&quot;fields&quot;</span> : [ 
       <span class="hljs-string">&quot;a&quot;</span>, 
@@ -4303,7 +4303,7 @@ arangosh&gt; indexInfo = db.example.getIndexes();
 <pre>
 arangosh&gt; db.example.ensureIndex({ type: <span class="hljs-string">&quot;skiplist&quot;</span>, fields: [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span> ] });
 { 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/625384568&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/625406184&quot;</span>, 
   <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
   <span class="hljs-string">&quot;fields&quot;</span> : [ 
     <span class="hljs-string">&quot;a&quot;</span>, 
@@ -4318,7 +4318,7 @@ arangosh&gt; <span class="hljs-keyword">var</span> indexInfo = db.example.getInd
 arangosh&gt; indexInfo;
 [ 
   <span class="hljs-string">&quot;example/0&quot;</span>, 
-  <span class="hljs-string">&quot;example/625384568&quot;</span> 
+  <span class="hljs-string">&quot;example/625406184&quot;</span> 
 ]
 arangosh&gt; db._index(indexInfo[<span class="hljs-number">0</span>])
 { 
@@ -4334,7 +4334,7 @@ arangosh&gt; db._index(indexInfo[<span class="hljs-number">0</span>])
 }
 arangosh&gt; db._index(indexInfo[<span class="hljs-number">1</span>])
 { 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/625384568&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/625406184&quot;</span>, 
   <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
   <span class="hljs-string">&quot;fields&quot;</span> : [ 
     <span class="hljs-string">&quot;a&quot;</span>, 
@@ -4371,7 +4371,7 @@ returned.</p>
 <pre>
 arangosh&gt; db.example.ensureIndex({ type: <span class="hljs-string">&quot;skiplist&quot;</span>, fields: [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span> ] });
 { 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/1127652472&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/1126953192&quot;</span>, 
   <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
   <span class="hljs-string">&quot;fields&quot;</span> : [ 
     <span class="hljs-string">&quot;a&quot;</span>, 
@@ -4396,7 +4396,7 @@ arangosh&gt; indexInfo;
     <span class="hljs-string">&quot;sparse&quot;</span> : <span class="hljs-literal">false</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/1127652472&quot;</span>, 
+    <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/1126953192&quot;</span>, 
     <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
     <span class="hljs-string">&quot;fields&quot;</span> : [ 
       <span class="hljs-string">&quot;a&quot;</span>, 
@@ -4450,7 +4450,7 @@ used (if you omit <code>colors: false</code> you will get nice colors in ArangoS
 arangosh&gt; <span class="hljs-keyword">var</span> explain = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;org/arangodb/aql/explainer&quot;</span>).explain;
 arangosh&gt; db.example.ensureIndex({ type: <span class="hljs-string">&quot;skiplist&quot;</span>, fields: [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span> ] });
 { 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/626105464&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;example/626127080&quot;</span>, 
   <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;skiplist&quot;</span>, 
   <span class="hljs-string">&quot;fields&quot;</span> : [ 
     <span class="hljs-string">&quot;a&quot;</span>, 
@@ -4473,7 +4473,7 @@ Execution plan:
 
 Indexes used:
  By   Type       Collection   Unique   Sparse   Selectivity   Fields         Ranges
-  <span class="hljs-number">6</span>   skiplist   example      <span class="hljs-literal">false</span>    <span class="hljs-literal">false</span>            n/a   [ <span class="hljs-string">`a`</span>, <span class="hljs-string">`b`</span> ]   doc.<span class="hljs-string">`a`</span> &lt; <span class="hljs-number">23</span>
+  <span class="hljs-number">6</span>   skiplist   example      <span class="hljs-literal">false</span>    <span class="hljs-literal">false</span>            n/a   [ <span class="hljs-string">`a`</span>, <span class="hljs-string">`b`</span> ]   ((doc.<span class="hljs-string">`a`</span> &lt; <span class="hljs-number">23</span>))
 
 Optimization rules applied:
  Id   RuleName
@@ -4546,5 +4546,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

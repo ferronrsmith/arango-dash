@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Async Result | ArangoDB 2.8.2 Documentation</title>
+        <title>Async Result | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="18.20" data-chapter-title="Async Result" data-filepath="HttpAsyncResultsManagement/README.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="18.20" data-chapter-title="Async Result" data-filepath="HttpAsyncResultsManagement/README.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4254,17 +4254,17 @@ shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http:/
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626695288
+x-arango-async-id: 626716904
 
-shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626695288
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626716904
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">626695288</span>
+x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">626716904</span>
 
 { 
   <span class="hljs-string">&quot;server&quot;</span> : <span class="hljs-string">&quot;arango&quot;</span>, 
-  <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;2.8.2&quot;</span> 
+  <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;2.8.9&quot;</span> 
 }
 </pre>
 </div>
@@ -4282,13 +4282,13 @@ EOF
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626760824
+x-arango-async-id: 626782440
 
-shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626760824
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626782440
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">626760824</span>
+x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">626782440</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
@@ -4308,13 +4308,13 @@ EOF
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626760824
+x-arango-async-id: 626782440
 
-shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626760824
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626782440
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">626760824</span>
+x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">626782440</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4358,7 +4358,7 @@ EOF
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626367608
+x-arango-async-id: 626389224
 
 shell&gt; curl --dump - http://localhost:8529/_api/job/pending
 
@@ -4366,9 +4366,9 @@ HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> O
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 [ 
-  <span class="hljs-string">&quot;626367608&quot;</span> 
+  <span class="hljs-string">&quot;626389224&quot;</span> 
 ]
-shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626367608/cancel
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626389224/cancel
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -4382,7 +4382,7 @@ HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> O
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 [ 
-  <span class="hljs-string">&quot;626367608&quot;</span> 
+  <span class="hljs-string">&quot;626389224&quot;</span> 
 ]
 </pre>
 </div>
@@ -4396,7 +4396,7 @@ EOF
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626367608
+x-arango-async-id: 626389224
 
 shell&gt; curl --dump - http://localhost:8529/_api/job/pending
 
@@ -4404,9 +4404,9 @@ HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> O
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 [ 
-  <span class="hljs-string">&quot;626367608&quot;</span> 
+  <span class="hljs-string">&quot;626389224&quot;</span> 
 ]
-shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626367608/cancel
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/626389224/cancel
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -4460,7 +4460,7 @@ shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http:/
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626498680
+x-arango-async-id: 626520296
 
 shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/all
 
@@ -4482,7 +4482,7 @@ shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http:/
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626564216
+x-arango-async-id: 626585832
 
 shell&gt; curl --dump - http://localhost:8529/_admin/time
 
@@ -4490,11 +4490,11 @@ HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> O
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 { 
-  <span class="hljs-string">&quot;time&quot;</span> : <span class="hljs-number">1455095802.004824</span>, 
+  <span class="hljs-string">&quot;time&quot;</span> : <span class="hljs-number">1463943942.343709</span>, 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
   <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
 }
-shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/expired?stamp=1455095802.004824
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/expired?stamp=1463943942.343709
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -4516,7 +4516,7 @@ shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http:/
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626564216
+x-arango-async-id: 626585832
 
 shell&gt; curl --dump - http://localhost:8529/_admin/time
 
@@ -4535,9 +4535,9 @@ shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http:/
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626629752
+x-arango-async-id: 626651368
 
-shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/626629752
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/626651368
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -4611,17 +4611,17 @@ shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http:/
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 627022968
+x-arango-async-id: 627044584
 
-shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/627022968
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/627044584
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">627022968</span>
+x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">627044584</span>
 
 { 
   <span class="hljs-string">&quot;server&quot;</span> : <span class="hljs-string">&quot;arango&quot;</span>, 
-  <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;2.8.2&quot;</span> 
+  <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;2.8.9&quot;</span> 
 }
 </pre>
 </div>
@@ -4636,9 +4636,9 @@ shell&gt; curl --header &apos;x-arango-async: store&apos; --dump - http://localh
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 627088504
+x-arango-async-id: 627110120
 
-shell&gt; curl --dump - http://localhost:8529/_api/job/627088504
+shell&gt; curl --dump - http://localhost:8529/_api/job/627110120
 
 HTTP/1.1 204 No Content
 content-type: text/plain; charset=utf-8
@@ -4686,7 +4686,7 @@ shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http:/
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626826360
+x-arango-async-id: 626847976
 
 shell&gt; curl --dump - http://localhost:8529/_api/job/done
 
@@ -4694,7 +4694,7 @@ HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> O
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 [ 
-  <span class="hljs-string">&quot;626826360&quot;</span> 
+  <span class="hljs-string">&quot;626847976&quot;</span> 
 ]
 </pre>
 </div>
@@ -4708,7 +4708,7 @@ shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http:/
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626891896
+x-arango-async-id: 626913512
 
 shell&gt; curl --dump - http://localhost:8529/_api/job/pending
 
@@ -4729,7 +4729,7 @@ shell&gt; curl --header &apos;x-arango-async: store&apos; --dump - http://localh
 
 HTTP/1.1 202 Accepted
 content-type: text/plain; charset=utf-8
-x-arango-async-id: 626957432
+x-arango-async-id: 626979048
 
 shell&gt; curl --dump - http://localhost:8529/_api/job/pending
 
@@ -4737,9 +4737,9 @@ HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> O
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 [ 
-  <span class="hljs-string">&quot;626957432&quot;</span> 
+  <span class="hljs-string">&quot;626979048&quot;</span> 
 ]
-shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/626957432
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/626979048
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -4806,5 +4806,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

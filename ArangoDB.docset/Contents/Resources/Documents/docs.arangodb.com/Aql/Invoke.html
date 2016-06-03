@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>How to invoke AQL | ArangoDB 2.8.2 Documentation</title>
+        <title>How to invoke AQL | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="11.1" data-chapter-title="How to invoke AQL" data-filepath="Aql/Invoke.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="11.1" data-chapter-title="How to invoke AQL" data-filepath="Aql/Invoke.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4072,11 +4072,11 @@ can be printed using its <em>toArray</em> method:</p>
 <div id="01_workWithAQL_all_long" onclick="" style="Display: none;">
 <pre>
 arangosh&gt; db._create(<span class="hljs-string">&quot;mycollection&quot;</span>)
-[ArangoCollection <span class="hljs-number">446602360</span>, <span class="hljs-string">&quot;mycollection&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">449835240</span>, <span class="hljs-string">&quot;mycollection&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; db.mycollection.save({ _key: <span class="hljs-string">&quot;testKey&quot;</span>, Hello : <span class="hljs-string">&quot;World&quot;</span> })
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;mycollection/testKey&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;446930040&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;450162920&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;testKey&quot;</span> 
 }
 arangosh&gt; db._query(<span class="hljs-string">&apos;FOR my IN mycollection RETURN my._key&apos;</span>).toArray()
@@ -4116,8 +4116,19 @@ arangosh&gt; db._query(
 
 
 <p>It is also possible to use ES6 template strings for generating AQL queries. There is
-a template string generator function named <em>aqlQuery</em>:</p>
-<div id="02_workWithAQL_aqlQuery_container">
+a template string generator function named <em>aqlQuery</em>; we call it once to demonstrate
+its result, and once putting it directly into the query:</p>
+<pre><code>```js
+var key = &apos;testKey&apos;;
+aqlQuery`FOR c IN mycollection FILTER c._key == ${key} RETURN c._key`;
+{ 
+  &quot;query&quot; : &quot;FOR c IN mycollection FILTER c._key == @value0 RETURN c._key&quot;, 
+  &quot;bindVars&quot; : { 
+    &quot;value0&quot; : &quot;testKey&quot; 
+  } 
+}
+```
+</code></pre><div id="02_workWithAQL_aqlQuery_container">
 <div id="02_workWithAQL_aqlQuery_long">
 <pre>
 arangosh&gt; <span class="hljs-keyword">var</span> key = <span class="hljs-string">&apos;testKey&apos;</span>;
@@ -4145,7 +4156,7 @@ arangosh&gt; db._query(aqlQuery<span class="hljs-string">`FOR doc IN <span class
   { 
     <span class="hljs-string">&quot;Hello&quot;</span> : <span class="hljs-string">&quot;World&quot;</span>, 
     <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;mycollection/testKey&quot;</span>, 
-    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;446930040&quot;</span>, 
+    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;450162920&quot;</span>, 
     <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;testKey&quot;</span> 
   } 
 ]
@@ -4179,7 +4190,8 @@ arangosh&gt; db._query(<span class="hljs-string">`FOR i IN 1..100
     <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
     <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">0</span>, 
     <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+    <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.0006449222564697266</span> 
   }, 
   <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
 }
@@ -4415,7 +4427,8 @@ arangosh&gt; db._query(<span class="hljs-string">`
     <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
     <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">0</span>, 
     <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+    <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.0006940364837646484</span> 
   }, 
   <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
 }
@@ -4432,7 +4445,8 @@ arangosh&gt; db._query({
     <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
     <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">0</span>, 
     <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+    <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.0007269382476806641</span> 
   }, 
   <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
 }
@@ -4664,7 +4678,7 @@ arangosh&gt; stmt.explain();
         <span class="hljs-string">&quot;indexes&quot;</span> : [ 
           { 
             <span class="hljs-string">&quot;type&quot;</span> : <span class="hljs-string">&quot;hash&quot;</span>, 
-            <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;564344&quot;</span>, 
+            <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;585960&quot;</span>, 
             <span class="hljs-string">&quot;unique&quot;</span> : <span class="hljs-literal">true</span>, 
             <span class="hljs-string">&quot;sparse&quot;</span> : <span class="hljs-literal">true</span>, 
             <span class="hljs-string">&quot;selectivityEstimate&quot;</span> : <span class="hljs-number">1</span>, 
@@ -4966,7 +4980,7 @@ Execution plan:
  Id   NodeType                  Est.   Comment
   1   SingletonNode                1   * ROOT
   2   EnumerateCollectionNode    302     - FOR doc IN mycollection   /* full collection scan */
-  3   CalculationNode            302       - LET #1 = doc.`value` &gt; 42   /* simple expression */   /* collections used: doc : mycollection */
+  3   CalculationNode            302       - LET #1 = (doc.`value` &gt; 42)   /* simple expression */   /* collections used: doc : mycollection */
   4   FilterNode                 302       - FILTER #1
   5   ReturnNode                 302       - RETURN doc
 
@@ -5138,5 +5152,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

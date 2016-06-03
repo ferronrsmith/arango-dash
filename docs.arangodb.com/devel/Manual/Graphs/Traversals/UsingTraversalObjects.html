@@ -1,0 +1,3614 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Using Traversal Objects | ArangoDB v3.0.x-devel (2016-06-02) Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../Graphs/Traversals/ExampleData.html" />
+    
+    
+    <link rel="prev" href="../../Graphs/Traversals/index.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="5.2.1"
+        data-chapter-title="Using Traversal Objects"
+        data-filepath="Graphs/Traversals/UsingTraversalObjects.md"
+        data-basepath="../.."
+        data-revision="Thu Jun 02 2016 11:45:23 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="GettingStarted/index.html">
+            
+                
+                    <a href="../../GettingStarted/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="GettingStarted/Installing/index.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Installing
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="GettingStarted/Installing/Linux.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/Linux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.</b>
+                        
+                        Linux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="GettingStarted/Installing/MacOSX.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/MacOSX.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.</b>
+                        
+                        Mac OS X
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="GettingStarted/Installing/Windows.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/Windows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.</b>
+                        
+                        Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="GettingStarted/Installing/ARM.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/ARM.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.4.</b>
+                        
+                        ARM
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="GettingStarted/Installing/Compiling.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/Compiling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.5.</b>
+                        
+                        Compiling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="GettingStarted/Installing/Cluster.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/Cluster.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.6.</b>
+                        
+                        Cluster setup
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="GettingStarted/WebInterface.html">
+            
+                
+                    <a href="../../GettingStarted/WebInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Using the Web Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="GettingStarted/ComingFromSql.html">
+            
+                
+                    <a href="../../GettingStarted/ComingFromSql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Coming from SQL
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Scalability/index.html">
+            
+                
+                    <a href="../../Scalability/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Scalability
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="DataModeling/index.html">
+            
+                
+                    <a href="../../DataModeling/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Data model &amp; modeling
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="DataModeling/Concepts.html">
+            
+                
+                    <a href="../../DataModeling/Concepts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Concepts
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="DataModeling/Databases/index.html">
+            
+                
+                    <a href="../../DataModeling/Databases/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="DataModeling/Databases/WorkingWith.html">
+            
+                
+                    <a href="../../DataModeling/Databases/WorkingWith.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        Working with Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="DataModeling/Databases/Notes.html">
+            
+                
+                    <a href="../../DataModeling/Databases/Notes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                        Notes about Databases
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="DataModeling/Collections/index.html">
+            
+                
+                    <a href="../../DataModeling/Collections/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Collections
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="DataModeling/Collections/CollectionMethods.html">
+            
+                
+                    <a href="../../DataModeling/Collections/CollectionMethods.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        Collection Methods
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="DataModeling/Collections/DatabaseMethods.html">
+            
+                
+                    <a href="../../DataModeling/Collections/DatabaseMethods.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                        Database Methods
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="DataModeling/Documents/index.html">
+            
+                
+                    <a href="../../DataModeling/Documents/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Documents
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="DataModeling/Documents/DocumentAddress.html">
+            
+                
+                    <a href="../../DataModeling/Documents/DocumentAddress.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.</b>
+                        
+                        Basics and Terminology
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.2" data-path="DataModeling/Documents/DocumentMethods.html">
+            
+                
+                    <a href="../../DataModeling/Documents/DocumentMethods.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.2.</b>
+                        
+                        Collection Methods
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.3" data-path="DataModeling/Documents/DatabaseMethods.html">
+            
+                
+                    <a href="../../DataModeling/Documents/DatabaseMethods.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.3.</b>
+                        
+                        Database Methods
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="DataModeling/GraphsVerticesEdges.html">
+            
+                
+                    <a href="../../DataModeling/GraphsVerticesEdges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Graphs, Vertices &amp; Edges
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="DataModeling/NamingConventions/index.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Naming Conventions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.6.1" data-path="DataModeling/NamingConventions/DatabaseNames.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/DatabaseNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.1.</b>
+                        
+                        Database Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.2" data-path="DataModeling/NamingConventions/CollectionNames.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/CollectionNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.2.</b>
+                        
+                        Collection Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.3" data-path="DataModeling/NamingConventions/DocumentKeys.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/DocumentKeys.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.3.</b>
+                        
+                        Document Keys
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.4" data-path="DataModeling/NamingConventions/AttributeNames.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/AttributeNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.4.</b>
+                        
+                        Attribute Names
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="DataModeling/ModelingRelationships.html">
+            
+                
+                    <a href="../../DataModeling/ModelingRelationships.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Modeling Relationships
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Indexing/index.html">
+            
+                
+                    <a href="../../Indexing/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Indexing
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Indexing/IndexBasics.html">
+            
+                
+                    <a href="../../Indexing/IndexBasics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Index Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Indexing/WhichIndex.html">
+            
+                
+                    <a href="../../Indexing/WhichIndex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Which index to use when
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Indexing/IndexUtilization.html">
+            
+                
+                    <a href="../../Indexing/IndexUtilization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Index Utilization
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="Indexing/WorkingWithIndexes.html">
+            
+                
+                    <a href="../../Indexing/WorkingWithIndexes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Working with Indexes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.4.1" data-path="Indexing/Hash.html">
+            
+                
+                    <a href="../../Indexing/Hash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.</b>
+                        
+                        Hash Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.2" data-path="Indexing/Skiplist.html">
+            
+                
+                    <a href="../../Indexing/Skiplist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.2.</b>
+                        
+                        Skiplists
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.3" data-path="Indexing/Fulltext.html">
+            
+                
+                    <a href="../../Indexing/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.3.</b>
+                        
+                        Fulltext Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.4" data-path="Indexing/Geo.html">
+            
+                
+                    <a href="../../Indexing/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.4.</b>
+                        
+                        Geo Indexes
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Graphs/index.html">
+            
+                
+                    <a href="../../Graphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Graphs/GeneralGraphs/index.html">
+            
+                
+                    <a href="../../Graphs/GeneralGraphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        General Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="Graphs/GeneralGraphs/Management.html">
+            
+                
+                    <a href="../../Graphs/GeneralGraphs/Management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.1.</b>
+                        
+                        Graph Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="Graphs/GeneralGraphs/Functions.html">
+            
+                
+                    <a href="../../Graphs/GeneralGraphs/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.2.</b>
+                        
+                        Graph Functions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="Graphs/GeneralGraphs/FluentAQLInterface.html">
+            
+                
+                    <a href="../../Graphs/GeneralGraphs/FluentAQLInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.3.</b>
+                        
+                        Fluent Query Interface
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Graphs/Traversals/index.html">
+            
+                
+                    <a href="../../Graphs/Traversals/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="5.2.1" data-path="Graphs/Traversals/UsingTraversalObjects.html">
+            
+                
+                    <a href="../../Graphs/Traversals/UsingTraversalObjects.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.1.</b>
+                        
+                        Using Traversal Objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="Graphs/Traversals/ExampleData.html">
+            
+                
+                    <a href="../../Graphs/Traversals/ExampleData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.2.</b>
+                        
+                        Example Data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Graphs/Edges/index.html">
+            
+                
+                    <a href="../../Graphs/Edges/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Working with Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Foxx/index.html">
+            
+                
+                    <a href="../../Foxx/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Foxx Microservices
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Foxx/GettingStarted.html">
+            
+                
+                    <a href="../../Foxx/GettingStarted.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Getting started
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Foxx/Manifest.html">
+            
+                
+                    <a href="../../Foxx/Manifest.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Service manifest
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="Foxx/Context.html">
+            
+                
+                    <a href="../../Foxx/Context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Service context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="Foxx/Configuration.html">
+            
+                
+                    <a href="../../Foxx/Configuration.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Configuration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="Foxx/Dependencies.html">
+            
+                
+                    <a href="../../Foxx/Dependencies.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Dependencies
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="Foxx/Router/index.html">
+            
+                
+                    <a href="../../Foxx/Router/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.6.1" data-path="Foxx/Router/Endpoints.html">
+            
+                
+                    <a href="../../Foxx/Router/Endpoints.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.1.</b>
+                        
+                        Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6.2" data-path="Foxx/Router/Middleware.html">
+            
+                
+                    <a href="../../Foxx/Router/Middleware.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.2.</b>
+                        
+                        Middleware
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6.3" data-path="Foxx/Router/Request.html">
+            
+                
+                    <a href="../../Foxx/Router/Request.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.3.</b>
+                        
+                        Request
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6.4" data-path="Foxx/Router/Response.html">
+            
+                
+                    <a href="../../Foxx/Router/Response.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.4.</b>
+                        
+                        Response
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="Foxx/Sessions/index.html">
+            
+                
+                    <a href="../../Foxx/Sessions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Sessions middleware
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.7.1" data-path="Foxx/Sessions/Storages/index.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Storages/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.1.</b>
+                        
+                        Session storages
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.7.1.1" data-path="Foxx/Sessions/Storages/Collection.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Storages/Collection.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.1.1.</b>
+                        
+                        Collection storage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7.1.2" data-path="Foxx/Sessions/Storages/JWT.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Storages/JWT.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.1.2.</b>
+                        
+                        JWT storage
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7.2" data-path="Foxx/Sessions/Transports/index.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Transports/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.2.</b>
+                        
+                        Session transports
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.7.2.1" data-path="Foxx/Sessions/Transports/Cookie.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Transports/Cookie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.2.1.</b>
+                        
+                        Cookie transport
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7.2.2" data-path="Foxx/Sessions/Transports/Header.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Transports/Header.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.2.2.</b>
+                        
+                        Header transport
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="Foxx/Assets.html">
+            
+                
+                    <a href="../../Foxx/Assets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Serving files
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="Foxx/Testing.html">
+            
+                
+                    <a href="../../Foxx/Testing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        Writing tests
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.10" data-path="Foxx/Scripts.html">
+            
+                
+                    <a href="../../Foxx/Scripts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.10.</b>
+                        
+                        Scripts and queued jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.11" data-path="Foxx/LegacyMode.html">
+            
+                
+                    <a href="../../Foxx/LegacyMode.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.11.</b>
+                        
+                        Legacy mode for 2.x
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.12" data-path="Foxx/Users.html">
+            
+                
+                    <a href="../../Foxx/Users.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.12.</b>
+                        
+                        User management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.13" data-path="Foxx/Modules.html">
+            
+                
+                    <a href="../../Foxx/Modules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.13.</b>
+                        
+                        Related modules
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.13.1" data-path="Foxx/Auth.html">
+            
+                
+                    <a href="../../Foxx/Auth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.13.1.</b>
+                        
+                        Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.13.2" data-path="Foxx/OAuth2.html">
+            
+                
+                    <a href="../../Foxx/OAuth2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.13.2.</b>
+                        
+                        OAuth 2.0
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Transactions/index.html">
+            
+                
+                    <a href="../../Transactions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Transactions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Transactions/TransactionInvocation.html">
+            
+                
+                    <a href="../../Transactions/TransactionInvocation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Transaction invocation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Transactions/Passing.html">
+            
+                
+                    <a href="../../Transactions/Passing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Passing parameters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Transactions/LockingAndIsolation.html">
+            
+                
+                    <a href="../../Transactions/LockingAndIsolation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Locking and isolation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="Transactions/Durability.html">
+            
+                
+                    <a href="../../Transactions/Durability.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        Durability
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="Transactions/Limitations.html">
+            
+                
+                    <a href="../../Transactions/Limitations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Limitations
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Deployment/index.html">
+            
+                
+                    <a href="../../Deployment/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Deployment/Single.html">
+            
+                
+                    <a href="../../Deployment/Single.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Single instance
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="Deployment/Mesos.html">
+            
+                
+                    <a href="../../Deployment/Mesos.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Cluster: DC/OS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="Deployment/Docker.html">
+            
+                
+                    <a href="../../Deployment/Docker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Cluster: Docker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="Deployment/Local.html">
+            
+                
+                    <a href="../../Deployment/Local.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Cluster: Local test
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Administration/index.html">
+            
+                
+                    <a href="../../Administration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Administration/Arangosh/index.html">
+            
+                
+                    <a href="../../Administration/Arangosh/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        ArangoDB Shell
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1.1" data-path="Administration/Arangosh/Output.html">
+            
+                
+                    <a href="../../Administration/Arangosh/Output.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.1.</b>
+                        
+                        Shell Output
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.2" data-path="Administration/Arangosh/Configuration.html">
+            
+                
+                    <a href="../../Administration/Arangosh/Configuration.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.2.</b>
+                        
+                        Configuration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.3" data-path="GettingStarted/Arangosh.html">
+            
+                
+                    <a href="../../GettingStarted/Arangosh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.3.</b>
+                        
+                        Details
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Administration/Arangoimp.html">
+            
+                
+                    <a href="../../Administration/Arangoimp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Arangoimp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Administration/Arangodump.html">
+            
+                
+                    <a href="../../Administration/Arangodump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Arangodump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Administration/Arangorestore.html">
+            
+                
+                    <a href="../../Administration/Arangorestore.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Arangorestore
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Administration/Upgrading/index.html">
+            
+                
+                    <a href="../../Administration/Upgrading/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Upgrading
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.5.1" data-path="Administration/Upgrading/Upgrading30.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading30.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.1.</b>
+                        
+                        Upgrading to 3.0
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.2" data-path="Administration/Upgrading/Upgrading28.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading28.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.2.</b>
+                        
+                        Upgrading to 2.8
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.3" data-path="Administration/Upgrading/Upgrading26.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading26.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.3.</b>
+                        
+                        Upgrading to 2.6
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.4" data-path="Administration/Upgrading/Upgrading25.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading25.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.4.</b>
+                        
+                        Upgrading to 2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.5" data-path="Administration/Upgrading/Upgrading24.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading24.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.5.</b>
+                        
+                        Upgrading to 2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.6" data-path="Administration/Upgrading/Upgrading23.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading23.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.6.</b>
+                        
+                        Upgrading to 2.3
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.7" data-path="Administration/Upgrading/Upgrading22.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading22.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.7.</b>
+                        
+                        Upgrading to 2.2
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Administration/Configuration/index.html">
+            
+                
+                    <a href="../../Administration/Configuration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        Server Configuration
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.6.1" data-path="Administration/Configuration/Arangod.html">
+            
+                
+                    <a href="../../Administration/Configuration/Arangod.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.1.</b>
+                        
+                        Arangod options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.2" data-path="Administration/Configuration/Wal.html">
+            
+                
+                    <a href="../../Administration/Configuration/Wal.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.2.</b>
+                        
+                        Write-ahead log options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.3" data-path="Administration/Configuration/Endpoint.html">
+            
+                
+                    <a href="../../Administration/Configuration/Endpoint.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.3.</b>
+                        
+                        Managing Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.4" data-path="Administration/Configuration/Cluster.html">
+            
+                
+                    <a href="../../Administration/Configuration/Cluster.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.4.</b>
+                        
+                        Cluster options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.5" data-path="Administration/Configuration/Logging.html">
+            
+                
+                    <a href="../../Administration/Configuration/Logging.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.5.</b>
+                        
+                        Logging options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.6" data-path="Administration/Configuration/Communication.html">
+            
+                
+                    <a href="../../Administration/Configuration/Communication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.6.</b>
+                        
+                        Communication options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.7" data-path="Administration/Configuration/Authentication.html">
+            
+                
+                    <a href="../../Administration/Configuration/Authentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.7.</b>
+                        
+                        Authentication
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Administration/Replication/index.html">
+            
+                
+                    <a href="../../Administration/Replication/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        Replication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.7.1" data-path="Administration/Replication/Components.html">
+            
+                
+                    <a href="../../Administration/Replication/Components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.1.</b>
+                        
+                        Components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7.2" data-path="Administration/Replication/ExampleSetup.html">
+            
+                
+                    <a href="../../Administration/Replication/ExampleSetup.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.2.</b>
+                        
+                        Example Setup
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7.3" data-path="Administration/Replication/SyncingCollections.html">
+            
+                
+                    <a href="../../Administration/Replication/SyncingCollections.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.3.</b>
+                        
+                        Syncing Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7.4" data-path="Administration/Replication/Limitations.html">
+            
+                
+                    <a href="../../Administration/Replication/Limitations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.4.</b>
+                        
+                        Replication Limitations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7.5" data-path="Administration/Replication/Overhead.html">
+            
+                
+                    <a href="../../Administration/Replication/Overhead.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.5.</b>
+                        
+                        Replication Overhead
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="Administration/Sharding/index.html">
+            
+                
+                    <a href="../../Administration/Sharding/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        Sharding
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.8.1" data-path="Administration/Sharding/StatusOfImplementation.html">
+            
+                
+                    <a href="../../Administration/Sharding/StatusOfImplementation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.1.</b>
+                        
+                        Implementation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8.2" data-path="Administration/Sharding/Authentication.html">
+            
+                
+                    <a href="../../Administration/Sharding/Authentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.2.</b>
+                        
+                        Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8.3" data-path="Administration/Sharding/FirewallSetup.html">
+            
+                
+                    <a href="../../Administration/Sharding/FirewallSetup.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.3.</b>
+                        
+                        Firewall setup
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Troubleshooting/index.html">
+            
+                
+                    <a href="../../Troubleshooting/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Troubleshooting
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Troubleshooting/EmergencyConsole.html">
+            
+                
+                    <a href="../../Troubleshooting/EmergencyConsole.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Emergency Console
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Troubleshooting/DatafileDebugger.html">
+            
+                
+                    <a href="../../Troubleshooting/DatafileDebugger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Datafile Debugger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="Troubleshooting/Arangobench.html">
+            
+                
+                    <a href="../../Troubleshooting/Arangobench.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                        Arangobench
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="Architecture/index.html">
+            
+                
+                    <a href="../../Architecture/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Architecture
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="Architecture/WriteAheadLog.html">
+            
+                
+                    <a href="../../Architecture/WriteAheadLog.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Write-ahead log
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="Architecture/ServerInternals.html">
+            
+                
+                    <a href="../../Architecture/ServerInternals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Server Internals
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="ReleaseNotes/index.html">
+            
+                
+                    <a href="../../ReleaseNotes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Release notes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="12.1" data-path="ReleaseNotes/NewFeatures30.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures30.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                        Whats New in 3.0
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.2" data-path="ReleaseNotes/NewFeatures28.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures28.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                        Whats New in 2.8
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.3" data-path="ReleaseNotes/NewFeatures27.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures27.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                        Whats New in 2.7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.4" data-path="ReleaseNotes/NewFeatures26.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures26.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.4.</b>
+                        
+                        Whats New in 2.6
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.5" data-path="ReleaseNotes/NewFeatures25.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures25.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.</b>
+                        
+                        Whats New in 2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.6" data-path="ReleaseNotes/NewFeatures24.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures24.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.6.</b>
+                        
+                        Whats New in 2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.7" data-path="ReleaseNotes/NewFeatures23.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures23.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.7.</b>
+                        
+                        Whats New in 2.3
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.8" data-path="ReleaseNotes/NewFeatures22.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures22.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.8.</b>
+                        
+                        Whats New in 2.2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.9" data-path="ReleaseNotes/NewFeatures21.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures21.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.9.</b>
+                        
+                        Whats New in 2.1
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.10" data-path="ReleaseNotes/UpgradingChanges30.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges30.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.10.</b>
+                        
+                        Incompatible changes in 3.0
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.11" data-path="ReleaseNotes/UpgradingChanges28.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges28.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.</b>
+                        
+                        Incompatible changes in 2.8
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.12" data-path="ReleaseNotes/UpgradingChanges27.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges27.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.</b>
+                        
+                        Incompatible changes in 2.7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.13" data-path="ReleaseNotes/UpgradingChanges26.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges26.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.13.</b>
+                        
+                        Incompatible changes in 2.6
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.14" data-path="ReleaseNotes/UpgradingChanges25.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges25.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.14.</b>
+                        
+                        Incompatible changes in 2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.15" data-path="ReleaseNotes/UpgradingChanges24.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges24.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.15.</b>
+                        
+                        Incompatible changes in 2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.16" data-path="ReleaseNotes/UpgradingChanges23.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges23.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.16.</b>
+                        
+                        Incompatible changes in 2.3
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="Appendix/index.html">
+            
+                
+                    <a href="../../Appendix/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Appendix
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.1" data-path="Appendix/JavaScriptModules/index.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                        JavaScript Modules
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.1.1" data-path="Appendix/JavaScriptModules/Console.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Console.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.1.</b>
+                        
+                        &quot;console&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.2" data-path="Appendix/JavaScriptModules/FS.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/FS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.2.</b>
+                        
+                        &quot;fs&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.3" data-path="Appendix/JavaScriptModules/Process.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Process.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.3.</b>
+                        
+                        &quot;process&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.4" data-path="Appendix/JavaScriptModules/Request.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Request.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.4.</b>
+                        
+                        &quot;request&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.5" data-path="Appendix/JavaScriptModules/Actions.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Actions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.5.</b>
+                        
+                        &quot;actions&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.6" data-path="Appendix/JavaScriptModules/Queries.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Queries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.6.</b>
+                        
+                        &quot;queries&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.7" data-path="Appendix/JavaScriptModules/WAL.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/WAL.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.7.</b>
+                        
+                        Write-ahead log
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.8" data-path="Appendix/JavaScriptModules/Tasks.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Tasks.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.8.</b>
+                        
+                        Task Management
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2" data-path="Appendix/Deprecated/index.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                        Deprecated
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.2.1" data-path="Appendix/Deprecated/SimpleQueries/index.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.</b>
+                        
+                        Simple Queries
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.2.1.1" data-path="Appendix/Deprecated/SimpleQueries/Access.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/Access.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.1.</b>
+                        
+                        Sequential Access
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.1.2" data-path="Appendix/Deprecated/SimpleQueries/Pagination.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/Pagination.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.2.</b>
+                        
+                        Pagination
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.1.3" data-path="Appendix/Deprecated/SimpleQueries/ModificationQueries.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/ModificationQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.3.</b>
+                        
+                        Modification Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.1.4" data-path="Appendix/Deprecated/SimpleQueriesGeoQueries.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueriesGeoQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.4.</b>
+                        
+                        Geo Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.1.5" data-path="Appendix/Deprecated/SimpleQueries/FulltextQueries.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/FulltextQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.5.</b>
+                        
+                        Fulltext Queries
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.2" data-path="Appendix/Deprecated/Actions/index.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/Actions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.2.</b>
+                        
+                        Actions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.2.2.1" data-path="Appendix/Deprecated/Actions/HtmlExample.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/Actions/HtmlExample.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.2.1.</b>
+                        
+                        Delivering HTML Pages
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.2.2" data-path="Appendix/Deprecated/Actions/JsonExample.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/Actions/JsonExample.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.2.2.</b>
+                        
+                        Json Objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.2.3" data-path="Appendix/Deprecated/Actions/Modifying.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/Actions/Modifying.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.2.3.</b>
+                        
+                        Modifying
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13.3" data-path="Appendix/ErrorCodes.html">
+            
+                
+                    <a href="../../Appendix/ErrorCodes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.3.</b>
+                        
+                        Error codes and meanings
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.4" data-path="Appendix/Glossary.html">
+            
+                
+                    <a href="../../Appendix/Glossary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.4.</b>
+                        
+                        Glossary
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >ArangoDB v3.0.x-devel (2016-06-02) Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="getting_started"></a></p>
+<h1 id="getting-started">Getting started</h1>
+<p>To use a traversal object, we first need to require the <em>traversal</em> module:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> traversal = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph/traversal&quot;</span>);
+<span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+examples.loadGraph(<span class="hljs-string">&quot;worldCountry&quot;</span>);
+</code></pre>
+<p>We then need to setup a configuration for the traversal and determine at which vertex to 
+start the traversal:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  datasource: traversal.generalGraphDatasourceFactory(<span class="hljs-string">&quot;worldCountry&quot;</span>),
+  strategy: <span class="hljs-string">&quot;depthfirst&quot;</span>,
+  order: <span class="hljs-string">&quot;preorder&quot;</span>,
+  filter: traversal.visitAllFilter,
+  expander: traversal.inboundExpander,
+  maxDepth: <span class="hljs-number">1</span>
+};
+
+<span class="hljs-keyword">var</span> startVertex = db._document(<span class="hljs-string">&quot;v/world&quot;</span>);
+</code></pre>
+<p><strong>Note</strong>: The startVertex needs to be a document, not only a document id.</p>
+<p>We can then create a traverser and start the traversal by calling its <em>traverse</em> method.
+Note that <em>traverse</em> needs a <em>result</em> object, which it can modify in place:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> result = {
+  visited: {
+    vertices: [ ],
+    paths: [ ]
+  }
+};
+<span class="hljs-keyword">var</span> traverser = <span class="hljs-keyword">new</span> traversal.Traverser(config);
+traverser.traverse(result, startVertex);
+</code></pre>
+<p>Finally, we can print the contents of the <em>results</em> object, limited to the visited vertices.
+We will only print the name and type of each visited vertex for brevity:</p>
+<pre><code class="lang-js"><span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;internal&quot;</span>).print(result.visited.vertices.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">vertex</span>) </span>{
+  <span class="hljs-keyword">return</span> vertex.name + <span class="hljs-string">&quot; (&quot;</span> + vertex.type + <span class="hljs-string">&quot;)&quot;</span>;
+}));
+</code></pre>
+<p>The full script, which includes all steps carried out so far is thus:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> traversal = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph/traversal&quot;</span>);
+
+<span class="hljs-keyword">var</span> config = {
+  datasource: traversal.generalGraphDatasourceFactory(<span class="hljs-string">&quot;worldCountry&quot;</span>),
+  strategy: <span class="hljs-string">&quot;depthfirst&quot;</span>,
+  order: <span class="hljs-string">&quot;preorder&quot;</span>,
+  filter: traversal.visitAllFilter,
+  expander: traversal.inboundExpander,
+  maxDepth: <span class="hljs-number">1</span>
+};
+
+<span class="hljs-keyword">var</span> startVertex = db._document(<span class="hljs-string">&quot;v/world&quot;</span>);
+<span class="hljs-keyword">var</span> result = {
+  visited: {
+    vertices: [ ],
+    paths: [ ]
+  }
+};
+
+<span class="hljs-keyword">var</span> traverser = <span class="hljs-keyword">new</span> traversal.Traverser(config);
+traverser.traverse(result, startVertex);
+
+<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;internal&quot;</span>).print(result.visited.vertices.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">vertex</span>) </span>{
+  <span class="hljs-keyword">return</span> vertex.name + <span class="hljs-string">&quot; (&quot;</span> + vertex.type + <span class="hljs-string">&quot;)&quot;</span>;
+}));
+</code></pre>
+<p>The result is an array of vertices that were visited during the traversal, starting at the
+start vertex (i.e. <em>v/world</em> in our example):</p>
+<pre><code class="lang-js">[
+  <span class="hljs-string">&quot;World (root)&quot;</span>,
+  <span class="hljs-string">&quot;Africa (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Asia (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Australia (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Europe (continent)&quot;</span>,
+  <span class="hljs-string">&quot;North America (continent)&quot;</span>,
+  <span class="hljs-string">&quot;South America (continent)&quot;</span>
+]
+</code></pre>
+<p><strong>Note</strong>: The result is limited to vertices directly connected to the start vertex. We
+achieved this by setting the <em>maxDepth</em> attribute to <em>1</em>. Not setting it would return the
+full array of vertices.</p>
+<p><a name="traversal_direction"></a></p>
+<h3 id="traversal-direction">Traversal Direction</h3>
+<p>For the examples contained in this manual, we&apos;ll be starting the traversals at vertex
+<em>v/world</em>. Vertices in our graph are connected like this:</p>
+<pre><code class="lang-js">v/world &lt;- is-<span class="hljs-keyword">in</span> &lt;- continent (Africa) &lt;- is-<span class="hljs-keyword">in</span> &lt;- country (Algeria) &lt;- is-<span class="hljs-keyword">in</span> &lt;- capital (Algiers)
+</code></pre>
+<p>To get any meaningful results, we must traverse the graph in <strong>inbound</strong> order. This means,
+we&apos;ll be following all incoming edges of to a vertex. In the traversal configuration, we
+have specified this via the <em>expander</em> attribute:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  expander: traversal.inboundExpander
+};
+</code></pre>
+<p>For other graphs, we might want to traverse via the <strong>outgoing</strong> edges. For this, we can
+use the <em>outboundExpander</em>. There is also an <em>anyExpander</em>, which will follow both outgoing
+and incoming edges. This should be used with care and the traversal should always be
+limited to a maximum number of iterations (e.g. using the <em>maxIterations</em> attribute) in
+order to terminate at some point.</p>
+<p>To invoke the default outbound expander for a graph, simply use the predefined function:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  expander: traversal.outboundExpander
+};
+</code></pre>
+<p>Please note the outbound expander will not produce any output for the examples if we still
+start the traversal at the <em>v/world</em> vertex.</p>
+<p>Still, we can use the outbound expander if we start somewhere else in the graph, e.g. </p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> traversal = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph/traversal&quot;</span>);
+
+<span class="hljs-keyword">var</span> config = {
+  datasource: traversal.generalGraphDatasourceFactory(<span class="hljs-string">&quot;world_graph&quot;</span>),
+  strategy: <span class="hljs-string">&quot;depthfirst&quot;</span>,
+  order: <span class="hljs-string">&quot;preorder&quot;</span>,
+  filter: traversal.visitAllFilter,
+  expander: traversal.outboundExpander
+};
+
+<span class="hljs-keyword">var</span> startVertex = db._document(<span class="hljs-string">&quot;v/capital-algiers&quot;</span>);
+<span class="hljs-keyword">var</span> result = {
+  visited: {
+    vertices: [ ],
+    paths: [ ]
+  }
+};
+
+<span class="hljs-keyword">var</span> traverser = <span class="hljs-keyword">new</span> traversal.Traverser(config);
+traverser.traverse(result, startVertex);
+
+<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;internal&quot;</span>).print(result.visited.vertices.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">vertex</span>) </span>{
+  <span class="hljs-keyword">return</span> vertex.name + <span class="hljs-string">&quot; (&quot;</span> + vertex.type + <span class="hljs-string">&quot;)&quot;</span>;
+}));
+</code></pre>
+<p>The result is:</p>
+<pre><code class="lang-js">[
+  <span class="hljs-string">&quot;Algiers (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Algeria (country)&quot;</span>,
+  <span class="hljs-string">&quot;Africa (continent)&quot;</span>,
+  <span class="hljs-string">&quot;World (root)&quot;</span>
+]
+</code></pre>
+<p>which confirms that now we&apos;re going outbound.</p>
+<p><a name="traversal_strategy"></a></p>
+<h3 id="traversal-strategy">Traversal Strategy</h3>
+<p><a name="depth-first_traversals"></a></p>
+<h4 id="depthfirst-traversals">Depth-first traversals</h4>
+<p>The visitation order of vertices is determined by the <em>strategy</em> and <em>order</em> attributes set
+in the configuration. We chose <em>depthfirst</em> and <em>preorder</em>, meaning the traverser will 
+visit each vertex <strong>before</strong> handling connected edges (pre-order), and descend into any 
+connected edges before processing other vertices on the same level (depth-first). </p>
+<p>Let&apos;s remove the <em>maxDepth</em> attribute now. We&apos;ll now be getting all vertices (directly
+and indirectly connected to the start vertex):</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  datasource: traversal.generalGraphDatasourceFactory(<span class="hljs-string">&quot;world_graph&quot;</span>),
+  strategy: <span class="hljs-string">&quot;depthfirst&quot;</span>,
+  order: <span class="hljs-string">&quot;preorder&quot;</span>,
+  filter: traversal.visitAllFilter,
+  expander: traversal.inboundExpander
+};
+
+<span class="hljs-keyword">var</span> result = {
+  visited: {
+    vertices: [ ],
+    paths: [ ]
+  }
+};
+
+<span class="hljs-keyword">var</span> traverser = <span class="hljs-keyword">new</span> traversal.Traverser(config);
+traverser.traverse(result, startVertex);
+
+<span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;internal&quot;</span>).print(result.visited.vertices.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">vertex</span>) </span>{
+  <span class="hljs-keyword">return</span> vertex.name + <span class="hljs-string">&quot; (&quot;</span> + vertex.type + <span class="hljs-string">&quot;)&quot;</span>;
+}));
+</code></pre>
+<p>The result will be a longer array, assembled in depth-first, pre-order order. For 
+each continent found, the traverser will descend into linked countries, and then into
+the linked capital:</p>
+<pre><code class="lang-js">[
+  <span class="hljs-string">&quot;World (root)&quot;</span>,
+  <span class="hljs-string">&quot;Africa (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Algeria (country)&quot;</span>,
+  <span class="hljs-string">&quot;Algiers (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Angola (country)&quot;</span>,
+  <span class="hljs-string">&quot;Luanda (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Botswana (country)&quot;</span>,
+  <span class="hljs-string">&quot;Gaborone (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Burkina Faso (country)&quot;</span>,
+  <span class="hljs-string">&quot;Ouagadougou (capital)&quot;</span>,
+  ...
+]
+</code></pre>
+<p>Let&apos;s switch the <em>order</em> attribute from <em>preorder</em> to <em>postorder</em>. This will make the
+traverser visit vertices <strong>after</strong> all connected vertices were visited (i.e. most distant
+vertices will be emitted first):</p>
+<pre><code class="lang-js">[
+  <span class="hljs-string">&quot;Algiers (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Algeria (country)&quot;</span>,
+  <span class="hljs-string">&quot;Luanda (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Angola (country)&quot;</span>,
+  <span class="hljs-string">&quot;Gaborone (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Botswana (country)&quot;</span>,
+  <span class="hljs-string">&quot;Ouagadougou (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Burkina Faso (country)&quot;</span>,
+  <span class="hljs-string">&quot;Bujumbura (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Burundi (country)&quot;</span>,
+  <span class="hljs-string">&quot;Yaounde (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Cameroon (country)&quot;</span>,
+  <span class="hljs-string">&quot;N&apos;Djamena (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Chad (country)&quot;</span>,
+  <span class="hljs-string">&quot;Yamoussoukro (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Cote d&apos;Ivoire (country)&quot;</span>,
+  <span class="hljs-string">&quot;Cairo (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Egypt (country)&quot;</span>,
+  <span class="hljs-string">&quot;Asmara (capital)&quot;</span>,
+  <span class="hljs-string">&quot;Eritrea (country)&quot;</span>,
+  <span class="hljs-string">&quot;Africa (continent)&quot;</span>,
+  ...
+]
+</code></pre>
+<p><a name="breadth-first_traversals"></a></p>
+<h4 id="breadthfirst-traversals">Breadth-first traversals</h4>
+<p>If we go back to <em>preorder</em>, but change the strategy to <em>breadth-first</em> and re-run the 
+traversal, we&apos;ll see that the return order changes, and items on the same level will be 
+returned adjacently:</p>
+<pre><code class="lang-js">[
+  <span class="hljs-string">&quot;World (root)&quot;</span>,
+  <span class="hljs-string">&quot;Africa (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Asia (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Australia (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Europe (continent)&quot;</span>,
+  <span class="hljs-string">&quot;North America (continent)&quot;</span>,
+  <span class="hljs-string">&quot;South America (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Burkina Faso (country)&quot;</span>,
+  <span class="hljs-string">&quot;Burundi (country)&quot;</span>,
+  <span class="hljs-string">&quot;Cameroon (country)&quot;</span>,
+  <span class="hljs-string">&quot;Chad (country)&quot;</span>,
+  <span class="hljs-string">&quot;Algeria (country)&quot;</span>,
+  <span class="hljs-string">&quot;Angola (country)&quot;</span>,
+  ...
+]
+</code></pre>
+<p><strong>Note</strong>: The order of items returned for the same level is undefined.
+This is because there is no natural order of edges for a vertex with
+multiple connected edges. To explicitly set the order for edges on the
+same level, you can specify an edge comparator function with the <em>sort</em>
+attribute:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  sort: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">l, r</span>) </span>{ <span class="hljs-keyword">return</span> l._key &lt; r._key ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>; }
+  ...
+};
+</code></pre>
+<p>The arguments l and r are edge documents.
+This will traverse edges of the same vertex in backward <em>_key</em> order:</p>
+<pre><code class="lang-js">[
+  <span class="hljs-string">&quot;World (root)&quot;</span>,
+  <span class="hljs-string">&quot;South America (continent)&quot;</span>,
+  <span class="hljs-string">&quot;North America (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Europe (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Australia (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Asia (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Africa (continent)&quot;</span>,
+  <span class="hljs-string">&quot;Ecuador (country)&quot;</span>,
+  <span class="hljs-string">&quot;Colombia (country)&quot;</span>,
+  <span class="hljs-string">&quot;Chile (country)&quot;</span>,
+  <span class="hljs-string">&quot;Brazil (country)&quot;</span>,
+  <span class="hljs-string">&quot;Bolivia (country)&quot;</span>,
+  <span class="hljs-string">&quot;Argentina (country)&quot;</span>,
+  ...
+]
+</code></pre>
+<p><strong>Note</strong>: This attribute only works for the usual expanders
+<em>traversal.inboundExpander</em>, <em>traversal.outboundExpander</em>,
+<em>traversal.anyExpander</em> and their corresponding &quot;WithLabels&quot; variants.
+If you are using custom expanders
+you have to organize the sorting within the specified expander.</p>
+<p><a name="writing_custom_visitors"></a></p>
+<h4 id="writing-custom-visitors">Writing Custom Visitors</h4>
+<p>So far we have used much of the traverser&apos;s default functions. The traverser is very
+configurable and many of the default functions can be overridden with custom functionality.</p>
+<p>For example, we have been using the default visitor function (which is always used if
+the configuration does not contain the <em>visitor</em> attribute). The default visitor function
+is called for each vertex in a traversal, and will push it into the result.
+This is the reason why the <em>result</em> variable looked different after the traversal, and
+needed to be initialized before the traversal was started.</p>
+<p>Note that the default visitor (named <code>trackingVisitor</code>) will add every visited vertex
+into the result, including the full paths from the start vertex. This is useful for learning and
+debugging purposes, but should be avoided in production because it might produce (and
+copy) huge amounts of data. Instead, only those data should be copied into the result 
+that are actually necessary.</p>
+<p>The traverser comes with the following predefined visitors:</p>
+<ul>
+<li><em>trackingVisitor</em>: this is the default visitor. It will copy all data of each visited
+vertex plus the full path information into the result. This can be slow if the result
+set is huge or vertices contain a lot of data.</li>
+<li><em>countingVisitor</em>: this is a very lightweight visitor: all it does is increase a
+counter in the result for each vertex visited. Vertex data and paths will not be copied
+into the result.</li>
+<li><em>doNothingVisitor</em>: if no action shall be carried out when a vertex is visited, this
+visitor can be employed. It will not do anything and will thus be fast. It can be used
+for performance comparisons with other visitors.</li>
+</ul>
+<p>We can also write our own visitor function if we want to. The general function signature for
+visitor functions is as follows:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  visitor: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, result, vertex, path, connected</span>) </span>{ ... }
+};
+</code></pre>
+<p>Note: the <em>connected</em> parameter value will only be set if the traversal order is
+set to <em>preorder-expander</em>. Otherwise, this parameter won&apos;t be set by the traverser.</p>
+<p>Visitor functions are not expected to return any values. Instead, they can modify the
+<em>result</em> variable (e.g. by pushing the current vertex into it), or do anything else.
+For example, we can create a simple visitor function that only prints information about
+the current vertex as we traverse:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  datasource: traversal.generalGraphDatasourceFactory(<span class="hljs-string">&quot;world_graph&quot;</span>),
+  strategy: <span class="hljs-string">&quot;depthfirst&quot;</span>,
+  order: <span class="hljs-string">&quot;preorder&quot;</span>,
+  filter: traversal.visitAllFilter,
+  expander: traversal.inboundExpander,
+  visitor: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, result, vertex, path</span>) </span>{
+    <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;internal&quot;</span>).print(<span class="hljs-string">&quot;visiting vertex&quot;</span>, vertex.name);
+  }
+};
+
+<span class="hljs-keyword">var</span> traverser = <span class="hljs-keyword">new</span> traversal.Traverser(config);
+traverser.traverse(<span class="hljs-literal">undefined</span>, startVertex);
+</code></pre>
+<p>To write a visitor that increments a counter each time a vertex is visited,
+we could write the following custom visitor:</p>
+<pre><code class="lang-js">config.visitor = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, result, vertex, path, connected</span>) </span>{
+  <span class="hljs-keyword">if</span> (! result) {
+    result = { };
+  }
+
+  <span class="hljs-keyword">if</span> (! result.hasOwnProperty(<span class="hljs-string">&apos;count&apos;</span>)) {
+    result.count = <span class="hljs-number">0</span>;
+  }
+
+  ++result.count;
+}
+</code></pre>
+<p>Note that such visitor is already predefined (it&apos;s the countingVisitor described
+above). It can be used as follows:</p>
+<pre><code class="lang-js">config.visitor = traversal.countingVisitor;
+</code></pre>
+<p>Another example of a visitor is one that collects the <code>_id</code> values of all vertices 
+visited:</p>
+<pre><code class="lang-js">config.visitor = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, result, vertex, path, connected</span>) </span>{
+  <span class="hljs-keyword">if</span> (! result) {
+    result = { };
+  }
+  <span class="hljs-keyword">if</span> (! result.hasOwnProperty(<span class="hljs-string">&quot;visited&quot;</span>)) {
+    result.visited = { vertices: [ ] };
+  }
+
+  result.visited.vertices.push(vertex._id);
+}
+</code></pre>
+<p>When the traversal order is set to <em>preorder-expander</em>, the traverser will pass
+a fifth parameter value into the visitor function. This parameter contains the
+connected edges of the visited vertex as an array. This can be handy because in this
+case the visitor will get all information about the vertex and the connected edges
+together.</p>
+<p>For example, the following visitor can be used to print only leaf nodes (that
+do not have any further connected edges):</p>
+<pre><code class="lang-js">config.visitor = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, result, vertex, path, connected</span>) </span>{
+  <span class="hljs-keyword">if</span> (connected &amp;&amp; connected.length === <span class="hljs-number">0</span>) {
+    <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;internal&quot;</span>).print(<span class="hljs-string">&quot;found a leaf-node: &quot;</span>, vertex);
+  }
+}
+</code></pre>
+<p>Note that for this visitor to work, the traversal <em>order</em> attribute needs to be
+set to the value <em>preorder-expander</em>.</p>
+<p><a name="filtering_vertices_and_edges"></a></p>
+<h3 id="filtering-vertices-and-edges">Filtering Vertices and Edges</h3>
+<p><a name="filtering_vertices"></a></p>
+<h4 id="filtering-vertices">Filtering Vertices</h4>
+<p>So far we have printed or returned all vertices that were visited during the traversal. 
+This is not always required. If the result shall be restrict to just specific vertices, 
+we can use a filter function for vertices. It can be defined by setting the <em>filter</em> 
+attribute of a traversal configuration, e.g.:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  filter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, vertex, path</span>) </span>{
+    <span class="hljs-keyword">if</span> (vertex.type !== <span class="hljs-string">&apos;capital&apos;</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;exclude&apos;</span>;
+    }
+  }
+}
+</code></pre>
+<p>The above filter function will exclude all vertices that do not have a <em>type</em> value of
+<em>capital</em>. The filter function will be called for each vertex found during the traversal.
+It will receive the traversal configuration, the current vertex, and the full path from 
+the traversal start vertex to the current vertex. The path consists of an array of edges, 
+and an array of vertices. We could also filter everything but capitals by checking the
+length of the path from the start vertex to the current vertex. Capitals will have a
+distance of 3 from the <em>v/world</em> start vertex
+(capital -&gt; is-in -&gt; country -&gt; is-in -&gt; continent -&gt; is-in -&gt; world):</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  filter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, vertex, path</span>) </span>{
+    <span class="hljs-keyword">if</span> (path.edges.length &lt; <span class="hljs-number">3</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;exclude&apos;</span>;
+    }
+  }
+}
+</code></pre>
+<p><strong>Note</strong>: If a filter function returns nothing (or <em>undefined</em>), the current vertex
+will be included, and all connected edges will be followed. If a filter function
+returns <em>exclude</em> the current vertex will be excluded from the result, and all still
+all connected edges will be followed. If a filter function returns <em>prune</em>, the
+current vertex will be included, but no connected edges will be followed.</p>
+<p>For example, the following filter function will not descend into connected edges of
+continents, limiting the depth of the traversal. Still, continent vertices will be
+included in the result:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  filter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, vertex, path</span>) </span>{
+    <span class="hljs-keyword">if</span> (vertex.type === <span class="hljs-string">&apos;continent&apos;</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;prune&apos;</span>;
+    }
+  }
+}
+</code></pre>
+<p>It is also possible to combine <em>exclude</em> and <em>prune</em> by returning an array with both
+values:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">return</span> [ <span class="hljs-string">&apos;exclude&apos;</span>, <span class="hljs-string">&apos;prune&apos;</span> ];
+</code></pre>
+<p><a name="filtering_edges"></a></p>
+<h3 id="filtering-edges">Filtering Edges</h3>
+<p>It is possible to exclude certain edges from the traversal. To filter on edges, a
+filter function can be defined via the <em>expandFilter</em> attribute. The <em>expandFilter</em>
+is a function which is called for each edge during a traversal.</p>
+<p>It will receive the current edge (<em>edge</em> variable) and the vertex which the edge
+connects to (in the direction of the traversal). It also receives the current path
+from the start vertex up to the current vertex (excluding the current edge and the
+vertex the edge points to).</p>
+<p>If the function returns <em>true</em>, the edge will be followed. If the function returns
+<em>false</em>, the edge will not be followed.
+Here is a very simple custom edge filter function implementation, which simply
+includes edges if the (edges) path length is less than 1, and will exclude any
+other edges. This will effectively terminate the traversal after the first level 
+of edges:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  expandFilter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, vertex, edge, path</span>) </span>{
+    <span class="hljs-keyword">return</span> (path.edges.length &lt; <span class="hljs-number">1</span>);
+  }
+};
+</code></pre>
+<p><a name="writing_custom_expanders"></a></p>
+<h3 id="writing-custom-expanders">Writing Custom Expanders</h3>
+<p>The edges connected to a vertex are determined by the expander. So far we have used a 
+default expander (the default inbound expander to be precise). The default inbound 
+expander simply enumerates all connected ingoing edges for a vertex, based on the
+<a href="../../Appendix/Glossary.html#edge-collection">edge collection</a> specified in the traversal configuration.</p>
+<p>There is also a default outbound expander, which will enumerate all connected outgoing
+edges. Finally, there is an any expander, which will follow both ingoing and outgoing
+edges.</p>
+<p>If connected edges must be determined in some different fashion for whatever reason, a
+custom expander can be written and registered by setting the <em>expander</em> attribute of the 
+configuration. The expander function signature is as follows:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  expander: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, vertex, path</span>) </span>{ ... }
+}
+</code></pre>
+<p>It is the expander&apos;s responsibility to return all edges and vertices directly
+connected to the current vertex (which is passed via the <em>vertex</em> variable).
+The full path from the start vertex up to the current vertex is also supplied via
+the <em>path</em> variable.
+An expander is expected to return an array of objects, which need to have an <em>edge</em>
+and a <em>vertex</em> attribute each.</p>
+<p><strong>Note</strong>: If you want to rely on a particular order in which the edges
+are traversed, you have to sort the edges returned by your expander
+within the code of the expander. The functions to get outbound, inbound
+or any edges from a vertex do not guarantee any particular order!</p>
+<p>A custom implementation of an inbound expander could look like this (this is a
+non-deterministic expander, which randomly decides whether or not to include
+connected edges):</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  expander: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, vertex, path</span>) </span>{
+    <span class="hljs-keyword">var</span> connected = [ ];
+    <span class="hljs-keyword">var</span> datasource = config.datasource;
+    datasource.getInEdges(vertex._id).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">edge</span>) </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Math</span>.random() &gt;= <span class="hljs-number">0.5</span>) {
+        connected.push({ edge: edge, vertex: (edge._from) });
+      }
+    });
+    <span class="hljs-keyword">return</span> connected;
+  }
+};
+</code></pre>
+<p>A custom expander can also be used as an edge filter because it has full control
+over which edges will be returned.</p>
+<p>Following are two examples of custom expanders that pick edges based on attributes
+of the edges and the connected vertices.</p>
+<p>Finding the connected edges / vertices based on an attribute <em>when</em> in the
+connected vertices. The goal is to follow the edge that leads to the vertex
+with the highest value in the <em>when</em> attribute:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  expander: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, vertex, path</span>) </span>{
+    <span class="hljs-keyword">var</span> datasource = config.datasource;
+    <span class="hljs-comment">// determine all outgoing edges</span>
+    <span class="hljs-keyword">var</span> outEdges = datasource.getOutEdges(vertex);
+
+    <span class="hljs-keyword">if</span> (outEdges.length === <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">return</span> [ ];
+    }
+
+    <span class="hljs-keyword">var</span> data = [ ];
+    outEdges.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">edge</span>) </span>{
+      data.push({ edge: edge, vertex: datasource.getInVertex(edge) });
+    });
+
+    <span class="hljs-comment">// sort outgoing vertices according to &quot;when&quot; attribute value</span>
+    data.sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">l, r</span>) </span>{
+      <span class="hljs-keyword">if</span> (l.vertex.when === r.vertex.when) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+
+      <span class="hljs-keyword">return</span> (l.vertex.when &lt; r.vertex.when ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>);
+    });
+
+    <span class="hljs-comment">// pick first vertex found (with highest &quot;when&quot; attribute value)</span>
+    <span class="hljs-keyword">return</span> [ data[<span class="hljs-number">0</span>] ];
+  }
+  ...
+};
+</code></pre>
+<p>Finding the connected edges / vertices based on an attribute <em>when</em> in the
+edge itself. The goal is to pick the one edge (out of potentially many) that
+has the highest <em>when</em> attribute value:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> config = {
+  ...
+  expander: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">config, vertex, path</span>) </span>{
+    <span class="hljs-keyword">var</span> datasource = config.datasource;
+    <span class="hljs-comment">// determine all outgoing edges</span>
+    <span class="hljs-keyword">var</span> outEdges = datasource.getOutEdges(vertex);
+
+    <span class="hljs-keyword">if</span> (outEdges.length === <span class="hljs-number">0</span>) {
+      <span class="hljs-keyword">return</span> [ ]; <span class="hljs-comment">// return an empty array</span>
+    }
+
+    <span class="hljs-comment">// sort all outgoing edges according to &quot;when&quot; attribute</span>
+    outEdges.sort(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">l, r</span>) </span>{
+      <span class="hljs-keyword">if</span> (l.when === r.when) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+      }
+      <span class="hljs-keyword">return</span> (l.when &lt; r.when ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span>);
+    });
+
+    <span class="hljs-comment">// return first edge (the one with highest &quot;when&quot; value)</span>
+    <span class="hljs-keyword">var</span> edge = outEdges[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">var</span> v = datasource.getInVertex(edge);
+      <span class="hljs-keyword">return</span> [ { edge: edge, vertex: v } ];
+    }
+    <span class="hljs-keyword">catch</span> (e) { }
+
+    <span class="hljs-keyword">return</span> [ ];
+  }
+  ...
+};
+</code></pre>
+<p><a name="handling_uniqueness"></a></p>
+<h3 id="handling-uniqueness">Handling Uniqueness</h3>
+<p>Graphs may contain cycles. To be on top of what happens when a traversal encounters a vertex
+or an edge it has already visited, there are configuration options.</p>
+<p>The default configuration is to visit every vertex, regardless of whether it was already visited
+in the same traversal. However, edges will by default only be followed if they are not already 
+present in the current path.</p>
+<p>Imagine the following graph which contains a cycle:</p>
+<pre><code>A -&gt; B -&gt; C -&gt; A
+</code></pre><p>When the traversal finds the edge from <em>C</em> to <em>A</em>, it will by default follow it. This is because
+we have not seen this edge yet. It will also visit vertex <em>A</em> again. This is because by default
+all vertices will be visited, regardless of whether already visited or not.</p>
+<p>However, the traversal will not again following the outgoing edge from <em>A</em> to <em>B</em>. This is because
+we already have the edge from <em>A</em> to <em>B</em> in our current path.</p>
+<p>These default settings will prevent infinite traversals.</p>
+<p>To adjust the uniqueness for visiting vertices, there are the following options for <em>uniqueness.vertices</em>:</p>
+<ul>
+<li><em>&quot;none&quot;</em>: always visit a vertices, regardless of whether it was already visited or not</li>
+<li><em>&quot;global&quot;</em>: visit a vertex only if it was not visited in the traversal</li>
+<li><em>&quot;path&quot;</em>: visit a vertex if it is not included in the current path</li>
+</ul>
+<p>To adjust the uniqueness for following edges, there are the following options for <em>uniqueness.edges</em>:</p>
+<ul>
+<li><em>&quot;none&quot;</em>: always follow an edge, regardless of whether it was followed before</li>
+<li><em>&quot;global&quot;</em>: follow an edge only if it wasn&apos;t followed in the traversal</li>
+<li><em>&quot;path&quot;</em>: follow an edge if it is not included in the current path</li>
+</ul>
+<p>Note that uniqueness checking will have some effect on both runtime and memory usage. For example, when
+uniqueness checks are set to <em>&quot;global&quot;</em>, arrays of visited vertices and edges must be kept in memory while the
+traversal is executed. Global uniqueness should thus only be used when a traversal is expected to visit
+few nodes.</p>
+<p>In terms of runtime, turning off uniqueness checks (by setting both options to <em>&quot;none&quot;</em>) is the best choice,
+but it is only safe for graphs that do not contain cycles. When uniqueness checks are deactivated in a graph
+with cycles, the traversal might not abort in a sensible amount of time.</p>
+<p><a name="optimizations"></a></p>
+<h3 id="optimizations">Optimizations</h3>
+<p>There are a few options for making a traversal run faster.</p>
+<p>The best option is to make the amount of visited vertices and followed edges as small as possible. This can
+be achieved by writing custom filter and expander functions. Such functions should only include vertices of
+interest, and only follow edges that might be interesting.</p>
+<p>Traversal depth can also be bounded with the <em>minDepth</em> and <em>maxDepth</em> options.</p>
+<p>Another way to speed up traversals is to write a custom visitor function. The default visitor function 
+(<em>trackingVisitor</em>) will copy every visited vertex into the result. If vertices contain lots of data, 
+this might be expensive. It is therefore recommended to only copy such data into the result that is actually 
+needed. The default visitor function will also copy the full path to the visited document into the result. 
+This is even more expensive and should be avoided if possible.</p>
+<p>If the goal of a traversal is to only count the number of visited vertices, the prefab <em>countingVisitor</em><br>will be much more efficient than the default visitor.</p>
+<p>For graphs that are known to not contain any cycles, uniqueness checks should be turned off. This can achieved
+via the <em>uniqueness</em> configuration options. Note that uniqueness checks should not be turned off for graphs
+that are known contain cycles or if there is no information about the graph&apos;s structure.</p>
+<p>By default, a traversal will only process a limited number of vertices. This is protect the user from
+unintentionally run a never-ending traversal on a graph with cyclic data. How many vertices will be processed
+at most is determined by the <em>maxIterations</em> configuration option. If a traversal hits the cap specified 
+by <em>maxIterations</em>, it will abort and throw a <em>too many iterations</em> exception. If this error is encountered,
+the <em>maxIterations</em> value should be increased if it is made sure that the other traversal configuration
+parameters are sane and the traversal will abort naturally at some point.</p>
+<p>Finally, the <em>buildVertices</em> configuration option can be set to <em>false</em> to avoid looking up and fully constructing
+vertex data. If all that&apos;s needed from vertices are the <em>_id</em> or <em>_key</em> attributes, the <em>buildvertices</em> 
+option can be set to <em>false</em>. If visitor, filter or expandFilter functions need to access other vertex
+attributes, the option should not be changed.</p>
+<p><a name="configuration_overview"></a></p>
+<h3 id="configuration-overview">Configuration Overview</h3>
+<p>This section summarizes the configuration attributes for the traversal object. The
+configuration can consist of the following attributes:</p>
+<ul>
+<li><p><em>visitor</em>: visitor function for vertices. It will be called for all non-excluded vertices. The
+general visitor function signature is <em>function (config, result, vertex, path)</em>. If the traversal
+order is <em>preorder-expander</em>, the connecting edges of the visited vertex will be passed as the
+fifth parameter, extending the function signature to: <em>function (config, result, vertex, path, edges)</em>. </p>
+<p>Visitor functions are not expected to return values, but they may modify the <em>result</em> variable as 
+needed (e.g. by pushing vertex data into the result).</p>
+</li>
+<li><em>expander</em>: expander function that is responsible for returning edges and vertices
+directly connected to a vertex. The function signature is <em>function (config, vertex, path)</em>.
+The expander function is required to return an array of connection objects, consisting of an
+<em>edge</em> and <em>vertex</em> attribute each. If there are no connecting edges, the expander is expected to
+return an empty array.</li>
+<li><em>filter</em>: vertex filter function. The function signature is <em>function (config, vertex, path)</em>. It
+may return one of the following values:<ul>
+<li><em>undefined</em>: vertex will be included in the result and connected edges will be traversed</li>
+<li><em>&quot;exclude&quot;</em>: vertex will not be included in the result and connected edges will be traversed</li>
+<li><em>&quot;prune&quot;</em>: vertex will be included in the result but connected edges will not be traversed</li>
+<li>[ <em>&quot;prune&quot;</em>, <em>&quot;exclude&quot;</em> ]: vertex will not be included in the result and connected edges will not
+be returned</li>
+</ul>
+</li>
+<li><em>expandFilter</em>: filter function applied on each edge/vertex combination determined by the expander.
+The function signature is <em>function (config, vertex, edge, path)</em>. The function should return
+<em>true</em> if the edge/vertex combination should be processed, and <em>false</em> if it should be ignored.</li>
+<li><em>sort</em>: a filter function to determine the order in which connected edges are processed. The
+function signature is <em>function (l, r)</em>. The function is required to return one of the following
+values:<ul>
+<li><em>-1</em> if <em>l</em> should have a sort value less than <em>r</em></li>
+<li><em>1</em> if <em>l</em> should have a higher sort value than <em>r</em></li>
+<li><em>0</em> if <em>l</em> and <em>r</em> have the same sort value</li>
+</ul>
+</li>
+<li><em>strategy</em>: determines the visitation strategy. Possible values are <em>depthfirst</em> and <em>breadthfirst</em>.</li>
+<li><em>order</em>: determines the visitation order. Possible values are <em>preorder</em>, <em>postorder</em>, and
+<em>preorder-expander</em>. <em>preorder-expander</em> is the same as <em>preorder</em>, except that the signature of
+the <em>visitor</em> function will change as described above.</li>
+<li><em>itemOrder</em>: determines the order in which connections returned by the expander will be processed. 
+Possible values are <em>forward</em> and <em>backward</em>.</li>
+<li><em>maxDepth</em>: if set to a value greater than <em>0</em>, this will limit the traversal to this maximum depth. </li>
+<li><em>minDepth</em>: if set to a value greater than <em>0</em>, all vertices found on a level below the <em>minDepth</em>
+level will not be included in the result.</li>
+<li><em>maxIterations</em>: the maximum number of iterations that the traversal is allowed to perform. It is
+sensible to set this number so unbounded traversals will terminate at some point.</li>
+<li><em>uniqueness</em>: an object that defines how repeated visitations of vertices should be handled.
+The <em>uniqueness</em> object can have a sub-attribute <em>vertices</em>, and a sub-attribute <em>edges</em>. Each
+sub-attribute can have one of the following values:<ul>
+<li><em>&quot;none&quot;</em>: no uniqueness constraints</li>
+<li><em>&quot;path&quot;</em>: element is excluded if it is already contained in the current path. This setting may be
+sensible for graphs that contain cycles (e.g. A -&gt; B -&gt; C -&gt; A).</li>
+<li><em>&quot;global&quot;</em>: element is excluded if it was already found/visited at any point during the traversal.</li>
+</ul>
+</li>
+<li><em>buildVertices</em>: this attribute controls whether vertices encountered during the traversal will be
+looked up in the database and will be made available to visitor, filter, and expandFilter functions.
+By default, vertices will be looked up and made available. However, there are some special use
+cases when fully constructing vertex objects is not necessary and can be avoided. For example, if
+a traversal is meant to only count the number of visited vertices but do not read any data from 
+vertices, this option might be set to <em>true</em>.</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../Graphs/Traversals/index.html" class="navigation navigation-prev " aria-label="Previous page: Traversals"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../Graphs/Traversals/ExampleData.html" class="navigation navigation-next " aria-label="Next page: Example Data"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) Documentation -->
+</html>

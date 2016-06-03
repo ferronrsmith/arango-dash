@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Repository | ArangoDB 2.8.2 Documentation</title>
+        <title>Repository | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="13.3.7" data-chapter-title="Repository" data-filepath="Foxx/Develop/Repository.md" data-basepath="../.." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="13.3.7" data-chapter-title="Repository" data-filepath="Foxx/Develop/Repository.md" data-basepath="../.." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4063,9 +4063,9 @@
 <p>A repository is a gateway to the database. It gets data from the database, updates it or saves new data. It uses the given model when it returns a model and expects instances of the model for methods like save. In your repository file, export the repository as <strong>repository</strong>.</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Foxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;org/arangodb/foxx&quot;</span>);
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodosRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Foxx</span>.<span class="hljs-title">Repository</span> </span>{
+<span class="hljs-keyword">var</span> TodosRepository = Foxx.Repository.extend({
     <span class="hljs-comment">// ...</span>
-}
+});
 
 exports.repository = TodosRepository;
 </code></pre>
@@ -4151,12 +4151,11 @@ instance = <span class="hljs-keyword">new</span> Repository(collection, {model: 
 <pre><code class="lang-js"><span class="hljs-comment">// in the repository</span>
 <span class="hljs-keyword">var</span> Foxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;org/arangodb/foxx&quot;</span>);
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodosRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Foxx</span>.<span class="hljs-title">Repository</span> </span>{
-    <span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">var</span> TodosRepository = Foxx.Repository.extend({
+    getPendingItems: Foxx.createQuery(
+        <span class="hljs-string">&apos;FOR todo IN my_todos FILTER todo.completed == false RETURN todo&apos;</span>
+    )
 });
-TodosRepository.prototype.getPendingItems = Foxx.createQuery(
-    <span class="hljs-string">&apos;FOR todo IN my_todos FILTER todo.completed == false RETURN todo&apos;</span>
-);
 
 <span class="hljs-comment">// in the controller</span>
 ctrl.get(<span class="hljs-string">&quot;/&quot;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res</span>) </span>{
@@ -4220,16 +4219,15 @@ access to additional index-specific methods like <strong>range</strong> or <stro
 <p>The syntax for defining indexes is the same used in <a href="../../IndexHandling/index.html"><em>collection.ensureIndex</em></a>.</p>
 <p><strong>Examples</strong></p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> Foxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;org/arangodb/foxx&apos;</span>);
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FulltextRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Foxx</span>.<span class="hljs-title">Repository</span> </span>{
-    <span class="hljs-comment">// ...</span>
-}
-FulltextRepository.prototype.indexes = [
-    {
-        type: <span class="hljs-string">&apos;fulltext&apos;</span>,
-        fields: [<span class="hljs-string">&apos;text&apos;</span>],
-        minLength: <span class="hljs-number">3</span>
-    }
-];
+<span class="hljs-keyword">var</span> FulltextRepository = Foxx.Repository.extend({
+    indexes: [
+        {
+            type: <span class="hljs-string">&apos;fulltext&apos;</span>,
+            fields: [<span class="hljs-string">&apos;text&apos;</span>],
+            minLength: <span class="hljs-number">3</span>
+        }
+    ]
+});
 </code></pre>
 <p><a name="methods_of_a_repository"></a></p>
 <h2 id="methods-of-a-repository">Methods of a Repository</h2>
@@ -4503,5 +4501,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

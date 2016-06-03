@@ -1,0 +1,1494 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Batch Requests | ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Export/index.html" />
+    
+    
+    <link rel="prev" href="../BulkImports/ImportingHeadersAndValues.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="15.3"
+        data-chapter-title="Batch Requests"
+        data-filepath="BatchRequest/README.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:44 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="General/index.html">
+            
+                
+                    <a href="../General/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        General HTTP Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Api/index.html">
+            
+                
+                    <a href="../Api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        HTTP Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Database/index.html">
+            
+                
+                    <a href="../Database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Database/DatabaseEndpoint.html">
+            
+                
+                    <a href="../Database/DatabaseEndpoint.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        To-Endpoint
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Database/DatabaseManagement.html">
+            
+                
+                    <a href="../Database/DatabaseManagement.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Database/NotesOnDatabases.html">
+            
+                
+                    <a href="../Database/NotesOnDatabases.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Notes on Databases
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Collection/index.html">
+            
+                
+                    <a href="../Collection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Collections
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Collection/Creating.html">
+            
+                
+                    <a href="../Collection/Creating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Creating
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Collection/Getting.html">
+            
+                
+                    <a href="../Collection/Getting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Getting Information
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Collection/Modifying.html">
+            
+                
+                    <a href="../Collection/Modifying.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Modifying
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Document/index.html">
+            
+                
+                    <a href="../Document/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Documents
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Document/AddressAndEtag.html">
+            
+                
+                    <a href="../Document/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Basics and Terminology
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Document/WorkingWithDocuments.html">
+            
+                
+                    <a href="../Document/WorkingWithDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Working with Documents
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Edge/index.html">
+            
+                
+                    <a href="../Edge/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Edge/AddressAndEtag.html">
+            
+                
+                    <a href="../Edge/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Address and ETag
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Edge/WorkingWithEdges.html">
+            
+                
+                    <a href="../Edge/WorkingWithEdges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Working with Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Gharial/index.html">
+            
+                
+                    <a href="../Gharial/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        General Graph
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Gharial/Management.html">
+            
+                
+                    <a href="../Gharial/Management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Gharial/Vertices.html">
+            
+                
+                    <a href="../Gharial/Vertices.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Vertices
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Gharial/Edges.html">
+            
+                
+                    <a href="../Gharial/Edges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Traversal/index.html">
+            
+                
+                    <a href="../Traversal/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="AqlQueryCursor/index.html">
+            
+                
+                    <a href="../AqlQueryCursor/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        AQL Query Cursors
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="AqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../AqlQueryCursor/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="AqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../AqlQueryCursor/AccessingCursors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Accessing Cursors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="AqlQuery/index.html">
+            
+                
+                    <a href="../AqlQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        AQL Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="AqlQueryCache/index.html">
+            
+                
+                    <a href="../AqlQueryCache/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        AQL Query Cache
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="AqlUserFunctions/index.html">
+            
+                
+                    <a href="../AqlUserFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        AQL User Functions Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="SimpleQuery/index.html">
+            
+                
+                    <a href="../SimpleQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Simple Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="AsyncResultsManagement/index.html">
+            
+                
+                    <a href="../AsyncResultsManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        Async Result Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="BulkImports/index.html">
+            
+                
+                    <a href="../BulkImports/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        Bulk Import / Export
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1" data-path="BulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../BulkImports/ImportingSelfContained.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                        JSON Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.2" data-path="BulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../BulkImports/ImportingHeadersAndValues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                        Headers &amp; Values
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="15.3" data-path="BatchRequest/index.html">
+            
+                
+                    <a href="../BatchRequest/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.3.</b>
+                        
+                        Batch Requests
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.4" data-path="Export/index.html">
+            
+                
+                    <a href="../Export/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.4.</b>
+                        
+                        Exporting data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="Indexes/index.html">
+            
+                
+                    <a href="../Indexes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        Indexes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="Indexes/WorkingWith.html">
+            
+                
+                    <a href="../Indexes/WorkingWith.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        Working with Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="Indexes/Hash.html">
+            
+                
+                    <a href="../Indexes/Hash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                        Hash
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="Indexes/Skiplist.html">
+            
+                
+                    <a href="../Indexes/Skiplist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                        Skiplist
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="Indexes/Geo.html">
+            
+                
+                    <a href="../Indexes/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="Indexes/Fulltext.html">
+            
+                
+                    <a href="../Indexes/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="Transaction/index.html">
+            
+                
+                    <a href="../Transaction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        Transactions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="Replications/index.html">
+            
+                
+                    <a href="../Replications/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        Replication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="18.1" data-path="Replications/ReplicationDump.html">
+            
+                
+                    <a href="../Replications/ReplicationDump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                        Replication Dump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.2" data-path="Replications/ReplicationLogger.html">
+            
+                
+                    <a href="../Replications/ReplicationLogger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                        Replication Logger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.3" data-path="Replications/ReplicationApplier.html">
+            
+                
+                    <a href="../Replications/ReplicationApplier.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                        Replication Applier
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.4" data-path="Replications/OtherReplication.html">
+            
+                
+                    <a href="../Replications/OtherReplication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.4.</b>
+                        
+                        Other Replication Commands
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="19" data-path="ShardingInterface/index.html">
+            
+                
+                    <a href="../ShardingInterface/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                        Sharding
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="20" data-path="AdministrationAndMonitoring/index.html">
+            
+                
+                    <a href="../AdministrationAndMonitoring/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                        Monitoring
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="21" data-path="Endpoints/index.html">
+            
+                
+                    <a href="../Endpoints/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                        Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="22" data-path="UserManagement/index.html">
+            
+                
+                    <a href="../UserManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                        User Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="23" data-path="Tasks/index.html">
+            
+                
+                    <a href="../Tasks/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                        Tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="24" data-path="MiscellaneousFunctions/index.html">
+            
+                
+                    <a href="../MiscellaneousFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                        Miscellaneous functions
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="http_interface_for_batch_requests"></a></p>
+<h1 id="http-interface-for-batch-requests">HTTP Interface for Batch Requests</h1>
+<p>Clients normally send individual operations to ArangoDB in individual
+HTTP requests. This is straightforward and simple, but has the
+disadvantage that the network overhead can be significant if many
+small requests are issued in a row.</p>
+<p>To mitigate this problem, ArangoDB offers a batch request API that
+clients can use to send multiple operations in one batch to
+ArangoDB. This method is especially useful when the client has to send
+many HTTP requests with a small body/payload and the individual
+request results do not depend on each other.</p>
+<p>Clients can use ArangoDB&apos;s batch API by issuing a multipart HTTP POST
+request to the URL <em>/_api/batch</em> handler. The handler will accept the
+request if the Content-type is <em>multipart/form-data</em> and a boundary
+string is specified. ArangoDB will then decompose the batch request
+into its individual parts using this boundary. This also means that
+the boundary string itself must not be contained in any of the parts.
+When ArangoDB has split the multipart request into its individual
+parts, it will process all parts sequentially as if it were a
+standalone request.  When all parts are processed, ArangoDB will
+generate a multipart HTTP response that contains one part for each
+part operation result.  For example, if you send a multipart request
+with 5 parts, ArangoDB will send back a multipart response with 5
+parts as well.</p>
+<p>The server expects each part message to start with exactly the
+following &quot;header&quot;: </p>
+<pre><code>Content-type: application/x-arango-batchpart
+</code></pre><p>You can optionally specify a <em>Content-Id</em> &quot;header&quot; to uniquely
+identify each part message. The server will return the <em>Content-Id</em> in
+its response if it is specified. Otherwise, the server will not send a
+Content-Id &quot;header&quot; back. The server will not validate the uniqueness
+of the Content-Id.  After the mandatory <em>Content-type</em> and the
+optional <em>Content-Id</em> header, two Windows line breaks
+(i.e. <em>\r\n\r\n</em>) must follow.  Any deviation of this structure
+might lead to the part being rejected or incorrectly interpreted. The
+part request payload, formatted as a regular HTTP request, must follow
+the two Windows line breaks literal directly.</p>
+<p>Note that the literal <em>Content-type: application/x-arango-batchpart</em>
+technically is the header of the MIME part, and the HTTP request
+(including its headers) is the body part of the MIME part.</p>
+<p>An actual part request should start with the HTTP method, the called
+URL, and the HTTP protocol version as usual, followed by arbitrary
+HTTP headers. Its body should follow after the usual <em>\r\n\r\n</em>
+literal. Part requests are therefore regular HTTP requests, only
+embedded inside a multipart message.</p>
+<p>The following example will send a batch with 3 individual document
+creation operations. The boundary used in this example is
+<em>XXXsubpartXXX</em>.</p>
+<p><em>Examples</em></p>
+<pre><code class="lang-js">&gt; curl -X POST --data-binary @- --header <span class="hljs-string">&quot;Content-type: multipart/form-data; boundary=XXXsubpartXXX&quot;</span> http:<span class="hljs-comment">//localhost:8529/_api/batch</span>
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+Content-Id: <span class="hljs-number">1</span>
+
+POST /_api/<span class="hljs-built_in">document</span>?collection=xyz HTTP/<span class="hljs-number">1.1</span>
+
+{<span class="hljs-string">&quot;a&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;b&quot;</span>:<span class="hljs-number">2</span>,<span class="hljs-string">&quot;c&quot;</span>:<span class="hljs-number">3</span>}
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+Content-Id: <span class="hljs-number">2</span>
+
+POST /_api/<span class="hljs-built_in">document</span>?collection=xyz HTTP/<span class="hljs-number">1.1</span>
+
+{<span class="hljs-string">&quot;a&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;b&quot;</span>:<span class="hljs-number">2</span>,<span class="hljs-string">&quot;c&quot;</span>:<span class="hljs-number">3</span>,<span class="hljs-string">&quot;d&quot;</span>:<span class="hljs-number">4</span>}
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+Content-Id: <span class="hljs-number">3</span>
+
+POST /_api/<span class="hljs-built_in">document</span>?collection=xyz HTTP/<span class="hljs-number">1.1</span>
+
+{<span class="hljs-string">&quot;a&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;b&quot;</span>:<span class="hljs-number">2</span>,<span class="hljs-string">&quot;c&quot;</span>:<span class="hljs-number">3</span>,<span class="hljs-string">&quot;d&quot;</span>:<span class="hljs-number">4</span>,<span class="hljs-string">&quot;e&quot;</span>:<span class="hljs-number">5</span>}
+--XXXsubpartXXX--
+</code></pre>
+<p>The server will then respond with one multipart message, containing
+the overall status and the individual results for the part
+operations. The overall status should be 200 except there was an error
+while inspecting and processing the multipart message. The overall
+status therefore does not indicate the success of each part operation,
+but only indicates whether the multipart message could be handled
+successfully.</p>
+<p>Each part operation will return its own status value. As the part
+operation results are regular HTTP responses (just included in one
+multipart response), the part operation status is returned as a HTTP
+status code. The status codes of the part operations are exactly the
+same as if you called the individual operations standalone. Each part
+operation might also return arbitrary HTTP headers and a body/payload:</p>
+<p><em>Examples</em></p>
+<pre><code class="lang-js">HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+Connection: Keep-Alive
+Content-type: multipart/form-data; boundary=XXXsubpartXXX
+Content-length: <span class="hljs-number">1055</span>
+
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+Content-Id: <span class="hljs-number">1</span>
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
+Content-type: application/json; charset=utf-<span class="hljs-number">8</span>
+Etag: <span class="hljs-string">&quot;9514299&quot;</span>
+Content-length: <span class="hljs-number">53</span>
+
+{<span class="hljs-string">&quot;error&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-string">&quot;_id&quot;</span>:<span class="hljs-string">&quot;xyz/9514299&quot;</span>,<span class="hljs-string">&quot;_key&quot;</span>:<span class="hljs-string">&quot;9514299&quot;</span>,<span class="hljs-string">&quot;_rev&quot;</span>:<span class="hljs-string">&quot;9514299&quot;</span>}
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+Content-Id: <span class="hljs-number">2</span>
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
+Content-type: application/json; charset=utf-<span class="hljs-number">8</span>
+Etag: <span class="hljs-string">&quot;9579835&quot;</span>
+Content-length: <span class="hljs-number">53</span>
+
+{<span class="hljs-string">&quot;error&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-string">&quot;_id&quot;</span>:<span class="hljs-string">&quot;xyz/9579835&quot;</span>,<span class="hljs-string">&quot;_key&quot;</span>:<span class="hljs-string">&quot;9579835&quot;</span>,<span class="hljs-string">&quot;_rev&quot;</span>:<span class="hljs-string">&quot;9579835&quot;</span>}
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+Content-Id: <span class="hljs-number">3</span>
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
+Content-type: application/json; charset=utf-<span class="hljs-number">8</span>
+Etag: <span class="hljs-string">&quot;9645371&quot;</span>
+Content-length: <span class="hljs-number">53</span>
+
+{<span class="hljs-string">&quot;error&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-string">&quot;_id&quot;</span>:<span class="hljs-string">&quot;xyz/9645371&quot;</span>,<span class="hljs-string">&quot;_key&quot;</span>:<span class="hljs-string">&quot;9645371&quot;</span>,<span class="hljs-string">&quot;_rev&quot;</span>:<span class="hljs-string">&quot;9645371&quot;</span>}
+--XXXsubpartXXX--
+</code></pre>
+<p>In the above example, the server returned an overall status code of
+200, and each part response contains its own status value (202 in the
+example):</p>
+<p>When constructing the multipart HTTP response, the server will use the
+same boundary that the client supplied. If any of the part responses
+has a status code of 400 or greater, the server will also return an
+HTTP header <em>x-arango-errors</em> containing the overall number of part
+requests that produced errors:</p>
+<p><em>Examples</em></p>
+<pre><code class="lang-js">&gt; curl -X POST --data-binary @- --header <span class="hljs-string">&quot;Content-type: multipart/form-data; boundary=XXXsubpartXXX&quot;</span> http:<span class="hljs-comment">//localhost:8529/_api/batch</span>
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+
+POST /_api/<span class="hljs-built_in">document</span>?collection=nonexisting
+
+{<span class="hljs-string">&quot;a&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;b&quot;</span>:<span class="hljs-number">2</span>,<span class="hljs-string">&quot;c&quot;</span>:<span class="hljs-number">3</span>}
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+
+POST /_api/<span class="hljs-built_in">document</span>?collection=xyz
+
+{<span class="hljs-string">&quot;a&quot;</span>:<span class="hljs-number">1</span>,<span class="hljs-string">&quot;b&quot;</span>:<span class="hljs-number">2</span>,<span class="hljs-string">&quot;c&quot;</span>:<span class="hljs-number">3</span>,<span class="hljs-string">&quot;d&quot;</span>:<span class="hljs-number">4</span>}
+--XXXsubpartXXX--
+</code></pre>
+<p>In this example, the overall response code is 200, but as some of the
+part request failed (with status code 404), the <em>x-arango-errors</em>
+header of the overall response is <em>1</em>:</p>
+<p><em>Examples</em></p>
+<pre><code class="lang-js">HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+x-arango-errors: <span class="hljs-number">1</span>
+Content-type: multipart/form-data; boundary=XXXsubpartXXX
+Content-length: <span class="hljs-number">711</span>
+
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+Content-type: application/json; charset=utf-<span class="hljs-number">8</span>
+Content-length: <span class="hljs-number">111</span>
+
+{<span class="hljs-string">&quot;error&quot;</span>:<span class="hljs-literal">true</span>,<span class="hljs-string">&quot;code&quot;</span>:<span class="hljs-number">404</span>,<span class="hljs-string">&quot;errorNum&quot;</span>:<span class="hljs-number">1203</span>,<span class="hljs-string">&quot;errorMessage&quot;</span>:<span class="hljs-string">&quot;collection \/_api\/collection\/nonexisting not found&quot;</span>}
+--XXXsubpartXXX
+Content-type: application/x-arango-batchpart
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
+Content-type: application/json; charset=utf-<span class="hljs-number">8</span>
+Etag: <span class="hljs-string">&quot;9841979&quot;</span>
+Content-length: <span class="hljs-number">53</span>
+
+{<span class="hljs-string">&quot;error&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-string">&quot;_id&quot;</span>:<span class="hljs-string">&quot;xyz/9841979&quot;</span>,<span class="hljs-string">&quot;_key&quot;</span>:<span class="hljs-string">&quot;9841979&quot;</span>,<span class="hljs-string">&quot;_rev&quot;</span>:<span class="hljs-string">&quot;9841979&quot;</span>}
+--XXXsubpartXXX--
+</code></pre>
+<p>Please note that the database used for all part operations of a batch
+request is determined by scanning the original URL (the URL that contains
+<em>/_api/batch</em>). It is not possible to override the
+<a href="../../Manual/Appendix/Glossary.html#database-name">database name</a> in
+part operations of a batch. When doing so, any other database name used 
+in a batch part will be ignored.</p>
+<h3 id="executes-a-batch-request">executes a batch request</h3>
+<p> executes a batch request</p>
+<p><code>POST /_api/batch</code> 
+<strong>Post Body</strong>
+ <em>body</em> (required):
+The multipart batch request, consisting of the envelope and the individual
+batch parts.</p>
+<p>Executes a batch request. A batch request can contain any number of
+other requests that can be sent to ArangoDB in isolation. The benefit of
+using batch requests is that batching requests requires less client/server
+roundtrips than when sending isolated requests.
+All parts of a batch request are executed serially on the server. The
+server will return the results of all parts in a single response when all
+parts are finished.
+Technically, a batch request is a multipart HTTP request, with
+content-type <code>multipart/form-data</code>. A batch request consists of an
+envelope and the individual batch part actions. Batch part actions
+are &quot;regular&quot; HTTP requests, including full header and an optional body.
+Multiple batch parts are separated by a boundary identifier. The
+boundary identifier is declared in the batch envelope. The MIME content-type
+for each individual batch part must be <code>application/x-arango-batchpart</code>.
+Please note that when constructing the individual batch parts, you must
+use CRLF (<code>`) as the line terminator as in regular HTTP messages.
+The response sent by the server will be an</code>HTTP 200<code>response, with an
+optional error summary header</code>x-arango-errors<code>. This header contains the
+number of batch part operations that failed with an HTTP error code of at
+least 400. This header is only present in the response if the number of
+errors is greater than zero.
+The response sent by the server is a multipart response, too. It contains
+the individual HTTP responses for all batch parts, including the full HTTP
+result header (with status code and other potential headers) and an
+optional result body. The individual batch parts in the result are
+seperated using the same boundary value as specified in the request.
+The order of batch parts in the response will be the same as in the
+original client request. Client can additionally use the</code>Content-Id`
+MIME header in a batch part to define an individual id for each batch part.
+The server will return this id is the batch part responses, too.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the batch was received successfully. HTTP 200 is returned
+even if one or multiple batch part actions failed.</li>
+<li><em>400</em>:
+is returned if the batch envelope is malformed or incorrectly formatted.
+This code will also be returned if the content-type of the overall batch
+request or the individual MIME parts is not as expected.</li>
+<li><em>405</em>:
+is returned when an invalid HTTP method is used.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Sending a batch request with five batch parts:</p>
+<ul>
+<li>GET /_api/version</li>
+<li>DELETE /_api/collection/products</li>
+<li>POST /_api/collection/products</li>
+<li>GET /_api/collection/products/figures</li>
+<li>DELETE /_api/collection/products
+The boundary (<code>SomeBoundaryValue</code>) is passed to the server in the HTTP
+<code>Content-Type</code> HTTP header.
+<em>Please note the reply is not displayed all accurate.</em></li>
+</ul>
+<div id="RestBatchMultipartHeader_container">
+<div id="RestBatchMultipartHeader_long">
+<pre>
+shell&gt; curl -X POST --header &apos;Content-Type: multipart/form-data; boundary=SomeBoundaryValue&apos; --data-binary @- --dump - http://localhost:8529/_api/batch &lt;&lt;EOF
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: myId1
+
+GET /_api/version HTTP/1.1
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: myId2
+
+DELETE /_api/collection/products HTTP/1.1
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: someId
+
+POST /_api/collection/products HTTP/1.1
+
+{&quot;name&quot;: &quot;products&quot; }
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: nextId
+
+GET /_api/collection/products/figures HTTP/1.1
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: otherId
+
+DELETE /_api/collection/products HTTP/1.1
+--SomeBoundaryValue--
+
+EOF
+
+HTTP/1.1 200 OK
+content-type: multipart/form-data; boundary=SomeBoundaryValue
+x-arango-errors: 1
+
+&quot;--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: myId1
+
+HTTP/1.1 200 OK
+Server: 
+Connection: 
+Content-Type: application/json; charset=utf-8
+Content-Length: 43
+
+{\&quot;server\&quot;:\&quot;arango\&quot;,\&quot;version\&quot;:\&quot;3.0.x-devel\&quot;}
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: myId2
+
+HTTP/1.1 404 Not Found
+Server: 
+Content-Type: application/json; charset=utf-8
+Connection: 
+Content-Length: 88
+
+{\&quot;error\&quot;:true,\&quot;code\&quot;:404,\&quot;errorNum\&quot;:1203,\&quot;errorMessage\&quot;:\&quot;unknown collection &apos;products&apos;\&quot;}
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: someId
+
+HTTP/1.1 200 OK
+Server: 
+Location: /_db/_system/_api/collection/products
+Content-Type: application/json; charset=utf-8
+Connection: 
+Content-Length: 132
+
+{\&quot;id\&quot;:\&quot;9432\&quot;,\&quot;name\&quot;:\&quot;products\&quot;,\&quot;waitForSync\&quot;:false,\&quot;isVolatile\&quot;:false,\&quot;isSystem\&quot;:false,\&quot;status\&quot;:3,\&quot;type\&quot;:2,\&quot;error\&quot;:false,\&quot;code\&quot;:200}
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: nextId
+
+HTTP/1.1 200 OK
+Server: 
+Location: /_db/_system/_api/collection/products/figures
+Content-Type: application/json; charset=utf-8
+Connection: 
+Content-Length: 659
+
+{\&quot;id\&quot;:\&quot;9432\&quot;,\&quot;name\&quot;:\&quot;products\&quot;,\&quot;isSystem\&quot;:false,\&quot;doCompact\&quot;:true,\&quot;isVolatile\&quot;:false,\&quot;journalSize\&quot;:33554432,\&quot;keyOptions\&quot;:{\&quot;type\&quot;:\&quot;traditional\&quot;,\&quot;allowUserKeys\&quot;:true},\&quot;waitForSync\&quot;:false,\&quot;indexBuckets\&quot;:8,\&quot;count\&quot;:0,\&quot;figures\&quot;:{\&quot;alive\&quot;:{\&quot;count\&quot;:0,\&quot;size\&quot;:0},\&quot;dead\&quot;:{\&quot;count\&quot;:0,\&quot;size\&quot;:0,\&quot;deletion\&quot;:0},\&quot;datafiles\&quot;:{\&quot;count\&quot;:0,\&quot;fileSize\&quot;:0},\&quot;journals\&quot;:{\&quot;count\&quot;:0,\&quot;fileSize\&quot;:0},\&quot;compactors\&quot;:{\&quot;count\&quot;:0,\&quot;fileSize\&quot;:0},\&quot;indexes\&quot;:{\&quot;count\&quot;:1,\&quot;size\&quot;:16064},\&quot;lastTick\&quot;:\&quot;0\&quot;,\&quot;uncollectedLogfileEntries\&quot;:0,\&quot;documentReferences\&quot;:0,\&quot;waitingFor\&quot;:\&quot;-\&quot;,\&quot;compactionStatus\&quot;:{\&quot;message\&quot;:\&quot;compaction not yet started\&quot;,\&quot;time\&quot;:\&quot;2016-06-02T11:43:12Z\&quot;}},\&quot;status\&quot;:3,\&quot;type\&quot;:2,\&quot;error\&quot;:false,\&quot;code\&quot;:200}
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+Content-Id: otherId
+
+HTTP/1.1 200 OK
+Server: 
+Content-Type: application/json; charset=utf-8
+Connection: 
+Content-Length: 38
+
+{\&quot;id\&quot;:\&quot;9432\&quot;,\&quot;error\&quot;:false,\&quot;code\&quot;:200}
+--SomeBoundaryValue--&quot;
+</pre>
+</div>
+</div>
+
+<p>Sending a batch request, setting the boundary implicitly (the server will
+in this case try to find the boundary at the beginning of the request body).</p>
+<div id="RestBatchImplicitBoundary_container">
+<div id="RestBatchImplicitBoundary_long">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/batch &lt;&lt;EOF
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+
+DELETE /_api/collection/notexisting1 HTTP/1.1
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+
+DELETE _api/collection/notexisting2 HTTP/1.1
+--SomeBoundaryValue--
+
+EOF
+
+HTTP/1.1 200 OK
+content-type: 
+x-arango-errors: 2
+
+&quot;--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+
+HTTP/1.1 404 Not Found
+Server: 
+Content-Type: application/json; charset=utf-8
+Connection: 
+Content-Length: 92
+
+{\&quot;error\&quot;:true,\&quot;code\&quot;:404,\&quot;errorNum\&quot;:1203,\&quot;errorMessage\&quot;:\&quot;unknown collection &apos;notexisting1&apos;\&quot;}
+--SomeBoundaryValue
+Content-Type: application/x-arango-batchpart
+
+HTTP/1.1 404 Not Found
+Server: 
+Content-Type: application/json; charset=utf-8
+Connection: 
+Content-Length: 101
+
+{\&quot;error\&quot;:true,\&quot;code\&quot;:404,\&quot;errorNum\&quot;:404,\&quot;errorMessage\&quot;:\&quot;unknown path &apos;_api/collection/notexisting2&apos;\&quot;}
+--SomeBoundaryValue--&quot;
+</pre>
+</div>
+</div>
+
+
+<h3 id="deletes-an-existing-dump-batch">Deletes an existing dump batch</h3>
+<p> handle a dump batch command</p>
+<p><code>DELETE /_api/replication/batch/{id}</code>
+<strong>Note</strong>: These calls are uninteresting to users.</p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>id</em> (required):
+The id of the batch.</li>
+</ul>
+<p>Deletes the existing dump batch, allowing compaction and cleanup to resume.
+<strong>Note</strong>: on a coordinator, this request must have the query parameter
+<em>DBserver</em> which must be an ID of a DBserver.
+The very same request is forwarded synchronously to that DBserver.
+It is an error if this attribute is not bound in the coordinator case.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>204</em>:
+is returned if the batch was deleted successfully.</li>
+<li><em>400</em>:
+is returned if the batch was not found.</li>
+<li><em>405</em>:
+is returned when an invalid HTTP method is used.</li>
+</ul>
+<h3 id="create-new-dump-batch">Create new dump batch</h3>
+<p> handle a dump batch command</p>
+<p><code>POST /_api/replication/batch</code>
+<strong>Note</strong>: These calls are uninteresting to users.</p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>ttl</strong>: the time-to-live for the new batch (in seconds)
+A JSON object with the batch configuration.</li>
+</ul>
+<h3 id="prolong-existing-dump-batch">Prolong existing dump batch</h3>
+<p> handle a dump batch command</p>
+<p><code>PUT /_api/replication/batch/{id}</code>
+<strong>Note</strong>: These calls are uninteresting to users.</p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>ttl</strong>: the time-to-live for the new batch (in seconds)</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../BulkImports/ImportingHeadersAndValues.html" class="navigation navigation-prev " aria-label="Previous page: Headers &amp; Values"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Export/index.html" class="navigation navigation-next " aria-label="Next page: Exporting data"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+</html>

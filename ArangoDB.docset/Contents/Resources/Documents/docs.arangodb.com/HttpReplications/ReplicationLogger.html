@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Replication Logger | ArangoDB 2.8.2 Documentation</title>
+        <title>Replication Logger | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="18.16.2" data-chapter-title="Replication Logger" data-filepath="HttpReplications/ReplicationLogger.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="18.16.2" data-chapter-title="Replication Logger" data-filepath="HttpReplications/ReplicationLogger.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4138,13 +4138,13 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 { 
   <span class="hljs-string">&quot;state&quot;</span> : { 
     <span class="hljs-string">&quot;running&quot;</span> : <span class="hljs-literal">true</span>, 
-    <span class="hljs-string">&quot;lastLogTick&quot;</span> : <span class="hljs-string">&quot;794336376&quot;</span>, 
-    <span class="hljs-string">&quot;totalEvents&quot;</span> : <span class="hljs-number">4949</span>, 
-    <span class="hljs-string">&quot;time&quot;</span> : <span class="hljs-string">&quot;2016-02-10T09:16:55Z&quot;</span> 
+    <span class="hljs-string">&quot;lastLogTick&quot;</span> : <span class="hljs-string">&quot;793178344&quot;</span>, 
+    <span class="hljs-string">&quot;totalEvents&quot;</span> : <span class="hljs-number">4940</span>, 
+    <span class="hljs-string">&quot;time&quot;</span> : <span class="hljs-string">&quot;2016-05-22T19:06:00Z&quot;</span> 
   }, 
   <span class="hljs-string">&quot;server&quot;</span> : { 
-    <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;2.8.2&quot;</span>, 
-    <span class="hljs-string">&quot;serverId&quot;</span> : <span class="hljs-string">&quot;211456009339863&quot;</span> 
+    <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;2.8.9&quot;</span>, 
+    <span class="hljs-string">&quot;serverId&quot;</span> : <span class="hljs-string">&quot;210709735347561&quot;</span> 
   }, 
   <span class="hljs-string">&quot;clients&quot;</span> : [ ] 
 }
@@ -4289,7 +4289,7 @@ is returned when this operation is called on a coordinator in a cluster.</p>
 <div id="RestReplicationLoggerFollowEmpty_container">
 <div id="RestReplicationLoggerFollowEmpty_long">
 <pre>
-shell&gt; curl --dump - http://localhost:8529/_api/replication/logger-follow?from=793091192
+shell&gt; curl --dump - http://localhost:8529/_api/replication/logger-follow?from=791933160
 
 HTTP/1.1 204 No Content
 content-type: application/x-arango-dump; charset=utf-8
@@ -4297,7 +4297,7 @@ x-arango-replication-active: true
 x-arango-replication-checkmore: false
 x-arango-replication-frompresent: true
 x-arango-replication-lastincluded: 0
-x-arango-replication-lasttick: 793091192
+x-arango-replication-lasttick: 791933160
 
 </pre>
 </div>
@@ -4307,22 +4307,22 @@ x-arango-replication-lasttick: 793091192
 <div id="RestReplicationLoggerFollowSome_container">
 <div id="RestReplicationLoggerFollowSome_long">
 <pre>
-shell&gt; curl --dump - http://localhost:8529/_api/replication/logger-follow?from=793091192
+shell&gt; curl --dump - http://localhost:8529/_api/replication/logger-follow?from=791933160
 
 HTTP/1.1 200 OK
 content-type: application/x-arango-dump; charset=utf-8
 x-arango-replication-active: true
 x-arango-replication-checkmore: false
 x-arango-replication-frompresent: true
-x-arango-replication-lastincluded: 794336376
-x-arango-replication-lasttick: 794336376
+x-arango-replication-lastincluded: 793178344
+x-arango-replication-lasttick: 793178344
 
-&quot;{\&quot;tick\&quot;:\&quot;793222264\&quot;,\&quot;type\&quot;:2000,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;793156728\&quot;,\&quot;collection\&quot;:{\&quot;version\&quot;:5,\&quot;type\&quot;:2,\&quot;cid\&quot;:\&quot;793156728\&quot;,\&quot;indexBuckets\&quot;:8,\&quot;deleted\&quot;:false,\&quot;doCompact\&quot;:true,\&quot;maximalSize\&quot;:1048576,\&quot;name\&quot;:\&quot;products\&quot;,\&quot;isVolatile\&quot;:false,\&quot;waitForSync\&quot;:false}}
-{\&quot;tick\&quot;:\&quot;793549944\&quot;,\&quot;type\&quot;:2300,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;793156728\&quot;,\&quot;tid\&quot;:\&quot;0\&quot;,\&quot;key\&quot;:\&quot;p1\&quot;,\&quot;rev\&quot;:\&quot;793484408\&quot;,\&quot;data\&quot;:{\&quot;_key\&quot;:\&quot;p1\&quot;,\&quot;_rev\&quot;:\&quot;793484408\&quot;,\&quot;name\&quot;:\&quot;flux compensator\&quot;}}
-{\&quot;tick\&quot;:\&quot;793877624\&quot;,\&quot;type\&quot;:2300,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;793156728\&quot;,\&quot;tid\&quot;:\&quot;0\&quot;,\&quot;key\&quot;:\&quot;p2\&quot;,\&quot;rev\&quot;:\&quot;793812088\&quot;,\&quot;data\&quot;:{\&quot;_key\&quot;:\&quot;p2\&quot;,\&quot;_rev\&quot;:\&quot;793812088\&quot;,\&quot;hp\&quot;:5100,\&quot;name\&quot;:\&quot;hybrid hovercraft\&quot;}}
-{\&quot;tick\&quot;:\&quot;794074232\&quot;,\&quot;type\&quot;:2302,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;793156728\&quot;,\&quot;tid\&quot;:\&quot;0\&quot;,\&quot;key\&quot;:\&quot;p1\&quot;,\&quot;rev\&quot;:\&quot;794008696\&quot;}
-{\&quot;tick\&quot;:\&quot;794270840\&quot;,\&quot;type\&quot;:2300,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;793156728\&quot;,\&quot;tid\&quot;:\&quot;0\&quot;,\&quot;key\&quot;:\&quot;p2\&quot;,\&quot;rev\&quot;:\&quot;794205304\&quot;,\&quot;data\&quot;:{\&quot;_key\&quot;:\&quot;p2\&quot;,\&quot;_rev\&quot;:\&quot;794205304\&quot;}}
-{\&quot;tick\&quot;:\&quot;794336376\&quot;,\&quot;type\&quot;:2001,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;793156728\&quot;}
+&quot;{\&quot;tick\&quot;:\&quot;792064232\&quot;,\&quot;type\&quot;:2000,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;791998696\&quot;,\&quot;collection\&quot;:{\&quot;version\&quot;:5,\&quot;type\&quot;:2,\&quot;cid\&quot;:\&quot;791998696\&quot;,\&quot;indexBuckets\&quot;:8,\&quot;deleted\&quot;:false,\&quot;doCompact\&quot;:true,\&quot;maximalSize\&quot;:1048576,\&quot;name\&quot;:\&quot;products\&quot;,\&quot;isVolatile\&quot;:false,\&quot;waitForSync\&quot;:false}}
+{\&quot;tick\&quot;:\&quot;792391912\&quot;,\&quot;type\&quot;:2300,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;791998696\&quot;,\&quot;tid\&quot;:\&quot;0\&quot;,\&quot;key\&quot;:\&quot;p1\&quot;,\&quot;rev\&quot;:\&quot;792326376\&quot;,\&quot;data\&quot;:{\&quot;_key\&quot;:\&quot;p1\&quot;,\&quot;_rev\&quot;:\&quot;792326376\&quot;,\&quot;name\&quot;:\&quot;flux compensator\&quot;}}
+{\&quot;tick\&quot;:\&quot;792719592\&quot;,\&quot;type\&quot;:2300,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;791998696\&quot;,\&quot;tid\&quot;:\&quot;0\&quot;,\&quot;key\&quot;:\&quot;p2\&quot;,\&quot;rev\&quot;:\&quot;792654056\&quot;,\&quot;data\&quot;:{\&quot;_key\&quot;:\&quot;p2\&quot;,\&quot;_rev\&quot;:\&quot;792654056\&quot;,\&quot;hp\&quot;:5100,\&quot;name\&quot;:\&quot;hybrid hovercraft\&quot;}}
+{\&quot;tick\&quot;:\&quot;792916200\&quot;,\&quot;type\&quot;:2302,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;791998696\&quot;,\&quot;tid\&quot;:\&quot;0\&quot;,\&quot;key\&quot;:\&quot;p1\&quot;,\&quot;rev\&quot;:\&quot;792850664\&quot;}
+{\&quot;tick\&quot;:\&quot;793112808\&quot;,\&quot;type\&quot;:2300,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;791998696\&quot;,\&quot;tid\&quot;:\&quot;0\&quot;,\&quot;key\&quot;:\&quot;p2\&quot;,\&quot;rev\&quot;:\&quot;793047272\&quot;,\&quot;data\&quot;:{\&quot;_key\&quot;:\&quot;p2\&quot;,\&quot;_rev\&quot;:\&quot;793047272\&quot;}}
+{\&quot;tick\&quot;:\&quot;793178344\&quot;,\&quot;type\&quot;:2001,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;791998696\&quot;}
 &quot;
 </pre>
 </div>
@@ -4332,19 +4332,19 @@ x-arango-replication-lasttick: 794336376
 <div id="RestReplicationLoggerFollowBufferLimit_container">
 <div id="RestReplicationLoggerFollowBufferLimit_long">
 <pre>
-shell&gt; curl --dump - http://localhost:8529/_api/replication/logger-follow?from=789748856&amp;chunkSize=400
+shell&gt; curl --dump - http://localhost:8529/_api/replication/logger-follow?from=788590824&amp;chunkSize=400
 
 HTTP/1.1 200 OK
 content-type: application/x-arango-dump; charset=utf-8
 x-arango-replication-active: true
 x-arango-replication-checkmore: true
 x-arango-replication-frompresent: true
-x-arango-replication-lastincluded: 790207608
-x-arango-replication-lasttick: 793091192
+x-arango-replication-lastincluded: 789049576
+x-arango-replication-lasttick: 791933160
 
-&quot;{\&quot;tick\&quot;:\&quot;789814392\&quot;,\&quot;type\&quot;:2001,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;789486712\&quot;}
-{\&quot;tick\&quot;:\&quot;789945464\&quot;,\&quot;type\&quot;:2000,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;789879928\&quot;,\&quot;collection\&quot;:{\&quot;version\&quot;:5,\&quot;type\&quot;:2,\&quot;cid\&quot;:\&quot;789879928\&quot;,\&quot;indexBuckets\&quot;:8,\&quot;deleted\&quot;:false,\&quot;doCompact\&quot;:true,\&quot;maximalSize\&quot;:1048576,\&quot;name\&quot;:\&quot;IndexedCollection1\&quot;,\&quot;isVolatile\&quot;:false,\&quot;waitForSync\&quot;:false}}
-{\&quot;tick\&quot;:\&quot;790207608\&quot;,\&quot;type\&quot;:2100,\&quot;database\&quot;:\&quot;105592\&quot;,\&quot;cid\&quot;:\&quot;789879928\&quot;,\&quot;id\&quot;:\&quot;790142072\&quot;,\&quot;index\&quot;:{\&quot;id\&quot;:\&quot;790142072\&quot;,\&quot;type\&quot;:\&quot;hash\&quot;,\&quot;fields\&quot;:[\&quot;name\&quot;],\&quot;selectivityEstimate\&quot;:1,\&quot;unique\&quot;:false,\&quot;sparse\&quot;:false}}
+&quot;{\&quot;tick\&quot;:\&quot;788656360\&quot;,\&quot;type\&quot;:2001,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;788328680\&quot;}
+{\&quot;tick\&quot;:\&quot;788787432\&quot;,\&quot;type\&quot;:2000,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;788721896\&quot;,\&quot;collection\&quot;:{\&quot;version\&quot;:5,\&quot;type\&quot;:2,\&quot;cid\&quot;:\&quot;788721896\&quot;,\&quot;indexBuckets\&quot;:8,\&quot;deleted\&quot;:false,\&quot;doCompact\&quot;:true,\&quot;maximalSize\&quot;:1048576,\&quot;name\&quot;:\&quot;IndexedCollection1\&quot;,\&quot;isVolatile\&quot;:false,\&quot;waitForSync\&quot;:false}}
+{\&quot;tick\&quot;:\&quot;789049576\&quot;,\&quot;type\&quot;:2100,\&quot;database\&quot;:\&quot;127208\&quot;,\&quot;cid\&quot;:\&quot;788721896\&quot;,\&quot;id\&quot;:\&quot;788984040\&quot;,\&quot;index\&quot;:{\&quot;id\&quot;:\&quot;788984040\&quot;,\&quot;type\&quot;:\&quot;hash\&quot;,\&quot;fields\&quot;:[\&quot;name\&quot;],\&quot;selectivityEstimate\&quot;:1,\&quot;unique\&quot;:false,\&quot;sparse\&quot;:false}}
 &quot;
 </pre>
 </div>
@@ -4390,7 +4390,7 @@ shell&gt; curl --dump - http://localhost:8529/_api/replication/logger-first-tick
 HTTP/1.1 200 OK
 content-type: application/json; charset=utf-8
 
-&quot;{\&quot;firstTick\&quot;:\&quot;367736\&quot;}&quot;
+&quot;{\&quot;firstTick\&quot;:\&quot;389352\&quot;}&quot;
 </pre>
 </div>
 </div>
@@ -4441,34 +4441,34 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 [ 
   { 
-    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.18404/journals/logfile-171128.db&quot;</span>, 
+    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.26839/journals/logfile-192744.db&quot;</span>, 
     <span class="hljs-string">&quot;status&quot;</span> : <span class="hljs-string">&quot;collected&quot;</span>, 
-    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;367736&quot;</span>, 
-    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;666279032&quot;</span> 
+    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;389352&quot;</span>, 
+    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;666300648&quot;</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.18404/journals/logfile-666410104.db&quot;</span>, 
+    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.26839/journals/logfile-666431720.db&quot;</span>, 
     <span class="hljs-string">&quot;status&quot;</span> : <span class="hljs-string">&quot;collected&quot;</span>, 
-    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;666737784&quot;</span>, 
-    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;669162616&quot;</span> 
+    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;666759400&quot;</span>, 
+    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;669184232&quot;</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.18404/journals/logfile-669293688.db&quot;</span>, 
+    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.26839/journals/logfile-669315304.db&quot;</span>, 
     <span class="hljs-string">&quot;status&quot;</span> : <span class="hljs-string">&quot;collected&quot;</span>, 
-    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;669424760&quot;</span>, 
-    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;789159032&quot;</span> 
+    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;669446376&quot;</span>, 
+    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;788001000&quot;</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.18404/journals/logfile-789290104.db&quot;</span>, 
+    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.26839/journals/logfile-788132072.db&quot;</span>, 
     <span class="hljs-string">&quot;status&quot;</span> : <span class="hljs-string">&quot;collected&quot;</span>, 
-    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;789421176&quot;</span>, 
-    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;789552248&quot;</span> 
+    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;788263144&quot;</span>, 
+    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;788394216&quot;</span> 
   }, 
   { 
-    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.18404/journals/logfile-789683320.db&quot;</span>, 
+    <span class="hljs-string">&quot;datafile&quot;</span> : <span class="hljs-string">&quot;/tmp/vocdir.26839/journals/logfile-788525288.db&quot;</span>, 
     <span class="hljs-string">&quot;status&quot;</span> : <span class="hljs-string">&quot;open&quot;</span>, 
-    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;789814392&quot;</span>, 
-    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;794336376&quot;</span> 
+    <span class="hljs-string">&quot;tickMin&quot;</span> : <span class="hljs-string">&quot;788656360&quot;</span>, 
+    <span class="hljs-string">&quot;tickMax&quot;</span> : <span class="hljs-string">&quot;793178344&quot;</span> 
   } 
 ]
 </pre>
@@ -4530,5 +4530,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

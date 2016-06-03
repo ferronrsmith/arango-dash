@@ -1,0 +1,1693 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Working with Edges | ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Gharial/index.html" />
+    
+    
+    <link rel="prev" href="../Edge/AddressAndEtag.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="6.2"
+        data-chapter-title="Working with Edges"
+        data-filepath="Edge/WorkingWithEdges.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:44 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="General/index.html">
+            
+                
+                    <a href="../General/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        General HTTP Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Api/index.html">
+            
+                
+                    <a href="../Api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        HTTP Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Database/index.html">
+            
+                
+                    <a href="../Database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Database/DatabaseEndpoint.html">
+            
+                
+                    <a href="../Database/DatabaseEndpoint.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        To-Endpoint
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Database/DatabaseManagement.html">
+            
+                
+                    <a href="../Database/DatabaseManagement.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Database/NotesOnDatabases.html">
+            
+                
+                    <a href="../Database/NotesOnDatabases.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Notes on Databases
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Collection/index.html">
+            
+                
+                    <a href="../Collection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Collections
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Collection/Creating.html">
+            
+                
+                    <a href="../Collection/Creating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Creating
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Collection/Getting.html">
+            
+                
+                    <a href="../Collection/Getting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Getting Information
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Collection/Modifying.html">
+            
+                
+                    <a href="../Collection/Modifying.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Modifying
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Document/index.html">
+            
+                
+                    <a href="../Document/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Documents
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Document/AddressAndEtag.html">
+            
+                
+                    <a href="../Document/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Basics and Terminology
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Document/WorkingWithDocuments.html">
+            
+                
+                    <a href="../Document/WorkingWithDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Working with Documents
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Edge/index.html">
+            
+                
+                    <a href="../Edge/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Edge/AddressAndEtag.html">
+            
+                
+                    <a href="../Edge/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Address and ETag
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.2" data-path="Edge/WorkingWithEdges.html">
+            
+                
+                    <a href="../Edge/WorkingWithEdges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Working with Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Gharial/index.html">
+            
+                
+                    <a href="../Gharial/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        General Graph
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Gharial/Management.html">
+            
+                
+                    <a href="../Gharial/Management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Gharial/Vertices.html">
+            
+                
+                    <a href="../Gharial/Vertices.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Vertices
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Gharial/Edges.html">
+            
+                
+                    <a href="../Gharial/Edges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Traversal/index.html">
+            
+                
+                    <a href="../Traversal/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="AqlQueryCursor/index.html">
+            
+                
+                    <a href="../AqlQueryCursor/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        AQL Query Cursors
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="AqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../AqlQueryCursor/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="AqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../AqlQueryCursor/AccessingCursors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Accessing Cursors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="AqlQuery/index.html">
+            
+                
+                    <a href="../AqlQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        AQL Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="AqlQueryCache/index.html">
+            
+                
+                    <a href="../AqlQueryCache/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        AQL Query Cache
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="AqlUserFunctions/index.html">
+            
+                
+                    <a href="../AqlUserFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        AQL User Functions Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="SimpleQuery/index.html">
+            
+                
+                    <a href="../SimpleQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Simple Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="AsyncResultsManagement/index.html">
+            
+                
+                    <a href="../AsyncResultsManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        Async Result Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="BulkImports/index.html">
+            
+                
+                    <a href="../BulkImports/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        Bulk Import / Export
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1" data-path="BulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../BulkImports/ImportingSelfContained.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                        JSON Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.2" data-path="BulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../BulkImports/ImportingHeadersAndValues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                        Headers &amp; Values
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.3" data-path="BatchRequest/index.html">
+            
+                
+                    <a href="../BatchRequest/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.3.</b>
+                        
+                        Batch Requests
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.4" data-path="Export/index.html">
+            
+                
+                    <a href="../Export/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.4.</b>
+                        
+                        Exporting data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="Indexes/index.html">
+            
+                
+                    <a href="../Indexes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        Indexes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="Indexes/WorkingWith.html">
+            
+                
+                    <a href="../Indexes/WorkingWith.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        Working with Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="Indexes/Hash.html">
+            
+                
+                    <a href="../Indexes/Hash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                        Hash
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="Indexes/Skiplist.html">
+            
+                
+                    <a href="../Indexes/Skiplist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                        Skiplist
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="Indexes/Geo.html">
+            
+                
+                    <a href="../Indexes/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="Indexes/Fulltext.html">
+            
+                
+                    <a href="../Indexes/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="Transaction/index.html">
+            
+                
+                    <a href="../Transaction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        Transactions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="Replications/index.html">
+            
+                
+                    <a href="../Replications/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        Replication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="18.1" data-path="Replications/ReplicationDump.html">
+            
+                
+                    <a href="../Replications/ReplicationDump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                        Replication Dump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.2" data-path="Replications/ReplicationLogger.html">
+            
+                
+                    <a href="../Replications/ReplicationLogger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                        Replication Logger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.3" data-path="Replications/ReplicationApplier.html">
+            
+                
+                    <a href="../Replications/ReplicationApplier.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                        Replication Applier
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.4" data-path="Replications/OtherReplication.html">
+            
+                
+                    <a href="../Replications/OtherReplication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.4.</b>
+                        
+                        Other Replication Commands
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="19" data-path="ShardingInterface/index.html">
+            
+                
+                    <a href="../ShardingInterface/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                        Sharding
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="20" data-path="AdministrationAndMonitoring/index.html">
+            
+                
+                    <a href="../AdministrationAndMonitoring/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                        Monitoring
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="21" data-path="Endpoints/index.html">
+            
+                
+                    <a href="../Endpoints/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                        Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="22" data-path="UserManagement/index.html">
+            
+                
+                    <a href="../UserManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                        User Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="23" data-path="Tasks/index.html">
+            
+                
+                    <a href="../Tasks/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                        Tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="24" data-path="MiscellaneousFunctions/index.html">
+            
+                
+                    <a href="../MiscellaneousFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                        Miscellaneous functions
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="working_with_edges_using_rest"></a></p>
+<h1 id="working-with-edges-using-rest">Working with Edges using REST</h1>
+<p>This is documentation to ArangoDB&apos;s <a href="../../Manual/Graphs/Edges/index.html">REST interface for edges</a>.</p>
+<!-- arangod/RestHandler/RestEdgeHandler.cpp -->
+<h3 id="read-edge">Read edge</h3>
+<p> reads a single edge</p>
+<p><code>GET /_api/document/{document-handle}#readEdge</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>document-handle</em> (required):
+The handle of the edge document.</li>
+</ul>
+<p><strong>Header Parameters</strong></p>
+<ul>
+<li><em>If-None-Match</em> (optional):
+If the &quot;If-None-Match&quot; header is given, then it must contain exactly one
+etag. The edge is returned if it has a different revision than the
+given etag. Otherwise an <em>HTTP 304</em> is returned.</li>
+<li><em>If-Match</em> (optional):
+If the &quot;If-Match&quot; header is given, then it must contain exactly one
+etag. The edge is returned if it has the same revision ad the
+given etag. Otherwise a <em>HTTP 412</em> is returned. As an alternative
+you can supply the etag in an attribute <em>rev</em> in the URL.</li>
+</ul>
+<p>Returns the edge identified by <em>document-handle</em>. The returned
+edge contains a few special attributes:</p>
+<ul>
+<li><em>_id</em> contains the document handle</li>
+<li><em>_rev</em> contains the revision</li>
+<li><em>_from</em> and <em>to</em> contain the document handles of the connected
+vertex documents</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the edge was found</li>
+<li><em>304</em>:
+is returned if the &quot;If-None-Match&quot; header is given and the edge has
+the same version</li>
+<li><em>404</em>:
+is returned if the edge or collection was not found</li>
+<li><em>412</em>:
+is returned if a &quot;If-Match&quot; header or <em>rev</em> is given and the found
+document has a different version. The response will also contain the found
+document&apos;s current revision in the <em>_rev</em> attribute. Additionally, the
+attributes <em>_id</em> and <em>_key</em> will be returned.<!-- arangod/RestHandler/RestEdgeHandler.cpp -->
+</li>
+</ul>
+<h3 id="read-all-edges-from-collection">Read all edges from collection</h3>
+<p> reads all edges from collection</p>
+<p><code>GET /_api/document</code></p>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>collection</em> (required):
+The name of the collection.</li>
+</ul>
+<p>Returns an array of all URIs for all edges from the collection identified
+by <em>collection</em>.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+All went good.</li>
+<li><em>404</em>:
+The collection does not exist.<!-- arangod/RestHandler/RestEdgeHandler.cpp -->
+</li>
+</ul>
+<h3 id="create-edge">Create edge</h3>
+<p> creates an edge</p>
+<p><code>POST /_api/document</code>
+<strong>Post Body</strong>
+ <em>edge-document</em> (required):
+A JSON representation of the edge document must be passed as the body of
+the POST request. This JSON object may contain the edge&apos;s document key in
+the <em>_key</em> attribute if needed.</p>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>collection</em> (required):
+Creates a new edge in the collection identified by <em>collection</em> name.</li>
+<li><em>waitForSync</em> (optional):
+Wait until the edge document has been synced to disk.</li>
+<li><em>from</em> (required):
+The document handle of the start point must be passed in <em>from</em> handle.</li>
+<li><em>to</em> (required):
+The document handle of the end point must be passed in <em>to</em> handle.</li>
+</ul>
+<p>Creates a new edge document in the collection named <em>collection</em>. A JSON
+representation of the document must be passed as the body of the POST
+request.
+In all other respects the method works like <em>POST /_api/document</em> for
+documents.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the edge was created successfully and <em>waitForSync</em> was
+<em>true</em>.</li>
+<li><em>202</em>:
+is returned if the edge was created successfully and <em>waitForSync</em> was
+<em>false</em>.</li>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of an
+edge, or if the collection specified is not an edge collection.
+The response body contains an error document in this case.</li>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Create an edge and read it back:</p>
+<div id="RestEdgeCreateEdge_container">
+<div id="RestEdgeCreateEdge_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/document/?collection=edges &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Emil&quot;</span>, 
+  <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+  <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/2&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+etag: <span class="hljs-string">&quot;10430&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/edges/<span class="hljs-number">10430</span>
+
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/10430&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;10430&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;10430&quot;</span> 
+}
+shell&gt; curl --dump - http://localhost:8529/_api/document/edges/10430
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+etag: <span class="hljs-string">&quot;10430&quot;</span>
+
+{ 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;10430&quot;</span>, 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/10430&quot;</span>, 
+  <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+  <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/2&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;10430&quot;</span>, 
+  <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Emil&quot;</span> 
+}
+</pre>
+</div>
+<div id="RestEdgeCreateEdge_short" onclick="$(&apos;#RestEdgeCreateEdge_short&apos;).hide(); $(&apos;#RestEdgeCreateEdge_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/document/?collection=edges &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Emil&quot;</span>, 
+  <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+  <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/2&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+etag: <span class="hljs-string">&quot;10430&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/edges/<span class="hljs-number">10430</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- arangod/RestHandler/RestEdgeHandler.cpp -->
+<h3 id="patches-edge">Patches edge</h3>
+<p> updates an edge</p>
+<p><code>PATCH /_api/document/{document-handle}#patchEdge</code>
+<strong>Post Body</strong>
+ <em>document</em> (required):
+A JSON representation of the edge update.</p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>document-handle</em> (required):
+The handle of the edge document.</li>
+</ul>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>keepNull</em> (optional):
+If the intention is to delete existing attributes with the patch command,
+the URL query parameter <em>keepNull</em> can be used with a value of <em>false</em>.
+This will modify the behavior of the patch command to remove any attributes
+from the existing edge document that are contained in the patch document with an
+attribute value of <em>null</em>.</li>
+<li><em>mergeObjects</em> (optional):
+Controls whether objects (not arrays) will be merged if present in both the
+existing and the patch edge. If set to <em>false</em>, the value in the
+patch edge will overwrite the existing edge&apos;s value. If set to
+<em>true</em>, objects will be merged. The default is <em>true</em>.</li>
+<li><em>waitForSync</em> (optional):
+Wait until edge document has been synced to disk.</li>
+<li><em>rev</em> (optional):
+You can conditionally patch an edge document based on a target revision id by
+using the <em>rev</em> query parameter.</li>
+<li><em>policy</em> (optional):
+To control the update behavior in case there is a revision mismatch, you
+can use the <em>policy</em> parameter.</li>
+</ul>
+<p><strong>Header Parameters</strong></p>
+<ul>
+<li><em>If-Match</em> (optional):
+You can conditionally patch an edge document based on a target revision id by
+using the <em>if-match</em> HTTP header.</li>
+</ul>
+<p>Partially updates the edge document identified by <em>document-handle</em>.
+The body of the request must contain a JSON document with the attributes
+to patch (the patch document). All attributes from the patch document will
+be added to the existing edge document if they do not yet exist, and overwritten
+in the existing edge document if they do exist there.
+Setting an attribute value to <em>null</em> in the patch document will cause a
+value of <em>null</em> be saved for the attribute by default.
+<strong>Note</strong>: Internal attributes such as <em>_key</em>, <em>_from</em> and <em>_to</em> are immutable
+once set and cannot be updated.
+Optionally, the query parameter <em>waitForSync</em> can be used to force
+synchronization of the edge document update operation to disk even in case
+that the <em>waitForSync</em> flag had been disabled for the entire collection.
+Thus, the <em>waitForSync</em> query parameter can be used to force synchronization
+of just specific operations. To use this, set the <em>waitForSync</em> parameter
+to <em>true</em>. If the <em>waitForSync</em> parameter is not specified or set to
+<em>false</em>, then the collection&apos;s default <em>waitForSync</em> behavior is
+applied. The <em>waitForSync</em> query parameter cannot be used to disable
+synchronization for collections that have a default <em>waitForSync</em> value
+of <em>true</em>.
+The body of the response contains a JSON object with the information about
+the handle and the revision. The attribute <em>_id</em> contains the known
+<em>document-handle</em> of the updated edge document, <em>_key</em> contains the key which 
+uniquely identifies a document in a given collection, and the attribute <em>_rev</em>
+contains the new document revision.
+If the edge document does not exist, then a <em>HTTP 404</em> is returned and the
+body of the response contains an error document.
+You can conditionally update an edge document based on a target revision id by
+using either the <em>rev</em> query parameter or the <em>if-match</em> HTTP header.
+To control the update behavior in case there is a revision mismatch, you
+can use the <em>policy</em> parameter. This is the same as when replacing
+edge documents (see replacing documents for details).</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the document was patched successfully and <em>waitForSync</em> was
+<em>true</em>.</li>
+<li><em>202</em>:
+is returned if the document was patched successfully and <em>waitForSync</em> was
+<em>false</em>.</li>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation or when
+applied on an non-edge collection. The response body contains an error document
+in this case.</li>
+<li><em>404</em>:
+is returned if the collection or the edge document was not found</li>
+<li><em>412</em>:
+is returned if a &quot;If-Match&quot; header or <em>rev</em> is given and the found
+document has a different version. The response will also contain the found
+document&apos;s current revision in the <em>_rev</em> attribute. Additionally, the
+attributes <em>_id</em> and <em>_key</em> will be returned.<!-- arangod/RestHandler/RestEdgeHandler.cpp -->
+</li>
+</ul>
+<h3 id="replaces-an-edge">replaces an edge</h3>
+<p> replaces an edge</p>
+<p><code>PUT /_api/document/{document-handle}#replaceEdge</code>
+<strong>Post Body</strong>
+ <em>edge</em> (required):
+A JSON representation of the new edge data.</p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>document-handle</em> (required):
+The handle of the edge document.</li>
+</ul>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>waitForSync</em> (optional):
+Wait until edge document has been synced to disk.</li>
+<li><em>rev</em> (optional):
+You can conditionally replace an edge document based on a target revision id by
+using the <em>rev</em> query parameter.</li>
+<li><em>policy</em> (optional):
+To control the update behavior in case there is a revision mismatch, you
+can use the <em>policy</em> parameter (see below).</li>
+</ul>
+<p><strong>Header Parameters</strong></p>
+<ul>
+<li><em>If-Match</em> (optional):
+You can conditionally replace an edge document based on a target revision id by
+using the <em>if-match</em> HTTP header.</li>
+</ul>
+<p>Completely updates (i.e. replaces) the edge document identified by <em>document-handle</em>.
+If the edge document exists and can be updated, then a <em>HTTP 201</em> is returned
+and the &quot;ETag&quot; header field contains the new revision of the edge document.
+If the new edge document passed in the body of the request contains the
+<em>document-handle</em> in the attribute <em>_id</em> and the revision in <em>_rev</em>,
+these attributes will be ignored. Only the URI and the &quot;ETag&quot; header are
+relevant in order to avoid confusion when using proxies. 
+<strong>Note</strong>: The attributes
+<em>_from</em> and <em>_to</em> of an edge are immutable and cannot be updated either.
+Optionally, the query parameter <em>waitForSync</em> can be used to force
+synchronization of the edge document replacement operation to disk even in case
+that the <em>waitForSync</em> flag had been disabled for the entire collection.
+Thus, the <em>waitForSync</em> query parameter can be used to force synchronization
+of just specific operations. To use this, set the <em>waitForSync</em> parameter
+to <em>true</em>. If the <em>waitForSync</em> parameter is not specified or set to
+<em>false</em>, then the collection&apos;s default <em>waitForSync</em> behavior is
+applied. The <em>waitForSync</em> query parameter cannot be used to disable
+synchronization for collections that have a default <em>waitForSync</em> value
+of <em>true</em>.
+The body of the response contains a JSON object with the information about
+the handle and the revision. The attribute <em>_id</em> contains the known
+<em>document-handle</em> of the updated edge document, <em>_key</em> contains the key which 
+uniquely identifies a document in a given collection, and the attribute <em>_rev</em>
+contains the new document revision.
+If the edge document does not exist, then a <em>HTTP 404</em> is returned and the
+body of the response contains an error document.
+There are two ways for specifying the targeted revision id for
+conditional replacements (i.e. replacements that will only be executed if
+the revision id found in the database matches the revision id specified
+in the request):</p>
+<ul>
+<li>specifying the target revision in the <em>rev</em> URL query parameter</li>
+<li>specifying the target revision in the <em>if-match</em> HTTP header
+Specifying a target revision is optional, however, if done, only one of the
+described mechanisms must be used (either the <em>rev</em> query parameter or the
+<em>if-match</em> HTTP header).
+Regardless which mechanism is used, the parameter needs to contain the target
+revision id as returned in the <em>_rev</em> attribute of an edge document or
+by an HTTP <em>etag</em> header.
+For example, to conditionally replace an edge document based on a specific revision
+id, you can use the following request:</li>
+<li>PUT /_api/document/<em>document-handle</em>?rev=<em>etag</em>
+If a target revision id is provided in the request (e.g. via the <em>etag</em> value
+in the <em>rev</em> URL query parameter above), ArangoDB will check that
+the revision id of the edge document found in the database is equal to the target
+revision id provided in the request. If there is a mismatch between the revision
+id, then by default a <em>HTTP 412</em> conflict is returned and no replacement is
+performed.
+The conditional update behavior can be overridden with the <em>policy</em> URL query parameter:</li>
+<li>PUT /_api/document/<em>document-handle</em>?policy=<em>policy</em>
+If <em>policy</em> is set to <em>error</em>, then the behavior is as before: replacements
+will fail if the revision id found in the database does not match the target
+revision id specified in the request.
+If <em>policy</em> is set to <em>last</em>, then the replacement will succeed, even if the
+revision id found in the database does not match the target revision id specified
+in the request. You can use the <em>last</em> <em>policy</em> to force replacements.</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the edge document was replaced successfully and <em>waitForSync</em> was
+<em>true</em>.</li>
+<li><em>202</em>:
+is returned if the edge document was replaced successfully and <em>waitForSync</em> was
+<em>false</em>.</li>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of an edge
+document or if applied to a non-edge collection. The response body contains an
+error document in this case.</li>
+<li><em>404</em>:
+is returned if the collection or the edge document was not found</li>
+<li><em>412</em>:
+is returned if a &quot;If-Match&quot; header or <em>rev</em> is given and the found
+document has a different version. The response will also contain the found
+document&apos;s current revision in the <em>_rev</em> attribute. Additionally, the
+attributes <em>_id</em> and <em>_key</em> will be returned.<!-- arangod/RestHandler/RestEdgeHandler.cpp -->
+</li>
+</ul>
+<h3 id="deletes-edge">Deletes edge</h3>
+<p> deletes an edge</p>
+<p><code>DELETE /_api/document/{document-handle}#deleteEdge</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>document-handle</em> (required):
+Deletes the edge document identified by <em>document-handle</em>.</li>
+</ul>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>rev</em> (optional):
+You can conditionally delete an edge document based on a target revision id by
+using the <em>rev</em> query parameter.</li>
+<li><em>policy</em> (optional):
+To control the update behavior in case there is a revision mismatch, you
+can use the <em>policy</em> parameter. This is the same as when replacing edge
+documents (see replacing edge documents for more details).</li>
+<li><em>waitForSync</em> (optional):
+Wait until edge document has been synced to disk.</li>
+</ul>
+<p><strong>Header Parameters</strong></p>
+<ul>
+<li><em>If-Match</em> (optional):
+You can conditionally delete an edge document based on a target revision id by
+using the <em>if-match</em> HTTP header.</li>
+</ul>
+<p>The body of the response contains a JSON object with the information about
+the handle and the revision. The attribute <em>_id</em> contains the known
+<em>document-handle</em> of the deleted edge document, <em>_key</em> contains the key which 
+uniquely identifies a document in a given collection, and the attribute <em>_rev</em>
+contains the new document revision.
+If the <em>waitForSync</em> parameter is not specified or set to
+<em>false</em>, then the collection&apos;s default <em>waitForSync</em> behavior is
+applied. The <em>waitForSync</em> query parameter cannot be used to disable
+synchronization for collections that have a default <em>waitForSync</em> value
+of <em>true</em>.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the edge document was deleted successfully and <em>waitForSync</em> was
+<em>true</em>.</li>
+<li><em>202</em>:
+is returned if the edge document was deleted successfully and <em>waitForSync</em> was
+<em>false</em>.</li>
+<li><em>404</em>:
+is returned if the collection or the edge document was not found.
+The response body contains an error document in this case.</li>
+<li><em>412</em>:
+is returned if a &quot;If-Match&quot; header or <em>rev</em> is given and the found
+document has a different version. The response will also contain the found
+document&apos;s current revision in the <em>_rev</em> attribute. Additionally, the
+attributes <em>_id</em> and <em>_key</em> will be returned.<!-- arangod/RestHandler/RestEdgeHandler.cpp -->
+</li>
+</ul>
+<h3 id="read-edge-header">Read edge header</h3>
+<p> reads a single edge head</p>
+<p><code>HEAD /_api/document/{document-handle}readEdgeHead</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>document-handle</em> (required):
+The handle of the edge document.</li>
+</ul>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>rev</em> (optional):
+You can conditionally fetch an edge document based on a target revision id by
+using the <em>rev</em> query parameter.</li>
+</ul>
+<p><strong>Header Parameters</strong></p>
+<ul>
+<li><em>If-None-Match</em> (optional):
+If the &quot;If-None-Match&quot; header is given, then it must contain exactly one
+etag. If the current document revision is different to the specified etag,
+an <em>HTTP 200</em> response is returned. If the current document revision is
+identical to the specified etag, then an <em>HTTP 304</em> is returned.</li>
+<li><em>If-Match</em> (optional):
+You can conditionally fetch an edge document based on a target revision id by
+using the <em>if-match</em> HTTP header.</li>
+</ul>
+<p>Like <em>GET</em>, but only returns the header fields and not the body. You
+can use this call to get the current revision of an edge document or check if
+it was deleted.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the edge document was found</li>
+<li><em>304</em>:
+is returned if the &quot;If-None-Match&quot; header is given and the edge document has
+same version</li>
+<li><em>404</em>:
+is returned if the edge document or collection was not found</li>
+<li><em>412</em>:
+is returned if a &quot;If-Match&quot; header or <em>rev</em> is given and the found
+document has a different version. The response will also contain the found
+document&apos;s current revision in the <em>etag</em> header.<!-- js/actions/api-edges.js -->
+</li>
+</ul>
+<h3 id="read-in-or-outbound-edges">Read in- or outbound edges</h3>
+<p> get edges</p>
+<p><code>GET /_api/edges/{collection-id}</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>collection-id</em> (required):
+The id of the collection.</li>
+</ul>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>vertex</em> (required):
+The id of the start vertex.</li>
+<li><em>direction</em> (optional):
+Selects <em>in</em> or <em>out</em> direction for edges. If not set, any edges are
+returned.</li>
+</ul>
+<p>Returns an array of edges starting or ending in the vertex identified by
+<em>vertex-handle</em>.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the edge collection was found and edges were retrieved.</li>
+<li><em>400</em>:
+is returned if the request contains invalid parameters.</li>
+<li><em>404</em>:
+is returned if the edge collection was not found.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Any direction</p>
+<div id="RestEdgesReadEdgesAny_container">
+<div id="RestEdgesReadEdgesAny_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/edges/edges?vertex=vertices/1
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;edges&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;5&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/5&quot;</span>, 
+      <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+      <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/3&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;10482&quot;</span>, 
+      <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v1 -&gt; v3&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;6&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/6&quot;</span>, 
+      <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/2&quot;</span>, 
+      <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;10491&quot;</span>, 
+      <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v2 -&gt; v1&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;7&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/7&quot;</span>, 
+      <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/4&quot;</span>, 
+      <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;10499&quot;</span>, 
+      <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v4 -&gt; v1&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span>, 
+  <span class="hljs-string">&quot;stats&quot;</span> : { 
+    <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">3</span>, 
+    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+  } 
+}
+</pre>
+</div>
+<div id="RestEdgesReadEdgesAny_short" onclick="$(&apos;#RestEdgesReadEdgesAny_short&apos;).hide(); $(&apos;#RestEdgesReadEdgesAny_long&apos;).show();">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/edges/edges?vertex=vertices/1
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>In edges</p>
+<div id="RestEdgesReadEdgesIn_container">
+<div id="RestEdgesReadEdgesIn_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/edges/edges?vertex=vertices/1&amp;direction=in
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;edges&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;6&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/6&quot;</span>, 
+      <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/2&quot;</span>, 
+      <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;10560&quot;</span>, 
+      <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v2 -&gt; v1&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;7&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/7&quot;</span>, 
+      <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/4&quot;</span>, 
+      <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;10568&quot;</span>, 
+      <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v4 -&gt; v1&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span>, 
+  <span class="hljs-string">&quot;stats&quot;</span> : { 
+    <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">2</span>, 
+    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+  } 
+}
+</pre>
+</div>
+<div id="RestEdgesReadEdgesIn_short" onclick="$(&apos;#RestEdgesReadEdgesIn_short&apos;).hide(); $(&apos;#RestEdgesReadEdgesIn_long&apos;).show();">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/edges/edges?vertex=vertices/1&amp;direction=in
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Out edges</p>
+<div id="RestEdgesReadEdgesOut_container">
+<div id="RestEdgesReadEdgesOut_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/edges/edges?vertex=vertices/1&amp;direction=out
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;edges&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;5&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/5&quot;</span>, 
+      <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
+      <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/3&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;10620&quot;</span>, 
+      <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v1 -&gt; v3&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span>, 
+  <span class="hljs-string">&quot;stats&quot;</span> : { 
+    <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">1</span>, 
+    <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+  } 
+}
+</pre>
+</div>
+<div id="RestEdgesReadEdgesOut_short" onclick="$(&apos;#RestEdgesReadEdgesOut_short&apos;).hide(); $(&apos;#RestEdgesReadEdgesOut_long&apos;).show();">
+<pre>
+shell&gt; curl --dump - http://localhost:8529/_api/edges/edges?vertex=vertices/1&amp;direction=out
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Edge/AddressAndEtag.html" class="navigation navigation-prev " aria-label="Previous page: Address and ETag"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Gharial/index.html" class="navigation navigation-next " aria-label="Next page: General Graph"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+</html>

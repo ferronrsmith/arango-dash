@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Mac OS X | ArangoDB 2.8.2 Documentation</title>
+        <title>Mac OS X | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="1.2" data-chapter-title="Mac OS X" data-filepath="Installing/MacOSX.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="1.2" data-chapter-title="Mac OS X" data-filepath="Installing/MacOSX.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4086,8 +4086,13 @@ need to unload it before uninstalling the server:</p>
 </code></pre><p>Then remove the LaunchAgent:</p>
 <pre><code>rm ~/Library/LaunchAgents/homebrew.mxcl.arangodb.plist
 </code></pre><p><strong>Note</strong>: If the latest ArangoDB Version is not shown in homebrew, you also need to update homebrew:</p>
-<pre><code>brew update 
-</code></pre><p><a name="apple&apos;s_app_store"></a></p>
+<pre><code>brew update
+</code></pre><p><strong><em>Known issues</em></strong></p>
+<ul>
+<li>Performance - the LLVM delivered as of Mac OS X El Capitan builds slow binaries. Use GCC instead</li>
+<li>the Commandline argument parsing doesn&apos;t accept blanks in filenames; the CLI version below does.</li>
+</ul>
+<p><a name="apple&apos;s_app_store"></a></p>
 <h2 id="apples-app-store">Apple&apos;s App Store</h2>
 <p>ArangoDB is available in Apple&apos;s App-Store. Please note, that it sometimes takes 
 days or weeks until the latest versions are available. </p>
@@ -4173,5 +4178,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

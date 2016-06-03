@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Accessing Cursors | ArangoDB 2.8.2 Documentation</title>
+        <title>Accessing Cursors | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="18.6.2" data-chapter-title="Accessing Cursors" data-filepath="HttpAqlQueryCursor/AccessingCursors.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="18.6.2" data-chapter-title="Accessing Cursors" data-filepath="HttpAqlQueryCursor/AccessingCursors.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4189,15 +4189,15 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
   <span class="hljs-string">&quot;result&quot;</span> : [ 
     { 
       <span class="hljs-string">&quot;hello1&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
-      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/671980664&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;671980664&quot;</span>, 
-      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;671980664&quot;</span> 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/672002280&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;672002280&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;672002280&quot;</span> 
     }, 
     { 
       <span class="hljs-string">&quot;hello2&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
-      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/672308344&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;672308344&quot;</span>, 
-      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;672308344&quot;</span> 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/672329960&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;672329960&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;672329960&quot;</span> 
     } 
   ], 
   <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
@@ -4209,7 +4209,8 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
       <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">2</span>, 
       <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.000102996826171875</span> 
     }, 
     <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
   }, 
@@ -4253,20 +4254,20 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 { 
   <span class="hljs-string">&quot;result&quot;</span> : [ 
     { 
-      <span class="hljs-string">&quot;hello3&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
-      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/670669944&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;670669944&quot;</span>, 
-      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;670669944&quot;</span> 
+      <span class="hljs-string">&quot;hello2&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/670363880&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;670363880&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;670363880&quot;</span> 
     }, 
     { 
-      <span class="hljs-string">&quot;hello1&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
-      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/670014584&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;670014584&quot;</span>, 
-      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;670014584&quot;</span> 
+      <span class="hljs-string">&quot;hello4&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/671019240&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;671019240&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;671019240&quot;</span> 
     } 
   ], 
   <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">true</span>, 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;671521912&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;671543528&quot;</span>, 
   <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">5</span>, 
   <span class="hljs-string">&quot;extra&quot;</span> : { 
     <span class="hljs-string">&quot;stats&quot;</span> : { 
@@ -4274,7 +4275,8 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
       <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">5</span>, 
       <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.0002110004425048828</span> 
     }, 
     <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
   }, 
@@ -4341,7 +4343,8 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
       <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">500</span>, 
-      <span class="hljs-string">&quot;fullCount&quot;</span> : <span class="hljs-number">500</span> 
+      <span class="hljs-string">&quot;fullCount&quot;</span> : <span class="hljs-number">500</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.0011029243469238281</span> 
     }, 
     <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
   }, 
@@ -4414,7 +4417,8 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
       <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.0004749298095703125</span> 
     }, 
     <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
   }, 
@@ -4472,7 +4476,8 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
       <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">2</span>, 
       <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.00013899803161621094</span> 
     }, 
     <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
   }, 
@@ -4519,7 +4524,8 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
       <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">1</span>, 
       <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.00020599365234375</span> 
     }, 
     <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
   }, 
@@ -4695,7 +4701,7 @@ shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/curs
 }
 EOF
 
-shell&gt; curl -X PUT --dump - http://localhost:8529/_api/cursor/678927480
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/cursor/678949096
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -4703,20 +4709,20 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 { 
   <span class="hljs-string">&quot;result&quot;</span> : [ 
     { 
-      <span class="hljs-string">&quot;hello5&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
-      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/678730872&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;678730872&quot;</span>, 
-      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;678730872&quot;</span> 
+      <span class="hljs-string">&quot;hello3&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/678097128&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;678097128&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;678097128&quot;</span> 
     }, 
     { 
-      <span class="hljs-string">&quot;hello3&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
-      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/678075512&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;678075512&quot;</span>, 
-      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;678075512&quot;</span> 
+      <span class="hljs-string">&quot;hello2&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/677769448&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;677769448&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;677769448&quot;</span> 
     } 
   ], 
   <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">true</span>, 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;678927480&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;678949096&quot;</span>, 
   <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">5</span>, 
   <span class="hljs-string">&quot;extra&quot;</span> : { 
     <span class="hljs-string">&quot;stats&quot;</span> : { 
@@ -4724,7 +4730,8 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
       <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">5</span>, 
       <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.00011706352233886719</span> 
     }, 
     <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
   }, 
@@ -4744,7 +4751,7 @@ shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/curs
 }
 EOF
 
-shell&gt; curl -X PUT --dump - http://localhost:8529/_api/cursor/678927480
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/cursor/678949096
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -4853,20 +4860,20 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 { 
   <span class="hljs-string">&quot;result&quot;</span> : [ 
     { 
-      <span class="hljs-string">&quot;hello3&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
-      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/673619064&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;673619064&quot;</span>, 
-      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;673619064&quot;</span> 
+      <span class="hljs-string">&quot;hello2&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/673313000&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;673313000&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;673313000&quot;</span> 
     }, 
     { 
       <span class="hljs-string">&quot;hello5&quot;</span> : <span class="hljs-string">&quot;world1&quot;</span>, 
-      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/674274424&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;674274424&quot;</span>, 
-      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;674274424&quot;</span> 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/674296040&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;674296040&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;674296040&quot;</span> 
     } 
   ], 
   <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">true</span>, 
-  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;674471032&quot;</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;674492648&quot;</span>, 
   <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">5</span>, 
   <span class="hljs-string">&quot;extra&quot;</span> : { 
     <span class="hljs-string">&quot;stats&quot;</span> : { 
@@ -4874,7 +4881,8 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
       <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
       <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">5</span>, 
       <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
-      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span> 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.0001201629638671875</span> 
     }, 
     <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
   }, 
@@ -4882,7 +4890,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
   <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
 }
-shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/cursor/674471032
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/cursor/674492648
 
 </pre>
 </div>
@@ -4958,5 +4966,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

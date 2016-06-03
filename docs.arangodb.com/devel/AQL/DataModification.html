@@ -1,0 +1,1344 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Data Modification Queries | ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="./styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="./Operations/index.html" />
+    
+    
+    <link rel="prev" href="./Operators.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="styles/header.js"></script><link rel="stylesheet" type="text/css" href="styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="4"
+        data-chapter-title="Data Modification Queries"
+        data-filepath="DataModification.md"
+        data-basepath="."
+        data-revision="Thu Jun 02 2016 11:44:53 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="Invocation/index.html">
+            
+                
+                    <a href="./Invocation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        How to invoke AQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="Invocation/WithArangosh.html">
+            
+                
+                    <a href="./Invocation/WithArangosh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        with Arangosh
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Invocation/WithWebInterface.html">
+            
+                
+                    <a href="./Invocation/WithWebInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        with the Web Interface
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Fundamentals/index.html">
+            
+                
+                    <a href="./Fundamentals/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        AQL Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="Fundamentals/Syntax.html">
+            
+                
+                    <a href="./Fundamentals/Syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        AQL Syntax
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Fundamentals/DataTypes.html">
+            
+                
+                    <a href="./Fundamentals/DataTypes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Data types
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Fundamentals/BindParameters.html">
+            
+                
+                    <a href="./Fundamentals/BindParameters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Bind Parameters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Fundamentals/TypeValueOrder.html">
+            
+                
+                    <a href="./Fundamentals/TypeValueOrder.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Type and value order
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="Fundamentals/DocumentData.html">
+            
+                
+                    <a href="./Fundamentals/DocumentData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Accessing data from collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="Fundamentals/QueryResults.html">
+            
+                
+                    <a href="./Fundamentals/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="Fundamentals/QueryErrors.html">
+            
+                
+                    <a href="./Fundamentals/QueryErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        Query Errors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Operators.html">
+            
+                
+                    <a href="./Operators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Operators
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4" data-path="DataModification.html">
+            
+                
+                    <a href="./DataModification.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Data Modification Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Operations/index.html">
+            
+                
+                    <a href="./Operations/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        High level Operations
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Operations/For.html">
+            
+                
+                    <a href="./Operations/For.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        FOR
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Operations/Return.html">
+            
+                
+                    <a href="./Operations/Return.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        RETURN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Operations/Filter.html">
+            
+                
+                    <a href="./Operations/Filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        FILTER
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="Operations/Sort.html">
+            
+                
+                    <a href="./Operations/Sort.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        SORT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="Operations/Limit.html">
+            
+                
+                    <a href="./Operations/Limit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        LIMIT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="Operations/Let.html">
+            
+                
+                    <a href="./Operations/Let.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        LET
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="Operations/Collect.html">
+            
+                
+                    <a href="./Operations/Collect.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        COLLECT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="Operations/Remove.html">
+            
+                
+                    <a href="./Operations/Remove.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        REMOVE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="Operations/Update.html">
+            
+                
+                    <a href="./Operations/Update.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        UPDATE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="Operations/Replace.html">
+            
+                
+                    <a href="./Operations/Replace.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        REPLACE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="Operations/Insert.html">
+            
+                
+                    <a href="./Operations/Insert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        INSERT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="Operations/Upsert.html">
+            
+                
+                    <a href="./Operations/Upsert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        UPSERT
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Functions/index.html">
+            
+                
+                    <a href="./Functions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Functions/TypeCast.html">
+            
+                
+                    <a href="./Functions/TypeCast.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Type cast
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Functions/String.html">
+            
+                
+                    <a href="./Functions/String.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        String
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="Functions/Numeric.html">
+            
+                
+                    <a href="./Functions/Numeric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Numeric
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="Functions/Date.html">
+            
+                
+                    <a href="./Functions/Date.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Date
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="Functions/Array.html">
+            
+                
+                    <a href="./Functions/Array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Array
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="Functions/Document.html">
+            
+                
+                    <a href="./Functions/Document.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object / Document
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="Functions/Geo.html">
+            
+                
+                    <a href="./Functions/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="Functions/Fulltext.html">
+            
+                
+                    <a href="./Functions/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="Functions/Miscellaneous.html">
+            
+                
+                    <a href="./Functions/Miscellaneous.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        Miscellaneous
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Graphs/index.html">
+            
+                
+                    <a href="./Graphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Graphs/Traversals.html">
+            
+                
+                    <a href="./Graphs/Traversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Graphs/Operations.html">
+            
+                
+                    <a href="./Graphs/Operations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Named Operations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Graphs/Functions.html">
+            
+                
+                    <a href="./Graphs/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Other
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Advanced/index.html">
+            
+                
+                    <a href="./Advanced/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Advanced Features
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Advanced/ArrayOperators.html">
+            
+                
+                    <a href="./Advanced/ArrayOperators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Array Operators
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Examples/index.html">
+            
+                
+                    <a href="./Examples/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Usual Query Patterns
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Examples/Counting.html">
+            
+                
+                    <a href="./Examples/Counting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Counting
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Examples/DataModificationQueries.html">
+            
+                
+                    <a href="./Examples/DataModificationQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Data-modification queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Examples/CombiningQueries.html">
+            
+                
+                    <a href="./Examples/CombiningQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Subqueries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Examples/ProjectionsAndFilters.html">
+            
+                
+                    <a href="./Examples/ProjectionsAndFilters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Projections and filters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Examples/Join.html">
+            
+                
+                    <a href="./Examples/Join.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Joins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Examples/Grouping.html">
+            
+                
+                    <a href="./Examples/Grouping.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        Grouping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Examples/CombiningGraphTraversals.html">
+            
+                
+                    <a href="./Examples/CombiningGraphTraversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="Examples/QueriesNoCollections.html">
+            
+                
+                    <a href="./Examples/QueriesNoCollections.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        Queries without collections
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Extending/index.html">
+            
+                
+                    <a href="./Extending/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        User Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Extending/Conventions.html">
+            
+                
+                    <a href="./Extending/Conventions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Conventions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Extending/Functions.html">
+            
+                
+                    <a href="./Extending/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Registering Functions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="ExecutionAndPerformance/index.html">
+            
+                
+                    <a href="./ExecutionAndPerformance/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Execution and Performance
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="ExecutionAndPerformance/QueryStatistics.html">
+            
+                
+                    <a href="./ExecutionAndPerformance/QueryStatistics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Query statistics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="ExecutionAndPerformance/ParsingQueries.html">
+            
+                
+                    <a href="./ExecutionAndPerformance/ParsingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Parsing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="ExecutionAndPerformance/ExplainingQueries.html">
+            
+                
+                    <a href="./ExecutionAndPerformance/ExplainingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        Explaining queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="ExecutionAndPerformance/Optimizer.html">
+            
+                
+                    <a href="./ExecutionAndPerformance/Optimizer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        Optimizing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="ExecutionAndPerformance/QueryCache.html">
+            
+                
+                    <a href="./ExecutionAndPerformance/QueryCache.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Caching query results
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="CommonErrors.html">
+            
+                
+                    <a href="./CommonErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Common Errors
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="data_modification_queries"></a></p>
+<h1 id="data-modification-queries">Data Modification Queries</h1>
+<p>AQL supports the following data-modification operations:</p>
+<ul>
+<li><strong>INSERT</strong>: insert new documents into a collection</li>
+<li><strong>UPDATE</strong>: partially update existing documents in a collection</li>
+<li><strong>REPLACE</strong>: completely replace existing documents in a collection</li>
+<li><strong>REMOVE</strong>: remove existing documents from a collection</li>
+<li><strong>UPSERT</strong>: conditionally insert or update documents in a collection</li>
+</ul>
+<p>Those operations are detailed in the chapter <a href="Operations/index.html">High Level Operations</a>. </p>
+<p><a name="modifying_a_single_document"></a></p>
+<h3 id="modifying-a-single-document">Modifying a single document</h3>
+<p>Let&apos;s start with the basics: <code>INSERT</code>, <code>UPDATE</code> and <code>REMOVE</code> operations on single documents.
+Here is an example that insert a document in an existing collection <em>users</em>:</p>
+<pre><code class="lang-js">INSERT { firstName: <span class="hljs-string">&quot;Anna&quot;</span>, name: <span class="hljs-string">&quot;Pavlova&quot;</span>, profession: <span class="hljs-string">&quot;artist&quot;</span> } IN users
+</code></pre>
+<p>You may provide a key for the new document; if not provided, ArangoDB will create one for you.  </p>
+<pre><code class="lang-js">INSERT { _key: <span class="hljs-string">&quot;GilbertoGil&quot;</span>, firstName: <span class="hljs-string">&quot;Gilberto&quot;</span>, name: <span class="hljs-string">&quot;Gil&quot;</span>, city: <span class="hljs-string">&quot;Fortalezza&quot;</span> } IN users
+</code></pre>
+<p>As Arango is schema-free, attributes of the documents may vary: </p>
+<pre><code class="lang-js">INSERT { _key: <span class="hljs-string">&quot;PhilCarpenter&quot;</span>, firstName: <span class="hljs-string">&quot;Phil&quot;</span>, name: <span class="hljs-string">&quot;Carpenter&quot;</span>, middleName: <span class="hljs-string">&quot;G.&quot;</span>, status: <span class="hljs-string">&quot;inactive&quot;</span> } IN users
+</code></pre>
+<pre><code class="lang-js">INSERT { _key: <span class="hljs-string">&quot;NatachaDeclerck&quot;</span>, firstName: <span class="hljs-string">&quot;Natacha&quot;</span>, name: <span class="hljs-string">&quot;Declerck&quot;</span>, location: <span class="hljs-string">&quot;Antwerp&quot;</span> } IN users
+</code></pre>
+<p>Update is quite simple. The following AQL statement will add or change the attributes status and location</p>
+<pre><code class="lang-js">UPDATE <span class="hljs-string">&quot;PhilCarpenter&quot;</span> WITH { status: <span class="hljs-string">&quot;active&quot;</span>, location: <span class="hljs-string">&quot;Beijing&quot;</span> } IN users
+</code></pre>
+<p>Replace is an alternative to update where all attributes of the document are replaced.</p>
+<pre><code class="lang-js">REPLACE { _key: <span class="hljs-string">&quot;NatachaDeclerck&quot;</span>, firstName: <span class="hljs-string">&quot;Natacha&quot;</span>, name: <span class="hljs-string">&quot;Leclerc&quot;</span>, status: <span class="hljs-string">&quot;active&quot;</span>, level: <span class="hljs-string">&quot;premium&quot;</span> } IN users
+</code></pre>
+<p>Removing a document if you know its key is simple as well : </p>
+<pre><code class="lang-js">REMOVE <span class="hljs-string">&quot;GilbertoGil&quot;</span> IN users
+</code></pre>
+<p>or </p>
+<pre><code class="lang-js">REMOVE { _key: <span class="hljs-string">&quot;GilbertoGil&quot;</span> } IN users
+</code></pre>
+<p><a name="modifying_multiple_documents"></a></p>
+<h3 id="modifying-multiple-documents">Modifying multiple documents</h3>
+<p>Data-modification operations are normally combined with <em>FOR</em> loops to
+iterate over a given list of documents. They can optionally be combined with
+<em>FILTER</em> statements and the like.</p>
+<p>Let&apos;s start with an example that modifies existing documents in a collection
+<em>users</em> that match some condition:</p>
+<pre><code class="lang-js">FOR u IN users
+    FILTER u.status == <span class="hljs-string">&quot;not active&quot;</span>
+    UPDATE u WITH { status: <span class="hljs-string">&quot;inactive&quot;</span> } IN users
+</code></pre>
+<p>Now, let&apos;s copy the contents of the collection <em>users</em> into the collection
+<em>backup</em>:</p>
+<pre><code class="lang-js">FOR u IN users
+    INSERT u IN backup
+</code></pre>
+<p>As a final example, let&apos;s find some documents in collection <em>users</em> and
+remove them from collection <em>backup</em>. The link between the documents in both
+collections is established via the documents&apos; keys:</p>
+<pre><code class="lang-js">FOR u IN users
+    FILTER u.status == <span class="hljs-string">&quot;deleted&quot;</span>
+    REMOVE u IN backup
+</code></pre>
+<p><a name="returning_documents"></a></p>
+<h3 id="returning-documents">Returning documents</h3>
+<p>Data-modification queries can optionally return documents. In order to reference
+the inserted, removed or modified documents in a <code>RETURN</code> statement, data-modification 
+statements introduce the <code>OLD</code> and/or <code>NEW</code> pseudo-values:</p>
+<pre><code class="lang-js">FOR i IN <span class="hljs-number">1.</span><span class="hljs-number">.100</span>
+    INSERT { value: i } IN test 
+    RETURN NEW
+</code></pre>
+<pre><code class="lang-js">FOR u IN users
+    FILTER u.status == <span class="hljs-string">&quot;deleted&quot;</span>
+    REMOVE u IN users 
+    RETURN OLD
+</code></pre>
+<pre><code class="lang-js">FOR u IN users
+    FILTER u.status == <span class="hljs-string">&quot;not active&quot;</span>
+    UPDATE u WITH { status: <span class="hljs-string">&quot;inactive&quot;</span> } IN users 
+    RETURN NEW
+</code></pre>
+<p><code>NEW</code> refers to the inserted or modified document revision, and <code>OLD</code> refers
+to the document revision before update or removal. <code>INSERT</code> statements can 
+only refer to the <code>NEW</code> pseudo-value, and <code>REMOVE</code> operations only to <code>OLD</code>. 
+<code>UPDATE</code>, <code>REPLACE</code> and <code>UPSERT</code> can refer to either.</p>
+<p>In all cases the full documents will be returned with all their attributes,
+including the potentially auto-generated attributes such as <code>_id</code>, <code>_key</code>, or <code>_rev</code>
+and the attributes not specified in the update expression of a partial update.</p>
+<p><a name="projections"></a></p>
+<h4 id="projections">Projections</h4>
+<p>It is possible to return a projection of the documents in <code>OLD</code> or <code>NEW</code> instead of 
+returning the entire documents. This can be used to reduce the amount of data returned 
+by queries.</p>
+<p>For example, the following query will return only the keys of the inserted documents:</p>
+<pre><code class="lang-js">FOR i IN <span class="hljs-number">1.</span><span class="hljs-number">.100</span>
+    INSERT { value: i } IN test 
+    RETURN NEW._key
+</code></pre>
+<p><a name="using_old_and_new_in_the_same_query"></a></p>
+<h4 id="using-old-and-new-in-the-same-query">Using OLD and NEW in the same query</h4>
+<p>For <code>UPDATE</code>, <code>REPLACE</code> and <code>UPSERT</code> statements, both <code>OLD</code> and <code>NEW</code> can be used
+to return the previous revision of a document together with the updated revision:</p>
+<pre><code class="lang-js">FOR u IN users
+    FILTER u.status == <span class="hljs-string">&quot;not active&quot;</span>
+    UPDATE u WITH { status: <span class="hljs-string">&quot;inactive&quot;</span> } IN users 
+    RETURN { old: OLD, <span class="hljs-keyword">new</span>: NEW }
+</code></pre>
+<p><a name="calculations_with_old_or_new"></a></p>
+<h4 id="calculations-with-old-or-new">Calculations with OLD or NEW</h4>
+<p>It is also possible to run additional calculations with <code>LET</code> statements between the
+data-modification part and the final <code>RETURN</code> of an AQL query. For example, the following
+query performs an upsert operation and returns whether an existing document was
+updated, or a new document was inserted. It does so by checking the <code>OLD</code> variable
+after the <code>UPSERT</code> and using a <code>LET</code> statement to store a temporary string for
+the operation type:</p>
+<pre><code class="lang-js">UPSERT { name: <span class="hljs-string">&quot;test&quot;</span> }
+    INSERT { name: <span class="hljs-string">&quot;test&quot;</span> }
+    UPDATE { } IN users
+LET opType = IS_NULL(old) ? <span class="hljs-string">&quot;insert&quot;</span> : <span class="hljs-string">&quot;update&quot;</span>
+RETURN { _key: NEW._key, type: opType }
+</code></pre>
+<p><a name="restrictions"></a></p>
+<h3 id="restrictions">Restrictions</h3>
+<p>The name of the modified collection (<em>users</em> and <em>backup</em> in the above cases) 
+must be known to the AQL executor at query-compile time and cannot change at 
+runtime. Using a bind parameter to specify the
+<a href="../Manual/Appendix/Glossary.html#collection-name">collection name</a> is allowed.</p>
+<p>Data-modification queries are restricted to modifying data in a single 
+collection per query. That means a data-modification query cannot modify 
+data in multiple collections with a single query. It is still possible (and
+was shown above) to read from one or many collections and modify data in another
+within the same query.</p>
+<p>Only a single data-modification operation can be used per AQL query. Data-modification
+queries cannot be used inside subqueries. Data-modification operations can optionally
+be followed by <code>LET</code> operations and a single <code>RETURN</code> operation to return data. If
+expressions are used within these operations, they cannot contain subqueries or 
+access data in collections using AQL functions.</p>
+<p>Finally, data-modification operations can optionally be followed by <code>LET</code> and <code>RETURN</code>,
+but not by other statements such as <code>SORT</code>, <code>COLLECT</code> etc.</p>
+<p><a name="transactional_execution"></a></p>
+<h3 id="transactional-execution">Transactional Execution</h3>
+<p>On a single server, data-modification operations are executed transactionally.
+If a data-modification operation fails, any changes made by it will be rolled 
+back automatically as if they never happened.</p>
+<p>In a cluster, AQL data-modification queries are currently not executed transactionally.
+Additionally, <em>update</em>, <em>replace</em>, <em>upsert</em> and <em>remove</em> AQL queries currently 
+require the <em>_key</em> attribute to be specified for all documents that should be 
+modified or removed, even if a shared key attribute other than <em>_key</em> was chosen 
+for the collection. This restriction may be overcome in a future release of ArangoDB.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./Operators.html" class="navigation navigation-prev " aria-label="Previous page: Operators"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./Operations/index.html" class="navigation navigation-next " aria-label="Next page: High level Operations"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+</html>

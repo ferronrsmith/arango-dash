@@ -1,0 +1,2895 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Simple Queries | ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../AsyncResultsManagement/index.html" />
+    
+    
+    <link rel="prev" href="../AqlUserFunctions/index.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="13"
+        data-chapter-title="Simple Queries"
+        data-filepath="SimpleQuery/README.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:44 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="General/index.html">
+            
+                
+                    <a href="../General/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        General HTTP Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Api/index.html">
+            
+                
+                    <a href="../Api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        HTTP Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Database/index.html">
+            
+                
+                    <a href="../Database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Database/DatabaseEndpoint.html">
+            
+                
+                    <a href="../Database/DatabaseEndpoint.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        To-Endpoint
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Database/DatabaseManagement.html">
+            
+                
+                    <a href="../Database/DatabaseManagement.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Database/NotesOnDatabases.html">
+            
+                
+                    <a href="../Database/NotesOnDatabases.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Notes on Databases
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Collection/index.html">
+            
+                
+                    <a href="../Collection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Collections
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Collection/Creating.html">
+            
+                
+                    <a href="../Collection/Creating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Creating
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Collection/Getting.html">
+            
+                
+                    <a href="../Collection/Getting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Getting Information
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Collection/Modifying.html">
+            
+                
+                    <a href="../Collection/Modifying.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Modifying
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Document/index.html">
+            
+                
+                    <a href="../Document/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Documents
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Document/AddressAndEtag.html">
+            
+                
+                    <a href="../Document/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Basics and Terminology
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Document/WorkingWithDocuments.html">
+            
+                
+                    <a href="../Document/WorkingWithDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Working with Documents
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Edge/index.html">
+            
+                
+                    <a href="../Edge/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Edge/AddressAndEtag.html">
+            
+                
+                    <a href="../Edge/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Address and ETag
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Edge/WorkingWithEdges.html">
+            
+                
+                    <a href="../Edge/WorkingWithEdges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Working with Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Gharial/index.html">
+            
+                
+                    <a href="../Gharial/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        General Graph
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Gharial/Management.html">
+            
+                
+                    <a href="../Gharial/Management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Gharial/Vertices.html">
+            
+                
+                    <a href="../Gharial/Vertices.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Vertices
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Gharial/Edges.html">
+            
+                
+                    <a href="../Gharial/Edges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Traversal/index.html">
+            
+                
+                    <a href="../Traversal/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="AqlQueryCursor/index.html">
+            
+                
+                    <a href="../AqlQueryCursor/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        AQL Query Cursors
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="AqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../AqlQueryCursor/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="AqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../AqlQueryCursor/AccessingCursors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Accessing Cursors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="AqlQuery/index.html">
+            
+                
+                    <a href="../AqlQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        AQL Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="AqlQueryCache/index.html">
+            
+                
+                    <a href="../AqlQueryCache/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        AQL Query Cache
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="AqlUserFunctions/index.html">
+            
+                
+                    <a href="../AqlUserFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        AQL User Functions Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="13" data-path="SimpleQuery/index.html">
+            
+                
+                    <a href="../SimpleQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Simple Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="AsyncResultsManagement/index.html">
+            
+                
+                    <a href="../AsyncResultsManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        Async Result Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="BulkImports/index.html">
+            
+                
+                    <a href="../BulkImports/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        Bulk Import / Export
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1" data-path="BulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../BulkImports/ImportingSelfContained.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                        JSON Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.2" data-path="BulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../BulkImports/ImportingHeadersAndValues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                        Headers &amp; Values
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.3" data-path="BatchRequest/index.html">
+            
+                
+                    <a href="../BatchRequest/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.3.</b>
+                        
+                        Batch Requests
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.4" data-path="Export/index.html">
+            
+                
+                    <a href="../Export/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.4.</b>
+                        
+                        Exporting data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="Indexes/index.html">
+            
+                
+                    <a href="../Indexes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        Indexes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="Indexes/WorkingWith.html">
+            
+                
+                    <a href="../Indexes/WorkingWith.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        Working with Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="Indexes/Hash.html">
+            
+                
+                    <a href="../Indexes/Hash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                        Hash
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="Indexes/Skiplist.html">
+            
+                
+                    <a href="../Indexes/Skiplist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                        Skiplist
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="Indexes/Geo.html">
+            
+                
+                    <a href="../Indexes/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="Indexes/Fulltext.html">
+            
+                
+                    <a href="../Indexes/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="Transaction/index.html">
+            
+                
+                    <a href="../Transaction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        Transactions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="Replications/index.html">
+            
+                
+                    <a href="../Replications/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        Replication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="18.1" data-path="Replications/ReplicationDump.html">
+            
+                
+                    <a href="../Replications/ReplicationDump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                        Replication Dump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.2" data-path="Replications/ReplicationLogger.html">
+            
+                
+                    <a href="../Replications/ReplicationLogger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                        Replication Logger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.3" data-path="Replications/ReplicationApplier.html">
+            
+                
+                    <a href="../Replications/ReplicationApplier.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                        Replication Applier
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.4" data-path="Replications/OtherReplication.html">
+            
+                
+                    <a href="../Replications/OtherReplication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.4.</b>
+                        
+                        Other Replication Commands
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="19" data-path="ShardingInterface/index.html">
+            
+                
+                    <a href="../ShardingInterface/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                        Sharding
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="20" data-path="AdministrationAndMonitoring/index.html">
+            
+                
+                    <a href="../AdministrationAndMonitoring/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                        Monitoring
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="21" data-path="Endpoints/index.html">
+            
+                
+                    <a href="../Endpoints/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                        Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="22" data-path="UserManagement/index.html">
+            
+                
+                    <a href="../UserManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                        User Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="23" data-path="Tasks/index.html">
+            
+                
+                    <a href="../Tasks/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                        Tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="24" data-path="MiscellaneousFunctions/index.html">
+            
+                
+                    <a href="../MiscellaneousFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                        Miscellaneous functions
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="http_interface_for_simple_queries"></a></p>
+<h1 id="http-interface-for-simple-queries">HTTP Interface for Simple Queries</h1>
+<p><a name="simple_queries"></a></p>
+<h3 id="simple-queries">Simple Queries</h3>
+<p>This is an introduction to ArangoDB&apos;s HTTP interface for simple queries.</p>
+<p>Simple queries can be used if the query condition is straight forward simple,
+i.e., a document reference, all documents, a query-by-example, or a simple geo
+query. In a simple query you can specify exactly one collection and one
+condition. The result can then be sorted and can be split into pages.</p>
+<p><a name="working_with_simples_queries_using_http"></a></p>
+<h2 id="working-with-simples-queries-using-http">Working with Simples Queries using HTTP</h2>
+<p>To limit the amount of results to be transferred in one batch, simple queries
+support a <em>batchSize</em> parameter that can optionally be used to tell the server
+to limit the number of results to be transferred in one batch to a certain
+value. If the query has more results than were transferred in one go, more
+results are waiting on the server so they can be fetched subsequently. If no
+value for the <em>batchSize</em> parameter is specified, the server will use a
+reasonable default value.</p>
+<p>If the server has more documents than should be returned in a single batch, the
+server will set the <em>hasMore</em> attribute in the result. It will also return the
+id of the server-side cursor in the <em>id</em> attribute in the result.  This id can
+be used with the cursor API to fetch any outstanding results from the server and
+dispose the server-side cursor afterwards.</p>
+<!-- js/actions/api-simple.js -->
+<h3 id="return-all-documents">Return all documents</h3>
+<p> returns all documents of a collection</p>
+<p><code>PUT /_api/simple/all</code>
+<strong>Post Body</strong>
+ <em>query</em> (required):
+Contains the query.</p>
+<p>Returns all documents of a collections. The call expects a JSON object
+as body with the following attributes:</p>
+<ul>
+<li><em>collection</em>: The name of the collection to query.</li>
+<li><em>skip</em>: The number of documents to skip in the query (optional).</li>
+<li><em>limit</em>: The maximal amount of documents to return. The <em>skip</em>
+is applied before the <em>limit</em> restriction. (optional)
+Returns a cursor containing the result, see <a href="../AqlQueryCursor/index.html">Http Cursor</a> for details.</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if the query was executed successfully.</li>
+<li><em>400</em>:
+is returned if the body does not contain a valid JSON representation of a
+query. The response body contains an error document in this case.</li>
+<li><em>404</em>:
+is returned if the collection specified by <em>collection</em> is unknown.  The
+response body contains an error document in this case.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Limit the amount of documents using <em>limit</em></p>
+<div id="RestSimpleAllSkipLimit_container">
+<div id="RestSimpleAllSkipLimit_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/all &lt;&lt;EOF
+{ &quot;collection&quot;: &quot;products&quot;, &quot;skip&quot;: 2, &quot;limit&quot; : 2 }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11093&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11093&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11093&quot;</span>, 
+      <span class="hljs-string">&quot;Hello4&quot;</span> : <span class="hljs-string">&quot;World4&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11087&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11087&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11087&quot;</span>, 
+      <span class="hljs-string">&quot;Hello2&quot;</span> : <span class="hljs-string">&quot;World2&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;cached&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;extra&quot;</span> : { 
+    <span class="hljs-string">&quot;stats&quot;</span> : { 
+      <span class="hljs-string">&quot;writesExecuted&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">4</span>, 
+      <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.00007891654968261719</span> 
+    }, 
+    <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
+  }, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleAllSkipLimit_short" onclick="$(&apos;#RestSimpleAllSkipLimit_short&apos;).hide(); $(&apos;#RestSimpleAllSkipLimit_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/all &lt;&lt;EOF
+{ &quot;collection&quot;: &quot;products&quot;, &quot;skip&quot;: 2, &quot;limit&quot; : 2 }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using a <em>batchSize</em> value</p>
+<div id="RestSimpleAllBatch_container">
+<div id="RestSimpleAllBatch_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/all &lt;&lt;EOF
+{ &quot;collection&quot;: &quot;products&quot;, &quot;batchSize&quot; : 3 }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11069&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11069&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11069&quot;</span>, 
+      <span class="hljs-string">&quot;Hello3&quot;</span> : <span class="hljs-string">&quot;World3&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11062&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11062&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11062&quot;</span>, 
+      <span class="hljs-string">&quot;Hello1&quot;</span> : <span class="hljs-string">&quot;World1&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11072&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11072&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11072&quot;</span>, 
+      <span class="hljs-string">&quot;Hello4&quot;</span> : <span class="hljs-string">&quot;World4&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-string">&quot;11078&quot;</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">5</span>, 
+  <span class="hljs-string">&quot;extra&quot;</span> : { 
+    <span class="hljs-string">&quot;stats&quot;</span> : { 
+      <span class="hljs-string">&quot;writesExecuted&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;writesIgnored&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;scannedFull&quot;</span> : <span class="hljs-number">5</span>, 
+      <span class="hljs-string">&quot;scannedIndex&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;filtered&quot;</span> : <span class="hljs-number">0</span>, 
+      <span class="hljs-string">&quot;executionTime&quot;</span> : <span class="hljs-number">0.00014710426330566406</span> 
+    }, 
+    <span class="hljs-string">&quot;warnings&quot;</span> : [ ] 
+  }, 
+  <span class="hljs-string">&quot;cached&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleAllBatch_short" onclick="$(&apos;#RestSimpleAllBatch_short&apos;).hide(); $(&apos;#RestSimpleAllBatch_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/all &lt;&lt;EOF
+{ &quot;collection&quot;: &quot;products&quot;, &quot;batchSize&quot; : 3 }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="simple-query-byexample">Simple query by-example</h3>
+<p> returns all documents of a collection matching a given example</p>
+<p><code>PUT /_api/simple/by-example</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>skip</strong>: The number of documents to skip in the query (optional).</li>
+<li><strong>limit</strong>: The maximal amount of documents to return. The <em>skip</em>
+is applied before the <em>limit</em> restriction. (optional)</li>
+<li><strong>example</strong>: The example document.</li>
+<li><strong>collection</strong>: The name of the collection to query.</li>
+</ul>
+<div id="RestSimpleByExample_container">
+<div id="RestSimpleByExample_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11130&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11130&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11130&quot;</span>, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11123&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11123&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11123&quot;</span>, 
+      <span class="hljs-string">&quot;a&quot;</span> : { 
+        <span class="hljs-string">&quot;k&quot;</span> : <span class="hljs-number">1</span>, 
+        <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+      }, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11127&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11127&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11127&quot;</span>, 
+      <span class="hljs-string">&quot;a&quot;</span> : { 
+        <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+      }, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11133&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11133&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11133&quot;</span>, 
+      <span class="hljs-string">&quot;a&quot;</span> : { 
+        <span class="hljs-string">&quot;k&quot;</span> : <span class="hljs-number">2</span>, 
+        <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">2</span> 
+      }, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">4</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleByExample_short" onclick="$(&apos;#RestSimpleByExample_short&apos;).hide(); $(&apos;#RestSimpleByExample_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Matching an attribute which is a sub-document</p>
+<div id="RestSimpleByExample2_container">
+<div id="RestSimpleByExample2_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a.j&quot;</span> : <span class="hljs-number">1</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11141&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11141&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11141&quot;</span>, 
+      <span class="hljs-string">&quot;a&quot;</span> : { 
+        <span class="hljs-string">&quot;k&quot;</span> : <span class="hljs-number">1</span>, 
+        <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+      }, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11145&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11145&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11145&quot;</span>, 
+      <span class="hljs-string">&quot;a&quot;</span> : { 
+        <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+      }, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleByExample2_short" onclick="$(&apos;#RestSimpleByExample2_short&apos;).hide(); $(&apos;#RestSimpleByExample2_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a.j&quot;</span> : <span class="hljs-number">1</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Matching an attribute within a sub-document</p>
+<div id="RestSimpleByExample3_container">
+<div id="RestSimpleByExample3_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11163&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11163&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11163&quot;</span>, 
+      <span class="hljs-string">&quot;a&quot;</span> : { 
+        <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+      }, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleByExample3_short" onclick="$(&apos;#RestSimpleByExample3_short&apos;).hide(); $(&apos;#RestSimpleByExample3_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="find-documents-matching-an-example">Find documents matching an example</h3>
+<p> returns one document of a collection matching a given example</p>
+<p><code>PUT /_api/simple/first-example</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>example</strong>: The example document.</li>
+<li><strong>collection</strong>: The name of the collection to query.</li>
+</ul>
+<div id="RestSimpleFirstExample_container">
+<div id="RestSimpleFirstExample_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;document&quot;</span> : { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11177&quot;</span>, 
+    <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11177&quot;</span>, 
+    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11177&quot;</span>, 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;k&quot;</span> : <span class="hljs-number">1</span>, 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    }, 
+    <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+  }, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleFirstExample_short" onclick="$(&apos;#RestSimpleFirstExample_short&apos;).hide(); $(&apos;#RestSimpleFirstExample_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">1</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>If no document was found</p>
+<div id="RestSimpleFirstExampleNotFound_container">
+<div id="RestSimpleFirstExampleNotFound_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;l&quot;</span> : <span class="hljs-number">1</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">404</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">404</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;no match&quot;</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleFirstExampleNotFound_short" onclick="$(&apos;#RestSimpleFirstExampleNotFound_short&apos;).hide(); $(&apos;#RestSimpleFirstExampleNotFound_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/first-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;l&quot;</span> : <span class="hljs-number">1</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- arangod/RestHandler/RestSimpleHandler.cpp -->
+<h3 id="find-documents-by-their-keys">Find documents by their keys</h3>
+<p> fetches multiple documents by their keys</p>
+<p><code>PUT /_api/simple/lookup-by-keys</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>keys</strong>: array with the _keys of documents to remove. of type string</li>
+<li><strong>collection</strong>: The name of the collection to look in for the documents</li>
+</ul>
+<div id="RestSimpleLookup_container">
+<div id="RestSimpleLookup_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/lookup-by-keys &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;keys&quot;</span> : [ 
+    <span class="hljs-string">&quot;test0&quot;</span>, 
+    <span class="hljs-string">&quot;test1&quot;</span>, 
+    <span class="hljs-string">&quot;test2&quot;</span>, 
+    <span class="hljs-string">&quot;test3&quot;</span>, 
+    <span class="hljs-string">&quot;test4&quot;</span>, 
+    <span class="hljs-string">&quot;test5&quot;</span>, 
+    <span class="hljs-string">&quot;test6&quot;</span>, 
+    <span class="hljs-string">&quot;test7&quot;</span>, 
+    <span class="hljs-string">&quot;test8&quot;</span>, 
+    <span class="hljs-string">&quot;test9&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;test&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span>, 
+  <span class="hljs-string">&quot;documents&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test0&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test0&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11230&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">0</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test1&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test1&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11234&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">1</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test2&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test2&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11237&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">2</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test3&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test3&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11240&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">3</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test4&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test4&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11243&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">4</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test5&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test5&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11246&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">5</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test6&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test6&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11249&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">6</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test7&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test7&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11252&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">7</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test8&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test8&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11255&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">8</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;test/test9&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;test9&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11258&quot;</span>, 
+      <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">9</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleLookup_short" onclick="$(&apos;#RestSimpleLookup_short&apos;).hide(); $(&apos;#RestSimpleLookup_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/lookup-by-keys &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;keys&quot;</span> : [ 
+    <span class="hljs-string">&quot;test0&quot;</span>, 
+    <span class="hljs-string">&quot;test1&quot;</span>, 
+    <span class="hljs-string">&quot;test2&quot;</span>, 
+    <span class="hljs-string">&quot;test3&quot;</span>, 
+    <span class="hljs-string">&quot;test4&quot;</span>, 
+    <span class="hljs-string">&quot;test5&quot;</span>, 
+    <span class="hljs-string">&quot;test6&quot;</span>, 
+    <span class="hljs-string">&quot;test7&quot;</span>, 
+    <span class="hljs-string">&quot;test8&quot;</span>, 
+    <span class="hljs-string">&quot;test9&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;test&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Looking up non-existing documents</p>
+<div id="RestSimpleLookupNotFound_container">
+<div id="RestSimpleLookupNotFound_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/lookup-by-keys &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;keys&quot;</span> : [ 
+    <span class="hljs-string">&quot;foo&quot;</span>, 
+    <span class="hljs-string">&quot;bar&quot;</span>, 
+    <span class="hljs-string">&quot;baz&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;test&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span>, 
+  <span class="hljs-string">&quot;documents&quot;</span> : [ ], 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleLookupNotFound_short" onclick="$(&apos;#RestSimpleLookupNotFound_short&apos;).hide(); $(&apos;#RestSimpleLookupNotFound_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/lookup-by-keys &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;keys&quot;</span> : [ 
+    <span class="hljs-string">&quot;foo&quot;</span>, 
+    <span class="hljs-string">&quot;bar&quot;</span>, 
+    <span class="hljs-string">&quot;baz&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;test&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="return-a-random-document">Return a random document</h3>
+<p> returns a random document from a collection</p>
+<p><code>PUT /_api/simple/any</code></p>
+<p>Returns a random document from a collection. The call expects a JSON object
+as body with the following attributes:</p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>collection</strong>: The identifier or name of the collection to query.
+Returns a JSON object with the document stored in the attribute
+<em>document</em> if the collection contains at least one document. If
+the collection is empty, the <em>document</em> attrbute contains null.</li>
+</ul>
+<div id="RestSimpleAny_container">
+<div id="RestSimpleAny_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/any &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;document&quot;</span> : { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11113&quot;</span>, 
+    <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11113&quot;</span>, 
+    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11113&quot;</span>, 
+    <span class="hljs-string">&quot;Hello4&quot;</span> : <span class="hljs-string">&quot;World4&quot;</span> 
+  }, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleAny_short" onclick="$(&apos;#RestSimpleAny_short&apos;).hide(); $(&apos;#RestSimpleAny_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/any &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- arangod/RestHandler/RestSimpleHandler.cpp -->
+<h3 id="remove-documents-by-their-keys">Remove documents by their keys</h3>
+<p> Hihi removes multiple documents by their keys</p>
+<p><code>PUT /_api/simple/remove-by-keys</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>keys</strong>: array with the _keys of documents to remove. of type string</li>
+<li><strong>options</strong>:<ul>
+<li><strong>returnOld</strong>: if set to <em>true</em> and <em>silent</em> above is <em>false</em>, then the above
+information about the removed documents contains the complete
+removed documents.</li>
+<li><strong>silent</strong>: if set to <em>false</em>, then the result will contain an additional
+attribute <em>old</em> which contains an array with one entry for each
+removed document. By default, these entries will have the <em>_id</em>,
+<em>_key</em> and <em>_rev</em> attributes.</li>
+<li><strong>waitForSync</strong>: if set to true, then all removal operations will
+instantly be synchronized to disk. If this is not specified, then the
+collection&apos;s default sync behavior will be applied.</li>
+</ul>
+</li>
+<li><strong>collection</strong>: The name of the collection to look in for the documents to remove</li>
+</ul>
+<div id="RestSimpleRemove_container">
+<div id="RestSimpleRemove_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-keys &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;keys&quot;</span> : [ 
+    <span class="hljs-string">&quot;test0&quot;</span>, 
+    <span class="hljs-string">&quot;test1&quot;</span>, 
+    <span class="hljs-string">&quot;test2&quot;</span>, 
+    <span class="hljs-string">&quot;test3&quot;</span>, 
+    <span class="hljs-string">&quot;test4&quot;</span>, 
+    <span class="hljs-string">&quot;test5&quot;</span>, 
+    <span class="hljs-string">&quot;test6&quot;</span>, 
+    <span class="hljs-string">&quot;test7&quot;</span>, 
+    <span class="hljs-string">&quot;test8&quot;</span>, 
+    <span class="hljs-string">&quot;test9&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;test&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;removed&quot;</span> : <span class="hljs-number">10</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleRemove_short" onclick="$(&apos;#RestSimpleRemove_short&apos;).hide(); $(&apos;#RestSimpleRemove_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-keys &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;keys&quot;</span> : [ 
+    <span class="hljs-string">&quot;test0&quot;</span>, 
+    <span class="hljs-string">&quot;test1&quot;</span>, 
+    <span class="hljs-string">&quot;test2&quot;</span>, 
+    <span class="hljs-string">&quot;test3&quot;</span>, 
+    <span class="hljs-string">&quot;test4&quot;</span>, 
+    <span class="hljs-string">&quot;test5&quot;</span>, 
+    <span class="hljs-string">&quot;test6&quot;</span>, 
+    <span class="hljs-string">&quot;test7&quot;</span>, 
+    <span class="hljs-string">&quot;test8&quot;</span>, 
+    <span class="hljs-string">&quot;test9&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;test&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<div id="RestSimpleRemoveNotFound_container">
+<div id="RestSimpleRemoveNotFound_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-keys &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;keys&quot;</span> : [ 
+    <span class="hljs-string">&quot;foo&quot;</span>, 
+    <span class="hljs-string">&quot;bar&quot;</span>, 
+    <span class="hljs-string">&quot;baz&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;test&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;removed&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleRemoveNotFound_short" onclick="$(&apos;#RestSimpleRemoveNotFound_short&apos;).hide(); $(&apos;#RestSimpleRemoveNotFound_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-keys &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;keys&quot;</span> : [ 
+    <span class="hljs-string">&quot;foo&quot;</span>, 
+    <span class="hljs-string">&quot;bar&quot;</span>, 
+    <span class="hljs-string">&quot;baz&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;test&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="remove-documents-by-example">Remove documents by example</h3>
+<p> removes all documents of a collection that match an example</p>
+<p><code>PUT /_api/simple/remove-by-example</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>example</strong>: An example document that all collection documents are compared against.</li>
+<li><strong>collection</strong>: The name of the collection to remove from.</li>
+<li><strong>options</strong>:<ul>
+<li><strong>limit</strong>: an optional value that determines how many documents to
+delete at most. If <em>limit</em> is specified but is less than the number
+of documents in the collection, it is undefined which of the documents
+will be deleted.</li>
+<li><strong>waitForSync</strong>: if set to true, then all removal operations will
+instantly be synchronized to disk. If this is not specified, then the
+collection&apos;s default sync behavior will be applied.</li>
+</ul>
+</li>
+</ul>
+<div id="RestSimpleRemoveByExample_container">
+<div id="RestSimpleRemoveByExample_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;deleted&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleRemoveByExample_short" onclick="$(&apos;#RestSimpleRemoveByExample_short&apos;).hide(); $(&apos;#RestSimpleRemoveByExample_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using Parameter: waitForSync and limit</p>
+<div id="RestSimpleRemoveByExample_1_container">
+<div id="RestSimpleRemoveByExample_1_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;waitForSync&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;deleted&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleRemoveByExample_1_short" onclick="$(&apos;#RestSimpleRemoveByExample_1_short&apos;).hide(); $(&apos;#RestSimpleRemoveByExample_1_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;waitForSync&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using Parameter: waitForSync and limit with new signature</p>
+<div id="RestSimpleRemoveByExample_2_container">
+<div id="RestSimpleRemoveByExample_2_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;options&quot;</span> : { 
+    <span class="hljs-string">&quot;waitForSync&quot;</span> : <span class="hljs-literal">true</span>, 
+    <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;deleted&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleRemoveByExample_2_short" onclick="$(&apos;#RestSimpleRemoveByExample_2_short&apos;).hide(); $(&apos;#RestSimpleRemoveByExample_2_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/remove-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;options&quot;</span> : { 
+    <span class="hljs-string">&quot;waitForSync&quot;</span> : <span class="hljs-literal">true</span>, 
+    <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="replace-documents-by-example">Replace documents by example</h3>
+<p> replaces the body of all documents of a collection that match an example</p>
+<p><code>PUT /_api/simple/replace-by-example</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>options</strong>:<ul>
+<li><strong>limit</strong>: an optional value that determines how many documents to
+replace at most. If <em>limit</em> is specified but is less than the number
+of documents in the collection, it is undefined which of the documents
+will be replaced.</li>
+<li><strong>waitForSync</strong>: if set to true, then all removal operations will
+instantly be synchronized to disk. If this is not specified, then the
+collection&apos;s default sync behavior will be applied.</li>
+</ul>
+</li>
+<li><strong>example</strong>: An example document that all collection documents are compared against.</li>
+<li><strong>collection</strong>: The name of the collection to replace within.</li>
+<li><strong>newValue</strong>: The replacement document that will get inserted in place
+of the &quot;old&quot; documents.</li>
+</ul>
+<div id="RestSimpleReplaceByExample_container">
+<div id="RestSimpleReplaceByExample_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/replace-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;newValue&quot;</span> : { 
+    <span class="hljs-string">&quot;foo&quot;</span> : <span class="hljs-string">&quot;bar&quot;</span> 
+  }, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;replaced&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleReplaceByExample_short" onclick="$(&apos;#RestSimpleReplaceByExample_short&apos;).hide(); $(&apos;#RestSimpleReplaceByExample_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/replace-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;newValue&quot;</span> : { 
+    <span class="hljs-string">&quot;foo&quot;</span> : <span class="hljs-string">&quot;bar&quot;</span> 
+  }, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using new Signature for attributes WaitForSync and limit</p>
+<div id="RestSimpleReplaceByExampleWaitForSync_container">
+<div id="RestSimpleReplaceByExampleWaitForSync_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/replace-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;newValue&quot;</span> : { 
+    <span class="hljs-string">&quot;foo&quot;</span> : <span class="hljs-string">&quot;bar&quot;</span> 
+  }, 
+  <span class="hljs-string">&quot;options&quot;</span> : { 
+    <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span>, 
+    <span class="hljs-string">&quot;waitForSync&quot;</span> : <span class="hljs-literal">true</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;replaced&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleReplaceByExampleWaitForSync_short" onclick="$(&apos;#RestSimpleReplaceByExampleWaitForSync_short&apos;).hide(); $(&apos;#RestSimpleReplaceByExampleWaitForSync_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/replace-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;newValue&quot;</span> : { 
+    <span class="hljs-string">&quot;foo&quot;</span> : <span class="hljs-string">&quot;bar&quot;</span> 
+  }, 
+  <span class="hljs-string">&quot;options&quot;</span> : { 
+    <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span>, 
+    <span class="hljs-string">&quot;waitForSync&quot;</span> : <span class="hljs-literal">true</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="update-documents-by-example">Update documents by example</h3>
+<p> partially updates the body of all documents of a collection that match an example</p>
+<p><code>PUT /_api/simple/update-by-example</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>options</strong>:<ul>
+<li><strong>keepNull</strong>: This parameter can be used to modify the behavior when
+handling <em>null</em> values. Normally, <em>null</em> values are stored in the
+database. By setting the <em>keepNull</em> parameter to <em>false</em>, this
+behavior can be changed so that all attributes in <em>data</em> with <em>null</em>
+values will be removed from the updated document.</li>
+<li><strong>mergeObjects</strong>: Controls whether objects (not arrays) will be merged if present in both the
+existing and the patch document. If set to false, the value in the
+patch document will overwrite the existing document&apos;s value. If set to
+true, objects will be merged. The default is true.</li>
+<li><strong>limit</strong>: an optional value that determines how many documents to
+update at most. If <em>limit</em> is specified but is less than the number
+of documents in the collection, it is undefined which of the documents
+will be updated.</li>
+<li><strong>waitForSync</strong>: if set to true, then all removal operations will
+instantly be synchronized to disk. If this is not specified, then the
+collection&apos;s default sync behavior will be applied.</li>
+</ul>
+</li>
+<li><strong>example</strong>: An example document that all collection documents are compared against.</li>
+<li><strong>collection</strong>: The name of the collection to update within.</li>
+<li><strong>newValue</strong>: A document containing all the attributes to update in the found documents.</li>
+</ul>
+<div id="RestSimpleUpdateByExample_container">
+<div id="RestSimpleUpdateByExample_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/update-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;newValue&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">22</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleUpdateByExample_short" onclick="$(&apos;#RestSimpleUpdateByExample_short&apos;).hide(); $(&apos;#RestSimpleUpdateByExample_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/update-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;newValue&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">22</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>using new signature for options</p>
+<div id="RestSimpleUpdateByExample_1_container">
+<div id="RestSimpleUpdateByExample_1_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/update-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;newValue&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">22</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;options&quot;</span> : { 
+    <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span>, 
+    <span class="hljs-string">&quot;waitForSync&quot;</span> : <span class="hljs-literal">true</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleUpdateByExample_1_short" onclick="$(&apos;#RestSimpleUpdateByExample_1_short&apos;).hide(); $(&apos;#RestSimpleUpdateByExample_1_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/update-by-example &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;example&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">1</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;newValue&quot;</span> : { 
+    <span class="hljs-string">&quot;a&quot;</span> : { 
+      <span class="hljs-string">&quot;j&quot;</span> : <span class="hljs-number">22</span> 
+    } 
+  }, 
+  <span class="hljs-string">&quot;options&quot;</span> : { 
+    <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span>, 
+    <span class="hljs-string">&quot;waitForSync&quot;</span> : <span class="hljs-literal">true</span> 
+  } 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="simple-range-query">Simple range query</h3>
+<p> returns all documents of a collection within a range</p>
+<p><code>PUT /_api/simple/range</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>right</strong>: The upper bound.</li>
+<li><strong>attribute</strong>: The attribute path to check.</li>
+<li><strong>collection</strong>: The name of the collection to query.</li>
+<li><strong>limit</strong>: The maximal amount of documents to return. The <em>skip</em>
+is applied before the <em>limit</em> restriction. (optional)</li>
+<li><strong>closed</strong>: If <em>true</em>, use interval including <em>left</em> and <em>right</em>,
+otherwise exclude <em>right</em>, but include <em>left</em>.</li>
+<li><strong>skip</strong>: The number of documents to skip in the query (optional).</li>
+<li><strong>left</strong>: The lower bound.</li>
+</ul>
+<div id="RestSimpleRange_container">
+<div id="RestSimpleRange_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/range &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;attribute&quot;</span> : <span class="hljs-string">&quot;i&quot;</span>, 
+  <span class="hljs-string">&quot;left&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;right&quot;</span> : <span class="hljs-number">4</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11393&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11393&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11393&quot;</span>, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">2</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11396&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11396&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11396&quot;</span>, 
+      <span class="hljs-string">&quot;i&quot;</span> : <span class="hljs-number">3</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleRange_short" onclick="$(&apos;#RestSimpleRange_short&apos;).hide(); $(&apos;#RestSimpleRange_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/range &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;attribute&quot;</span> : <span class="hljs-string">&quot;i&quot;</span>, 
+  <span class="hljs-string">&quot;left&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;right&quot;</span> : <span class="hljs-number">4</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="returns-documents-near-a-coordinate">Returns documents near a coordinate</h3>
+<p> returns all documents of a collection near a given location</p>
+<p><code>PUT /_api/simple/near</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>distance</strong>: If given, the attribute key used to return the distance to
+the given coordinate. (optional). If specified, distances are returned in meters.</li>
+<li><strong>skip</strong>: The number of documents to skip in the query. (optional)</li>
+<li><strong>longitude</strong>: The longitude of the coordinate.</li>
+<li><strong>limit</strong>: The maximal amount of documents to return. The <em>skip</em> is
+applied before the <em>limit</em> restriction. The default is 100. (optional)</li>
+<li><strong>collection</strong>: The name of the collection to query.</li>
+<li><strong>latitude</strong>: The latitude of the coordinate.</li>
+<li><strong>geo</strong>: If given, the identifier of the geo-index to use. (optional)</li>
+</ul>
+<div id="RestSimpleNear_container">
+<div id="RestSimpleNear_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11322&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11322&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11322&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">0.002</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/0.002/&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11316&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11316&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11316&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">-0.002</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/-0.002/&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleNear_short" onclick="$(&apos;#RestSimpleNear_short&apos;).hide(); $(&apos;#RestSimpleNear_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>With distance</p>
+<div id="RestSimpleNearDistance_container">
+<div id="RestSimpleNearDistance_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-string">&quot;distance&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-number">222.38985328911744</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11359&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11359&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11359&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">-0.002</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/-0.002/&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-number">222.38985328911744</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11365&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11365&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11365&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">0.002</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/0.002/&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-number">444.779706578235</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11356&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11356&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11356&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">-0.004</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/-0.004/&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleNearDistance_short" onclick="$(&apos;#RestSimpleNearDistance_short&apos;).hide(); $(&apos;#RestSimpleNearDistance_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-string">&quot;distance&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="find-documents-within-a-radius-around-a-coordinate">Find documents within a radius around a coordinate</h3>
+<p> returns all documents of a collection within a given radius</p>
+<p><code>PUT /_api/simple/within</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>distance</strong>: If given, the attribute key used to return the distance to
+the given coordinate. (optional). If specified, distances are returned in meters.</li>
+<li><strong>skip</strong>: The number of documents to skip in the query. (optional)</li>
+<li><strong>longitude</strong>: The longitude of the coordinate.</li>
+<li><strong>limit</strong>: The maximal amount of documents to return. The <em>skip</em> is
+applied before the <em>limit</em> restriction. The default is 100. (optional)</li>
+<li><strong>collection</strong>: The name of the collection to query.</li>
+<li><strong>latitude</strong>: The latitude of the coordinate.</li>
+<li><strong>radius</strong>: The maximal radius (in meters).</li>
+<li><strong>geo</strong>: If given, the identifier of the geo-index to use. (optional)</li>
+</ul>
+<div id="RestSimpleWithin_container">
+<div id="RestSimpleWithin_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;radius&quot;</span> : <span class="hljs-number">500</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11685&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11685&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11685&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">0.002</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/0.002/&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11679&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11679&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11679&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">-0.002</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/-0.002/&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleWithin_short" onclick="$(&apos;#RestSimpleWithin_short&apos;).hide(); $(&apos;#RestSimpleWithin_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;radius&quot;</span> : <span class="hljs-number">500</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>With distance</p>
+<div id="RestSimpleWithinDistance_container">
+<div id="RestSimpleWithinDistance_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-string">&quot;distance&quot;</span>, 
+  <span class="hljs-string">&quot;radius&quot;</span> : <span class="hljs-number">300</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-number">222.38985328911744</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11722&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11722&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11722&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">-0.002</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/-0.002/&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-number">222.38985328911744</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11728&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11728&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11728&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">0.002</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/0.002/&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-number">444.779706578235</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11719&quot;</span>, 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11719&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11719&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">-0.004</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/-0.004/&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleWithinDistance_short" onclick="$(&apos;#RestSimpleWithinDistance_short&apos;).hide(); $(&apos;#RestSimpleWithinDistance_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/near &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-string">&quot;distance&quot;</span>, 
+  <span class="hljs-string">&quot;radius&quot;</span> : <span class="hljs-number">300</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="within-rectangle-query">Within rectangle query</h3>
+<p> returns all documents of a collection within a rectangle</p>
+<p><code>PUT /_api/simple/within-rectangle</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>latitude1</strong>: The latitude of the first rectangle coordinate.</li>
+<li><strong>skip</strong>: The number of documents to skip in the query. (optional)</li>
+<li><strong>latitude2</strong>: The latitude of the second rectangle coordinate.</li>
+<li><strong>longitude2</strong>: The longitude of the second rectangle coordinate.</li>
+<li><strong>longitude1</strong>: The longitude of the first rectangle coordinate.</li>
+<li><strong>limit</strong>: The maximal amount of documents to return. The <em>skip</em> is
+applied before the <em>limit</em> restriction. The default is 100. (optional)</li>
+<li><strong>collection</strong>: The name of the collection to query.</li>
+<li><strong>geo</strong>: If given, the identifier of the geo-index to use. (optional)</li>
+</ul>
+<div id="RestSimpleWithinRectangle_container">
+<div id="RestSimpleWithinRectangle_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/within-rectangle &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude1&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude1&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;latitude2&quot;</span> : <span class="hljs-number">0.2</span>, 
+  <span class="hljs-string">&quot;longitude2&quot;</span> : <span class="hljs-number">0.2</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11780&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11780&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11780&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">0.008</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/0.008/&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11777&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11777&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11777&quot;</span>, 
+      <span class="hljs-string">&quot;loc&quot;</span> : [ 
+        <span class="hljs-number">0.006</span>, 
+        <span class="hljs-number">0</span> 
+      ], 
+      <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Name/0.006/&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleWithinRectangle_short" onclick="$(&apos;#RestSimpleWithinRectangle_short&apos;).hide(); $(&apos;#RestSimpleWithinRectangle_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/within-rectangle &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;latitude1&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;longitude1&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;latitude2&quot;</span> : <span class="hljs-number">0.2</span>, 
+  <span class="hljs-string">&quot;longitude2&quot;</span> : <span class="hljs-number">0.2</span>, 
+  <span class="hljs-string">&quot;skip&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;limit&quot;</span> : <span class="hljs-number">2</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<!-- js/actions/api-simple.js -->
+<h3 id="fulltext-index-query">Fulltext index query</h3>
+<p> returns documents of a collection as a result of a fulltext query</p>
+<p><code>PUT /_api/simple/fulltext</code></p>
+<p><strong>Body Parameters</strong></p>
+<ul>
+<li><strong>index</strong>: The identifier of the fulltext-index to use.</li>
+<li><strong>attribute</strong>: The attribute that contains the texts.</li>
+<li><strong>collection</strong>: The name of the collection to query.</li>
+<li><strong>limit</strong>: The maximal amount of documents to return. The <em>skip</em>
+is applied before the <em>limit</em> restriction. (optional)</li>
+<li><strong>skip</strong>: The number of documents to skip in the query (optional).</li>
+<li><strong>query</strong>: The fulltext query. Please refer to <a href="../../Manual/Appendix/Deprecated/SimpleQueries/FulltextQueries.html">Fulltext queries</a>
+for details.</li>
+</ul>
+<div id="RestSimpleFulltext_container">
+<div id="RestSimpleFulltext_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/fulltext &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;attribute&quot;</span> : <span class="hljs-string">&quot;text&quot;</span>, 
+  <span class="hljs-string">&quot;query&quot;</span> : <span class="hljs-string">&quot;word&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : [ 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11211&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11211&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11211&quot;</span>, 
+      <span class="hljs-string">&quot;text&quot;</span> : <span class="hljs-string">&quot;this text contains word&quot;</span> 
+    }, 
+    { 
+      <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;11215&quot;</span>, 
+      <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/11215&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;11215&quot;</span>, 
+      <span class="hljs-string">&quot;text&quot;</span> : <span class="hljs-string">&quot;this text also has a word&quot;</span> 
+    } 
+  ], 
+  <span class="hljs-string">&quot;hasMore&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">201</span> 
+}
+</pre>
+</div>
+<div id="RestSimpleFulltext_short" onclick="$(&apos;#RestSimpleFulltext_short&apos;).hide(); $(&apos;#RestSimpleFulltext_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/simple/fulltext &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;products&quot;</span>, 
+  <span class="hljs-string">&quot;attribute&quot;</span> : <span class="hljs-string">&quot;text&quot;</span>, 
+  <span class="hljs-string">&quot;query&quot;</span> : <span class="hljs-string">&quot;word&quot;</span> 
+}
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../AqlUserFunctions/index.html" class="navigation navigation-prev " aria-label="Previous page: AQL User Functions Management"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../AsyncResultsManagement/index.html" class="navigation navigation-next " aria-label="Next page: Async Result Handling"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+</html>

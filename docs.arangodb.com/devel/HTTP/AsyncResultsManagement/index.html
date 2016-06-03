@@ -1,0 +1,1755 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Async Result Handling | ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../BulkImports/index.html" />
+    
+    
+    <link rel="prev" href="../SimpleQuery/index.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="14"
+        data-chapter-title="Async Result Handling"
+        data-filepath="AsyncResultsManagement/README.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:44 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="General/index.html">
+            
+                
+                    <a href="../General/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        General HTTP Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Api/index.html">
+            
+                
+                    <a href="../Api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        HTTP Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Database/index.html">
+            
+                
+                    <a href="../Database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Database/DatabaseEndpoint.html">
+            
+                
+                    <a href="../Database/DatabaseEndpoint.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        To-Endpoint
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Database/DatabaseManagement.html">
+            
+                
+                    <a href="../Database/DatabaseManagement.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Database/NotesOnDatabases.html">
+            
+                
+                    <a href="../Database/NotesOnDatabases.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Notes on Databases
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Collection/index.html">
+            
+                
+                    <a href="../Collection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Collections
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Collection/Creating.html">
+            
+                
+                    <a href="../Collection/Creating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Creating
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Collection/Getting.html">
+            
+                
+                    <a href="../Collection/Getting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Getting Information
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Collection/Modifying.html">
+            
+                
+                    <a href="../Collection/Modifying.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Modifying
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Document/index.html">
+            
+                
+                    <a href="../Document/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Documents
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Document/AddressAndEtag.html">
+            
+                
+                    <a href="../Document/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Basics and Terminology
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Document/WorkingWithDocuments.html">
+            
+                
+                    <a href="../Document/WorkingWithDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Working with Documents
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Edge/index.html">
+            
+                
+                    <a href="../Edge/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Edge/AddressAndEtag.html">
+            
+                
+                    <a href="../Edge/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Address and ETag
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Edge/WorkingWithEdges.html">
+            
+                
+                    <a href="../Edge/WorkingWithEdges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Working with Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Gharial/index.html">
+            
+                
+                    <a href="../Gharial/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        General Graph
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Gharial/Management.html">
+            
+                
+                    <a href="../Gharial/Management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Gharial/Vertices.html">
+            
+                
+                    <a href="../Gharial/Vertices.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Vertices
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Gharial/Edges.html">
+            
+                
+                    <a href="../Gharial/Edges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Traversal/index.html">
+            
+                
+                    <a href="../Traversal/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="AqlQueryCursor/index.html">
+            
+                
+                    <a href="../AqlQueryCursor/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        AQL Query Cursors
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="AqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../AqlQueryCursor/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="AqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../AqlQueryCursor/AccessingCursors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Accessing Cursors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="AqlQuery/index.html">
+            
+                
+                    <a href="../AqlQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        AQL Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="AqlQueryCache/index.html">
+            
+                
+                    <a href="../AqlQueryCache/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        AQL Query Cache
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="AqlUserFunctions/index.html">
+            
+                
+                    <a href="../AqlUserFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        AQL User Functions Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="SimpleQuery/index.html">
+            
+                
+                    <a href="../SimpleQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Simple Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="14" data-path="AsyncResultsManagement/index.html">
+            
+                
+                    <a href="../AsyncResultsManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        Async Result Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="BulkImports/index.html">
+            
+                
+                    <a href="../BulkImports/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        Bulk Import / Export
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1" data-path="BulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../BulkImports/ImportingSelfContained.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                        JSON Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.2" data-path="BulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../BulkImports/ImportingHeadersAndValues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                        Headers &amp; Values
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.3" data-path="BatchRequest/index.html">
+            
+                
+                    <a href="../BatchRequest/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.3.</b>
+                        
+                        Batch Requests
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.4" data-path="Export/index.html">
+            
+                
+                    <a href="../Export/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.4.</b>
+                        
+                        Exporting data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="Indexes/index.html">
+            
+                
+                    <a href="../Indexes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        Indexes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="Indexes/WorkingWith.html">
+            
+                
+                    <a href="../Indexes/WorkingWith.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        Working with Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="Indexes/Hash.html">
+            
+                
+                    <a href="../Indexes/Hash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                        Hash
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="Indexes/Skiplist.html">
+            
+                
+                    <a href="../Indexes/Skiplist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                        Skiplist
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="Indexes/Geo.html">
+            
+                
+                    <a href="../Indexes/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="Indexes/Fulltext.html">
+            
+                
+                    <a href="../Indexes/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="Transaction/index.html">
+            
+                
+                    <a href="../Transaction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        Transactions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="Replications/index.html">
+            
+                
+                    <a href="../Replications/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        Replication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="18.1" data-path="Replications/ReplicationDump.html">
+            
+                
+                    <a href="../Replications/ReplicationDump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                        Replication Dump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.2" data-path="Replications/ReplicationLogger.html">
+            
+                
+                    <a href="../Replications/ReplicationLogger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                        Replication Logger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.3" data-path="Replications/ReplicationApplier.html">
+            
+                
+                    <a href="../Replications/ReplicationApplier.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                        Replication Applier
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.4" data-path="Replications/OtherReplication.html">
+            
+                
+                    <a href="../Replications/OtherReplication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.4.</b>
+                        
+                        Other Replication Commands
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="19" data-path="ShardingInterface/index.html">
+            
+                
+                    <a href="../ShardingInterface/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                        Sharding
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="20" data-path="AdministrationAndMonitoring/index.html">
+            
+                
+                    <a href="../AdministrationAndMonitoring/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                        Monitoring
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="21" data-path="Endpoints/index.html">
+            
+                
+                    <a href="../Endpoints/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                        Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="22" data-path="UserManagement/index.html">
+            
+                
+                    <a href="../UserManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                        User Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="23" data-path="Tasks/index.html">
+            
+                
+                    <a href="../Tasks/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                        Tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="24" data-path="MiscellaneousFunctions/index.html">
+            
+                
+                    <a href="../MiscellaneousFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                        Miscellaneous functions
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="http_interface_for_async_results_management"></a></p>
+<h1 id="http-interface-for-async-results-management">HTTP Interface for Async Results Management</h1>
+<p><a name="request_execution"></a></p>
+<h3 id="request-execution">Request Execution</h3>
+<p>ArangoDB provides various methods of executing client requests. Clients can choose the appropriate method on a per-request level based on their throughput, control flow, and durability requirements.</p>
+<p><a name="blocking_execution"></a></p>
+<h4 id="blocking-execution">Blocking execution</h4>
+<p>ArangoDB is a multi-threaded server, allowing the processing of multiple client 
+requests at the same time. Communication handling and the actual work can be performed
+by multiple worker threads in parallel.</p>
+<p>Though multiple clients can connect and send their requests in parallel to ArangoDB,
+clients may need to wait for their requests to be processed.</p>
+<p>By default, the server will fully process an incoming request and then return the
+result to the client. The client must wait for the server&apos;s response before it can
+send additional requests over the connection. For clients that are single-threaded
+or not event-driven, waiting for the full server response may be non-optimal.</p>
+<p>Furthermore, please note that even if the client closes the HTTP
+connection, the request running on the server will still continue until
+it is complete and only then notice that the client no longer listens.
+Thus closing the connection does not help to abort a long running query!
+See below under <a href="#async-execution-and-later-result-retrieval">Async Execution and later Result Retrieval</a>
+and <a href="#managing-async-results-via-http">HttpJobPutCancel</a> for details.</p>
+<p><a name="fire_and_forget"></a></p>
+<h4 id="fire-and-forget">Fire and Forget</h4>
+<p>To mitigate client blocking issues, ArangoDB since version 1.4. offers a generic mechanism 
+for non-blocking requests: if clients add the HTTP header <em>x-arango-async: true</em> to their
+requests, ArangoDB will put the request into an in-memory task queue and return an HTTP 202
+(accepted) response to the client instantly. The server will execute the tasks from
+the queue asynchronously, decoupling the client requests and the actual work.</p>
+<p>This allows for much higher throughput than if clients would wait for the server&apos;s
+response. The downside is that the response that is sent to the client is always the
+same (a generic HTTP 202) and clients cannot make a decision based on the actual
+operation&apos;s result at this point. In fact, the operation might have not even been executed at the
+time the generic response has reached the client. Clients can thus not rely on their
+requests having been processed successfully.</p>
+<p>The asynchronous task queue on the server is not persisted, meaning not-yet processed
+tasks from the queue will be lost in case of a crash. However, the client will
+not know whether they were processed or not.</p>
+<p>Clients should thus not send the extra header when they have strict durability 
+requirements or if they rely on result of the sent operation for further actions.</p>
+<p>The maximum number of queued tasks is determined by the startup option 
+<em>-scheduler.maximal-queue-size</em>. If more than this number of tasks are already queued,
+the server will reject the request with an HTTP 500 error.</p>
+<p>Finally, please note that it is not possible to cancel such a
+fire and forget job, since you won&apos;t get any handle to identify it later on.
+If you need to cancel requests,
+use <a href="#async-execution-and-later-result-retrieval">Async Execution and later Result Retrieval</a> 
+and <a href="#managing-async-results-via-http">HttpJobPutCancel</a> below.</p>
+<p><a name="async_execution_and_later_result_retrieval"></a></p>
+<h4 id="async-execution-and-later-result-retrieval">Async Execution and later Result Retrieval</h4>
+<p>By adding the HTTP header <em>x-arango-async: store</em> to a request, clients can instruct
+the ArangoDB server to execute the operation asynchronously as <a href="#fire-and-forget">above</a>,
+but also store the operation result in memory for a later retrieval. The
+server will return a job id in the HTTP response header <em>x-arango-async-id</em>. The client
+can use this id in conjunction with the HTTP API at <em>/_api/job</em>, which is described in
+detail in this manual.</p>
+<p>Clients can ask the ArangoDB server via the async jobs API which results are
+ready for retrieval, and which are not. Clients can also use the async jobs API to
+retrieve the original results of an already executed async job by passing it the
+originally returned job id. The server will then return the job result as if the job was 
+executed normally. Furthermore, clients can cancel running async jobs by
+their job id, see <a href="#managing-async-results-via-http">HttpJobPutCancel</a>.</p>
+<p>ArangoDB will keep all results of jobs initiated with the <em>x-arango-async: store</em> 
+header. Results are removed from the server only if a client explicitly asks the
+server for a specific result.</p>
+<p>The async jobs API also provides methods for garbage collection that clients can
+use to get rid of &quot;old&quot; not fetched results. Clients should call this method periodically
+because ArangoDB does not artificially limit the number of not-yet-fetched results.</p>
+<p>It is thus a client responsibility to store only as many results as needed and to fetch 
+available results as soon as possible, or at least to clean up not fetched results
+from time to time.</p>
+<p>The job queue and the results are kept in memory only on the server, so they will be
+lost in case of a crash.</p>
+<p><a name="canceling_asynchronous_jobs"></a></p>
+<h4 id="canceling-asynchronous-jobs">Canceling asynchronous jobs</h4>
+<p>As mentioned above it is possible to cancel an asynchronously running
+job using its job ID. This is done with a PUT request as described in
+<a href="#managing-async-results-via-http">HttpJobPutCancel</a>. </p>
+<p>However, a few words of explanation about what happens behind the
+scenes are in order. Firstly, a running async query can internally be
+executed by C++ code or by JavaScript code. For example CRUD operations
+are executed directly in C++, whereas AQL queries and transactions
+are executed by JavaScript code. The job cancelation only works for
+JavaScript code, since the mechanism used is simply to trigger an
+uncatchable exception in the JavaScript thread, which will be caught
+on the C++ level, which in turn leads to the cancelation of the job.
+No result can be retrieved later, since all data about the request is
+discarded.</p>
+<p>If you cancel a job running on a coordinator of a cluster (Sharding),
+then only the code running on the coordinator is stopped, there may
+remain tasks within the cluster which have already been distributed to
+the DBservers and it is currently not possible to cancel them as well.</p>
+<p><a name="async_execution_and_authentication"></a></p>
+<h4 id="async-execution-and-authentication">Async Execution and Authentication</h4>
+<p>If a request requires authentication, the authentication procedure is run before 
+queueing. The request will only be queued if it valid credentials and the authentication 
+succeeds. If the request does not contain valid credentials, it will not be queued but
+rejected instantly in the same way as a &quot;regular&quot;, non-queued request.</p>
+<p><a name="managing_async_results_via_http"></a></p>
+<h1 id="managing-async-results-via-http">Managing Async Results via HTTP</h1>
+<h3 id="return-result-of-an-async-job">Return result of an async job</h3>
+<p> fetches a job result and removes it from the queue</p>
+<p><code>PUT /_api/job/{job-id}</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>job-id</em> (required):
+The async job id.</li>
+</ul>
+<p>Returns the result of an async job identified by job-id. If the async job
+result is present on the server, the result will be removed from the list of
+result. That means this method can be called for each job-id once.
+The method will return the original job result&apos;s headers and body, plus the
+additional HTTP header x-arango-async-job-id. If this header is present,
+then
+the job was found and the response contains the original job&apos;s result. If
+the header is not present, the job was not found and the response contains
+status information from the job manager.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>204</em>:
+is returned if the job requested via job-id is still in the queue of pending
+(or not yet finished) jobs. In this case, no x-arango-async-id HTTP header
+will be returned.</li>
+<li><em>400</em>:
+is returned if no job-id was specified in the request. In this case,
+no x-arango-async-id HTTP header will be returned.</li>
+<li><em>404</em>:
+is returned if the job was not found or already deleted or fetched from
+the job result list. In this case, no x-arango-async-id HTTP header will
+be returned.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Not providing a job-id:</p>
+<div id="JSF_job_fetch_result_01_container">
+<div id="JSF_job_fetch_result_01_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;bad parameter&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">400</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">400</span> 
+}
+</pre>
+</div>
+<div id="JSF_job_fetch_result_01_short" onclick="$(&apos;#JSF_job_fetch_result_01_short&apos;).hide(); $(&apos;#JSF_job_fetch_result_01_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Providing a job-id for a non-existing job:</p>
+<div id="JSF_job_fetch_result_02_container">
+<div id="JSF_job_fetch_result_02_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/notthere
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;not found&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">404</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">404</span> 
+}
+</pre>
+</div>
+<div id="JSF_job_fetch_result_02_short" onclick="$(&apos;#JSF_job_fetch_result_02_short&apos;).hide(); $(&apos;#JSF_job_fetch_result_02_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/notthere
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Fetching the result of an HTTP GET job:</p>
+<div id="JSF_job_fetch_result_03_container">
+<div id="JSF_job_fetch_result_03_long">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_api/version
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015283
+
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/146486776015283
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">146486776015283</span>
+
+{ 
+  <span class="hljs-string">&quot;server&quot;</span> : <span class="hljs-string">&quot;arango&quot;</span>, 
+  <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;3.0.x-devel&quot;</span> 
+}
+</pre>
+</div>
+</div>
+
+<p>Fetching the result of an HTTP POST job that failed:</p>
+<div id="JSF_job_fetch_result_04_container">
+<div id="JSF_job_fetch_result_04_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --data-binary @- --dump - http://localhost:8529/_api/collection &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot; this name is invalid &quot;</span> 
+}
+EOF
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015287
+
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/146486776015287
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">146486776015287</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">400</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">400</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;expected PUT /_api/collection/&lt;collection-name&gt;/&lt;action&gt;&quot;</span> 
+}
+</pre>
+</div>
+<div id="JSF_job_fetch_result_04_short" onclick="$(&apos;#JSF_job_fetch_result_04_short&apos;).hide(); $(&apos;#JSF_job_fetch_result_04_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --data-binary @- --dump - http://localhost:8529/_api/collection &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot; this name is invalid &quot;</span> 
+}
+EOF
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015287
+
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/146486776015287
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">146486776015287</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<h3 id="cancel-async-job">Cancel async job</h3>
+<p> cancels an async job</p>
+<p><code>PUT /_api/job/{job-id}/cancel</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>job-id</em> (required):
+The async job id.</li>
+</ul>
+<p>Cancels the currently running job identified by job-id. Note that it still
+might take some time to actually cancel the running async job.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+cancel has been initiated.</li>
+<li><em>400</em>:
+is returned if no job-id was specified in the request. In this case,
+no x-arango-async-id HTTP header will be returned.</li>
+<li><em>404</em>:
+is returned if the job was not found or already deleted or fetched from
+the job result list. In this case, no x-arango-async-id HTTP header will
+be returned.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="JSF_job_cancel_container">
+<div id="JSF_job_cancel_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --header &apos;x-arango-async: store&apos; --data-binary @- --dump - http://localhost:8529/_api/cursor &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;query&quot;</span> : <span class="hljs-string">&quot;FOR i IN 1..10 FOR j IN 1..10 LET x = sleep(1.0) FILTER i == 5 &amp;&amp; j == 5 RETURN 42&quot;</span> 
+}
+EOF
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015256
+
+shell&gt; curl --dump - http://localhost:8529/_api/job/pending
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+[ 
+  <span class="hljs-string">&quot;146486776015256&quot;</span> 
+]
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/146486776015256/cancel
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-literal">true</span> 
+}
+shell&gt; curl --dump - http://localhost:8529/_api/job/pending
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+[ 
+  <span class="hljs-string">&quot;146486776015256&quot;</span> 
+]
+</pre>
+</div>
+<div id="JSF_job_cancel_short" onclick="$(&apos;#JSF_job_cancel_short&apos;).hide(); $(&apos;#JSF_job_cancel_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --header &apos;x-arango-async: store&apos; --data-binary @- --dump - http://localhost:8529/_api/cursor &lt;&lt;EOF
+{ 
+  <span class="hljs-string">&quot;query&quot;</span> : <span class="hljs-string">&quot;FOR i IN 1..10 FOR j IN 1..10 LET x = sleep(1.0) FILTER i == 5 &amp;&amp; j == 5 RETURN 42&quot;</span> 
+}
+EOF
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015256
+
+shell&gt; curl --dump - http://localhost:8529/_api/job/pending
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+[ 
+  <span class="hljs-string">&quot;146486776015256&quot;</span> 
+]
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/146486776015256/cancel
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<h3 id="deletes-async-job">Deletes async job</h3>
+<p> deletes an async job result</p>
+<p><code>DELETE /_api/job/{type}</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>type</em> (required):
+The type of jobs to delete. type can be:</li>
+<li><em>all</em>: Deletes all jobs results. Currently executing or queued async 
+jobs will not be stopped by this call.</li>
+<li><em>expired</em>: Deletes expired results. To determine the expiration status of a 
+result, pass the stamp query parameter. stamp needs to be a UNIX timestamp, 
+and all async job results created at a lower timestamp will be deleted.</li>
+<li><em>an actual job-id</em>: In this case, the call will remove the result of the
+specified async job. If the job is currently executing or queued, it will
+not be aborted.</li>
+</ul>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>stamp</em> (optional):
+A UNIX timestamp specifying the expiration threshold when type is expired.</li>
+</ul>
+<p>Deletes either all job results, expired job results, or the result of a
+specific job.
+Clients can use this method to perform an eventual garbage collection of job
+results.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the deletion operation was carried out successfully.
+This code will also be returned if no results were deleted.</li>
+<li><em>400</em>:
+is returned if type is not specified or has an invalid value.</li>
+<li><em>404</em>:
+is returned if type is a job-id but no async job with the specified id was
+found.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Deleting all jobs:</p>
+<div id="JSF_job_delete_01_container">
+<div id="JSF_job_delete_01_long">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_api/version
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015262
+
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/all
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-literal">true</span> 
+}
+</pre>
+</div>
+</div>
+
+<p>Deleting expired jobs:</p>
+<div id="JSF_job_delete_02_container">
+<div id="JSF_job_delete_02_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_api/version
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015266
+
+shell&gt; curl --dump - http://localhost:8529/_admin/time
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;time&quot;</span> : <span class="hljs-number">1464867762.750479</span>, 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">200</span> 
+}
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/expired?stamp=1464867762.750479
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-literal">true</span> 
+}
+shell&gt; curl --dump - http://localhost:8529/_api/job/pending
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+[ ]
+</pre>
+</div>
+<div id="JSF_job_delete_02_short" onclick="$(&apos;#JSF_job_delete_02_short&apos;).hide(); $(&apos;#JSF_job_delete_02_long&apos;).show();">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_api/version
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015266
+
+shell&gt; curl --dump - http://localhost:8529/_admin/time
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Deleting the result of a specific job:</p>
+<div id="JSF_job_delete_03_container">
+<div id="JSF_job_delete_03_long">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_api/version
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015273
+
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/146486776015273
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-literal">true</span> 
+}
+</pre>
+</div>
+</div>
+
+<p>Deleting the result of a non-existing job:</p>
+<div id="JSF_job_delete_04_container">
+<div id="JSF_job_delete_04_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/AreYouThere
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;not found&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">404</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">404</span> 
+}
+</pre>
+</div>
+<div id="JSF_job_delete_04_short" onclick="$(&apos;#JSF_job_delete_04_short&apos;).hide(); $(&apos;#JSF_job_delete_04_long&apos;).show();">
+<pre>
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/AreYouThere
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<h3 id="returns-async-job">Returns async job</h3>
+<p> Returns the status of a specific job</p>
+<p><code>GET /_api/job/{job-id}</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>job-id</em> (required):
+The async job id.</li>
+</ul>
+<p>Returns the processing status of the specified job. The processing status
+can be
+determined by peeking into the HTTP response code of the response.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the job requested via job-id has been executed
+and its result is ready to fetch.</li>
+<li><em>204</em>:
+is returned if the job requested via job-id is still in the queue of pending
+(or not yet finished) jobs.</li>
+<li><em>404</em>:
+is returned if the job was not found or already deleted or fetched from the
+job result list.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Querying the status of a done job:</p>
+<div id="JSF_job_getStatusById_01_container">
+<div id="JSF_job_getStatusById_01_long">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_api/version
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015304
+
+shell&gt; curl -X PUT --dump - http://localhost:8529/_api/job/146486776015304
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+x-arango-<span class="hljs-keyword">async</span>-id: <span class="hljs-number">146486776015304</span>
+
+{ 
+  <span class="hljs-string">&quot;server&quot;</span> : <span class="hljs-string">&quot;arango&quot;</span>, 
+  <span class="hljs-string">&quot;version&quot;</span> : <span class="hljs-string">&quot;3.0.x-devel&quot;</span> 
+}
+</pre>
+</div>
+</div>
+
+<p>Querying the status of a pending job:
+(we create a sleep job therefore...)</p>
+<div id="JSF_job_getStatusById_02_container">
+<div id="JSF_job_getStatusById_02_long">
+<pre>
+shell&gt; curl --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_admin/sleep?duration=30
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015308
+
+shell&gt; curl --dump - http://localhost:8529/_api/job/146486776015308
+
+HTTP/1.1 204 No Content
+content-type: text/plain; charset=utf-8
+
+</pre>
+</div>
+</div>
+
+
+<h3 id="returns-list-of-async-jobs">Returns list of async jobs</h3>
+<p> Returns the ids of job results with a specific status</p>
+<p><code>GET /_api/job/{type}</code></p>
+<p><strong>Path Parameters</strong></p>
+<ul>
+<li><em>type</em> (required):
+The type of jobs to return. The type can be either done or pending. Setting
+the type to done will make the method return the ids of already completed
+async
+jobs for which results can be fetched. Setting the type to pending will
+return
+the ids of not yet finished async jobs.</li>
+</ul>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>count</em> (optional):
+The maximum number of ids to return per call. If not specified, a
+server-defined maximum value will be used.</li>
+</ul>
+<p>Returns the list of ids of async jobs with a specific status (either done or
+pending).
+The list can be used by the client to get an overview of the job system
+status and
+to retrieve completed job results later.</p>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>200</em>:
+is returned if the list can be compiled successfully. Note: the list might
+be empty.</li>
+<li><em>400</em>:
+is returned if type is not specified or has an invalid value.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Fetching the list of done jobs:</p>
+<div id="JSF_job_getByType_01_container">
+<div id="JSF_job_getByType_01_long">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_api/version
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015291
+
+shell&gt; curl --dump - http://localhost:8529/_api/job/done
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+[ 
+  <span class="hljs-string">&quot;146486776015291&quot;</span> 
+]
+</pre>
+</div>
+</div>
+
+<p>Fetching the list of pending jobs:</p>
+<div id="JSF_job_getByType_02_container">
+<div id="JSF_job_getByType_02_long">
+<pre>
+shell&gt; curl -X PUT --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_api/version
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015295
+
+shell&gt; curl --dump - http://localhost:8529/_api/job/pending
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+[ ]
+</pre>
+</div>
+</div>
+
+<p>Querying the status of a pending job:
+(we create a sleep job therefore...)</p>
+<div id="JSF_job_getByType_03_container">
+<div id="JSF_job_getByType_03_long">
+<pre>
+shell&gt; curl --header &apos;x-arango-async: store&apos; --dump - http://localhost:8529/_admin/sleep?duration=30
+
+HTTP/1.1 202 Accepted
+content-type: text/plain; charset=utf-8
+x-arango-async-id: 146486776015299
+
+shell&gt; curl --dump - http://localhost:8529/_api/job/pending
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+[ 
+  <span class="hljs-string">&quot;146486776015299&quot;</span> 
+]
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/job/146486776015299
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-literal">true</span> 
+}
+</pre>
+</div>
+</div>
+
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../SimpleQuery/index.html" class="navigation navigation-prev " aria-label="Previous page: Simple Queries"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../BulkImports/index.html" class="navigation navigation-next " aria-label="Next page: Bulk Import / Export"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+</html>

@@ -1,0 +1,4130 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Graph Management | ArangoDB v3.0.x-devel (2016-06-02) Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../Graphs/GeneralGraphs/Functions.html" />
+    
+    
+    <link rel="prev" href="../../Graphs/GeneralGraphs/index.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="5.1.1"
+        data-chapter-title="Graph Management"
+        data-filepath="Graphs/GeneralGraphs/Management.md"
+        data-basepath="../.."
+        data-revision="Thu Jun 02 2016 11:45:23 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="GettingStarted/index.html">
+            
+                
+                    <a href="../../GettingStarted/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Getting Started
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="GettingStarted/Installing/index.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Installing
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="GettingStarted/Installing/Linux.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/Linux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.1.</b>
+                        
+                        Linux
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="GettingStarted/Installing/MacOSX.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/MacOSX.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.2.</b>
+                        
+                        Mac OS X
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="GettingStarted/Installing/Windows.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/Windows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.3.</b>
+                        
+                        Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.4" data-path="GettingStarted/Installing/ARM.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/ARM.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.4.</b>
+                        
+                        ARM
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.5" data-path="GettingStarted/Installing/Compiling.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/Compiling.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.5.</b>
+                        
+                        Compiling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.6" data-path="GettingStarted/Installing/Cluster.html">
+            
+                
+                    <a href="../../GettingStarted/Installing/Cluster.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.6.</b>
+                        
+                        Cluster setup
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="GettingStarted/WebInterface.html">
+            
+                
+                    <a href="../../GettingStarted/WebInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Using the Web Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="GettingStarted/ComingFromSql.html">
+            
+                
+                    <a href="../../GettingStarted/ComingFromSql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                        Coming from SQL
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Scalability/index.html">
+            
+                
+                    <a href="../../Scalability/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Scalability
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="DataModeling/index.html">
+            
+                
+                    <a href="../../DataModeling/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Data model &amp; modeling
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="DataModeling/Concepts.html">
+            
+                
+                    <a href="../../DataModeling/Concepts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Concepts
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="DataModeling/Databases/index.html">
+            
+                
+                    <a href="../../DataModeling/Databases/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="DataModeling/Databases/WorkingWith.html">
+            
+                
+                    <a href="../../DataModeling/Databases/WorkingWith.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        Working with Databases
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2.2" data-path="DataModeling/Databases/Notes.html">
+            
+                
+                    <a href="../../DataModeling/Databases/Notes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.2.</b>
+                        
+                        Notes about Databases
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="DataModeling/Collections/index.html">
+            
+                
+                    <a href="../../DataModeling/Collections/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Collections
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.3.1" data-path="DataModeling/Collections/CollectionMethods.html">
+            
+                
+                    <a href="../../DataModeling/Collections/CollectionMethods.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.1.</b>
+                        
+                        Collection Methods
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3.2" data-path="DataModeling/Collections/DatabaseMethods.html">
+            
+                
+                    <a href="../../DataModeling/Collections/DatabaseMethods.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.2.</b>
+                        
+                        Database Methods
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="DataModeling/Documents/index.html">
+            
+                
+                    <a href="../../DataModeling/Documents/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Documents
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.4.1" data-path="DataModeling/Documents/DocumentAddress.html">
+            
+                
+                    <a href="../../DataModeling/Documents/DocumentAddress.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.1.</b>
+                        
+                        Basics and Terminology
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.2" data-path="DataModeling/Documents/DocumentMethods.html">
+            
+                
+                    <a href="../../DataModeling/Documents/DocumentMethods.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.2.</b>
+                        
+                        Collection Methods
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4.3" data-path="DataModeling/Documents/DatabaseMethods.html">
+            
+                
+                    <a href="../../DataModeling/Documents/DatabaseMethods.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.3.</b>
+                        
+                        Database Methods
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="DataModeling/GraphsVerticesEdges.html">
+            
+                
+                    <a href="../../DataModeling/GraphsVerticesEdges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Graphs, Vertices &amp; Edges
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="DataModeling/NamingConventions/index.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Naming Conventions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.6.1" data-path="DataModeling/NamingConventions/DatabaseNames.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/DatabaseNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.1.</b>
+                        
+                        Database Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.2" data-path="DataModeling/NamingConventions/CollectionNames.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/CollectionNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.2.</b>
+                        
+                        Collection Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.3" data-path="DataModeling/NamingConventions/DocumentKeys.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/DocumentKeys.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.3.</b>
+                        
+                        Document Keys
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6.4" data-path="DataModeling/NamingConventions/AttributeNames.html">
+            
+                
+                    <a href="../../DataModeling/NamingConventions/AttributeNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.4.</b>
+                        
+                        Attribute Names
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="DataModeling/ModelingRelationships.html">
+            
+                
+                    <a href="../../DataModeling/ModelingRelationships.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                        Modeling Relationships
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Indexing/index.html">
+            
+                
+                    <a href="../../Indexing/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Indexing
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Indexing/IndexBasics.html">
+            
+                
+                    <a href="../../Indexing/IndexBasics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Index Basics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Indexing/WhichIndex.html">
+            
+                
+                    <a href="../../Indexing/WhichIndex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Which index to use when
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Indexing/IndexUtilization.html">
+            
+                
+                    <a href="../../Indexing/IndexUtilization.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Index Utilization
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="Indexing/WorkingWithIndexes.html">
+            
+                
+                    <a href="../../Indexing/WorkingWithIndexes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Working with Indexes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.4.1" data-path="Indexing/Hash.html">
+            
+                
+                    <a href="../../Indexing/Hash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.1.</b>
+                        
+                        Hash Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.2" data-path="Indexing/Skiplist.html">
+            
+                
+                    <a href="../../Indexing/Skiplist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.2.</b>
+                        
+                        Skiplists
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.3" data-path="Indexing/Fulltext.html">
+            
+                
+                    <a href="../../Indexing/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.3.</b>
+                        
+                        Fulltext Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4.4" data-path="Indexing/Geo.html">
+            
+                
+                    <a href="../../Indexing/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.4.</b>
+                        
+                        Geo Indexes
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Graphs/index.html">
+            
+                
+                    <a href="../../Graphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Graphs/GeneralGraphs/index.html">
+            
+                
+                    <a href="../../Graphs/GeneralGraphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        General Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="5.1.1" data-path="Graphs/GeneralGraphs/Management.html">
+            
+                
+                    <a href="../../Graphs/GeneralGraphs/Management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.1.</b>
+                        
+                        Graph Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="Graphs/GeneralGraphs/Functions.html">
+            
+                
+                    <a href="../../Graphs/GeneralGraphs/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.2.</b>
+                        
+                        Graph Functions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="Graphs/GeneralGraphs/FluentAQLInterface.html">
+            
+                
+                    <a href="../../Graphs/GeneralGraphs/FluentAQLInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.3.</b>
+                        
+                        Fluent Query Interface
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Graphs/Traversals/index.html">
+            
+                
+                    <a href="../../Graphs/Traversals/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="Graphs/Traversals/UsingTraversalObjects.html">
+            
+                
+                    <a href="../../Graphs/Traversals/UsingTraversalObjects.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.1.</b>
+                        
+                        Using Traversal Objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="Graphs/Traversals/ExampleData.html">
+            
+                
+                    <a href="../../Graphs/Traversals/ExampleData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.2.</b>
+                        
+                        Example Data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Graphs/Edges/index.html">
+            
+                
+                    <a href="../../Graphs/Edges/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Working with Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Foxx/index.html">
+            
+                
+                    <a href="../../Foxx/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Foxx Microservices
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Foxx/GettingStarted.html">
+            
+                
+                    <a href="../../Foxx/GettingStarted.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Getting started
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Foxx/Manifest.html">
+            
+                
+                    <a href="../../Foxx/Manifest.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Service manifest
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="Foxx/Context.html">
+            
+                
+                    <a href="../../Foxx/Context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Service context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="Foxx/Configuration.html">
+            
+                
+                    <a href="../../Foxx/Configuration.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Configuration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="Foxx/Dependencies.html">
+            
+                
+                    <a href="../../Foxx/Dependencies.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Dependencies
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="Foxx/Router/index.html">
+            
+                
+                    <a href="../../Foxx/Router/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Routers
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.6.1" data-path="Foxx/Router/Endpoints.html">
+            
+                
+                    <a href="../../Foxx/Router/Endpoints.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.1.</b>
+                        
+                        Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6.2" data-path="Foxx/Router/Middleware.html">
+            
+                
+                    <a href="../../Foxx/Router/Middleware.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.2.</b>
+                        
+                        Middleware
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6.3" data-path="Foxx/Router/Request.html">
+            
+                
+                    <a href="../../Foxx/Router/Request.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.3.</b>
+                        
+                        Request
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6.4" data-path="Foxx/Router/Response.html">
+            
+                
+                    <a href="../../Foxx/Router/Response.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.4.</b>
+                        
+                        Response
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="Foxx/Sessions/index.html">
+            
+                
+                    <a href="../../Foxx/Sessions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Sessions middleware
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.7.1" data-path="Foxx/Sessions/Storages/index.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Storages/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.1.</b>
+                        
+                        Session storages
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.7.1.1" data-path="Foxx/Sessions/Storages/Collection.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Storages/Collection.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.1.1.</b>
+                        
+                        Collection storage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7.1.2" data-path="Foxx/Sessions/Storages/JWT.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Storages/JWT.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.1.2.</b>
+                        
+                        JWT storage
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7.2" data-path="Foxx/Sessions/Transports/index.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Transports/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.2.</b>
+                        
+                        Session transports
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.7.2.1" data-path="Foxx/Sessions/Transports/Cookie.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Transports/Cookie.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.2.1.</b>
+                        
+                        Cookie transport
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7.2.2" data-path="Foxx/Sessions/Transports/Header.html">
+            
+                
+                    <a href="../../Foxx/Sessions/Transports/Header.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.2.2.</b>
+                        
+                        Header transport
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="Foxx/Assets.html">
+            
+                
+                    <a href="../../Foxx/Assets.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Serving files
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="Foxx/Testing.html">
+            
+                
+                    <a href="../../Foxx/Testing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        Writing tests
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.10" data-path="Foxx/Scripts.html">
+            
+                
+                    <a href="../../Foxx/Scripts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.10.</b>
+                        
+                        Scripts and queued jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.11" data-path="Foxx/LegacyMode.html">
+            
+                
+                    <a href="../../Foxx/LegacyMode.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.11.</b>
+                        
+                        Legacy mode for 2.x
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.12" data-path="Foxx/Users.html">
+            
+                
+                    <a href="../../Foxx/Users.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.12.</b>
+                        
+                        User management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.13" data-path="Foxx/Modules.html">
+            
+                
+                    <a href="../../Foxx/Modules.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.13.</b>
+                        
+                        Related modules
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.13.1" data-path="Foxx/Auth.html">
+            
+                
+                    <a href="../../Foxx/Auth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.13.1.</b>
+                        
+                        Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.13.2" data-path="Foxx/OAuth2.html">
+            
+                
+                    <a href="../../Foxx/OAuth2.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.13.2.</b>
+                        
+                        OAuth 2.0
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Transactions/index.html">
+            
+                
+                    <a href="../../Transactions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Transactions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Transactions/TransactionInvocation.html">
+            
+                
+                    <a href="../../Transactions/TransactionInvocation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Transaction invocation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Transactions/Passing.html">
+            
+                
+                    <a href="../../Transactions/Passing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Passing parameters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Transactions/LockingAndIsolation.html">
+            
+                
+                    <a href="../../Transactions/LockingAndIsolation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Locking and isolation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="Transactions/Durability.html">
+            
+                
+                    <a href="../../Transactions/Durability.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        Durability
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="Transactions/Limitations.html">
+            
+                
+                    <a href="../../Transactions/Limitations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.5.</b>
+                        
+                        Limitations
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Deployment/index.html">
+            
+                
+                    <a href="../../Deployment/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Deployment
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Deployment/Single.html">
+            
+                
+                    <a href="../../Deployment/Single.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Single instance
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="Deployment/Mesos.html">
+            
+                
+                    <a href="../../Deployment/Mesos.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Cluster: DC/OS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="Deployment/Docker.html">
+            
+                
+                    <a href="../../Deployment/Docker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Cluster: Docker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="Deployment/Local.html">
+            
+                
+                    <a href="../../Deployment/Local.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Cluster: Local test
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Administration/index.html">
+            
+                
+                    <a href="../../Administration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Administration/Arangosh/index.html">
+            
+                
+                    <a href="../../Administration/Arangosh/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        ArangoDB Shell
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1.1" data-path="Administration/Arangosh/Output.html">
+            
+                
+                    <a href="../../Administration/Arangosh/Output.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.1.</b>
+                        
+                        Shell Output
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.2" data-path="Administration/Arangosh/Configuration.html">
+            
+                
+                    <a href="../../Administration/Arangosh/Configuration.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.2.</b>
+                        
+                        Configuration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.3" data-path="GettingStarted/Arangosh.html">
+            
+                
+                    <a href="../../GettingStarted/Arangosh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.3.</b>
+                        
+                        Details
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Administration/Arangoimp.html">
+            
+                
+                    <a href="../../Administration/Arangoimp.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Arangoimp
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Administration/Arangodump.html">
+            
+                
+                    <a href="../../Administration/Arangodump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Arangodump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Administration/Arangorestore.html">
+            
+                
+                    <a href="../../Administration/Arangorestore.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Arangorestore
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Administration/Upgrading/index.html">
+            
+                
+                    <a href="../../Administration/Upgrading/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Upgrading
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.5.1" data-path="Administration/Upgrading/Upgrading30.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading30.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.1.</b>
+                        
+                        Upgrading to 3.0
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.2" data-path="Administration/Upgrading/Upgrading28.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading28.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.2.</b>
+                        
+                        Upgrading to 2.8
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.3" data-path="Administration/Upgrading/Upgrading26.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading26.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.3.</b>
+                        
+                        Upgrading to 2.6
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.4" data-path="Administration/Upgrading/Upgrading25.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading25.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.4.</b>
+                        
+                        Upgrading to 2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.5" data-path="Administration/Upgrading/Upgrading24.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading24.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.5.</b>
+                        
+                        Upgrading to 2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.6" data-path="Administration/Upgrading/Upgrading23.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading23.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.6.</b>
+                        
+                        Upgrading to 2.3
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5.7" data-path="Administration/Upgrading/Upgrading22.html">
+            
+                
+                    <a href="../../Administration/Upgrading/Upgrading22.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.7.</b>
+                        
+                        Upgrading to 2.2
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Administration/Configuration/index.html">
+            
+                
+                    <a href="../../Administration/Configuration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        Server Configuration
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.6.1" data-path="Administration/Configuration/Arangod.html">
+            
+                
+                    <a href="../../Administration/Configuration/Arangod.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.1.</b>
+                        
+                        Arangod options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.2" data-path="Administration/Configuration/Wal.html">
+            
+                
+                    <a href="../../Administration/Configuration/Wal.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.2.</b>
+                        
+                        Write-ahead log options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.3" data-path="Administration/Configuration/Endpoint.html">
+            
+                
+                    <a href="../../Administration/Configuration/Endpoint.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.3.</b>
+                        
+                        Managing Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.4" data-path="Administration/Configuration/Cluster.html">
+            
+                
+                    <a href="../../Administration/Configuration/Cluster.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.4.</b>
+                        
+                        Cluster options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.5" data-path="Administration/Configuration/Logging.html">
+            
+                
+                    <a href="../../Administration/Configuration/Logging.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.5.</b>
+                        
+                        Logging options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.6" data-path="Administration/Configuration/Communication.html">
+            
+                
+                    <a href="../../Administration/Configuration/Communication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.6.</b>
+                        
+                        Communication options
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6.7" data-path="Administration/Configuration/Authentication.html">
+            
+                
+                    <a href="../../Administration/Configuration/Authentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.7.</b>
+                        
+                        Authentication
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Administration/Replication/index.html">
+            
+                
+                    <a href="../../Administration/Replication/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        Replication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.7.1" data-path="Administration/Replication/Components.html">
+            
+                
+                    <a href="../../Administration/Replication/Components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.1.</b>
+                        
+                        Components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7.2" data-path="Administration/Replication/ExampleSetup.html">
+            
+                
+                    <a href="../../Administration/Replication/ExampleSetup.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.2.</b>
+                        
+                        Example Setup
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7.3" data-path="Administration/Replication/SyncingCollections.html">
+            
+                
+                    <a href="../../Administration/Replication/SyncingCollections.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.3.</b>
+                        
+                        Syncing Collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7.4" data-path="Administration/Replication/Limitations.html">
+            
+                
+                    <a href="../../Administration/Replication/Limitations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.4.</b>
+                        
+                        Replication Limitations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7.5" data-path="Administration/Replication/Overhead.html">
+            
+                
+                    <a href="../../Administration/Replication/Overhead.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.5.</b>
+                        
+                        Replication Overhead
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="Administration/Sharding/index.html">
+            
+                
+                    <a href="../../Administration/Sharding/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        Sharding
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.8.1" data-path="Administration/Sharding/StatusOfImplementation.html">
+            
+                
+                    <a href="../../Administration/Sharding/StatusOfImplementation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.1.</b>
+                        
+                        Implementation
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8.2" data-path="Administration/Sharding/Authentication.html">
+            
+                
+                    <a href="../../Administration/Sharding/Authentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.2.</b>
+                        
+                        Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8.3" data-path="Administration/Sharding/FirewallSetup.html">
+            
+                
+                    <a href="../../Administration/Sharding/FirewallSetup.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.3.</b>
+                        
+                        Firewall setup
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Troubleshooting/index.html">
+            
+                
+                    <a href="../../Troubleshooting/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Troubleshooting
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Troubleshooting/EmergencyConsole.html">
+            
+                
+                    <a href="../../Troubleshooting/EmergencyConsole.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Emergency Console
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Troubleshooting/DatafileDebugger.html">
+            
+                
+                    <a href="../../Troubleshooting/DatafileDebugger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Datafile Debugger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="Troubleshooting/Arangobench.html">
+            
+                
+                    <a href="../../Troubleshooting/Arangobench.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                        Arangobench
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="Architecture/index.html">
+            
+                
+                    <a href="../../Architecture/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Architecture
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="Architecture/WriteAheadLog.html">
+            
+                
+                    <a href="../../Architecture/WriteAheadLog.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Write-ahead log
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="Architecture/ServerInternals.html">
+            
+                
+                    <a href="../../Architecture/ServerInternals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Server Internals
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="ReleaseNotes/index.html">
+            
+                
+                    <a href="../../ReleaseNotes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Release notes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="12.1" data-path="ReleaseNotes/NewFeatures30.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures30.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.</b>
+                        
+                        Whats New in 3.0
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.2" data-path="ReleaseNotes/NewFeatures28.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures28.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.2.</b>
+                        
+                        Whats New in 2.8
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.3" data-path="ReleaseNotes/NewFeatures27.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures27.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                        Whats New in 2.7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.4" data-path="ReleaseNotes/NewFeatures26.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures26.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.4.</b>
+                        
+                        Whats New in 2.6
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.5" data-path="ReleaseNotes/NewFeatures25.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures25.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.</b>
+                        
+                        Whats New in 2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.6" data-path="ReleaseNotes/NewFeatures24.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures24.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.6.</b>
+                        
+                        Whats New in 2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.7" data-path="ReleaseNotes/NewFeatures23.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures23.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.7.</b>
+                        
+                        Whats New in 2.3
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.8" data-path="ReleaseNotes/NewFeatures22.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures22.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.8.</b>
+                        
+                        Whats New in 2.2
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.9" data-path="ReleaseNotes/NewFeatures21.html">
+            
+                
+                    <a href="../../ReleaseNotes/NewFeatures21.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.9.</b>
+                        
+                        Whats New in 2.1
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.10" data-path="ReleaseNotes/UpgradingChanges30.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges30.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.10.</b>
+                        
+                        Incompatible changes in 3.0
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.11" data-path="ReleaseNotes/UpgradingChanges28.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges28.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.11.</b>
+                        
+                        Incompatible changes in 2.8
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.12" data-path="ReleaseNotes/UpgradingChanges27.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges27.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.12.</b>
+                        
+                        Incompatible changes in 2.7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.13" data-path="ReleaseNotes/UpgradingChanges26.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges26.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.13.</b>
+                        
+                        Incompatible changes in 2.6
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.14" data-path="ReleaseNotes/UpgradingChanges25.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges25.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.14.</b>
+                        
+                        Incompatible changes in 2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.15" data-path="ReleaseNotes/UpgradingChanges24.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges24.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.15.</b>
+                        
+                        Incompatible changes in 2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.16" data-path="ReleaseNotes/UpgradingChanges23.html">
+            
+                
+                    <a href="../../ReleaseNotes/UpgradingChanges23.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.16.</b>
+                        
+                        Incompatible changes in 2.3
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="Appendix/index.html">
+            
+                
+                    <a href="../../Appendix/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Appendix
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.1" data-path="Appendix/JavaScriptModules/index.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.</b>
+                        
+                        JavaScript Modules
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.1.1" data-path="Appendix/JavaScriptModules/Console.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Console.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.1.</b>
+                        
+                        &quot;console&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.2" data-path="Appendix/JavaScriptModules/FS.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/FS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.2.</b>
+                        
+                        &quot;fs&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.3" data-path="Appendix/JavaScriptModules/Process.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Process.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.3.</b>
+                        
+                        &quot;process&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.4" data-path="Appendix/JavaScriptModules/Request.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Request.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.4.</b>
+                        
+                        &quot;request&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.5" data-path="Appendix/JavaScriptModules/Actions.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Actions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.5.</b>
+                        
+                        &quot;actions&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.6" data-path="Appendix/JavaScriptModules/Queries.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Queries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.6.</b>
+                        
+                        &quot;queries&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.7" data-path="Appendix/JavaScriptModules/WAL.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/WAL.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.7.</b>
+                        
+                        Write-ahead log
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.8" data-path="Appendix/JavaScriptModules/Tasks.html">
+            
+                
+                    <a href="../../Appendix/JavaScriptModules/Tasks.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.1.8.</b>
+                        
+                        Task Management
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2" data-path="Appendix/Deprecated/index.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.</b>
+                        
+                        Deprecated
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.2.1" data-path="Appendix/Deprecated/SimpleQueries/index.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.</b>
+                        
+                        Simple Queries
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.2.1.1" data-path="Appendix/Deprecated/SimpleQueries/Access.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/Access.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.1.</b>
+                        
+                        Sequential Access
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.1.2" data-path="Appendix/Deprecated/SimpleQueries/Pagination.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/Pagination.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.2.</b>
+                        
+                        Pagination
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.1.3" data-path="Appendix/Deprecated/SimpleQueries/ModificationQueries.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/ModificationQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.3.</b>
+                        
+                        Modification Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.1.4" data-path="Appendix/Deprecated/SimpleQueriesGeoQueries.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueriesGeoQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.4.</b>
+                        
+                        Geo Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.1.5" data-path="Appendix/Deprecated/SimpleQueries/FulltextQueries.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/SimpleQueries/FulltextQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.1.5.</b>
+                        
+                        Fulltext Queries
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.2" data-path="Appendix/Deprecated/Actions/index.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/Actions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.2.</b>
+                        
+                        Actions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.2.2.1" data-path="Appendix/Deprecated/Actions/HtmlExample.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/Actions/HtmlExample.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.2.1.</b>
+                        
+                        Delivering HTML Pages
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.2.2" data-path="Appendix/Deprecated/Actions/JsonExample.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/Actions/JsonExample.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.2.2.</b>
+                        
+                        Json Objects
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.2.2.3" data-path="Appendix/Deprecated/Actions/Modifying.html">
+            
+                
+                    <a href="../../Appendix/Deprecated/Actions/Modifying.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.2.2.3.</b>
+                        
+                        Modifying
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="13.3" data-path="Appendix/ErrorCodes.html">
+            
+                
+                    <a href="../../Appendix/ErrorCodes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.3.</b>
+                        
+                        Error codes and meanings
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13.4" data-path="Appendix/Glossary.html">
+            
+                
+                    <a href="../../Appendix/Glossary.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.4.</b>
+                        
+                        Glossary
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >ArangoDB v3.0.x-devel (2016-06-02) Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="graph_management"></a></p>
+<h1 id="graph-management">Graph Management</h1>
+<p>This chapter describes the javascript interface for <a href="../index.html">creating and modifying named graphs</a>.
+In order to create a non empty graph the functionality to create edge definitions has to be introduced first:</p>
+<p><a name="edge_definitions"></a></p>
+<h2 id="edge-definitions">Edge Definitions</h2>
+<p>An edge definition is always a directed relation of a graph. Each graph can have arbitrary many relations defined within the edge definitions array.</p>
+<p><a name="initialize_the_list"></a></p>
+<h3 id="initialize-the-list">Initialize the list</h3>
+<p>Create a list of edge definitions to construct a graph.</p>
+<p><code>graph_module._edgeDefinitions(relation1, relation2, ..., relationN)</code></p>
+<p>The list of edge definitions of a graph can be managed by the graph module itself.
+This function is the entry point for the management and will return the correct list.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>relationX (optional) An object representing a definition of one relation in the graph</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphEdgeDefinitionsSimple_container">
+<div id="generalGraphEdgeDefinitionsSimple_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; directed_relation = graph_module._relation(<span class="hljs-string">&quot;lives_in&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;city&quot;</span>);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;lives_in&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;user&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;city&quot;</span> 
+  ] 
+}
+arangosh&gt; undirected_relation = graph_module._relation(<span class="hljs-string">&quot;knows&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;knows&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;user&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;user&quot;</span> 
+  ] 
+}
+arangosh&gt; edgedefinitions = graph_module._edgeDefinitions(directed_relation, undirected_relation);
+[ 
+  { 
+    <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;lives_in&quot;</span>, 
+    <span class="hljs-string">&quot;from&quot;</span> : [ 
+      <span class="hljs-string">&quot;user&quot;</span> 
+    ], 
+    <span class="hljs-string">&quot;to&quot;</span> : [ 
+      <span class="hljs-string">&quot;city&quot;</span> 
+    ] 
+  }, 
+  { 
+    <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;knows&quot;</span>, 
+    <span class="hljs-string">&quot;from&quot;</span> : [ 
+      <span class="hljs-string">&quot;user&quot;</span> 
+    ], 
+    <span class="hljs-string">&quot;to&quot;</span> : [ 
+      <span class="hljs-string">&quot;user&quot;</span> 
+    ] 
+  } 
+]
+</pre>
+</div>
+<div id="generalGraphEdgeDefinitionsSimple_short" onclick="$(&apos;#generalGraphEdgeDefinitionsSimple_short&apos;).hide(); $(&apos;#generalGraphEdgeDefinitionsSimple_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; directed_relation = graph_module._relation(<span class="hljs-string">&quot;lives_in&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;city&quot;</span>);
+arangosh&gt; undirected_relation = graph_module._relation(<span class="hljs-string">&quot;knows&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>);
+arangosh&gt; edgedefinitions = graph_module._edgeDefinitions(directed_relation, undirected_relation);
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="extend_the_list"></a></p>
+<h3 id="extend-the-list">Extend the list</h3>
+<p>Extend the list of edge definitions to construct a graph.</p>
+<p><code>graph_module._extendEdgeDefinitions(edgeDefinitions, relation1, relation2, ..., relationN)</code></p>
+<p>In order to add more edge definitions to the graph before creating
+this function can be used to add more definitions to the initial list.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>edgeDefinitions (required) A list of relation definition objects.</li>
+<li>relationX (required) An object representing a definition of one relation in the graph</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphEdgeDefinitionsExtend_container">
+<div id="generalGraphEdgeDefinitionsExtend_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; directed_relation = graph_module._relation(<span class="hljs-string">&quot;lives_in&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;city&quot;</span>);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;lives_in&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;user&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;city&quot;</span> 
+  ] 
+}
+arangosh&gt; undirected_relation = graph_module._relation(<span class="hljs-string">&quot;knows&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;knows&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;user&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;user&quot;</span> 
+  ] 
+}
+arangosh&gt; edgedefinitions = graph_module._edgeDefinitions(directed_relation);
+[ 
+  { 
+    <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;lives_in&quot;</span>, 
+    <span class="hljs-string">&quot;from&quot;</span> : [ 
+      <span class="hljs-string">&quot;user&quot;</span> 
+    ], 
+    <span class="hljs-string">&quot;to&quot;</span> : [ 
+      <span class="hljs-string">&quot;city&quot;</span> 
+    ] 
+  } 
+]
+arangosh&gt; edgedefinitions = graph_module._extendEdgeDefinitions(undirected_relation);
+</pre>
+</div>
+<div id="generalGraphEdgeDefinitionsExtend_short" onclick="$(&apos;#generalGraphEdgeDefinitionsExtend_short&apos;).hide(); $(&apos;#generalGraphEdgeDefinitionsExtend_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; directed_relation = graph_module._relation(<span class="hljs-string">&quot;lives_in&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;city&quot;</span>);
+arangosh&gt; undirected_relation = graph_module._relation(<span class="hljs-string">&quot;knows&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>);
+arangosh&gt; edgedefinitions = graph_module._edgeDefinitions(directed_relation);
+arangosh&gt; edgedefinitions = graph_module._extendEdgeDefinitions(undirected_relation);
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="relation"></a></p>
+<h4 id="relation">Relation</h4>
+<p>Define a directed relation.</p>
+<p><code>graph_module._relation(relationName, fromVertexCollections, toVertexCollections)</code></p>
+<p>The <em>relationName</em> defines the name of this relation and references to the underlying edge collection.
+The <em>fromVertexCollections</em> is an Array of document collections holding the start vertices.
+The <em>toVertexCollections</em> is an Array of document collections holding the target vertices.
+Relations are only allowed in the direction from any collection in <em>fromVertexCollections</em>
+to any collection in <em>toVertexCollections</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>relationName (required) The name of the edge collection where the edges should be stored.
+Will be created if it does not yet exist.</li>
+<li>fromVertexCollections (required) One or a list of collection names. Source vertices for the edges
+have to be stored in these collections. Collections will be created if they do not exist.</li>
+<li>toVertexCollections (required) One or a list of collection names. Target vertices for the edges
+have to be stored in these collections. Collections will be created if they do not exist.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphRelationDefinitionSave_container">
+<div id="generalGraphRelationDefinitionSave_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._relation(<span class="hljs-string">&quot;has_bought&quot;</span>, [<span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Company&quot;</span>], [<span class="hljs-string">&quot;Groceries&quot;</span>, <span class="hljs-string">&quot;Electronics&quot;</span>]);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;has_bought&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;Customer&quot;</span>, 
+    <span class="hljs-string">&quot;Company&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;Groceries&quot;</span>, 
+    <span class="hljs-string">&quot;Electronics&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="generalGraphRelationDefinitionSave_short" onclick="$(&apos;#generalGraphRelationDefinitionSave_short&apos;).hide(); $(&apos;#generalGraphRelationDefinitionSave_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._relation(<span class="hljs-string">&quot;has_bought&quot;</span>, [<span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Company&quot;</span>], [<span class="hljs-string">&quot;Groceries&quot;</span>, <span class="hljs-string">&quot;Electronics&quot;</span>]);
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+<div id="generalGraphRelationDefinitionSingle_container">
+<div id="generalGraphRelationDefinitionSingle_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._relation(<span class="hljs-string">&quot;has_bought&quot;</span>, <span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Product&quot;</span>);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;has_bought&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;Customer&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;Product&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="generalGraphRelationDefinitionSingle_short" onclick="$(&apos;#generalGraphRelationDefinitionSingle_short&apos;).hide(); $(&apos;#generalGraphRelationDefinitionSingle_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._relation(<span class="hljs-string">&quot;has_bought&quot;</span>, <span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Product&quot;</span>);
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+
+<p><a name="undirected_relation"></a></p>
+<h4 id="undirected-relation">Undirected Relation</h4>
+<p><strong>Warning: Deprecated</strong></p>
+<p>This function is deprecated and will be removed soon.
+Please use <a href="#relation">Relation</a> instead.</p>
+<p>Define an undirected relation.</p>
+<p><code>graph_module._undirectedRelation(relationName, vertexCollections)</code></p>
+<p>Defines an undirected relation with the name <em>relationName</em> using the
+list of <em>vertexCollections</em>. This relation allows the user to store
+edges in any direction between any pair of vertices within the
+<em>vertexCollections</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>relationName (required) The name of the edge collection where the edges should be stored.
+Will be created if it does not yet exist.</li>
+<li>vertexCollections (required) One or a list of collection names for which connections are allowed.
+Will be created if they do not exist.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>To define simple relation with only one vertex collection:</p>
+<div id="generalGraphUndirectedRelationDefinition1_container">
+<div id="generalGraphUndirectedRelationDefinition1_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._undirectedRelation(<span class="hljs-string">&quot;friend&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;friend&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;user&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;user&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="generalGraphUndirectedRelationDefinition1_short" onclick="$(&apos;#generalGraphUndirectedRelationDefinition1_short&apos;).hide(); $(&apos;#generalGraphUndirectedRelationDefinition1_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._undirectedRelation(<span class="hljs-string">&quot;friend&quot;</span>, <span class="hljs-string">&quot;user&quot;</span>);
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>To define a relation between several vertex collections:</p>
+<div id="generalGraphUndirectedRelationDefinition2_container">
+<div id="generalGraphUndirectedRelationDefinition2_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._undirectedRelation(<span class="hljs-string">&quot;marriage&quot;</span>, [<span class="hljs-string">&quot;female&quot;</span>, <span class="hljs-string">&quot;male&quot;</span>]);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;marriage&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;female&quot;</span>, 
+    <span class="hljs-string">&quot;male&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;female&quot;</span>, 
+    <span class="hljs-string">&quot;male&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="generalGraphUndirectedRelationDefinition2_short" onclick="$(&apos;#generalGraphUndirectedRelationDefinition2_short&apos;).hide(); $(&apos;#generalGraphUndirectedRelationDefinition2_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._undirectedRelation(<span class="hljs-string">&quot;marriage&quot;</span>, [<span class="hljs-string">&quot;female&quot;</span>, <span class="hljs-string">&quot;male&quot;</span>]);
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+<p><a name="directed_relation"></a></p>
+<h4 id="directed-relation">Directed Relation</h4>
+<p><strong>Warning: Deprecated</strong></p>
+<p>This function is deprecated and will be removed soon.
+Please use <a href="#relation">Relation</a> instead.</p>
+<p>Define a directed relation.</p>
+<p><code>graph_module._directedRelation(relationName, fromVertexCollections, toVertexCollections)</code></p>
+<p>The <em>relationName</em> defines the name of this relation and references to the underlying edge collection.
+The <em>fromVertexCollections</em> is an Array of document collections holding the start vertices.
+The <em>toVertexCollections</em> is an Array of document collections holding the target vertices.
+Relations are only allowed in the direction from any collection in <em>fromVertexCollections</em>
+to any collection in <em>toVertexCollections</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>relationName (required) The name of the edge collection where the edges should be stored.
+Will be created if it does not yet exist.</li>
+<li>fromVertexCollections (required) One or a list of collection names. Source vertices for the edges
+have to be stored in these collections. Collections will be created if they do not exist.</li>
+<li>toVertexCollections (required) One or a list of collection names. Target vertices for the edges
+have to be stored in these collections. Collections will be created if they do not exist.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphDirectedRelationDefinition_container">
+<div id="generalGraphDirectedRelationDefinition_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._directedRelation(<span class="hljs-string">&quot;has_bought&quot;</span>, [<span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Company&quot;</span>], [<span class="hljs-string">&quot;Groceries&quot;</span>, <span class="hljs-string">&quot;Electronics&quot;</span>]);
+{ 
+  <span class="hljs-string">&quot;collection&quot;</span> : <span class="hljs-string">&quot;has_bought&quot;</span>, 
+  <span class="hljs-string">&quot;from&quot;</span> : [ 
+    <span class="hljs-string">&quot;Customer&quot;</span>, 
+    <span class="hljs-string">&quot;Company&quot;</span> 
+  ], 
+  <span class="hljs-string">&quot;to&quot;</span> : [ 
+    <span class="hljs-string">&quot;Groceries&quot;</span>, 
+    <span class="hljs-string">&quot;Electronics&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="generalGraphDirectedRelationDefinition_short" onclick="$(&apos;#generalGraphDirectedRelationDefinition_short&apos;).hide(); $(&apos;#generalGraphDirectedRelationDefinition_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._directedRelation(<span class="hljs-string">&quot;has_bought&quot;</span>, [<span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Company&quot;</span>], [<span class="hljs-string">&quot;Groceries&quot;</span>, <span class="hljs-string">&quot;Electronics&quot;</span>]);
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+<p><a name="create_a_graph"></a></p>
+<h2 id="create-a-graph">Create a graph</h2>
+<p>After having introduced edge definitions a graph can be created.</p>
+<p>Create a graph</p>
+<p><code>graph_module._create(graphName, edgeDefinitions, orphanCollections)</code></p>
+<p>The creation of a graph requires the name of the graph and a definition of its edges.</p>
+<p>For every type of edge definition a convenience method exists that can be used to create a graph.
+Optionally a list of vertex collections can be added, which are not used in any edge definition.
+These collections are referred to as orphan collections within this chapter.
+All collections used within the creation process are created if they do not exist.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>graphName (required) Unique identifier of the graph</li>
+<li>edgeDefinitions (optional) List of relation definition objects</li>
+<li>orphanCollections (optional) List of additional vertex collection names</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Create an empty graph, edge definitions can be added at runtime:</p>
+<div id="generalGraphCreateGraphNoData_container">
+<div id="generalGraphCreateGraphNoData_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>);
+[ Graph myGraph EdgeDefinitions: [ ] VertexCollections: [ ] ]
+</pre>
+</div>
+</div>
+
+
+
+<p>Create a graph using an edge collection <code>edges</code> and a single vertex collection <code>vertices</code></p>
+<div id="generalGraphCreateGraphSingle_container">
+<div id="generalGraphCreateGraphSingle_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> edgeDefinitions = [ { collection: <span class="hljs-string">&quot;edges&quot;</span>, <span class="hljs-string">&quot;from&quot;</span>: [ <span class="hljs-string">&quot;vertices&quot;</span> ], <span class="hljs-string">&quot;to&quot;</span> : [ <span class="hljs-string">&quot;vertices&quot;</span> ] } ];
+arangosh&gt; graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, edgeDefinitions);
+[ Graph myGraph EdgeDefinitions: [ 
+  <span class="hljs-string">&quot;edges: [vertices] -&gt; [vertices]&quot;</span> 
+] VertexCollections: [ ] ]
+</pre>
+</div>
+</div>
+
+
+
+<p>Create a graph with edge definitions and orphan collections:</p>
+<div id="generalGraphCreateGraph2_container">
+<div id="generalGraphCreateGraph2_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>,
+........&gt; [graph_module._relation(<span class="hljs-string">&quot;myRelation&quot;</span>, [<span class="hljs-string">&quot;male&quot;</span>, <span class="hljs-string">&quot;female&quot;</span>], [<span class="hljs-string">&quot;male&quot;</span>, <span class="hljs-string">&quot;female&quot;</span>])], [<span class="hljs-string">&quot;sessions&quot;</span>]);
+[ Graph myGraph EdgeDefinitions: [ 
+  <span class="hljs-string">&quot;myRelation: [female, male] -&gt; [female, male]&quot;</span> 
+] VertexCollections: [ 
+  <span class="hljs-string">&quot;sessions&quot;</span> 
+] ]
+</pre>
+</div>
+<div id="generalGraphCreateGraph2_short" onclick="$(&apos;#generalGraphCreateGraph2_short&apos;).hide(); $(&apos;#generalGraphCreateGraph2_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>,
+........&gt; [graph_module._relation(<span class="hljs-string">&quot;myRelation&quot;</span>, [<span class="hljs-string">&quot;male&quot;</span>, <span class="hljs-string">&quot;female&quot;</span>], [<span class="hljs-string">&quot;male&quot;</span>, <span class="hljs-string">&quot;female&quot;</span>])], [<span class="hljs-string">&quot;sessions&quot;</span>]);
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="complete_example_to_create_a_graph"></a></p>
+<h4 id="complete-example-to-create-a-graph">Complete Example to create a graph</h4>
+<p>Example Call:</p>
+<div id="general_graph_create_graph_example1_container">
+<div id="general_graph_create_graph_example1_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> edgeDefinitions = graph_module._edgeDefinitions();
+arangosh&gt; graph_module._extendEdgeDefinitions(edgeDefinitions, graph_module._relation(<span class="hljs-string">&quot;friend_of&quot;</span>, <span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Customer&quot;</span>));
+arangosh&gt; graph_module._extendEdgeDefinitions(
+........&gt; edgeDefinitions, graph_module._relation(
+........&gt; <span class="hljs-string">&quot;has_bought&quot;</span>, [<span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Company&quot;</span>], [<span class="hljs-string">&quot;Groceries&quot;</span>, <span class="hljs-string">&quot;Electronics&quot;</span>]));
+arangosh&gt; graph_module._create(<span class="hljs-string">&quot;myStore&quot;</span>, edgeDefinitions);
+[ Graph myStore EdgeDefinitions: [ 
+  <span class="hljs-string">&quot;friend_of: [Customer] -&gt; [Customer]&quot;</span>, 
+  <span class="hljs-string">&quot;has_bought: [Company, Customer] -&gt; [Electronics, Groceries]&quot;</span> 
+] VertexCollections: [ ] ]
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p>alternative call:</p>
+<div id="general_graph_create_graph_example2_container">
+<div id="general_graph_create_graph_example2_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt;  <span class="hljs-keyword">var</span> edgeDefinitions = graph_module._edgeDefinitions(
+........&gt;  graph_module._relation(<span class="hljs-string">&quot;friend_of&quot;</span>, [<span class="hljs-string">&quot;Customer&quot;</span>], [<span class="hljs-string">&quot;Customer&quot;</span>]), graph_module._relation(
+........&gt; <span class="hljs-string">&quot;has_bought&quot;</span>, [<span class="hljs-string">&quot;Customer&quot;</span>, <span class="hljs-string">&quot;Company&quot;</span>], [<span class="hljs-string">&quot;Groceries&quot;</span>, <span class="hljs-string">&quot;Electronics&quot;</span>]));
+arangosh&gt; graph_module._create(<span class="hljs-string">&quot;myStore&quot;</span>, edgeDefinitions);
+[ Graph myStore EdgeDefinitions: [ 
+  <span class="hljs-string">&quot;friend_of: [Customer] -&gt; [Customer]&quot;</span>, 
+  <span class="hljs-string">&quot;has_bought: [Company, Customer] -&gt; [Electronics, Groceries]&quot;</span> 
+] VertexCollections: [ ] ]
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p><a name="list_available_graphs"></a></p>
+<h3 id="list-available-graphs">List available graphs</h3>
+<p>List all graphs.</p>
+<p><code>graph_module._list()</code></p>
+<p>Lists all graph names stored in this database.</p>
+<p><strong>Examples</strong></p>
+<div id="generalGraphList_container">
+<div id="generalGraphList_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._list();
+[ ]
+</pre>
+</div>
+</div>
+
+
+
+
+<p><a name="load_a_graph"></a></p>
+<h3 id="load-a-graph">Load a graph</h3>
+<p>Get a graph</p>
+<p><code>graph_module._graph(graphName)</code></p>
+<p>A graph can be retrieved by its name.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>graphName (required) Unique identifier of the graph</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Get a graph:</p>
+<div id="generalGraphLoadGraph_container">
+<div id="generalGraphLoadGraph_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph = graph_module._graph(<span class="hljs-string">&quot;social&quot;</span>);
+[ Graph social EdgeDefinitions: [ 
+  <span class="hljs-string">&quot;relation: [female, male] -&gt; [female, male]&quot;</span> 
+] VertexCollections: [ ] ]
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p><a name="remove_a_graph"></a></p>
+<h3 id="remove-a-graph">Remove a graph</h3>
+<p>Remove a graph</p>
+<p><code>graph_module._drop(graphName, dropCollections)</code></p>
+<p>A graph can be dropped by its name.
+This will automatically drop all collections contained in the graph as
+long as they are not used within other graphs.
+To drop the collections, the optional parameter <em>drop-collections</em> can be set to <em>true</em>.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>graphName (required) Unique identifier of the graph</li>
+<li>dropCollections (optional) Define if collections should be dropped (default: false)</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Drop a graph and keep collections:</p>
+<div id="generalGraphDropGraphKeep_container">
+<div id="generalGraphDropGraphKeep_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._drop(<span class="hljs-string">&quot;social&quot;</span>);
+<span class="hljs-literal">true</span>
+arangosh&gt; db._collection(<span class="hljs-string">&quot;female&quot;</span>);
+[ArangoCollection <span class="hljs-number">18216</span>, <span class="hljs-string">&quot;female&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+arangosh&gt; db._collection(<span class="hljs-string">&quot;male&quot;</span>);
+[ArangoCollection <span class="hljs-number">18218</span>, <span class="hljs-string">&quot;male&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+arangosh&gt; db._collection(<span class="hljs-string">&quot;relation&quot;</span>);
+[ArangoCollection <span class="hljs-number">18220</span>, <span class="hljs-string">&quot;relation&quot;</span> (type edge, status loaded)]
+</pre>
+</div>
+</div>
+
+<div id="generalGraphDropGraphDropCollections_container">
+<div id="generalGraphDropGraphDropCollections_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; graph_module._drop(<span class="hljs-string">&quot;social&quot;</span>, <span class="hljs-literal">true</span>);
+<span class="hljs-literal">true</span>
+arangosh&gt; db._collection(<span class="hljs-string">&quot;female&quot;</span>);
+<span class="hljs-literal">null</span>
+arangosh&gt; db._collection(<span class="hljs-string">&quot;male&quot;</span>);
+<span class="hljs-literal">null</span>
+arangosh&gt; db._collection(<span class="hljs-string">&quot;relation&quot;</span>);
+<span class="hljs-literal">null</span>
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p><a name="modify_a_graph_definition_during_runtime"></a></p>
+<h2 id="modify-a-graph-definition-during-runtime">Modify a graph definition during runtime</h2>
+<p>After you have created an graph its definition is not immutable.
+You can still add, delete or modify edge definitions and vertex collections.</p>
+<p><a name="extend_the_edge_definitions"></a></p>
+<h3 id="extend-the-edge-definitions">Extend the edge definitions</h3>
+<p>Add another edge definition to the graph</p>
+<p><code>graph._extendEdgeDefinitions(edgeDefinition)</code></p>
+<p>Extends the edge definitions of a graph. If an orphan collection is used in this
+edge definition, it will be removed from the orphanage. If the edge collection of
+the edge definition to add is already used in the graph or used in a different
+graph with different <em>from</em> and/or <em>to</em> collections an error is thrown.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>edgeDefinition (required) The relation definition to extend the graph</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="general_graph__extendEdgeDefinitions_container">
+<div id="general_graph__extendEdgeDefinitions_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>)
+arangosh&gt; <span class="hljs-keyword">var</span> ed1 = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC2&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> ed2 = graph_module._relation(<span class="hljs-string">&quot;myEC2&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC3&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [ed1]);
+arangosh&gt; graph._extendEdgeDefinitions(ed2);
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p><a name="modify_an_edge_definition"></a></p>
+<h3 id="modify-an-edge-definition">Modify an edge definition</h3>
+<p>Modify an relation definition</p>
+<p><code>graph_module._editEdgeDefinition(edgeDefinition)</code></p>
+<p>Edits one relation definition of a graph. The edge definition used as argument will
+replace the existing edge definition of the graph which has the same collection.
+Vertex Collections of the replaced edge definition that are not used in the new
+definition will transform to an orphan. Orphans that are used in this new edge
+definition will be deleted from the list of orphans. Other graphs with the same edge
+definition will be modified, too.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>edgeDefinition (required) The edge definition to replace the existing edge
+definition with the same attribute <em>collection</em>.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="general_graph__editEdgeDefinition_container">
+<div id="general_graph__editEdgeDefinition_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>)
+arangosh&gt; <span class="hljs-keyword">var</span> original = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC2&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> modified = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC2&quot;</span>], [<span class="hljs-string">&quot;myVC3&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [original]);
+arangosh&gt; graph._editEdgeDefinitions(modified);
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p><a name="delete_an_edge_definition"></a></p>
+<h3 id="delete-an-edge-definition">Delete an edge definition</h3>
+<p>Delete one relation definition</p>
+<p><code>graph_module._deleteEdgeDefinition(edgeCollectionName, dropCollection)</code></p>
+<p>Deletes a relation definition defined by the edge collection of a graph. If the
+collections defined in the edge definition (collection, from, to) are not used
+in another edge definition of the graph, they will be moved to the orphanage.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>edgeCollectionName (required) Name of edge collection in the relation definition.</li>
+<li>dropCollection (optional) Define if the edge collection should be dropped. Default false.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Remove an edge definition but keep the edge collection:</p>
+<div id="general_graph__deleteEdgeDefinitionNoDrop_container">
+<div id="general_graph__deleteEdgeDefinitionNoDrop_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>)
+arangosh&gt; <span class="hljs-keyword">var</span> ed1 = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC2&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> ed2 = graph_module._relation(<span class="hljs-string">&quot;myEC2&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC3&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [ed1, ed2]);
+arangosh&gt; graph._deleteEdgeDefinition(<span class="hljs-string">&quot;myEC1&quot;</span>);
+arangosh&gt; db._collection(<span class="hljs-string">&quot;myEC1&quot;</span>);
+[ArangoCollection <span class="hljs-number">26902</span>, <span class="hljs-string">&quot;myEC1&quot;</span> (type edge, status loaded)]
+</pre>
+</div>
+</div>
+
+
+
+<p>Remove an edge definition and drop the edge collection:</p>
+<div id="general_graph__deleteEdgeDefinitionWithDrop_container">
+<div id="general_graph__deleteEdgeDefinitionWithDrop_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>)
+arangosh&gt; <span class="hljs-keyword">var</span> ed1 = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC2&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> ed2 = graph_module._relation(<span class="hljs-string">&quot;myEC2&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC3&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [ed1, ed2]);
+arangosh&gt; graph._deleteEdgeDefinition(<span class="hljs-string">&quot;myEC1&quot;</span>, <span class="hljs-literal">true</span>);
+arangosh&gt; db._collection(<span class="hljs-string">&quot;myEC1&quot;</span>);
+<span class="hljs-literal">null</span>
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p><a name="extend_vertex_collections"></a></p>
+<h3 id="extend-vertex-collections">Extend vertex Collections</h3>
+<p>Each graph can have an arbitrary amount of vertex collections, which are not part of any edge definition of the graph.
+These collections are called orphan collections.
+If the graph is extended with an edge definition using one of the orphans,
+it will be removed from the set of orphan collection automatically.</p>
+<p><a name="add_a_vertex_collection"></a></p>
+<h4 id="add-a-vertex-collection">Add a vertex collection</h4>
+<p>Add a vertex collection to the graph</p>
+<p><code>graph._addVertexCollection(vertexCollectionName, createCollection)</code></p>
+<p>Adds a vertex collection to the set of orphan collections of the graph. If the
+collection does not exist, it will be created. If it is already used by any edge
+definition of the graph, an error will be thrown.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>vertexCollectionName (required) Name of vertex collection.</li>
+<li>createCollection (optional) If true the collection will be created if it does not exist. Default: true.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="general_graph__addVertexCollection_container">
+<div id="general_graph__addVertexCollection_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> ed1 = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC2&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [ed1]);
+arangosh&gt; graph._addVertexCollection(<span class="hljs-string">&quot;myVC3&quot;</span>, <span class="hljs-literal">true</span>);
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p><a name="get_the_orphaned_collections"></a></p>
+<h4 id="get-the-orphaned-collections">Get the orphaned collections</h4>
+<p>Get all orphan collections</p>
+<p><code>graph._orphanCollections()</code></p>
+<p>Returns all vertex collections of the graph that are not used in any edge definition.</p>
+<p><strong>Examples</strong></p>
+<div id="general_graph__orphanCollections_container">
+<div id="general_graph__orphanCollections_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>)
+arangosh&gt; <span class="hljs-keyword">var</span> ed1 = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC2&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [ed1]);
+arangosh&gt; graph._addVertexCollection(<span class="hljs-string">&quot;myVC3&quot;</span>, <span class="hljs-literal">true</span>);
+arangosh&gt; graph._orphanCollections();
+[ 
+  <span class="hljs-string">&quot;myVC3&quot;</span> 
+]
+</pre>
+</div>
+</div>
+
+
+
+
+
+<p><a name="remove_a_vertex_collection"></a></p>
+<h4 id="remove-a-vertex-collection">Remove a vertex collection</h4>
+<p>Remove a vertex collection from the graph</p>
+<p><code>graph._removeVertexCollection(vertexCollectionName, dropCollection)</code></p>
+<p>Removes a vertex collection from the graph.
+Only collections not used in any relation definition can be removed.
+Optionally the collection can be deleted, if it is not used in any other graph.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>vertexCollectionName (required) Name of vertex collection.</li>
+<li>dropCollection (optional) If true the collection will be dropped if it is
+not used in any other graph. Default: false.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="general_graph__removeVertexCollections_container">
+<div id="general_graph__removeVertexCollections_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>)
+arangosh&gt; <span class="hljs-keyword">var</span> ed1 = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC2&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [ed1]);
+arangosh&gt; graph._addVertexCollection(<span class="hljs-string">&quot;myVC3&quot;</span>, <span class="hljs-literal">true</span>);
+arangosh&gt; graph._addVertexCollection(<span class="hljs-string">&quot;myVC4&quot;</span>, <span class="hljs-literal">true</span>);
+arangosh&gt; graph._orphanCollections();
+[ 
+  <span class="hljs-string">&quot;myVC3&quot;</span>, 
+  <span class="hljs-string">&quot;myVC4&quot;</span> 
+]
+arangosh&gt; graph._removeVertexCollection(<span class="hljs-string">&quot;myVC3&quot;</span>);
+arangosh&gt; graph._orphanCollections();
+[ 
+  <span class="hljs-string">&quot;myVC4&quot;</span> 
+]
+</pre>
+</div>
+<div id="general_graph__removeVertexCollections_short" onclick="$(&apos;#general_graph__removeVertexCollections_short&apos;).hide(); $(&apos;#general_graph__removeVertexCollections_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/general-graph&quot;</span>)
+arangosh&gt; <span class="hljs-keyword">var</span> ed1 = graph_module._relation(<span class="hljs-string">&quot;myEC1&quot;</span>, [<span class="hljs-string">&quot;myVC1&quot;</span>], [<span class="hljs-string">&quot;myVC2&quot;</span>]);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [ed1]);
+arangosh&gt; graph._addVertexCollection(<span class="hljs-string">&quot;myVC3&quot;</span>, <span class="hljs-literal">true</span>);
+arangosh&gt; graph._addVertexCollection(<span class="hljs-string">&quot;myVC4&quot;</span>, <span class="hljs-literal">true</span>);
+arangosh&gt; graph._orphanCollections();
+arangosh&gt; graph._removeVertexCollection(<span class="hljs-string">&quot;myVC3&quot;</span>);
+arangosh&gt; graph._orphanCollections();
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+
+<p><a name="maniuplating_vertices"></a></p>
+<h2 id="maniuplating-vertices">Maniuplating Vertices</h2>
+<p><a name="save_a_vertex"></a></p>
+<h3 id="save-a-vertex">Save a vertex</h3>
+<p>Create a new vertex in vertexCollectionName</p>
+<p><code>graph.vertexCollectionName.save(data)</code></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>data (required) JSON data of vertex.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphVertexCollectionSave_container">
+<div id="generalGraphVertexCollectionSave_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.male.save({name: <span class="hljs-string">&quot;Floyd&quot;</span>, _key: <span class="hljs-string">&quot;floyd&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;male/floyd&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;floyd&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;26468&quot;</span> 
+}
+</pre>
+</div>
+<div id="generalGraphVertexCollectionSave_short" onclick="$(&apos;#generalGraphVertexCollectionSave_short&apos;).hide(); $(&apos;#generalGraphVertexCollectionSave_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.male.save({name: <span class="hljs-string">&quot;Floyd&quot;</span>, _key: <span class="hljs-string">&quot;floyd&quot;</span>});
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="replace_a_vertex"></a></p>
+<h3 id="replace-a-vertex">Replace a vertex</h3>
+<p>Replaces the data of a vertex in collection vertexCollectionName</p>
+<p><code>graph.vertexCollectionName.replace(vertexId, data, options)</code></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>vertexId (required) <em>_id</em> attribute of the vertex</li>
+<li>data (required) JSON data of vertex.</li>
+<li>options (optional) See <a href="../../DataModeling/Documents/DocumentMethods.html">collection documentation</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphVertexCollectionReplace_container">
+<div id="generalGraphVertexCollectionReplace_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.male.save({neym: <span class="hljs-string">&quot;Jon&quot;</span>, _key: <span class="hljs-string">&quot;john&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;male/john&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;john&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;26408&quot;</span> 
+}
+arangosh&gt; graph.male.replace(<span class="hljs-string">&quot;male/john&quot;</span>, {name: <span class="hljs-string">&quot;John&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;male/john&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;john&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;26412&quot;</span>, 
+  <span class="hljs-string">&quot;_oldRev&quot;</span> : <span class="hljs-string">&quot;26408&quot;</span> 
+}
+</pre>
+</div>
+<div id="generalGraphVertexCollectionReplace_short" onclick="$(&apos;#generalGraphVertexCollectionReplace_short&apos;).hide(); $(&apos;#generalGraphVertexCollectionReplace_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.male.save({neym: <span class="hljs-string">&quot;Jon&quot;</span>, _key: <span class="hljs-string">&quot;john&quot;</span>});
+arangosh&gt; graph.male.replace(<span class="hljs-string">&quot;male/john&quot;</span>, {name: <span class="hljs-string">&quot;John&quot;</span>});
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="update_a_vertex"></a></p>
+<h3 id="update-a-vertex">Update a vertex</h3>
+<p>Updates the data of a vertex in collection vertexCollectionName</p>
+<p><code>graph.vertexCollectionName.update(vertexId, data, options)</code></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>vertexId (required) <em>_id</em> attribute of the vertex</li>
+<li>data (required) JSON data of vertex.</li>
+<li>options (optional) See <a href="../../DataModeling/Documents/DocumentMethods.html">collection documentation</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphVertexCollectionUpdate_container">
+<div id="generalGraphVertexCollectionUpdate_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.female.save({name: <span class="hljs-string">&quot;Lynda&quot;</span>, _key: <span class="hljs-string">&quot;linda&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;female/linda&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;linda&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;26525&quot;</span> 
+}
+arangosh&gt; graph.female.update(<span class="hljs-string">&quot;female/linda&quot;</span>, {name: <span class="hljs-string">&quot;Linda&quot;</span>, _key: <span class="hljs-string">&quot;linda&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;female/linda&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;linda&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;26529&quot;</span>, 
+  <span class="hljs-string">&quot;_oldRev&quot;</span> : <span class="hljs-string">&quot;26525&quot;</span> 
+}
+</pre>
+</div>
+<div id="generalGraphVertexCollectionUpdate_short" onclick="$(&apos;#generalGraphVertexCollectionUpdate_short&apos;).hide(); $(&apos;#generalGraphVertexCollectionUpdate_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.female.save({name: <span class="hljs-string">&quot;Lynda&quot;</span>, _key: <span class="hljs-string">&quot;linda&quot;</span>});
+arangosh&gt; graph.female.update(<span class="hljs-string">&quot;female/linda&quot;</span>, {name: <span class="hljs-string">&quot;Linda&quot;</span>, _key: <span class="hljs-string">&quot;linda&quot;</span>});
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="remove_a_vertex"></a></p>
+<h3 id="remove-a-vertex">Remove a vertex</h3>
+<p>Removes a vertex in collection <em>vertexCollectionName</em></p>
+<p><code>graph.vertexCollectionName.remove(vertexId, options)</code></p>
+<p>Additionally removes all ingoing and outgoing edges of the vertex recursively
+(see <a href="#remove-an-edge">edge remove</a>).</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>vertexId (required) <em>_id</em> attribute of the vertex</li>
+<li>options (optional) See <a href="../../DataModeling/Documents/DocumentMethods.html">collection documentation</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphVertexCollectionRemove_container">
+<div id="generalGraphVertexCollectionRemove_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.male.save({name: <span class="hljs-string">&quot;Kermit&quot;</span>, _key: <span class="hljs-string">&quot;kermit&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;male/kermit&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;kermit&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;26341&quot;</span> 
+}
+arangosh&gt; db._exists(<span class="hljs-string">&quot;male/kermit&quot;</span>)
+<span class="hljs-literal">true</span>
+arangosh&gt; graph.male.remove(<span class="hljs-string">&quot;male/kermit&quot;</span>)
+<span class="hljs-literal">true</span>
+arangosh&gt; db._exists(<span class="hljs-string">&quot;male/kermit&quot;</span>)
+<span class="hljs-literal">false</span>
+</pre>
+</div>
+<div id="generalGraphVertexCollectionRemove_short" onclick="$(&apos;#generalGraphVertexCollectionRemove_short&apos;).hide(); $(&apos;#generalGraphVertexCollectionRemove_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.male.save({name: <span class="hljs-string">&quot;Kermit&quot;</span>, _key: <span class="hljs-string">&quot;kermit&quot;</span>});
+arangosh&gt; db._exists(<span class="hljs-string">&quot;male/kermit&quot;</span>)
+arangosh&gt; graph.male.remove(<span class="hljs-string">&quot;male/kermit&quot;</span>)
+arangosh&gt; db._exists(<span class="hljs-string">&quot;male/kermit&quot;</span>)
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="manipulating_edges"></a></p>
+<h2 id="manipulating-edges">Manipulating Edges</h2>
+<p><a name="save_a_new_edge"></a></p>
+<h3 id="save-a-new-edge">Save a new edge</h3>
+<p>Creates an edge from vertex <em>from</em> to vertex <em>to</em> in collection edgeCollectionName</p>
+<p><code>graph.edgeCollectionName.save(from, to, data, options)</code></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>from (required) <em>_id</em> attribute of the source vertex</li>
+<li>to (required) <em>_id</em> attribute of the target vertex</li>
+<li>data (required) JSON data of the edge</li>
+<li>options (optional) See <a href="../Edges/index.html">collection documentation</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphEdgeCollectionSave1_container">
+<div id="generalGraphEdgeCollectionSave1_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;male/bob&quot;</span>, <span class="hljs-string">&quot;female/alice&quot;</span>, {type: <span class="hljs-string">&quot;married&quot;</span>, _key: <span class="hljs-string">&quot;bobAndAlice&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/bobAndAlice&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;bobAndAlice&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;18609&quot;</span> 
+}
+</pre>
+</div>
+<div id="generalGraphEdgeCollectionSave1_short" onclick="$(&apos;#generalGraphEdgeCollectionSave1_short&apos;).hide(); $(&apos;#generalGraphEdgeCollectionSave1_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;male/bob&quot;</span>, <span class="hljs-string">&quot;female/alice&quot;</span>, {type: <span class="hljs-string">&quot;married&quot;</span>, _key: <span class="hljs-string">&quot;bobAndAlice&quot;</span>});
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>If the collections of <em>from</em> and <em>to</em> are not defined in an edge definition of the graph,
+the edge will not be stored.</p>
+<div id="generalGraphEdgeCollectionSave2_container">
+<div id="generalGraphEdgeCollectionSave2_long">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(
+........&gt;  <span class="hljs-string">&quot;relation/aliceAndBob&quot;</span>,
+........&gt;   <span class="hljs-string">&quot;female/alice&quot;</span>,
+........&gt; {type: <span class="hljs-string">&quot;married&quot;</span>, _key: <span class="hljs-string">&quot;bobAndAlice&quot;</span>});
+[ArangoError <span class="hljs-number">1906</span>: invalid edge between relation/aliceAndBob and female/alice.]
+</pre>
+</div>
+</div>
+
+
+
+
+<p><a name="replace_an_edge"></a></p>
+<h3 id="replace-an-edge">Replace an edge</h3>
+<p>Replaces the data of an edge in collection edgeCollectionName. Note that <code>_from</code> and <code>_to</code> are mandatory.</p>
+<p><code>graph.edgeCollectionName.replace(edgeId, data, options)</code></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>edgeId (required) <em>_id</em> attribute of the edge</li>
+<li>data (required) JSON data of the edge</li>
+<li>options (optional) See <a href="../../DataModeling/Documents/DocumentMethods.html">collection documentation</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphEdgeCollectionReplace_container">
+<div id="generalGraphEdgeCollectionReplace_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {typo: <span class="hljs-string">&quot;nose&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;18550&quot;</span> 
+}
+arangosh&gt; graph.relation.replace(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, {type: <span class="hljs-string">&quot;knows&quot;</span>, _from: <span class="hljs-string">&quot;female/alice&quot;</span>, _to: <span class="hljs-string">&quot;female/diana&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;18553&quot;</span>, 
+  <span class="hljs-string">&quot;_oldRev&quot;</span> : <span class="hljs-string">&quot;18550&quot;</span> 
+}
+</pre>
+</div>
+<div id="generalGraphEdgeCollectionReplace_short" onclick="$(&apos;#generalGraphEdgeCollectionReplace_short&apos;).hide(); $(&apos;#generalGraphEdgeCollectionReplace_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {typo: <span class="hljs-string">&quot;nose&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
+arangosh&gt; graph.relation.replace(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, {type: <span class="hljs-string">&quot;knows&quot;</span>, _from: <span class="hljs-string">&quot;female/alice&quot;</span>, _to: <span class="hljs-string">&quot;female/diana&quot;</span>});
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="update_an_edge"></a></p>
+<h3 id="update-an-edge">Update an edge</h3>
+<p>Updates the data of an edge in collection edgeCollectionName</p>
+<p><code>graph.edgeCollectionName.update(edgeId, data, options)</code></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>edgeId (required) <em>_id</em> attribute of the edge</li>
+<li>data (required) JSON data of the edge</li>
+<li>options (optional) See <a href="../../DataModeling/Documents/DocumentMethods.html">collection documentation</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphEdgeCollectionUpdate_container">
+<div id="generalGraphEdgeCollectionUpdate_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {type: <span class="hljs-string">&quot;knows&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;18718&quot;</span> 
+}
+arangosh&gt; graph.relation.update(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, {type: <span class="hljs-string">&quot;quarreled&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;18721&quot;</span>, 
+  <span class="hljs-string">&quot;_oldRev&quot;</span> : <span class="hljs-string">&quot;18718&quot;</span> 
+}
+</pre>
+</div>
+<div id="generalGraphEdgeCollectionUpdate_short" onclick="$(&apos;#generalGraphEdgeCollectionUpdate_short&apos;).hide(); $(&apos;#generalGraphEdgeCollectionUpdate_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {type: <span class="hljs-string">&quot;knows&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
+arangosh&gt; graph.relation.update(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, {type: <span class="hljs-string">&quot;quarreled&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="remove_an_edge"></a></p>
+<h3 id="remove-an-edge">Remove an edge</h3>
+<p>Removes an edge in collection edgeCollectionName</p>
+<p><code>graph.edgeCollectionName.remove(edgeId, options)</code></p>
+<p>If this edge is used as a vertex by another edge, the other edge will be removed (recursively).</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>edgeId (required) <em>_id</em> attribute of the edge</li>
+<li>options (optional) See <a href="../../DataModeling/Documents/DocumentMethods.html">collection documentation</a></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div id="generalGraphEdgeCollectionRemove_container">
+<div id="generalGraphEdgeCollectionRemove_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {_key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
+{ 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;18485&quot;</span> 
+}
+arangosh&gt; db._exists(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>)
+<span class="hljs-literal">true</span>
+arangosh&gt; graph.relation.remove(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>)
+<span class="hljs-literal">true</span>
+arangosh&gt; db._exists(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>)
+<span class="hljs-literal">false</span>
+</pre>
+</div>
+<div id="generalGraphEdgeCollectionRemove_short" onclick="$(&apos;#generalGraphEdgeCollectionRemove_short&apos;).hide(); $(&apos;#generalGraphEdgeCollectionRemove_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;social&quot;</span>);
+arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {_key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
+arangosh&gt; db._exists(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>)
+arangosh&gt; graph.relation.remove(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>)
+arangosh&gt; db._exists(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>)
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+<p><a name="connect_edges"></a></p>
+<h3 id="connect-edges">Connect edges</h3>
+<p>Get all connecting edges between 2 groups of vertices defined by the examples</p>
+<p><code>graph._connectingEdges(vertexExample, vertexExample2, options)</code></p>
+<p>The function accepts an id, an example, a list of examples or even an empty
+example as parameter for vertexExample.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li>vertexExample1 (optional) See <a href="Functions.html#definition-of-examples">Definition of examples</a></li>
+<li>vertexExample2 (optional) See <a href="Functions.html#definition-of-examples">Definition of examples</a></li>
+<li>options (optional) An object defining further options. Can have the following values:<ul>
+<li><em>edgeExamples</em>: Filter the edges, see <a href="Functions.html#definition-of-examples">Definition of examples</a></li>
+<li><em>edgeCollectionRestriction</em> : One or a list of edge-collection names that should be
+  considered to be on the path.</li>
+<li><em>vertex1CollectionRestriction</em> : One or a list of vertex-collection names that should be
+  considered on the intermediate vertex steps.</li>
+<li><em>vertex2CollectionRestriction</em> : One or a list of vertex-collection names that should be
+  considered on the intermediate vertex steps.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>A route planner example, all connecting edges between capitals.</p>
+<div id="generalGraphModuleConnectingEdges1_container">
+<div id="generalGraphModuleConnectingEdges1_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;routeplanner&quot;</span>);
+arangosh&gt; graph._getConnectingEdges({isCapital : <span class="hljs-literal">true</span>}, {isCapital : <span class="hljs-literal">true</span>});
+[ 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;23334&quot;</span>, 
+    <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;internationalHighway/23334&quot;</span>, 
+    <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;germanCity/Berlin&quot;</span>, 
+    <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;frenchCity/Paris&quot;</span>, 
+    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;23334&quot;</span>, 
+    <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-number">1200</span> 
+  } 
+]
+</pre>
+</div>
+<div id="generalGraphModuleConnectingEdges1_short" onclick="$(&apos;#generalGraphModuleConnectingEdges1_short&apos;).hide(); $(&apos;#generalGraphModuleConnectingEdges1_long&apos;).show();">
+<pre>
+arangosh&gt; <span class="hljs-keyword">var</span> examples = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;@arangodb/graph-examples/example-graph.js&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<span class="hljs-string">&quot;routeplanner&quot;</span>);
+arangosh&gt; graph._getConnectingEdges({isCapital : <span class="hljs-literal">true</span>}, {isCapital : <span class="hljs-literal">true</span>});
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../Graphs/GeneralGraphs/index.html" class="navigation navigation-prev " aria-label="Previous page: General Graphs"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../Graphs/GeneralGraphs/Functions.html" class="navigation navigation-next " aria-label="Next page: Graph Functions"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) Documentation -->
+</html>

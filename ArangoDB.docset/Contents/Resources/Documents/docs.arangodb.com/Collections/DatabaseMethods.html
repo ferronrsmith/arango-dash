@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Database Methods | ArangoDB 2.8.2 Documentation</title>
+        <title>Database Methods | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="6.2" data-chapter-title="Database Methods" data-filepath="Collections/DatabaseMethods.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="6.2" data-chapter-title="Database Methods" data-filepath="Collections/DatabaseMethods.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4076,7 +4076,7 @@ end users. End users should access collections using the collection name.</p>
 <div id="collectionDatabaseName_long">
 <pre>
 arangosh&gt; db._collection(<span class="hljs-string">&quot;demo&quot;</span>);
-[ArangoCollection <span class="hljs-number">16489592</span>, <span class="hljs-string">&quot;demo&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">16511208</span>, <span class="hljs-string">&quot;demo&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 </pre>
 </div>
 </div>
@@ -4119,7 +4119,7 @@ an underscore. End users should normally create non-system collections
 only. API implementors may be required to create system collections in
 very special occasions, but normally a regular collection will do.</p>
 </li>
-<li><p><em>isVolatile</em> (optional, default is <em>false</em>): If *true then the
+<li><p><em>isVolatile</em> (optional, default is <em>false</em>): If <em>true</em> then the
 collection data is kept in-memory only and not made persistent. Unloading
 the collection will cause the collection data to be discarded. Stopping
 or re-starting the server will also cause full loss of data in the
@@ -4182,7 +4182,7 @@ or <em>edge</em>. On default it is document. Instead of giving a type you can al
 <div id="collectionDatabaseCreate_long" onclick="" style="Display: none;">
 <pre>
 arangosh&gt; c = db._create(<span class="hljs-string">&quot;users&quot;</span>);
-[ArangoCollection <span class="hljs-number">1076993144</span>, <span class="hljs-string">&quot;users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1076293864</span>, <span class="hljs-string">&quot;users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; c.properties();
 { 
   <span class="hljs-string">&quot;doCompact&quot;</span> : <span class="hljs-literal">true</span>, 
@@ -4211,7 +4211,7 @@ arangosh&gt; c.properties();
 <div id="collectionDatabaseCreateProperties_long" onclick="" style="Display: none;">
 <pre>
 arangosh&gt; c = db._create(<span class="hljs-string">&quot;users&quot;</span>, { waitForSync : <span class="hljs-literal">true</span>, journalSize : <span class="hljs-number">1024</span> * <span class="hljs-number">1204</span> });
-[ArangoCollection <span class="hljs-number">1078107256</span>, <span class="hljs-string">&quot;users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1077407976</span>, <span class="hljs-string">&quot;users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; c.properties();
 { 
   <span class="hljs-string">&quot;doCompact&quot;</span> : <span class="hljs-literal">true</span>, 
@@ -4240,23 +4240,23 @@ arangosh&gt; c.properties();
 <div id="collectionDatabaseCreateKey_long" onclick="" style="Display: none;">
 <pre>
 arangosh&gt; db._create(<span class="hljs-string">&quot;users&quot;</span>, { keyOptions: { type: <span class="hljs-string">&quot;autoincrement&quot;</span>, offset: <span class="hljs-number">10</span>, increment: <span class="hljs-number">5</span> } });
-[ArangoCollection <span class="hljs-number">1077189752</span>, <span class="hljs-string">&quot;users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1076490472</span>, <span class="hljs-string">&quot;users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; db.users.save({ name: <span class="hljs-string">&quot;user 1&quot;</span> });
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;users/10&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1077517432&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1076818152&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;10&quot;</span> 
 }
 arangosh&gt; db.users.save({ name: <span class="hljs-string">&quot;user 2&quot;</span> });
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;users/15&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1077714040&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1077014760&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;15&quot;</span> 
 }
 arangosh&gt; db.users.save({ name: <span class="hljs-string">&quot;user 3&quot;</span> });
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;users/20&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1077910648&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1077211368&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;20&quot;</span> 
 }
 </pre>
@@ -4276,20 +4276,20 @@ arangosh&gt; db.users.save({ name: <span class="hljs-string">&quot;user 3&quot;<
 <div id="collectionDatabaseCreateSpecialKey_long" onclick="" style="Display: none;">
 <pre>
 arangosh&gt; db._create(<span class="hljs-string">&quot;users&quot;</span>, { keyOptions: { allowUserKeys: <span class="hljs-literal">false</span> } });
-[ArangoCollection <span class="hljs-number">1078303864</span>, <span class="hljs-string">&quot;users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1077604584</span>, <span class="hljs-string">&quot;users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; db.users.save({ name: <span class="hljs-string">&quot;user 1&quot;</span> });
 { 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;users/1078631544&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1078631544&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1078631544&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;users/1077932264&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1077932264&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1077932264&quot;</span> 
 }
 arangosh&gt; db.users.save({ name: <span class="hljs-string">&quot;user 2&quot;</span>, _key: <span class="hljs-string">&quot;myuser&quot;</span> });
 [ArangoError <span class="hljs-number">1222</span>: collection does not allow using user-defined keys]
 arangosh&gt; db.users.save({ name: <span class="hljs-string">&quot;user 3&quot;</span> });
 { 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;users/1078959224&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1078959224&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1078959224&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;users/1078259944&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1078259944&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1078259944&quot;</span> 
 }
 </pre>
 </div>
@@ -4333,24 +4333,24 @@ document name already exists and error is thrown.
 <pre>
 arangosh&gt; db._collections();
 [ 
-  [ArangoCollection <span class="hljs-number">2071672</span>, <span class="hljs-string">&quot;_graphs&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">2464888</span>, <span class="hljs-string">&quot;_cluster_kickstarter_plans&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">12688504</span>, <span class="hljs-string">&quot;_sessions&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">236664</span>, <span class="hljs-string">&quot;_users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">5545080</span>, <span class="hljs-string">&quot;_jobs&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">2333816</span>, <span class="hljs-string">&quot;_routing&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">4103288</span>, <span class="hljs-string">&quot;_statisticsRaw&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">5414008</span>, <span class="hljs-string">&quot;_queues&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">13409400</span>, <span class="hljs-string">&quot;_system_users_users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">4496504</span>, <span class="hljs-string">&quot;_statistics&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">16489592</span>, <span class="hljs-string">&quot;demo&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">17341560</span>, <span class="hljs-string">&quot;animals&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">4889720</span>, <span class="hljs-string">&quot;_statistics15&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">1100651640</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">2202744</span>, <span class="hljs-string">&quot;_modules&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">3972216</span>, <span class="hljs-string">&quot;_aqlfunctions&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">5282936</span>, <span class="hljs-string">&quot;_configuration&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
-  [ArangoCollection <span class="hljs-number">5676152</span>, <span class="hljs-string">&quot;_apps&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)] 
+  [ArangoCollection <span class="hljs-number">2355432</span>, <span class="hljs-string">&quot;_routing&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">4124904</span>, <span class="hljs-string">&quot;_statisticsRaw&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">5435624</span>, <span class="hljs-string">&quot;_queues&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">13431016</span>, <span class="hljs-string">&quot;_system_users_users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">4518120</span>, <span class="hljs-string">&quot;_statistics&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">16511208</span>, <span class="hljs-string">&quot;demo&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">17363176</span>, <span class="hljs-string">&quot;animals&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">4911336</span>, <span class="hljs-string">&quot;_statistics15&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">2224360</span>, <span class="hljs-string">&quot;_modules&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">3993832</span>, <span class="hljs-string">&quot;_aqlfunctions&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">5304552</span>, <span class="hljs-string">&quot;_configuration&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">5697768</span>, <span class="hljs-string">&quot;_apps&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">2093288</span>, <span class="hljs-string">&quot;_graphs&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">2486504</span>, <span class="hljs-string">&quot;_cluster_kickstarter_plans&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">12710120</span>, <span class="hljs-string">&quot;_sessions&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">258280</span>, <span class="hljs-string">&quot;_users&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">5566696</span>, <span class="hljs-string">&quot;_jobs&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)], 
+  [ArangoCollection <span class="hljs-number">1099952360</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)] 
 ]
 </pre>
 </div>
@@ -4373,7 +4373,7 @@ default properties.</p>
 <div id="collectionDatabaseCollectionName_long">
 <pre>
 arangosh&gt; db.example;
-[ArangoCollection <span class="hljs-number">1076796536</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1076097256</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 </pre>
 </div>
 </div>
@@ -4395,10 +4395,10 @@ is thrown if there is no such collection.</p>
 <div id="collectionDatabaseDrop_long">
 <pre>
 arangosh&gt; col = db.example;
-[ArangoCollection <span class="hljs-number">1079155832</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1078456552</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; db._drop(col);
 arangosh&gt; col;
-[ArangoCollection <span class="hljs-number">1079155832</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1078456552</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 </pre>
 </div>
 </div>
@@ -4408,10 +4408,10 @@ arangosh&gt; col;
 <div id="collectionDatabaseDropName_long">
 <pre>
 arangosh&gt; col = db.example;
-[ArangoCollection <span class="hljs-number">1079352440</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1078653160</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; db._drop(<span class="hljs-string">&quot;example&quot;</span>);
 arangosh&gt; col;
-[ArangoCollection <span class="hljs-number">1079352440</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status deleted)]
+[ArangoCollection <span class="hljs-number">1078653160</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status deleted)]
 </pre>
 </div>
 </div>
@@ -4434,12 +4434,12 @@ there is no such collection.</p>
 <div id="collectionDatabaseTruncate_long" onclick="" style="Display: none;">
 <pre>
 arangosh&gt; col = db.example;
-[ArangoCollection <span class="hljs-number">1079549048</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1078849768</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; col.save({ <span class="hljs-string">&quot;Hello&quot;</span> : <span class="hljs-string">&quot;World&quot;</span> });
 { 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;example/1079876728&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1079876728&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1079876728&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;example/1079177448&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1079177448&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1079177448&quot;</span> 
 }
 arangosh&gt; col.count();
 <span class="hljs-number">1</span>
@@ -4464,12 +4464,12 @@ arangosh&gt; col.count();
 <div id="collectionDatabaseTruncateName_long" onclick="" style="Display: none;">
 <pre>
 arangosh&gt; col = db.example;
-[ArangoCollection <span class="hljs-number">1080532088</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1079832808</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; col.save({ <span class="hljs-string">&quot;Hello&quot;</span> : <span class="hljs-string">&quot;World&quot;</span> });
 { 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;example/1080859768&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1080859768&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1080859768&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;example/1080160488&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1080160488&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1080160488&quot;</span> 
 }
 arangosh&gt; col.count();
 <span class="hljs-number">1</span>
@@ -4544,5 +4544,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

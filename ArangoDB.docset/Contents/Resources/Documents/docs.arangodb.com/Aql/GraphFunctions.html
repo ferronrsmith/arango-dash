@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Other | ArangoDB 2.8.2 Documentation</title>
+        <title>Other | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="11.10.3" data-chapter-title="Other" data-filepath="Aql/GraphFunctions.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="11.10.3" data-chapter-title="Other" data-filepath="Aql/GraphFunctions.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4417,14 +4417,7 @@ set to bound long-running searches. When a search performs as many iterations as
 set, a server-defined value may be used.</li>
 <li><em>includeData</em>: Defines if the documents found on the path should be extracted or not.
    Default <em>false</em>, will only return the <em>_id</em> values.</li>
-<li><p><em>distance</em>: This option can have two different types of values.
-  It can either be the name of an attribute.
-  If so this specific attribute will be examined on every edge on the path and will
-  be used as a distance. In order to let this work properly you have to make sure
-  to store only numerical values in this attribute. If the attribute is not present
-  on any edge the value given in the <em>defaultDistance</em> option is used as a replacement.
-  Using a distance attribute is only allowed in combination with <em>defaultDistance</em>.
-  The second type of value for this option is a custom function with the following signature:</p>
+<li><p><em>distance</em>: a custom function with the following signature:</p>
 <pre><code>function (config, vertex1, vertex2, edge)
 </code></pre><p>Both vertices and the connecting edge will be passed into the function. The function
 is expected to return a numeric value that expresses the distance between the two
@@ -4434,8 +4427,15 @@ If this options is not specified all vertices are assumed to have the
 same distance (1) to each other. If a function name is specified, it must have been
 registered as a regular user-defined AQL function.</p>
 </li>
-<li><p><em>defaultDistance</em>: Only useful in combination with an attribute name given in <em>distance</em>.
-  If any edge does not have the attribute required for <em>distance</em> the numeric value
+<li><p><em>weight</em>: The name of a attribute weight attribute.
+  If so this specific attribute will be examined on every edge on the path and will
+  be used as a distance. In order to let this work properly you have to make sure
+  to store only numerical values in this attribute. If the attribute is not present
+  on any edge the value given in the <em>defaultWeight</em> option is used as a replacement.
+  Using a weight attribute is only allowed in combination with <em>defaultWeight</em>.</p>
+</li>
+<li><p><em>defaultWeight</em>: Only useful in combination with an attribute name given in <em>weight</em>.
+  If any edge does not have the attribute required for <em>weight</em> the numeric value
   defined by this option is used.</p>
 </li>
 <li><p><em>followEdges</em>: An optional array of example edge documents that the search will
@@ -4640,5 +4640,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

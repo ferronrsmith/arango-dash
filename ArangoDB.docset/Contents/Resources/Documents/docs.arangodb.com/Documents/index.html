@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Working with Documents | ArangoDB 2.8.2 Documentation</title>
+        <title>Working with Documents | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="7" data-chapter-title="Working with Documents" data-filepath="Documents/README.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="7" data-chapter-title="Working with Documents" data-filepath="Documents/README.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4067,20 +4067,20 @@ corresponding language API.</p>
 and may contain lists. Each document is uniquely identified by its <a href="../Glossary/index.html#document-handle">document handle</a>.</p>
 <p>For example:</p>
 <pre><code class="lang-js">{ 
-  <span class="hljs-string">&quot;firstName&quot;</span> : <span class="hljs-string">&quot;Hugo&quot;</span>, 
-  <span class="hljs-string">&quot;lastName&quot;</span> : <span class="hljs-string">&quot;Schlonz&quot;</span>, 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;myusers/3456789&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;3456789&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;14253647&quot;</span>, 
+  <span class="hljs-string">&quot;firstName&quot;</span> : <span class="hljs-string">&quot;John&quot;</span>, 
+  <span class="hljs-string">&quot;lastName&quot;</span> : <span class="hljs-string">&quot;Doe&quot;</span>, 
   <span class="hljs-string">&quot;address&quot;</span> : { 
-    <span class="hljs-string">&quot;city&quot;</span> : <span class="hljs-string">&quot;Hier&quot;</span>, 
-    <span class="hljs-string">&quot;street&quot;</span> : <span class="hljs-string">&quot;Strasse 1&quot;</span> 
+    <span class="hljs-string">&quot;city&quot;</span> : <span class="hljs-string">&quot;Gotham&quot;</span>, 
+    <span class="hljs-string">&quot;street&quot;</span> : <span class="hljs-string">&quot;Road To Nowhere 1&quot;</span> 
   }, 
   <span class="hljs-string">&quot;hobbies&quot;</span> : [ 
-    <span class="hljs-string">&quot;swimming&quot;</span>, 
-    <span class="hljs-string">&quot;biking&quot;</span>, 
-    <span class="hljs-string">&quot;programming&quot;</span> 
-  ], 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;demo/schlonz&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;13728680&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;schlonz&quot;</span> 
+    {name: <span class="hljs-string">&quot;swimming&quot;</span>, howFavorite: <span class="hljs-number">10</span>},
+    {name: <span class="hljs-string">&quot;biking&quot;</span>, howFavorite: <span class="hljs-number">6</span>},
+    {name: <span class="hljs-string">&quot;programming&quot;</span>, howFavorite: <span class="hljs-number">4</span>}
+  ]
 }
 </code></pre>
 <p>All documents contain special attributes: the document handle in <em>_id</em>, the
@@ -4089,7 +4089,8 @@ document&apos;s unique key in <em>_key</em> and and the ETag aka <a href="../Glo
 creating a document.  <em>_id</em> and <em>_key</em> values are immutable once the document
 has been created. The <em>_rev</em> value is maintained by ArangoDB autonomously.</p>
 <p>A document handle uniquely identifies a document in the database. It is a string and 
-consists of the collection&apos;s name and the <a href="../Glossary/index.html#document-key">document key</a> (_key attribute) separated by /.</p>
+consists of the collection&apos;s name and the <a href="../Glossary/index.html#document-key">document key</a>
+(_key attribute) separated by /.</p>
 <p>As ArangoDB supports MVCC, documents can exist in more than 
 one revision. The document revision is the MVCC token used to identify a particular 
 revision of a document. It is a string value currently containing an integer number 
@@ -4110,6 +4111,62 @@ even if this might work for some cases.</p>
 <p><strong>Note</strong>: Revision ids have been returned as integers up to including ArangoDB 1.1</p>
 <p><em>Document Etag</em>: The document revision enclosed in double quotes. The revision is 
 returned by several HTTP API methods in the Etag HTTP header.</p>
+<p><a name="coming_from_a_relational_background_-_how_do_browse_vectors_translate_into_document_queries?"></a></p>
+<h3 id="coming-from-a-relational-background--how-do-browse-vectors-translate-into-document-queries">Coming from a relational background - how do browse vectors translate into document queries?</h3>
+<p>In traditional SQL you may either fetch all columns of a table row by row using <code>SELECT * FROM table</code>,
+or select a subset of the columns.
+The list of table columns to fetch is commonly called <em>column list</em> or <em>browse vector</em>:
+<code>SELECT columnA, columnB, columnZ FROM table</code></p>
+<p>Since documents aren&apos;t 2 dimensional, and neither you want only to be able to return 2 dimensional lists, requirements to AQL are a little bit more complex.
+The semantics how it does this leans mostly on the syntax used in JavaScript to work with structured data. </p>
+<p><a name="composing_the_return_documents"></a></p>
+<h4 id="composing-the-return-documents">Composing the return documents</h4>
+<p>The AQL <code>RETURN</code> statement returns one item per document it is handed. You can Return the whole document, or just parts of it:</p>
+<p>The full example:</p>
+<pre><code>RETURN oneDocument
+-&gt; { 
+  &quot;_id&quot; : &quot;myusers/3456789&quot;, 
+  &quot;_key&quot; : &quot;3456789&quot;, 
+  &quot;_rev&quot; : &quot;14253647&quot;, 
+  &quot;firstName&quot; : &quot;John&quot;, 
+  &quot;lastName&quot; : &quot;Doe&quot;, 
+  &quot;address&quot; : { 
+    &quot;city&quot; : &quot;Gotham&quot;, 
+    &quot;street&quot; : &quot;Road To Nowhere 1&quot; 
+  }, 
+  &quot;hobbies&quot; : [ 
+    {name: &quot;swimming&quot;, howFavorite: 10},
+    {name: &quot;biking&quot;, howFavorite: 6},
+    {name: &quot;programming&quot;, howFavorite: 4}
+  ]
+}
+</code></pre><p>Only the hobbies sub-structure from the example:</p>
+<pre><code>RETURN oneDocument.hobbies
+-&gt; [
+    {name: &quot;swimming&quot;, howFavorite: 10},
+    {name: &quot;biking&quot;, howFavorite: 6},
+    {name: &quot;programming&quot;, howFavorite: 4}
+]
+</code></pre><p>The hobbies and the address: </p>
+<pre><code>RETURN { hobbies: oneDocument.hobbies, address: oneDocument.address }
+-&gt; {
+hobbies: [
+    {name: &quot;swimming&quot;, howFavorite: 10},
+    {name: &quot;biking&quot;, howFavorite: 6},
+    {name: &quot;programming&quot;, howFavorite: 4}
+],
+address: { 
+    &quot;city&quot; : &quot;Gotham&quot;, 
+    &quot;street&quot; : &quot;Road To Nowhere 1&quot; 
+  },
+}
+</code></pre><p>The first hoby:</p>
+<pre><code>RETURN oneDocument.hobbies[0].name
+-&gt;&quot;swimming&quot;
+</code></pre><p>A list of the hobbie strings: </p>
+<pre><code>RETURN { hobbies: oneDocument.hobbies[*].name }
+-&gt; {hobbies: [&quot;swimming&quot;, &quot;biking&quot;, &quot;porgramming&quot;] }
+</code></pre><p>More complex <a href="../Aql/ArrayFunctions.html">array</a> and <a href="../Aql/DocumentFunctions.html">object manipulations</a> can be done using AQL functions</p>
 
                     
                     </section>
@@ -4165,5 +4222,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

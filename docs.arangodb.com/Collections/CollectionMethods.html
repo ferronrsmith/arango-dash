@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Collection Methods | ArangoDB 2.8.2 Documentation</title>
+        <title>Collection Methods | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="6.1" data-chapter-title="Collection Methods" data-filepath="Collections/CollectionMethods.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="6.1" data-chapter-title="Collection Methods" data-filepath="Collections/CollectionMethods.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4070,10 +4070,10 @@
 <div id="collectionDrop_long">
 <pre>
 arangosh&gt; col = db.example;
-[ArangoCollection <span class="hljs-number">1081515128</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1080815848</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; col.drop();
 arangosh&gt; col;
-[ArangoCollection <span class="hljs-number">1081515128</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status deleted)]
+[ArangoCollection <span class="hljs-number">1080815848</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status deleted)]
 </pre>
 </div>
 </div>
@@ -4090,12 +4090,12 @@ indexes.</p>
 <div id="collectionTruncate_long" onclick="" style="Display: none;">
 <pre>
 arangosh&gt; col = db.example;
-[ArangoCollection <span class="hljs-number">1099668600</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1098969320</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; col.save({ <span class="hljs-string">&quot;Hello&quot;</span> : <span class="hljs-string">&quot;World&quot;</span> });
 { 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;example/1099996280&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1099996280&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1099996280&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;example/1099297000&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1099297000&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1099297000&quot;</span> 
 }
 arangosh&gt; col.count();
 <span class="hljs-number">1</span>
@@ -4370,13 +4370,13 @@ arangosh&gt; db.demo.figures()
     <span class="hljs-string">&quot;count&quot;</span> : <span class="hljs-number">1</span>, 
     <span class="hljs-string">&quot;size&quot;</span> : <span class="hljs-number">16120</span> 
   }, 
-  <span class="hljs-string">&quot;lastTick&quot;</span> : <span class="hljs-string">&quot;17276024&quot;</span>, 
+  <span class="hljs-string">&quot;lastTick&quot;</span> : <span class="hljs-string">&quot;17297640&quot;</span>, 
   <span class="hljs-string">&quot;uncollectedLogfileEntries&quot;</span> : <span class="hljs-number">0</span>, 
   <span class="hljs-string">&quot;documentReferences&quot;</span> : <span class="hljs-number">0</span>, 
   <span class="hljs-string">&quot;waitingFor&quot;</span> : <span class="hljs-string">&quot;-&quot;</span>, 
   <span class="hljs-string">&quot;compactionStatus&quot;</span> : { 
     <span class="hljs-string">&quot;message&quot;</span> : <span class="hljs-string">&quot;skipped compaction because collection has no datafiles&quot;</span>, 
-    <span class="hljs-string">&quot;time&quot;</span> : <span class="hljs-string">&quot;2016-02-10T09:16:49Z&quot;</span> 
+    <span class="hljs-string">&quot;time&quot;</span> : <span class="hljs-string">&quot;2016-05-22T19:06:01Z&quot;</span> 
   } 
 }
 </pre>
@@ -4398,10 +4398,10 @@ arangosh&gt; db.demo.figures()
 <div id="collectionLoad_long">
 <pre>
 arangosh&gt; col = db.example;
-[ArangoCollection <span class="hljs-number">1092459640</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1091760360</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; col.load();
 arangosh&gt; col;
-[ArangoCollection <span class="hljs-number">1092459640</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1091760360</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 </pre>
 </div>
 </div>
@@ -4447,10 +4447,10 @@ until all query have finished.</p>
 <div id="CollectionUnload_long">
 <pre>
 arangosh&gt; col = db.example;
-[ArangoCollection <span class="hljs-number">519019640</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">522252520</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; col.unload();
 arangosh&gt; col;
-[ArangoCollection <span class="hljs-number">519019640</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status unloaded)]
+[ArangoCollection <span class="hljs-number">522252520</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status unloaded)]
 </pre>
 </div>
 </div>
@@ -4472,10 +4472,10 @@ all graph definitions inside the <code>_graphs</code> collection in the current 
 <div id="collectionRename_long">
 <pre>
 arangosh&gt; c = db.example;
-[ArangoCollection <span class="hljs-number">1099340920</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1098641640</span>, <span class="hljs-string">&quot;example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; c.rename(<span class="hljs-string">&quot;better-example&quot;</span>);
 arangosh&gt; c;
-[ArangoCollection <span class="hljs-number">1099340920</span>, <span class="hljs-string">&quot;better-example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1098641640</span>, <span class="hljs-string">&quot;better-example&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 </pre>
 </div>
 </div>
@@ -4544,5 +4544,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

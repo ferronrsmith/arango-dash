@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Model | ArangoDB 2.8.2 Documentation</title>
+        <title>Model | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="13.3.6" data-chapter-title="Model" data-filepath="Foxx/Develop/Model.md" data-basepath="../.." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="13.3.6" data-chapter-title="Model" data-filepath="Foxx/Develop/Model.md" data-basepath="../.." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4066,9 +4066,9 @@ the prototype in your model prototype via the object you give to extend. In
 your model file, export the model as <strong>model</strong>.</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> Foxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;org/arangodb/foxx&quot;</span>);
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TodoModel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Foxx</span>.<span class="hljs-title">Model</span> </span>{
+<span class="hljs-keyword">var</span> TodoModel = Foxx.Model.extend({
   <span class="hljs-comment">// ...</span>
-}
+});
 
 exports.model = TodoModel;
 </code></pre>
@@ -4080,25 +4080,23 @@ For more information on the syntax see <a href="https://github.com/spumko/joi" t
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> Foxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;org/arangodb/foxx&quot;</span>);
 <span class="hljs-keyword">var</span> joi = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;joi&quot;</span>);
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonModel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Foxx</span>.<span class="hljs-title">Model</span> </span>{
-  <span class="hljs-comment">// ...</span>
-}
-PersonModel.prototype.schema = {
-    name: joi.string().required(),
-    age: joi.number().integer(),
-    active: joi.boolean().default(<span class="hljs-literal">true</span>)
-};
+<span class="hljs-keyword">var</span> PersonModel = Foxx.Model.extend({
+  schema: {
+      name: joi.string().required(),
+      age: joi.number().integer(),
+      active: joi.boolean().default(<span class="hljs-literal">true</span>)
+  }
+});
 
 exports.model = PersonModel;
 </code></pre>
 <p>You can also use <code>joi.object</code> schemas directly:</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonModel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Foxx</span>.<span class="hljs-title">Model</span> </span>{
-  <span class="hljs-comment">// ...</span>
-}
-PersonModel.prototype.schema = joi.object().keys({
-  name: joi.string().required(),
-  age: joi.number().integer(),
-  active: joi.boolean().default(<span class="hljs-literal">true</span>)
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> PersonModel = Foxx.Model.extend({
+  schema: joi.object().keys({
+    name: joi.string().required(),
+    age: joi.number().integer(),
+    active: joi.boolean().default(<span class="hljs-literal">true</span>)
+  })
 });
 </code></pre>
 <p>This has two effects: On the one hand it provides documentation. If you annotated
@@ -4294,5 +4292,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

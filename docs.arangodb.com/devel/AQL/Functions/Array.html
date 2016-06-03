@@ -1,0 +1,1516 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Array | ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Functions/Document.html" />
+    
+    
+    <link rel="prev" href="../Functions/Date.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="6.5"
+        data-chapter-title="Array"
+        data-filepath="Functions/Array.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:53 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="Invocation/index.html">
+            
+                
+                    <a href="../Invocation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        How to invoke AQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="Invocation/WithArangosh.html">
+            
+                
+                    <a href="../Invocation/WithArangosh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        with Arangosh
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Invocation/WithWebInterface.html">
+            
+                
+                    <a href="../Invocation/WithWebInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        with the Web Interface
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Fundamentals/index.html">
+            
+                
+                    <a href="../Fundamentals/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        AQL Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="Fundamentals/Syntax.html">
+            
+                
+                    <a href="../Fundamentals/Syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        AQL Syntax
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Fundamentals/DataTypes.html">
+            
+                
+                    <a href="../Fundamentals/DataTypes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Data types
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Fundamentals/BindParameters.html">
+            
+                
+                    <a href="../Fundamentals/BindParameters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Bind Parameters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Fundamentals/TypeValueOrder.html">
+            
+                
+                    <a href="../Fundamentals/TypeValueOrder.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Type and value order
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="Fundamentals/DocumentData.html">
+            
+                
+                    <a href="../Fundamentals/DocumentData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Accessing data from collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="Fundamentals/QueryResults.html">
+            
+                
+                    <a href="../Fundamentals/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="Fundamentals/QueryErrors.html">
+            
+                
+                    <a href="../Fundamentals/QueryErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        Query Errors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Operators.html">
+            
+                
+                    <a href="../Operators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Operators
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="DataModification.html">
+            
+                
+                    <a href="../DataModification.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Data Modification Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Operations/index.html">
+            
+                
+                    <a href="../Operations/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        High level Operations
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Operations/For.html">
+            
+                
+                    <a href="../Operations/For.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        FOR
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Operations/Return.html">
+            
+                
+                    <a href="../Operations/Return.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        RETURN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Operations/Filter.html">
+            
+                
+                    <a href="../Operations/Filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        FILTER
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="Operations/Sort.html">
+            
+                
+                    <a href="../Operations/Sort.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        SORT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="Operations/Limit.html">
+            
+                
+                    <a href="../Operations/Limit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        LIMIT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="Operations/Let.html">
+            
+                
+                    <a href="../Operations/Let.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        LET
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="Operations/Collect.html">
+            
+                
+                    <a href="../Operations/Collect.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        COLLECT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="Operations/Remove.html">
+            
+                
+                    <a href="../Operations/Remove.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        REMOVE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="Operations/Update.html">
+            
+                
+                    <a href="../Operations/Update.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        UPDATE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="Operations/Replace.html">
+            
+                
+                    <a href="../Operations/Replace.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        REPLACE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="Operations/Insert.html">
+            
+                
+                    <a href="../Operations/Insert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        INSERT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="Operations/Upsert.html">
+            
+                
+                    <a href="../Operations/Upsert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        UPSERT
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Functions/index.html">
+            
+                
+                    <a href="../Functions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Functions/TypeCast.html">
+            
+                
+                    <a href="../Functions/TypeCast.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Type cast
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Functions/String.html">
+            
+                
+                    <a href="../Functions/String.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        String
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="Functions/Numeric.html">
+            
+                
+                    <a href="../Functions/Numeric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Numeric
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="Functions/Date.html">
+            
+                
+                    <a href="../Functions/Date.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Date
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.5" data-path="Functions/Array.html">
+            
+                
+                    <a href="../Functions/Array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Array
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="Functions/Document.html">
+            
+                
+                    <a href="../Functions/Document.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object / Document
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="Functions/Geo.html">
+            
+                
+                    <a href="../Functions/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="Functions/Fulltext.html">
+            
+                
+                    <a href="../Functions/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="Functions/Miscellaneous.html">
+            
+                
+                    <a href="../Functions/Miscellaneous.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        Miscellaneous
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Graphs/index.html">
+            
+                
+                    <a href="../Graphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Graphs/Traversals.html">
+            
+                
+                    <a href="../Graphs/Traversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Graphs/Operations.html">
+            
+                
+                    <a href="../Graphs/Operations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Named Operations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Graphs/Functions.html">
+            
+                
+                    <a href="../Graphs/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Other
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Advanced/index.html">
+            
+                
+                    <a href="../Advanced/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Advanced Features
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Advanced/ArrayOperators.html">
+            
+                
+                    <a href="../Advanced/ArrayOperators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Array Operators
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Examples/index.html">
+            
+                
+                    <a href="../Examples/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Usual Query Patterns
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Examples/Counting.html">
+            
+                
+                    <a href="../Examples/Counting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Counting
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Examples/DataModificationQueries.html">
+            
+                
+                    <a href="../Examples/DataModificationQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Data-modification queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Examples/CombiningQueries.html">
+            
+                
+                    <a href="../Examples/CombiningQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Subqueries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Examples/ProjectionsAndFilters.html">
+            
+                
+                    <a href="../Examples/ProjectionsAndFilters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Projections and filters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Examples/Join.html">
+            
+                
+                    <a href="../Examples/Join.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Joins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Examples/Grouping.html">
+            
+                
+                    <a href="../Examples/Grouping.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        Grouping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Examples/CombiningGraphTraversals.html">
+            
+                
+                    <a href="../Examples/CombiningGraphTraversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="Examples/QueriesNoCollections.html">
+            
+                
+                    <a href="../Examples/QueriesNoCollections.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        Queries without collections
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Extending/index.html">
+            
+                
+                    <a href="../Extending/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        User Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Extending/Conventions.html">
+            
+                
+                    <a href="../Extending/Conventions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Conventions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Extending/Functions.html">
+            
+                
+                    <a href="../Extending/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Registering Functions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="ExecutionAndPerformance/index.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Execution and Performance
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="ExecutionAndPerformance/QueryStatistics.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/QueryStatistics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Query statistics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="ExecutionAndPerformance/ParsingQueries.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/ParsingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Parsing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="ExecutionAndPerformance/ExplainingQueries.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/ExplainingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        Explaining queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="ExecutionAndPerformance/Optimizer.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/Optimizer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        Optimizing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="ExecutionAndPerformance/QueryCache.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/QueryCache.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Caching query results
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="CommonErrors.html">
+            
+                
+                    <a href="../CommonErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Common Errors
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="array_functions"></a></p>
+<h1 id="array-functions">Array functions</h1>
+<p>AQL provides functions for higher-level array manipulation. Also see the
+<a href="Numeric.html">numeric functions</a> for functions that work on number arrays.
+Apart from that, AQL also offers several language constructs:</p>
+<ul>
+<li>simple <a href="../Fundamentals/DataTypes.html#arrays--lists">array access</a> of individual elements,</li>
+<li><a href="../Advanced/ArrayOperators.html">array operators</a> for array expansion and contraction,
+optionally with inline filter, limit and projection,</li>
+<li><a href="../Operators.html#array-comparison-operators">array comparison operators</a> to compare
+each element in an array to a value or the elements of another array,</li>
+<li>loop-based operations using <a href="../Operations/For.html">FOR</a>,
+<a href="../Operations/Sort.html">SORT</a>, <a href="../Operations/Limit.html">LIMIT</a>,
+as well as <a href="../Operations/Collect.html">COLLECT</a> for grouping,
+which also offers efficient aggregation.</li>
+</ul>
+<p><a name="append()"></a></p>
+<h3 id="append">APPEND()</h3>
+<p><code>APPEND(anyArray, values, unique) &#x2192; newArray</code></p>
+<p>Add all elements of an array to another array. All values are added at the end of the
+array (right side).</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li><strong>values</strong> (array): array, whose elements shall be added to <em>anyArray</em></li>
+<li><strong>unique</strong> (bool, <em>optional</em>): if set to <em>true</em>, only those <em>values</em> will be added
+that are not already contained in <em>anyArray</em>. The default is <em>false</em>.</li>
+<li>returns <strong>newArray</strong> (array): the modified array</li>
+</ul>
+<pre><code class="lang-js">APPEND([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span> ])
+<span class="hljs-comment">// [ 1, 2, 3, 5, 6, 9 ]</span>
+
+APPEND([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">9</span> ], <span class="hljs-literal">true</span>)
+<span class="hljs-comment">// [ 1, 2, 3, 4, 5, 9 ]</span>
+</code></pre>
+<p><a name="first()"></a></p>
+<h3 id="first">FIRST()</h3>
+<p><code>FIRST(anyArray) &#x2192; firstElement</code></p>
+<p>Get the first element of an array. It is the same as <code>anyArray[0]</code>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li>returns <strong>firstElement</strong> (any|null): the first element of <em>anyArray</em>, or <em>null</em> if
+the array is empty.</li>
+</ul>
+<p><a name="flatten()"></a></p>
+<h3 id="flatten">FLATTEN()</h3>
+<p><code>FLATTEN(anyArray, depth) &#x2192; flatArray</code></p>
+<p>Turn an array of arrays into a flat array. All array elements in <em>array</em> will be
+expanded in the result array. Non-array elements are added as they are. The function
+will recurse into sub-arrays up to the specified depth. Duplicates will not be removed.</p>
+<ul>
+<li><strong>array</strong> (array): array with elements of arbitrary type, including nested arrays</li>
+<li><strong>depth</strong> (number, <em>optional</em>):  flatten up to this many levels, the default is 1</li>
+<li>returns <strong>flatArray</strong> (array): a flattened array</li>
+</ul>
+<pre><code class="lang-js">FLATTEN( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ], <span class="hljs-number">5</span>, [ <span class="hljs-number">6</span>, <span class="hljs-number">7</span> ], [ <span class="hljs-number">8</span>, [ <span class="hljs-number">9</span>, <span class="hljs-number">10</span> ] ] ] )
+<span class="hljs-comment">// [ 1, 2, 3, 4, 5, 6, 7, 8, [ 9, 10 ] ]</span>
+</code></pre>
+<p>To fully flatten the example array, use a <em>depth</em> of 2:</p>
+<pre><code class="lang-js">FLATTEN( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ], <span class="hljs-number">5</span>, [ <span class="hljs-number">6</span>, <span class="hljs-number">7</span> ], [ <span class="hljs-number">8</span>, [ <span class="hljs-number">9</span>, <span class="hljs-number">10</span> ] ] ], <span class="hljs-number">2</span> )
+<span class="hljs-comment">// [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]</span>
+</code></pre>
+<p><a name="intersection()"></a></p>
+<h3 id="intersection">INTERSECTION()</h3>
+<p><code>INTERSECTION(array1, array2, ... arrayN) &#x2192; newArray</code></p>
+<p>Return the intersection of all arrays specified. The result is an array of values that
+occur in all arguments.</p>
+<ul>
+<li><strong>arrays</strong> (array, <em>repeatable</em>): an arbitrary number of arrays as multiple arguments
+(at least 2)</li>
+<li>returns <strong>newArray</strong> (array): a single array with only the elements, which exist in all
+provided arrays. The element order is random. Duplicates are removed.</li>
+</ul>
+<p><a name="last()"></a></p>
+<h3 id="last">LAST()</h3>
+<p><code>LAST(anyArray) &#x2192; lastElement</code></p>
+<p>Get the last element of an array. It is the same as <code>anyArray[-1]</code>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li>returns <strong>lastElement</strong> (any|null): the last element of <em>anyArray</em> or <em>null</em> if the
+array is empty.</li>
+</ul>
+<p><a name="length()"></a></p>
+<h3 id="length">LENGTH()</h3>
+<p><code>LENGTH(anyArray) &#x2192; length</code></p>
+<p>Determine the number of elements in an array.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li>returns <strong>length</strong> (number): the number of array elements in <em>anyArray</em>.</li>
+</ul>
+<p><em>LENGTH()</em> can also determine the <a href="Document.html#length">number of attribute keys</a>
+of an object / document, the <a href="Miscellaneous.html#length">amount of documents</a> in a
+collection and the <a href="String.html#length">character length</a> of a string.</p>
+<p><a name="minus()"></a></p>
+<h3 id="minus">MINUS()</h3>
+<p><code>MINUS(array1, array2, ... arrayN) &#x2192; newArray</code></p>
+<p>Return the difference of all arrays specified.</p>
+<ul>
+<li><strong>arrays</strong> (array, <em>repeatable</em>): an arbitrary of arrays as multiple arguments,
+at least two</li>
+<li>returns <strong>newArray</strong> (array): an array of values that occur in the first array,
+but not in any of the subsequent arrays. The order of the result array is undefined
+and should not be relied on. Duplicates will be removed.</li>
+</ul>
+<p><a name="nth()"></a></p>
+<h3 id="nth">NTH()</h3>
+<p><code>NTH(anyArray, position) &#x2192; nthElement</code></p>
+<p>Get the element of an array at a given position. It is the same as <code>anyArray[position]</code>
+for positive positions, but does not support negative positions.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li><strong>position</strong> (number): position of desired element in array, positions start at 0</li>
+<li>returns <strong>nthElement</strong> (any|null): the array element at the given <em>position</em>.
+If <em>position</em> is negative or beyond the upper bound of the array,
+then <em>null</em> will be returned.</li>
+</ul>
+<p><a name="pop()"></a></p>
+<h3 id="pop">POP()</h3>
+<p><code>POP(anyArray) &#x2192; newArray</code></p>
+<p>Remove the element at the end (right side) of <em>array</em>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): an array with elements of arbitrary type</li>
+<li>returns <strong>newArray</strong> (array): <em>anyArray</em> without the last element. If it&apos;s already
+empty or has only a single element left, an empty array is returned.</li>
+</ul>
+<pre><code class="lang-js">POP( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) <span class="hljs-comment">// [ 1, 2, 3 ]</span>
+POP( [ <span class="hljs-number">1</span> ] ) <span class="hljs-comment">// []</span>
+</code></pre>
+<p><a name="position()"></a></p>
+<h3 id="position">POSITION()</h3>
+<p><code>POSITION(anyArray, search, returnIndex) &#x2192; position</code></p>
+<p>Return whether <em>search</em> is contained in <em>array</em>. Optionally return the position.</p>
+<ul>
+<li><strong>anyArray</strong> (array): the haystack, an array with elements of arbitrary type</li>
+<li><strong>search</strong> (any): the needle, an element of arbitrary type</li>
+<li><strong>returnIndex</strong> (bool, <em>optional</em>): if set to <em>true</em>, the position of the match
+is returned instead of a boolean. The default is <em>false</em>.</li>
+<li>returns <strong>position</strong> (bool|number): <em>true</em> if <em>search</em> is contained in <em>anyArray</em>,
+<em>false</em> otherwise. If <em>returnIndex</em> is enabled, the position of the match is
+returned (positions start at 0), or <em>-1</em> if it&apos;s not found.</li>
+</ul>
+<p><a name="push()"></a></p>
+<h3 id="push">PUSH()</h3>
+<p><code>PUSH(anyArray, value, unique) &#x2192; newArray</code></p>
+<p>Append <em>value</em> to the array specified by <em>anyArray</em>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li><strong>value</strong> (any): an element of arbitrary type</li>
+<li><strong>unique</strong> (bool): if set to <em>true</em>, then <em>value</em> is not added if already
+present in the array. The default is <em>false</em>.</li>
+<li>returns <strong>newArray</strong> (array): <em>anyArray</em> with <em>value</em> added at the end
+(right side)</li>
+</ul>
+<p>Note: The <em>unique</em> flag only controls if <em>value</em> is added if it&apos;s already present
+in <em>anyArray</em>. Duplicate elements that already exist in <em>anyArray</em> will not be
+removed. To make an array unique, use the <a href="#unique">UNIQUE()</a> function.</p>
+<pre><code class="lang-js">PUSH([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">4</span>)
+<span class="hljs-comment">// [ 1, 2, 3, 4 ]</span>
+
+PUSH([ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">2</span>, <span class="hljs-literal">true</span>)
+<span class="hljs-comment">// [ 1, 2, 2, 3 ]</span>
+</code></pre>
+<p><a name="remove_nth()"></a></p>
+<h3 id="removenth">REMOVE_NTH()</h3>
+<p><code>REMOVE_NTH(anyArray, position) &#x2192; newArray</code></p>
+<p>Remove the element at <em>position</em> from the <em>anyArray</em>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li><strong>position</strong> (number): the position of the element to remove. Positions start
+at 0. Negative positions are supported, with -1 being the last array element.
+If <em>position</em> is out of bounds, the array is returned unmodified.</li>
+<li>returns <strong>newArray</strong> (array): <em>anyArray</em> without the element at <em>position</em></li>
+</ul>
+<pre><code class="lang-js">REMOVE_NTH( [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>, <span class="hljs-string">&quot;e&quot;</span> ], <span class="hljs-number">1</span> )
+<span class="hljs-comment">// [ &quot;a&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot; ]</span>
+
+REMOVE_NTH( [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>, <span class="hljs-string">&quot;e&quot;</span> ], -<span class="hljs-number">2</span> )
+<span class="hljs-comment">// [ &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;e&quot; ]</span>
+</code></pre>
+<p><a name="remove_value()"></a></p>
+<h3 id="removevalue">REMOVE_VALUE()</h3>
+<p><code>REMOVE_VALUE(anyArray, value, limit) &#x2192; newArray</code></p>
+<p>Remove all occurrences of <em>value</em> in <em>anyArray</em>. Optionally with a <em>limit</em>
+to the number of removals.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li><strong>value</strong> (any): an element of arbitrary type</li>
+<li><strong>limit</strong> (number, <em>optional</em>): cap the number of removals to this value</li>
+<li>returns <strong>newArray</strong> (array): <em>anyArray</em> with <em>value</em> removed</li>
+</ul>
+<pre><code class="lang-js">REMOVE_VALUE( [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;c&quot;</span> ], <span class="hljs-string">&quot;a&quot;</span> )
+<span class="hljs-comment">// [ &quot;b&quot;, &quot;b&quot;, &quot;c&quot; ]</span>
+
+REMOVE_VALUE( [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;c&quot;</span> ], <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-number">1</span> )
+<span class="hljs-comment">// [ &quot;b&quot;, &quot;b&quot;, &quot;a&quot;, &quot;c&quot; ]</span>
+</code></pre>
+<p><a name="remove_values()"></a></p>
+<h3 id="removevalues">REMOVE_VALUES()</h3>
+<p><code>REMOVE_VALUES(anyArray, values) &#x2192; newArray</code></p>
+<p>Remove all occurrences of any of the <em>values</em> from <em>anyArray</em>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li><strong>values</strong> (array): an array with elements of arbitrary type, that shall
+be removed from <em>anyArray</em></li>
+<li>returns <strong>newArray</strong> (array): <em>anyArray</em> with all individual <em>values</em> removed</li>
+</ul>
+<pre><code class="lang-js">REMOVE_VALUES( [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>, <span class="hljs-string">&quot;e&quot;</span>, <span class="hljs-string">&quot;f&quot;</span> ], [ <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;f&quot;</span>, <span class="hljs-string">&quot;d&quot;</span> ] )
+<span class="hljs-comment">// [ &quot;b&quot;, &quot;c&quot;, &quot;e&quot; ]</span>
+</code></pre>
+<p><a name="reverse()"></a></p>
+<h3 id="reverse">REVERSE()</h3>
+<p><code>REVERSE(anyArray) &#x2192; reversedArray</code></p>
+<p>Return an array with its elements reversed.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li>returns <strong>reversedArray</strong> (array): a new array with all elements of <em>anyArray</em> in
+reversed order</li>
+</ul>
+<p><a name="shift()"></a></p>
+<h3 id="shift">SHIFT()</h3>
+<p><code>SHIFT(anyArray) &#x2192; newArray</code></p>
+<p>Remove the element at the start (left side) of <em>anyArray</em>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements with arbitrary type</li>
+<li>returns <strong>newArray</strong> (array): <em>anyArray</em> without the left-most element. If <em>anyArray</em>
+is already empty or has only one element left, an empty array is returned.</li>
+</ul>
+<pre><code class="lang-js">SHIFT( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) <span class="hljs-comment">// [ 2, 3, 4 ]</span>
+SHIFT( [ <span class="hljs-number">1</span> ] ) <span class="hljs-comment">// []</span>
+</code></pre>
+<p><a name="slice()"></a></p>
+<h3 id="slice">SLICE()</h3>
+<p><code>SLICE(anyArray, start, length) &#x2192; newArray</code></p>
+<p>Extract a slice of <em>anyArray</em>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li><strong>start</strong> (number): start extraction at this element. Positions start at 0.
+Negative values indicate positions from the end of the array.</li>
+<li><strong>length</strong> (number, <em>optional</em>): extract up to <em>length</em> elements, or all
+elements from <em>start</em> up to <em>length</em> if negative (exclusive)</li>
+<li>returns <strong>newArray</strong> (array): the specified slice of <em>anyArray</em>. If <em>length</em>
+is not specified, all array elements starting at <em>start</em> will be returned.</li>
+</ul>
+<pre><code class="lang-js">SLICE( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ], <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ) <span class="hljs-comment">// [ 1 ]</span>
+SLICE( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ], <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ) <span class="hljs-comment">// [ 2, 3 ]</span>
+SLICE( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ], <span class="hljs-number">3</span> ) <span class="hljs-comment">// [ 4, 5 ]</span>
+SLICE( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ], <span class="hljs-number">1</span>, -<span class="hljs-number">1</span> ) <span class="hljs-comment">// [ 2, 3, 4 ]</span>
+SLICE( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ], <span class="hljs-number">0</span>, -<span class="hljs-number">2</span> ) <span class="hljs-comment">// [ 1, 2, 3 ]</span>
+SLICE( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> ], -<span class="hljs-number">3</span>, <span class="hljs-number">2</span> ) <span class="hljs-comment">// [ 3, 4 ]</span>
+</code></pre>
+<p><a name="union()"></a></p>
+<h3 id="union">UNION()</h3>
+<p><code>UNION(array1, array2, ... arrayN) &#x2192; newArray</code></p>
+<p>Return the union of all arrays specified.</p>
+<ul>
+<li><strong>arrays</strong> (array, <em>repeatable</em>): an arbitrary number of arrays as multiple
+arguments, at least 2</li>
+<li>returns <strong>newArray</strong> (array): all array elements combined in a single array,
+in any order</li>
+</ul>
+<pre><code class="lang-js">UNION(
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ]
+)
+<span class="hljs-comment">// [ 1, 2, 3, 1, 2 ]</span>
+</code></pre>
+<p>Note: No duplicates will be removed. In order to remove duplicates, please use
+either <a href="#uniondistinct">UNION_DISTINCT()</a> or apply <a href="#unique">UNIQUE()</a> on the
+result of <em>UNION()</em>:</p>
+<pre><code class="lang-js">UNIQUE(
+    UNION(
+        [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+        [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ]
+    )
+)
+<span class="hljs-comment">// [ 1, 2, 3 ]</span>
+</code></pre>
+<p><a name="union_distinct()"></a></p>
+<h3 id="uniondistinct">UNION_DISTINCT()</h3>
+<p><code>UNION_DISTINCT(array1, array2, ... arrayN) &#x2192; newArray</code></p>
+<p>Return the union of distinct values of all arrays specified.</p>
+<ul>
+<li><strong>arrays</strong> (array, <em>repeatable</em>): an arbitrary number of arrays as multiple
+arguments, at least 2</li>
+<li>returns <strong>newArray</strong> (array): the elements of all given arrays in a single
+array, without duplicates, in any order</li>
+</ul>
+<pre><code class="lang-js">UNION_DISTINCT(
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ]
+)
+<span class="hljs-comment">// [ 1, 2, 3 ]</span>
+</code></pre>
+<p><a name="unique()"></a></p>
+<h3 id="unique">UNIQUE()</h3>
+<p><code>UNIQUE(anyArray) &#x2192; newArray</code></p>
+<p>Return all unique elements in <em>anyArray</em>. To determine uniqueness, the
+function will use the comparison order.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li>returns <strong>newArray</strong> (array): <em>anyArray</em> without duplicates, in any order</li>
+</ul>
+<p><a name="unshift()"></a></p>
+<h3 id="unshift">UNSHIFT()</h3>
+<p><code>UNSHIFT(anyArray, value, unique) &#x2192; newArray</code></p>
+<p>Prepend <em>value</em> to <em>anyArray</em>.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li><strong>value</strong> (any): an element of arbitrary type</li>
+<li><strong>unique</strong> (bool): if set to <em>true</em>, then <em>value</em> is not added if already
+present in the array. The default is <em>false</em>.</li>
+<li>returns <strong>newArray</strong> (array): <em>anyArray</em> with <em>value</em> added at the start
+(left side)</li>
+</ul>
+<p>Note: The <em>unique</em> flag only controls if <em>value</em> is added if it&apos;s already present
+in <em>anyArray</em>. Duplicate elements that already exist in <em>anyArray</em> will not be
+removed. To make an array unique, use the <a href="#unique">UNIQUE()</a> function.</p>
+<pre><code class="lang-js">UNSHIFT( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">4</span> ) <span class="hljs-comment">// [ 4, 1, 2, 3 ]</span>
+UNSHIFT( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ], <span class="hljs-number">2</span>, <span class="hljs-literal">true</span> ) <span class="hljs-comment">// [ 1, 2, 3 ]</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Functions/Date.html" class="navigation navigation-prev " aria-label="Previous page: Date"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Functions/Document.html" class="navigation navigation-next " aria-label="Next page: Object / Document"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+</html>

@@ -1,0 +1,1597 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>String | ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Functions/Numeric.html" />
+    
+    
+    <link rel="prev" href="../Functions/TypeCast.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="6.2"
+        data-chapter-title="String"
+        data-filepath="Functions/String.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:53 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="Invocation/index.html">
+            
+                
+                    <a href="../Invocation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        How to invoke AQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="Invocation/WithArangosh.html">
+            
+                
+                    <a href="../Invocation/WithArangosh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        with Arangosh
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Invocation/WithWebInterface.html">
+            
+                
+                    <a href="../Invocation/WithWebInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        with the Web Interface
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Fundamentals/index.html">
+            
+                
+                    <a href="../Fundamentals/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        AQL Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="Fundamentals/Syntax.html">
+            
+                
+                    <a href="../Fundamentals/Syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        AQL Syntax
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Fundamentals/DataTypes.html">
+            
+                
+                    <a href="../Fundamentals/DataTypes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Data types
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Fundamentals/BindParameters.html">
+            
+                
+                    <a href="../Fundamentals/BindParameters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Bind Parameters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Fundamentals/TypeValueOrder.html">
+            
+                
+                    <a href="../Fundamentals/TypeValueOrder.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Type and value order
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="Fundamentals/DocumentData.html">
+            
+                
+                    <a href="../Fundamentals/DocumentData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Accessing data from collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="Fundamentals/QueryResults.html">
+            
+                
+                    <a href="../Fundamentals/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="Fundamentals/QueryErrors.html">
+            
+                
+                    <a href="../Fundamentals/QueryErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        Query Errors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Operators.html">
+            
+                
+                    <a href="../Operators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Operators
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="DataModification.html">
+            
+                
+                    <a href="../DataModification.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Data Modification Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Operations/index.html">
+            
+                
+                    <a href="../Operations/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        High level Operations
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Operations/For.html">
+            
+                
+                    <a href="../Operations/For.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        FOR
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Operations/Return.html">
+            
+                
+                    <a href="../Operations/Return.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        RETURN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Operations/Filter.html">
+            
+                
+                    <a href="../Operations/Filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        FILTER
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="Operations/Sort.html">
+            
+                
+                    <a href="../Operations/Sort.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        SORT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="Operations/Limit.html">
+            
+                
+                    <a href="../Operations/Limit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        LIMIT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="Operations/Let.html">
+            
+                
+                    <a href="../Operations/Let.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        LET
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="Operations/Collect.html">
+            
+                
+                    <a href="../Operations/Collect.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        COLLECT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="Operations/Remove.html">
+            
+                
+                    <a href="../Operations/Remove.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        REMOVE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="Operations/Update.html">
+            
+                
+                    <a href="../Operations/Update.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        UPDATE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="Operations/Replace.html">
+            
+                
+                    <a href="../Operations/Replace.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        REPLACE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="Operations/Insert.html">
+            
+                
+                    <a href="../Operations/Insert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        INSERT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="Operations/Upsert.html">
+            
+                
+                    <a href="../Operations/Upsert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        UPSERT
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Functions/index.html">
+            
+                
+                    <a href="../Functions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Functions/TypeCast.html">
+            
+                
+                    <a href="../Functions/TypeCast.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Type cast
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.2" data-path="Functions/String.html">
+            
+                
+                    <a href="../Functions/String.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        String
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="Functions/Numeric.html">
+            
+                
+                    <a href="../Functions/Numeric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Numeric
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="Functions/Date.html">
+            
+                
+                    <a href="../Functions/Date.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Date
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="Functions/Array.html">
+            
+                
+                    <a href="../Functions/Array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Array
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="Functions/Document.html">
+            
+                
+                    <a href="../Functions/Document.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object / Document
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="Functions/Geo.html">
+            
+                
+                    <a href="../Functions/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="Functions/Fulltext.html">
+            
+                
+                    <a href="../Functions/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="Functions/Miscellaneous.html">
+            
+                
+                    <a href="../Functions/Miscellaneous.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        Miscellaneous
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Graphs/index.html">
+            
+                
+                    <a href="../Graphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Graphs/Traversals.html">
+            
+                
+                    <a href="../Graphs/Traversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Graphs/Operations.html">
+            
+                
+                    <a href="../Graphs/Operations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Named Operations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Graphs/Functions.html">
+            
+                
+                    <a href="../Graphs/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Other
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Advanced/index.html">
+            
+                
+                    <a href="../Advanced/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Advanced Features
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Advanced/ArrayOperators.html">
+            
+                
+                    <a href="../Advanced/ArrayOperators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Array Operators
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Examples/index.html">
+            
+                
+                    <a href="../Examples/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Usual Query Patterns
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Examples/Counting.html">
+            
+                
+                    <a href="../Examples/Counting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Counting
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Examples/DataModificationQueries.html">
+            
+                
+                    <a href="../Examples/DataModificationQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Data-modification queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Examples/CombiningQueries.html">
+            
+                
+                    <a href="../Examples/CombiningQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Subqueries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Examples/ProjectionsAndFilters.html">
+            
+                
+                    <a href="../Examples/ProjectionsAndFilters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Projections and filters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Examples/Join.html">
+            
+                
+                    <a href="../Examples/Join.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Joins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Examples/Grouping.html">
+            
+                
+                    <a href="../Examples/Grouping.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        Grouping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Examples/CombiningGraphTraversals.html">
+            
+                
+                    <a href="../Examples/CombiningGraphTraversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="Examples/QueriesNoCollections.html">
+            
+                
+                    <a href="../Examples/QueriesNoCollections.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        Queries without collections
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Extending/index.html">
+            
+                
+                    <a href="../Extending/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        User Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Extending/Conventions.html">
+            
+                
+                    <a href="../Extending/Conventions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Conventions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Extending/Functions.html">
+            
+                
+                    <a href="../Extending/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Registering Functions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="ExecutionAndPerformance/index.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Execution and Performance
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="ExecutionAndPerformance/QueryStatistics.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/QueryStatistics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Query statistics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="ExecutionAndPerformance/ParsingQueries.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/ParsingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Parsing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="ExecutionAndPerformance/ExplainingQueries.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/ExplainingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        Explaining queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="ExecutionAndPerformance/Optimizer.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/Optimizer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        Optimizing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="ExecutionAndPerformance/QueryCache.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/QueryCache.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Caching query results
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="CommonErrors.html">
+            
+                
+                    <a href="../CommonErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Common Errors
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="string_functions"></a></p>
+<h1 id="string-functions">String functions</h1>
+<p>For string processing, AQL offers the following functions:</p>
+<p><a name="char_length()"></a></p>
+<h3 id="charlength">CHAR_LENGTH()</h3>
+<p><code>CHAR_LENGTH(value) &#x2192; length</code></p>
+<p>Return the number of characters in <em>value</em> (not byte length).
+This is a synonym for <a href="#length">LENGTH()</a>.</p>
+<p><a name="concat()"></a></p>
+<h3 id="concat">CONCAT()</h3>
+<p><code>CONCAT(value1, value2, ... valueN) &#x2192; str</code></p>
+<p>Concatenate the values passed as <em>value1</em> to <em>valueN</em>.</p>
+<ul>
+<li><strong>values</strong> (any, <em>repeatable</em>): elements of arbitrary type, at least one</li>
+<li>returns <strong>str</strong> (string): a concatenation of the elements. <em>null</em> values
+are ignored.</li>
+</ul>
+<pre><code class="lang-js">CONCAT(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>, <span class="hljs-string">&quot;baz&quot;</span>) <span class="hljs-comment">// &quot;foobarbaz&quot;</span>
+CONCAT(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// &quot;123&quot;</span>
+CONCAT(<span class="hljs-string">&quot;foo&quot;</span>, [<span class="hljs-number">5</span>, <span class="hljs-number">6</span>], {bar: <span class="hljs-string">&quot;baz&quot;</span>}) <span class="hljs-comment">// &quot;foo[5,6]{\&quot;bar\&quot;:\&quot;baz\&quot;}&quot;</span>
+</code></pre>
+<p><code>CONCAT(anyArray) &#x2192; str</code></p>
+<p>If a single array is passed to <em>CONCAT()</em>, its members are concatenated.</p>
+<ul>
+<li><strong>anyArray</strong> (array): array with elements of arbitrary type</li>
+<li>returns <strong>str</strong> (string): a concatenation of the array elements. <em>null</em> values
+are ignored.</li>
+</ul>
+<pre><code class="lang-js">CONCAT( [ <span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>, <span class="hljs-string">&quot;baz&quot;</span> ] ) <span class="hljs-comment">// &quot;foobarbaz&quot;</span>
+CONCAT( [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] ) <span class="hljs-comment">// &quot;123&quot;</span>
+</code></pre>
+<p><a name="concat_separator()"></a></p>
+<h3 id="concatseparator">CONCAT_SEPARATOR()</h3>
+<p><code>CONCAT_SEPARATOR(separator, value1, value2, ... valueN) &#x2192; joinedString</code></p>
+<p>Concatenate the strings passed as arguments <em>value1</em> to <em>valueN</em> using the
+<em>separator</em> string.</p>
+<ul>
+<li><strong>separator</strong> (string): an arbitrary separator string</li>
+<li><strong>values</strong> (string|array, <em>repeatable</em>): strings or arrays of strings as multiple
+arguments, at least one</li>
+<li>returns <strong>joinedString</strong> (string): a concatenated string of the elements, using
+<em>separator</em> as separator string. <em>null</em> values are ignored. Array value arguments
+are expanded automatically, and their individual members will be concatenated.
+Nested arrays will be expanded too, but with their elements separated by commas
+if they have more than a single element.</li>
+</ul>
+<pre><code class="lang-js">CONCAT_SEPARATOR(<span class="hljs-string">&quot;, &quot;</span>, <span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>, <span class="hljs-string">&quot;baz&quot;</span>)
+<span class="hljs-comment">// &quot;foo, bar, baz&quot;</span>
+
+CONCAT_SEPARATOR(<span class="hljs-string">&quot;, &quot;</span>, [ <span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>, <span class="hljs-string">&quot;baz&quot;</span> ])
+<span class="hljs-comment">// &quot;foo, bar, baz&quot;</span>
+
+CONCAT_SEPARATOR(<span class="hljs-string">&quot;, &quot;</span>, [ <span class="hljs-string">&quot;foo&quot;</span>, [ <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;r&quot;</span> ], <span class="hljs-string">&quot;baz&quot;</span> ])
+<span class="hljs-comment">// [ &quot;foo, b,a,r, baz&quot; ]</span>
+
+<span class="hljs-comment">/* &quot;1-2-3-4-5&quot; */</span>
+CONCAT_SEPARATOR(<span class="hljs-string">&quot;-&quot;</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-literal">null</span>], [<span class="hljs-number">4</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">5</span>])
+</code></pre>
+<p><a name="contains()"></a></p>
+<h3 id="contains">CONTAINS()</h3>
+<p><code>CONTAINS(text, search, returnIndex) &#x2192; match</code></p>
+<p>Check whether the string <em>search</em> is contained in the string <em>text</em>.
+The string matching performed by <em>CONTAINS</em> is case-sensitive.</p>
+<ul>
+<li><strong>text</strong> (string): the haystack</li>
+<li><strong>search</strong> (string): the needle</li>
+<li>returnIndex<em>* (bool, </em>optional<em>): if set to </em>true<em>, the character position
+of the match is returned instead of a boolean. The default is </em>false<em>.
+The default is </em>false*.</li>
+<li>returns <strong>match</strong> (bool|number): by default, <em>true</em> is returned if <em>search</em>
+is contained in <em>text</em>, and <em>false</em> otherwise. With <em>returnIndex</em> set to <em>true</em>,
+the position of the first occurrence of <em>search</em> within <em>text</em> is returned 
+(starting at offset 0), or <em>-1</em> if <em>search</em> is not contained in <em>text</em>.</li>
+</ul>
+<pre><code class="lang-js">CONTAINS(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>) <span class="hljs-comment">// true</span>
+CONTAINS(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;horse&quot;</span>) <span class="hljs-comment">// false</span>
+CONTAINS(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;ba&quot;</span>, <span class="hljs-literal">true</span>) <span class="hljs-comment">// 3</span>
+CONTAINS(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;horse&quot;</span>, <span class="hljs-literal">true</span>) <span class="hljs-comment">// -1</span>
+</code></pre>
+<p><a name="find_first()"></a></p>
+<h3 id="findfirst">FIND_FIRST()</h3>
+<p><code>FIND_FIRST(text, search, start, end) &#x2192; position</code></p>
+<p>Return the position of the first occurrence of the string <em>search</em> inside the
+string <em>text</em>. Positions start at 0.</p>
+<ul>
+<li><strong>text</strong> (string): the haystack</li>
+<li><strong>search</strong> (string): the needle</li>
+<li><strong>start</strong> (number, <em>optional</em>): limit the search to a subset of the text,
+beginning at <em>start</em></li>
+<li><strong>end</strong> (number, <em>optional</em>): limit the search to a subset of the text,
+ending at <em>end</em></li>
+<li>returns <strong>position</strong> (number): the character position of the match. If <em>search</em>
+is not contained in <em>text</em>, -1 is returned.</li>
+</ul>
+<pre><code class="lang-js">FIND_FIRST(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;ba&quot;</span>) <span class="hljs-comment">// 3</span>
+FIND_FIRST(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;ba&quot;</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// 6</span>
+FIND_FIRST(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;ba&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// -1</span>
+</code></pre>
+<p><a name="find_last()"></a></p>
+<h3 id="findlast">FIND_LAST()</h3>
+<p><code>FIND_LAST(text, search, start, end) &#x2192; position</code></p>
+<p>Return the position of the last occurrence of the string <em>search</em> inside the
+string <em>text</em>. Positions start at 0.</p>
+<ul>
+<li><strong>text</strong> (string): the haystack</li>
+<li><strong>search</strong> (string): the needle</li>
+<li><strong>start</strong> (number, <em>optional</em>): limit the search to a subset of the text,
+beginning at <em>start</em></li>
+<li><strong>end</strong> (number, <em>optional</em>): limit the search to a subset of the text,
+ending at <em>end</em></li>
+<li>returns <strong>position</strong> (number): the character position of the match. If <em>search</em>
+is not contained in <em>text</em>, -1 is returned.</li>
+</ul>
+<pre><code class="lang-js">FIND_LAST(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;ba&quot;</span>), <span class="hljs-comment">// 6</span>
+FIND_LAST(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;ba&quot;</span>, <span class="hljs-number">7</span>), <span class="hljs-comment">// -1</span>
+FIND_LAST(<span class="hljs-string">&quot;foobarbaz&quot;</span>, <span class="hljs-string">&quot;ba&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// 3</span>
+</code></pre>
+<p><a name="left()"></a></p>
+<h3 id="left">LEFT()</h3>
+<p><code>LEFT(value, length) &#x2192; substring</code></p>
+<p>Return the <em>length</em> leftmost characters of the string <em>value</em>.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>length</strong> (number): how many characters to return</li>
+<li>returns <strong>substring</strong> (string): at most <em>length</em> characters of <em>value</em>,
+starting on the left-hand side of the string</li>
+</ul>
+<pre><code class="lang-js">LEFT(<span class="hljs-string">&quot;foobar&quot;</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// &quot;foo&quot;</span>
+LEFT(<span class="hljs-string">&quot;foobar&quot;</span>, <span class="hljs-number">10</span>) <span class="hljs-comment">// &quot;foobar&quot;</span>
+</code></pre>
+<p><a name="length()"></a></p>
+<h3 id="length">LENGTH()</h3>
+<p><code>LENGTH(str) &#x2192; length</code></p>
+<p>Determine the character length of a string.</p>
+<ul>
+<li><strong>str</strong> (string): a string. If a number is passed, it will be casted to string first.</li>
+<li>returns <strong>length</strong> (number): the character length of <em>str</em> (not byte length)</li>
+</ul>
+<pre><code class="lang-js">LENGTH(<span class="hljs-string">&quot;foobar&quot;</span>) <span class="hljs-comment">// 6</span>
+LENGTH(<span class="hljs-string">&quot;&#x7535;&#x8111;&#x574F;&#x4E86;&quot;</span>) <span class="hljs-comment">// 4</span>
+</code></pre>
+<p><em>LENGTH()</em> can also determine the <a href="Array.html#length">number of elements</a> in an array,
+the <a href="Document.html#length">number of attribute keys</a> of an object / document and
+the <a href="Miscellaneous.html#length">amount of documents</a> in a collection.</p>
+<p><a name="like()"></a></p>
+<h3 id="like">LIKE()</h3>
+<p><code>LIKE(text, search, caseInsensitive) &#x2192; bool</code></p>
+<p>Check whether the pattern <em>search</em> is contained in the string <em>text</em>,
+using wildcard matching. </p>
+<ul>
+<li><strong>text</strong> (string): a string</li>
+<li><strong>search</strong> (string): a search pattern that can contain the wildcard characters
+<em>%</em> (meaning any sequence of characters, including none) and <em>_</em> (any single
+character). Literal <em>%</em> and <em>:</em> must be escaped with two backslashes.
+<em>search</em> cannot be a variable or a document attribute. The actual value must
+be present at query parse time already.</li>
+<li><strong>caseInsensitive</strong> (bool, <em>optional</em>): if set to <em>true</em>, the matching will be
+case-insensitive. The default is <em>false</em>.</li>
+<li>returns <strong>bool</strong> (bool): <em>true</em> if the pattern is contained in <em>text</em>,
+and <em>false</em> otherwise</li>
+</ul>
+<p><a name="lower()"></a></p>
+<h3 id="lower">LOWER()</h3>
+<p><code>LOWER(value) &#x2192; lowerCaseString</code></p>
+<p>Convert upper-case letters in <em>value</em> to their lower-case counterparts.
+All other characters are returned unchanged.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li>returns <strong>lowerCaseString</strong> (string): <em>value</em> with upper-case characters converted
+to lower-case characters</li>
+</ul>
+<p><a name="ltrim()"></a></p>
+<h3 id="ltrim">LTRIM()</h3>
+<p><code>LTRIM(value, chars) &#x2192; strippedString</code></p>
+<p>Return the string <em>value</em> with whitespace stripped from the start only.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>chars</strong> (string, <em>optional</em>): override the characters that should
+be removed from the string. It defaults to <code>\r\n \t</code> (i.e. <code>0x0d</code>, <code>0x0a</code>,
+<code>0x20</code> and <code>0x09</code>).</li>
+<li>returns <strong>strippedString</strong> (string): <em>value</em> without <em>chars</em> at the
+left-hand side</li>
+</ul>
+<pre><code class="lang-js">LTRIM(<span class="hljs-string">&quot;foo bar&quot;</span>) <span class="hljs-comment">// &quot;foo bar&quot;</span>
+LTRIM(<span class="hljs-string">&quot;  foo bar  &quot;</span>) <span class="hljs-comment">// &quot;foo bar  &quot;</span>
+LTRIM(<span class="hljs-string">&quot;--==[foo-bar]==--&quot;</span>, <span class="hljs-string">&quot;-=[]&quot;</span>) <span class="hljs-comment">// &quot;foo-bar]==--&quot;</span>
+</code></pre>
+<p><a name="md5()"></a></p>
+<h3 id="md5">MD5()</h3>
+<p><code>MD5(text) &#x2192; hash</code></p>
+<p>Calculate the MD5 checksum for <em>text</em> and return it in a hexadecimal
+string representation.</p>
+<ul>
+<li><strong>text</strong> (string): a string</li>
+<li>returns <strong>hash</strong> (string): MD5 checksum as hex string</li>
+</ul>
+<pre><code class="lang-js">MD5(<span class="hljs-string">&quot;foobar&quot;</span>) <span class="hljs-comment">// &quot;3858f62230ac3c915f300c664312c63f&quot;</span>
+</code></pre>
+<p><a name="random_token()"></a></p>
+<h3 id="randomtoken">RANDOM_TOKEN()</h3>
+<p><code>RANDOM_TOKEN(length) &#x2192; randomString</code></p>
+<p>Generate a pseudo-random token string with the specified length.
+The algorithm for token generation should be treated as opaque.</p>
+<ul>
+<li><strong>length</strong> (number): desired string length for the token. It must be greater
+than 0 and at most 65536.</li>
+<li>returns <strong>randomString</strong> (string): a generated token consisting of lowercase
+letters, uppercase letters and numbers</li>
+</ul>
+<pre><code class="lang-js">RANDOM_TOKEN(<span class="hljs-number">8</span>) <span class="hljs-comment">// &quot;zGl09z42&quot;</span>
+RANDOM_TOKEN(<span class="hljs-number">8</span>) <span class="hljs-comment">// &quot;m9w50Ft9&quot;</span>
+</code></pre>
+<p><a name="reverse()"></a></p>
+<h3 id="reverse">REVERSE()</h3>
+<p><code>REVERSE(value) &#x2192; reversedString</code></p>
+<p>Return the reverse of the string <em>str</em>.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li>returns <strong>reversedString</strong> (string): a new string with the characters in
+reverse order</li>
+</ul>
+<pre><code class="lang-js">REVERSE(<span class="hljs-string">&quot;foobar&quot;</span>) <span class="hljs-comment">// &quot;raboof&quot;</span>
+REVERSE(<span class="hljs-string">&quot;&#x7535;&#x8111;&#x574F;&#x4E86;&quot;</span>) <span class="hljs-comment">// &quot;&#x4E86;&#x574F;&#x8111;&#x7535;&quot;</span>
+</code></pre>
+<p><a name="right()"></a></p>
+<h3 id="right">RIGHT()</h3>
+<p><code>RIGHT(value, length) &#x2192; substring</code></p>
+<p>Return the <em>length</em> rightmost characters of the string <em>value</em>.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>length</strong> (number): how many characters to return</li>
+<li>returns <strong>substring</strong> (string): at most <em>length</em> characters of <em>value</em>,
+starting on the right-hand side of the string</li>
+</ul>
+<pre><code class="lang-js">RIGHT(<span class="hljs-string">&quot;foobar&quot;</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// &quot;bar&quot;</span>
+RIGHT(<span class="hljs-string">&quot;foobar&quot;</span>, <span class="hljs-number">10</span>) <span class="hljs-comment">// &quot;foobar&quot;</span>
+</code></pre>
+<p><a name="rtrim()"></a></p>
+<h3 id="rtrim">RTRIM()</h3>
+<p><code>RTRIM(value, chars) &#x2192; strippedString</code></p>
+<p>Return the string <em>value</em> with whitespace stripped from the end only.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>chars</strong> (string, <em>optional</em>): override the characters that should
+be removed from the string. It defaults to <code>\r\n \t</code> (i.e. <code>0x0d</code>, <code>0x0a</code>,
+<code>0x20</code> and <code>0x09</code>).</li>
+<li>returns <strong>strippedString</strong> (string): <em>value</em> without <em>chars</em> at the
+right-hand side</li>
+</ul>
+<pre><code class="lang-js">RTRIM(<span class="hljs-string">&quot;foo bar&quot;</span>) <span class="hljs-comment">// &quot;foo bar&quot;</span>
+RTRIM(<span class="hljs-string">&quot;  foo bar  &quot;</span>) <span class="hljs-comment">// &quot;  foo bar&quot;</span>
+RTRIM(<span class="hljs-string">&quot;--==[foo-bar]==--&quot;</span>, <span class="hljs-string">&quot;-=[]&quot;</span>) <span class="hljs-comment">// &quot;--==[foo-bar&quot;</span>
+</code></pre>
+<p><a name="sha1()"></a></p>
+<h3 id="sha1">SHA1()</h3>
+<p><code>SHA1(text) &#x2192; hash</code></p>
+<p>Calculate the SHA1 checksum for <em>text</em> and returns it in a hexadecimal
+string representation.</p>
+<ul>
+<li><strong>text</strong> (string): a string</li>
+<li>returns <strong>hash</strong> (string): SHA1 checksum as hex string</li>
+</ul>
+<pre><code class="lang-js">SHA1(<span class="hljs-string">&quot;foobar&quot;</span>) <span class="hljs-comment">// &quot;8843d7f92416211de9ebb963ff4ce28125932878&quot;</span>
+</code></pre>
+<p><a name="split()"></a></p>
+<h3 id="split">SPLIT()</h3>
+<p><code>SPLIT(value, separator, limit) &#x2192; strArray</code></p>
+<p>Split the given string <em>value</em> into a list of strings, using the <em>separator</em>.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>separator</strong> (string): either a string or a list of strings. If <em>separator</em> is
+an empty string, <em>value</em> will be split into a list of characters. If no <em>separator</em>
+is specified, <em>value</em> will be returned as array.</li>
+<li><strong>limit</strong> (number, <em>optional</em>): limit the number of split values in the result.
+If no <em>limit</em> is given, the number of splits returned is not bounded.</li>
+<li>returns <strong>strArray</strong> (array): an array of strings</li>
+</ul>
+<pre><code class="lang-js">SPLIT( <span class="hljs-string">&quot;foo-bar-baz&quot;</span>, <span class="hljs-string">&quot;-&quot;</span> ) <span class="hljs-comment">// [ &quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot; ]</span>
+SPLIT( <span class="hljs-string">&quot;foo-bar-baz&quot;</span>, <span class="hljs-string">&quot;-&quot;</span>, <span class="hljs-number">1</span> ) <span class="hljs-comment">// [ &quot;foo&quot;, &quot;bar-baz&quot; ]</span>
+SPLIT( <span class="hljs-string">&quot;foo, bar &amp; baz&quot;</span>, [ <span class="hljs-string">&quot;, &quot;</span>, <span class="hljs-string">&quot; &amp; &quot;</span> ] ) <span class="hljs-comment">// [ &quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot; ]</span>
+</code></pre>
+<p><a name="substitute()"></a></p>
+<h3 id="substitute">SUBSTITUTE()</h3>
+<p><code>SUBSTITUTE(value, search, replace, limit) &#x2192; substitutedString</code></p>
+<p>Replace search values in the string <em>value</em>.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>search</strong> (string|array): if <em>search</em> is a string, all occurrences of
+<em>search</em> will be replaced in <em>value</em>. If <em>search</em> is an array of strings,
+each occurrence of a value contained in <em>search</em> will be replaced by the
+corresponding array element in <em>replace</em>. If <em>replace</em> has less list items
+than <em>search</em>, occurrences of unmapped <em>search</em> items will be replaced by an
+empty string.</li>
+<li><strong>replace</strong> (string|array, <em>optional</em>): a replacement string, or an array of
+strings to replace the corresponding elements of <em>search</em> with. Can have less
+elements than <em>search</em> or be left out to remove matches. If <em>search</em> is an array
+but <em>replace</em> is a string, then all matches will be replaced with <em>replace</em>.</li>
+<li><strong>limit</strong> (number, <em>optional</em>): cap the number of replacements to this value</li>
+<li>returns <strong>substitutedString</strong> (string): a new string with matches replaced
+(or removed)</li>
+</ul>
+<pre><code class="lang-js">SUBSTITUTE( <span class="hljs-string">&quot;the quick brown foxx&quot;</span>, <span class="hljs-string">&quot;quick&quot;</span>, <span class="hljs-string">&quot;lazy&quot;</span> )
+<span class="hljs-comment">// &quot;the lazy brown foxx&quot;</span>
+
+SUBSTITUTE( <span class="hljs-string">&quot;the quick brown foxx&quot;</span>, [ <span class="hljs-string">&quot;quick&quot;</span>, <span class="hljs-string">&quot;foxx&quot;</span> ], [ <span class="hljs-string">&quot;slow&quot;</span>, <span class="hljs-string">&quot;dog&quot;</span> ] )
+<span class="hljs-comment">// &quot;the slow brown dog&quot;</span>
+
+SUBSTITUTE( <span class="hljs-string">&quot;the quick brown foxx&quot;</span>, [ <span class="hljs-string">&quot;the&quot;</span>, <span class="hljs-string">&quot;foxx&quot;</span> ], [ <span class="hljs-string">&quot;that&quot;</span>, <span class="hljs-string">&quot;dog&quot;</span> ], <span class="hljs-number">1</span> )
+<span class="hljs-comment">//  &quot;that quick brown foxx&quot;</span>
+
+SUBSTITUTE( <span class="hljs-string">&quot;the quick brown foxx&quot;</span>, [ <span class="hljs-string">&quot;the&quot;</span>, <span class="hljs-string">&quot;quick&quot;</span>, <span class="hljs-string">&quot;foxx&quot;</span> ], [ <span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;VOID!&quot;</span> ] )
+<span class="hljs-comment">// &quot;A VOID! brown &quot;</span>
+
+SUBSTITUTE( <span class="hljs-string">&quot;the quick brown foxx&quot;</span>, [ <span class="hljs-string">&quot;quick&quot;</span>, <span class="hljs-string">&quot;foxx&quot;</span> ], <span class="hljs-string">&quot;xx&quot;</span> )
+<span class="hljs-comment">// &quot;the xx brown xx&quot;</span>
+</code></pre>
+<p><code>SUBSTITUTE(value, mapping, limit) &#x2192; substitutedString</code></p>
+<p>Alternatively, <em>search</em> and <em>replace</em> can be specified in a combined value.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>mapping</strong> (object): a lookup map with search strings as keys and replacement
+strings as values. Empty strings and <em>null</em> as values remove matches.</li>
+<li><strong>limit</strong> (number, <em>optional</em>): cap the number of replacements to this value</li>
+<li>returns <strong>substitutedString</strong> (string): a new string with matches replaced
+(or removed)</li>
+</ul>
+<pre><code class="lang-js">SUBSTITUTE(<span class="hljs-string">&quot;the quick brown foxx&quot;</span>, {
+  <span class="hljs-string">&quot;quick&quot;</span>: <span class="hljs-string">&quot;small&quot;</span>,
+  <span class="hljs-string">&quot;brown&quot;</span>: <span class="hljs-string">&quot;slow&quot;</span>,
+  <span class="hljs-string">&quot;foxx&quot;</span>: <span class="hljs-string">&quot;ant&quot;</span>
+})
+<span class="hljs-comment">// &quot;the small slow ant&quot;</span>
+
+SUBSTITUTE(<span class="hljs-string">&quot;the quick brown foxx&quot;</span>, { 
+  <span class="hljs-string">&quot;quick&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+  <span class="hljs-string">&quot;brown&quot;</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-string">&quot;foxx&quot;</span>: <span class="hljs-string">&quot;ant&quot;</span>
+})
+<span class="hljs-comment">// &quot;the   ant&quot;</span>
+
+SUBSTITUTE(<span class="hljs-string">&quot;the quick brown foxx&quot;</span>, {
+  <span class="hljs-string">&quot;quick&quot;</span>: <span class="hljs-string">&quot;small&quot;</span>,
+  <span class="hljs-string">&quot;brown&quot;</span>: <span class="hljs-string">&quot;slow&quot;</span>,
+  <span class="hljs-string">&quot;foxx&quot;</span>: <span class="hljs-string">&quot;ant&quot;</span>
+}, <span class="hljs-number">2</span>)
+<span class="hljs-comment">// &quot;the small slow foxx&quot;</span>
+</code></pre>
+<p><a name="substring()"></a></p>
+<h3 id="substring">SUBSTRING()</h3>
+<p><code>SUBSTRING(value, offset, length) &#x2192; substring</code></p>
+<p>Return a substring of <em>value</em>.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>offset</strong> (number): start at <em>offset</em>, offsets start at position 0</li>
+<li><strong>length</strong> (number, <em>optional</em>): at most <em>length</em> characters, omit to get the
+substring from <em>offset</em> to the end of the string</li>
+<li>returns <strong>substring</strong> (string): a substring of <em>value</em></li>
+</ul>
+<p><a name="trim()"></a></p>
+<h3 id="trim">TRIM()</h3>
+<p><code>TRIM(value, type) &#x2192; strippedString</code></p>
+<p>Return the string <em>value</em> with whitespace stripped from the start and/or end.</p>
+<p>The optional <em>type</em> parameter specifies from which parts of the string the
+whitespace is stripped. <a href="#ltrim">LTRIM()</a> and <a href="#rtrim">RTRIM()</a> are preferred
+however.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>type</strong> (number, <em>optional</em>): strip whitespace from the<ul>
+<li>0 &#x2013; start and end of the string</li>
+<li>1 &#x2013; start of the string only</li>
+<li>2 &#x2013; end of the string only
+The default is 0.</li>
+</ul>
+</li>
+</ul>
+<p><code>TRIM(value, chars) &#x2192; strippedString</code></p>
+<p>Return the string <em>value</em> with whitespace stripped from the start and end.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li><strong>chars</strong> (string, <em>optional</em>): override the characters that should
+be removed from the string. It defaults to <code>\r\n \t</code> (i.e. <code>0x0d</code>, <code>0x0a</code>,
+<code>0x20</code> and <code>0x09</code>).</li>
+<li>returns <strong>strippedString</strong> (string): <em>value</em> without <em>chars</em> on both sides</li>
+</ul>
+<pre><code class="lang-js">TRIM(<span class="hljs-string">&quot;foo bar&quot;</span>) <span class="hljs-comment">// &quot;foo bar&quot;</span>
+TRIM(<span class="hljs-string">&quot;  foo bar  &quot;</span>) <span class="hljs-comment">// &quot;foo bar&quot;</span>
+TRIM(<span class="hljs-string">&quot;--==[foo-bar]==--&quot;</span>, <span class="hljs-string">&quot;-=[]&quot;</span>) <span class="hljs-comment">// &quot;foo-bar&quot;  </span>
+TRIM(<span class="hljs-string">&quot;  foobar\t \r\n &quot;</span>) <span class="hljs-comment">// &quot;foobar&quot;</span>
+TRIM(<span class="hljs-string">&quot;;foo;bar;baz, &quot;</span>, <span class="hljs-string">&quot;,; &quot;</span>) <span class="hljs-comment">// &quot;foo;bar;baz&quot;</span>
+</code></pre>
+<p><a name="upper()"></a></p>
+<h3 id="upper">UPPER()</h3>
+<p><code>UPPER(value) &#x2192; upperCaseString</code></p>
+<p>Convert lower-case letters in <em>value</em> to their upper-case counterparts.
+All other characters are returned unchanged.</p>
+<ul>
+<li><strong>value</strong> (string): a string</li>
+<li>returns <strong>upperCaseString</strong> (string): <em>value</em> with lower-case characters converted
+to upper-case characters</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Functions/TypeCast.html" class="navigation navigation-prev " aria-label="Previous page: Type cast"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Functions/Numeric.html" class="navigation navigation-next " aria-label="Next page: Numeric"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+</html>

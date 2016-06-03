@@ -1,0 +1,1976 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB Cookbook -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Example AQL Queries for Graphs | ArangoDB Cookbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Graph/JavaDriverXmlData.html" />
+    
+    
+    <link rel="prev" href="../Graph/CustomVisitorFromNodeJs.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <!--
+  <select id="version-switcher">
+    <option value="devel">VERSION_NUMBER</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  -->
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="4.9"
+        data-chapter-title="Example AQL Queries for Graphs"
+        data-filepath="Graph/ExampleActorsAndMovies.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 12:54:56 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="DocumentInheritance.html">
+            
+                
+                    <a href="../DocumentInheritance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Modelling Document Inheritance
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="AccessingShapesData.html">
+            
+                
+                    <a href="../AccessingShapesData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Accessing Shapes Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="AQL/index.html">
+            
+                
+                    <a href="../AQL/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="AQL/Joins.html">
+            
+                
+                    <a href="../AQL/Joins.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Using Joins in AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="AQL/DynamicAttributeNames.html">
+            
+                
+                    <a href="../AQL/DynamicAttributeNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Using Dynamic Attribute Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="AQL/CreatingTestData.html">
+            
+                
+                    <a href="../AQL/CreatingTestData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Creating Test-data using AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="AQL/DiffingDocuments.html">
+            
+                
+                    <a href="../AQL/DiffingDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Diffing Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="AQL/AvoidingInjection.html">
+            
+                
+                    <a href="../AQL/AvoidingInjection.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Avoiding Parameter Injection
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="AQL/MultilineQueryStrings.html">
+            
+                
+                    <a href="../AQL/MultilineQueryStrings.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Multiline Query Strings
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Graph/index.html">
+            
+                
+                    <a href="../Graph/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Graph
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Graph/FindingLeafNodesAql.html">
+            
+                
+                    <a href="../Graph/FindingLeafNodesAql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Finding Leaf Nodes with AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Graph/FilteringNodesAql.html">
+            
+                
+                    <a href="../Graph/FilteringNodesAql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Filtering Nodes with AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Graph/CountingNodesEfficientlyAql.html">
+            
+                
+                    <a href="../Graph/CountingNodesEfficientlyAql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Counting Nodes efficiently with AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="Graph/FulldepthTraversal.html">
+            
+                
+                    <a href="../Graph/FulldepthTraversal.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Fulldepth Graph-Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="Graph/FindingConnectedVerticesForSubgraphs.html">
+            
+                
+                    <a href="../Graph/FindingConnectedVerticesForSubgraphs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Vertices for Subgraphs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="Graph/JavaDriverGraphExampleVertex.html">
+            
+                
+                    <a href="../Graph/JavaDriverGraphExampleVertex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Vertex example with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="Graph/JavaDriverBaseDocument.html">
+            
+                
+                    <a href="../Graph/JavaDriverBaseDocument.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Accessing base documents with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="Graph/CustomVisitorFromNodeJs.html">
+            
+                
+                    <a href="../Graph/CustomVisitorFromNodeJs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Using a custom Visitor
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.9" data-path="Graph/ExampleActorsAndMovies.html">
+            
+                
+                    <a href="../Graph/ExampleActorsAndMovies.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        Example AQL Queries for Graphs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="Graph/JavaDriverXmlData.html">
+            
+                
+                    <a href="../Graph/JavaDriverXmlData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.10.</b>
+                        
+                        Add XML data to ArangoDB with Java
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Foxx/index.html">
+            
+                
+                    <a href="../Foxx/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Foxx
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Foxx/FirstSteps.html">
+            
+                
+                    <a href="../Foxx/FirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        My first Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Foxx/FirstStepsLegacy.html">
+            
+                
+                    <a href="../Foxx/FirstStepsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        My first Foxx App pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Foxx/Auth.html">
+            
+                
+                    <a href="../Foxx/Auth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Adding Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="Foxx/AuthLegacy.html">
+            
+                
+                    <a href="../Foxx/AuthLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Adding Authentication pre-2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="Foxx/MakingRequests.html">
+            
+                
+                    <a href="../Foxx/MakingRequests.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Using external APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="Foxx/Queues.html">
+            
+                
+                    <a href="../Foxx/Queues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="Foxx/QueuesLegacy.html">
+            
+                
+                    <a href="../Foxx/QueuesLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        Legacy background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="Foxx/CustomQueueJobsLegacy.html">
+            
+                
+                    <a href="../Foxx/CustomQueueJobsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        Legacy custom Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="Foxx/Scripts.html">
+            
+                
+                    <a href="../Foxx/Scripts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        Creating a Foxx script
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="Foxx/CustomQueueJobs.html">
+            
+                
+                    <a href="../Foxx/CustomQueueJobs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        Custom job types for Queues
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="Foxx/GeneratorFirstSteps.html">
+            
+                
+                    <a href="../Foxx/GeneratorFirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        My first FoxxGenerator App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="Foxx/Deploy.html">
+            
+                
+                    <a href="../Foxx/Deploy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        How to deploy a Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.13" data-path="Foxx/MakingAppAccessible.html">
+            
+                
+                    <a href="../Foxx/MakingAppAccessible.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.13.</b>
+                        
+                        Apps accessible from the Web
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.14" data-path="Foxx/ApiKeys.html">
+            
+                
+                    <a href="../Foxx/ApiKeys.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.14.</b>
+                        
+                        API-Key Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.15" data-path="Foxx/BinaryFileUploads.html">
+            
+                
+                    <a href="../Foxx/BinaryFileUploads.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.15.</b>
+                        
+                        Handling Binary HTTP documents in Foxx
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.16" data-path="Foxx/BinaryHttpPost.html">
+            
+                
+                    <a href="../Foxx/BinaryHttpPost.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.16.</b>
+                        
+                        Sending Binary HTTP documents from Foxx
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.17" data-path="Foxx/Testing.html">
+            
+                
+                    <a href="../Foxx/Testing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.17.</b>
+                        
+                        Foxx Testing
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="UseCases/index.html">
+            
+                
+                    <a href="../UseCases/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Use Cases / Examples
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="UseCases/CrawlingGithubPromises.html">
+            
+                
+                    <a href="../UseCases/CrawlingGithubPromises.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Crawling Github with Promises
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="UseCases/SailsJS.html">
+            
+                
+                    <a href="../UseCases/SailsJS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Using ArangoDB with Sails.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="UseCases/PopulatingAnAutocompleteTextbox.html">
+            
+                
+                    <a href="../UseCases/PopulatingAnAutocompleteTextbox.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Populating a Textbox
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="UseCases/ExportingData.html">
+            
+                
+                    <a href="../UseCases/ExportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Exporting Data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Administration/index.html">
+            
+                
+                    <a href="../Administration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Administration/Authentication.html">
+            
+                
+                    <a href="../Administration/Authentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Using Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Administration/ImportingData.html">
+            
+                
+                    <a href="../Administration/ImportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Importing Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Administration/ReplicatingData.html">
+            
+                
+                    <a href="../Administration/ReplicatingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Replicating Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="Administration/XCopyInstallWindows.html">
+            
+                
+                    <a href="../Administration/XCopyInstallWindows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        XCopy Install Windows
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Compiling/index.html">
+            
+                
+                    <a href="../Compiling/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Compiling / Build
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Compiling/Debian.html">
+            
+                
+                    <a href="../Compiling/Debian.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Compile on Debian
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="Compiling/Windows.html">
+            
+                
+                    <a href="../Compiling/Windows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Compile on Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="Compiling/WindowsLegacy.html">
+            
+                
+                    <a href="../Compiling/WindowsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Compile on Windows pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="Compiling/RunningCustomBuild.html">
+            
+                
+                    <a href="../Compiling/RunningCustomBuild.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Running Custom Build
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="Compiling/Windows30.html">
+            
+                
+                    <a href="../Compiling/Windows30.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        Compile 3.0 on Windows (devel)
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Cloud/index.html">
+            
+                
+                    <a href="../Cloud/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Cloud, DCOS and Docker
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Cloud/Aws.html">
+            
+                
+                    <a href="../Cloud/Aws.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Running on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Cloud/AwsUpdate.html">
+            
+                
+                    <a href="../Cloud/AwsUpdate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Update on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Cloud/Azure.html">
+            
+                
+                    <a href="../Cloud/Azure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Running on Azure
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Cloud/DockerContainer.html">
+            
+                
+                    <a href="../Cloud/DockerContainer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Docker ArangoDB
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Cloud/NodeJsDocker.html">
+            
+                
+                    <a href="../Cloud/NodeJsDocker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Docker with NodeJS App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Cloud/GiantSwarm.html">
+            
+                
+                    <a href="../Cloud/GiantSwarm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        In the GiantSwarm
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Cloud/Mesosphere.html">
+            
+                
+                    <a href="../Cloud/Mesosphere.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        ArangoDB in Mesos
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Monitoring/Collectd.html">
+            
+                
+                    <a href="../Monitoring/Collectd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Monitoring
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Monitoring/SlaveStatus.html">
+            
+                
+                    <a href="../Monitoring/SlaveStatus.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Collectd - Replication Slaves
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Monitoring/TrafficWithIPAccounting.html">
+            
+                
+                    <a href="../Monitoring/TrafficWithIPAccounting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Collectd - Network usage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="Monitoring/OtherRelevantMetrics.html">
+            
+                
+                    <a href="../Monitoring/OtherRelevantMetrics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                        Collectd - more Metrics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.4" data-path="Monitoring/FoxxApps.html">
+            
+                
+                    <a href="../Monitoring/FoxxApps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                        Collectd - Monitoring Foxx
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB Cookbook</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="aql-example-queries-on-an-actors-and-movies-database">AQL Example Queries on an Actors and Movies Database</h1>
+<h2 id="acknowledgments">Acknowledgments</h2>
+<p>On <a href="http://stackoverflow.com/questions/32729314/aql-graph-queries-examples" target="_blank">Stackoverflow</a> the user <a href="http://stackoverflow.com/users/1126414/vincz" target="_blank">Vincz</a> asked for some example queries based on graphs.
+So credits for this questions go to him. The datasets and queries have been taken from the guys of <a href="http://neo4j.com/docs/stable/cypherdoc-movie-database.html" target="_blank">neo4j</a>. Credits and thanks to them.
+As I also think this examples are yet missing I decided to write this recipe.</p>
+<h2 id="problem">Problem</h2>
+<p>(Copy from Stackoverflow)
+Given a collection of <strong>actors</strong> and a collection of <strong>movies</strong>. And a <strong>actIn</strong> edges collection (with a <strong>year</strong> property) to connect the vertex.</p>
+<p>[Actor] &lt;- act in -&gt; [Movie]</p>
+<p> How could I get:</p>
+<ul>
+<li>All actors who acted in &quot;movie1&quot; OR &quot;movie2&quot;</li>
+<li>All actors who acted in both &quot;movie1&quot; AND &quot;movie2&quot; ?</li>
+<li>All common movies between &quot;actor1&quot; and &quot;actor2&quot; ?</li>
+<li>All actors who acted in 3 or more movies ?</li>
+<li>All movies where exactly 6 actors acted in ?</li>
+<li>The number of actors by movie ?</li>
+<li>The number of movies by actor ?</li>
+<li>The number of movies acted in between 2005 and 2010 by actor ?</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<p>During this solution we will be using arangosh to create and query the data.
+All the AQL queries are strings and can simply be copied over to your favorite driver instead of arangosh.</p>
+<p>Create a Test Dataset in arangosh:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> actors = db._create(<span class="hljs-string">&quot;actors&quot;</span>);
+<span class="hljs-keyword">var</span> movies = db._create(<span class="hljs-string">&quot;movies&quot;</span>);
+<span class="hljs-keyword">var</span> actsIn = db._createEdgeCollection(<span class="hljs-string">&quot;actsIn&quot;</span>);
+
+<span class="hljs-keyword">var</span> TheMatrix = movies.save({_key: <span class="hljs-string">&quot;TheMatrix&quot;</span>, title:<span class="hljs-string">&apos;The Matrix&apos;</span>, released:<span class="hljs-number">1999</span>, tagline:<span class="hljs-string">&apos;Welcome to the Real World&apos;</span>})._id;
+<span class="hljs-keyword">var</span> Keanu = actors.save({_key: <span class="hljs-string">&quot;Keanu&quot;</span>, name:<span class="hljs-string">&apos;Keanu Reeves&apos;</span>, born:<span class="hljs-number">1964</span>})._id;
+<span class="hljs-keyword">var</span> Carrie = actors.save({_key: <span class="hljs-string">&quot;Carrie&quot;</span>, name:<span class="hljs-string">&apos;Carrie-Anne Moss&apos;</span>, born:<span class="hljs-number">1967</span>})._id;
+<span class="hljs-keyword">var</span> Laurence = actors.save({_key: <span class="hljs-string">&quot;Laurence&quot;</span>, name:<span class="hljs-string">&apos;Laurence Fishburne&apos;</span>, born:<span class="hljs-number">1961</span>})._id;
+<span class="hljs-keyword">var</span> Hugo = actors.save({_key: <span class="hljs-string">&quot;Hugo&quot;</span>, name:<span class="hljs-string">&apos;Hugo Weaving&apos;</span>, born:<span class="hljs-number">1960</span>})._id;
+<span class="hljs-keyword">var</span> Emil = actors.save({_key: <span class="hljs-string">&quot;Emil&quot;</span>, name:<span class="hljs-string">&quot;Emil Eifrem&quot;</span>, born: <span class="hljs-number">1978</span>});
+
+actsIn.save(Keanu, TheMatrix, {roles: [<span class="hljs-string">&quot;Neo&quot;</span>], year: <span class="hljs-number">1999</span>});
+actsIn.save(Carrie, TheMatrix, {roles: [<span class="hljs-string">&quot;Trinity&quot;</span>], year: <span class="hljs-number">1999</span>});
+actsIn.save(Laurence, TheMatrix, {roles: [<span class="hljs-string">&quot;Morpheus&quot;</span>], year: <span class="hljs-number">1999</span>});
+actsIn.save(Hugo, TheMatrix, {roles: [<span class="hljs-string">&quot;Agent Smith&quot;</span>], year: <span class="hljs-number">1999</span>});
+actsIn.save(Emil, TheMatrix, {roles: [<span class="hljs-string">&quot;Emil&quot;</span>], year: <span class="hljs-number">1999</span>}); 
+
+<span class="hljs-keyword">var</span> TheMatrixReloaded = movies.save({_key: <span class="hljs-string">&quot;TheMatrixReloaded&quot;</span>, title: <span class="hljs-string">&quot;The Matrix Reloaded&quot;</span>, released: <span class="hljs-number">2003</span>, tagline: <span class="hljs-string">&quot;Free your mind&quot;</span>});
+actsIn.save(Keanu, TheMatrixReloaded, {roles: [<span class="hljs-string">&quot;Neo&quot;</span>], year: <span class="hljs-number">2003</span>});
+actsIn.save(Carrie, TheMatrixReloaded, {roles: [<span class="hljs-string">&quot;Trinity&quot;</span>], year: <span class="hljs-number">2003</span>});
+actsIn.save(Laurence, TheMatrixReloaded, {roles: [<span class="hljs-string">&quot;Morpheus&quot;</span>], year: <span class="hljs-number">2003</span>});
+actsIn.save(Hugo, TheMatrixReloaded, {roles: [<span class="hljs-string">&quot;Agent Smith&quot;</span>], year: <span class="hljs-number">2003</span>});
+
+<span class="hljs-keyword">var</span> TheMatrixRevolutions = movies.save({_key: <span class="hljs-string">&quot;TheMatrixRevolutions&quot;</span>, title: <span class="hljs-string">&quot;The Matrix Revolutions&quot;</span>, released: <span class="hljs-number">2003</span>, tagline: <span class="hljs-string">&quot;Everything that has a beginning has an end&quot;</span>});
+actsIn.save(Keanu, TheMatrixRevolutions, {roles: [<span class="hljs-string">&quot;Neo&quot;</span>], year: <span class="hljs-number">2003</span>});
+actsIn.save(Carrie, TheMatrixRevolutions, {roles: [<span class="hljs-string">&quot;Trinity&quot;</span>], year: <span class="hljs-number">2003</span>});
+actsIn.save(Laurence, TheMatrixRevolutions, {roles: [<span class="hljs-string">&quot;Morpheus&quot;</span>], year: <span class="hljs-number">2003</span>});
+actsIn.save(Hugo, TheMatrixRevolutions, {roles: [<span class="hljs-string">&quot;Agent Smith&quot;</span>], year: <span class="hljs-number">2003</span>});
+
+<span class="hljs-keyword">var</span> TheDevilsAdvocate = movies.save({_key: <span class="hljs-string">&quot;TheDevilsAdvocate&quot;</span>, title:<span class="hljs-string">&quot;The Devil&apos;s Advocate&quot;</span>, released:<span class="hljs-number">1997</span>, tagline:<span class="hljs-string">&apos;Evil has its winning ways&apos;</span>})._id;
+<span class="hljs-keyword">var</span> Charlize = actors.save({_key: <span class="hljs-string">&quot;Charlize&quot;</span>, name:<span class="hljs-string">&apos;Charlize Theron&apos;</span>, born:<span class="hljs-number">1975</span>})._id;
+<span class="hljs-keyword">var</span> Al = actors.save({_key: <span class="hljs-string">&quot;Al&quot;</span>, name:<span class="hljs-string">&apos;Al Pacino&apos;</span>, born:<span class="hljs-number">1940</span>})._id;
+actsIn.save(Keanu, TheDevilsAdvocate, {roles: [<span class="hljs-string">&quot;Kevin Lomax&quot;</span>], year: <span class="hljs-number">1997</span>});
+actsIn.save(Charlize, TheDevilsAdvocate, {roles: [<span class="hljs-string">&quot;Mary Ann Lomax&quot;</span>], year: <span class="hljs-number">1997</span>});
+actsIn.save(Al, TheDevilsAdvocate, {roles: [<span class="hljs-string">&quot;John Milton&quot;</span>], year: <span class="hljs-number">1997</span>});
+
+<span class="hljs-keyword">var</span> AFewGoodMen = movies.save({_key: <span class="hljs-string">&quot;AFewGoodMen&quot;</span>, title:<span class="hljs-string">&quot;A Few Good Men&quot;</span>, released:<span class="hljs-number">1992</span>, tagline:<span class="hljs-string">&quot;In the heart of the nation&apos;s capital, in a courthouse of the U.S. government, one man will stop at nothing to keep his honor, and one will stop at nothing to find the truth.&quot;</span>})._id;
+<span class="hljs-keyword">var</span> TomC = actors.save({_key: <span class="hljs-string">&quot;TomC&quot;</span>, name:<span class="hljs-string">&apos;Tom Cruise&apos;</span>, born:<span class="hljs-number">1962</span>})._id;
+<span class="hljs-keyword">var</span> JackN = actors.save({_key: <span class="hljs-string">&quot;JackN&quot;</span>, name:<span class="hljs-string">&apos;Jack Nicholson&apos;</span>, born:<span class="hljs-number">1937</span>})._id;
+<span class="hljs-keyword">var</span> DemiM = actors.save({_key: <span class="hljs-string">&quot;DemiM&quot;</span>, name:<span class="hljs-string">&apos;Demi Moore&apos;</span>, born:<span class="hljs-number">1962</span>})._id;
+<span class="hljs-keyword">var</span> KevinB = actors.save({_key:<span class="hljs-string">&quot;KevinB&quot;</span>, name:<span class="hljs-string">&apos;Kevin Bacon&apos;</span>, born:<span class="hljs-number">1958</span>})._id;
+<span class="hljs-keyword">var</span> KieferS = actors.save({_key:<span class="hljs-string">&quot;KieferS&quot;</span>, name:<span class="hljs-string">&apos;Kiefer Sutherland&apos;</span>, born:<span class="hljs-number">1966</span>})._id;
+<span class="hljs-keyword">var</span> NoahW = actors.save({_key:<span class="hljs-string">&quot;NoahW&quot;</span>, name:<span class="hljs-string">&apos;Noah Wyle&apos;</span>, born:<span class="hljs-number">1971</span>})._id;
+<span class="hljs-keyword">var</span> CubaG = actors.save({_key:<span class="hljs-string">&quot;CubaG&quot;</span>, name:<span class="hljs-string">&apos;Cuba Gooding Jr.&apos;</span>, born:<span class="hljs-number">1968</span>})._id;
+<span class="hljs-keyword">var</span> KevinP = actors.save({_key:<span class="hljs-string">&quot;KevinP&quot;</span>, name:<span class="hljs-string">&apos;Kevin Pollak&apos;</span>, born:<span class="hljs-number">1957</span>})._id;
+<span class="hljs-keyword">var</span> JTW = actors.save({_key:<span class="hljs-string">&quot;JTW&quot;</span>, name:<span class="hljs-string">&apos;J.T. Walsh&apos;</span>, born:<span class="hljs-number">1943</span>})._id;
+<span class="hljs-keyword">var</span> JamesM = actors.save({_key:<span class="hljs-string">&quot;JamesM&quot;</span>, name:<span class="hljs-string">&apos;James Marshall&apos;</span>, born:<span class="hljs-number">1967</span>})._id;
+<span class="hljs-keyword">var</span> ChristopherG = actors.save({_key:<span class="hljs-string">&quot;ChristopherG&quot;</span>, name:<span class="hljs-string">&apos;Christopher Guest&apos;</span>, born:<span class="hljs-number">1948</span>})._id;
+actsIn.save(TomC,AFewGoodMen,{roles:[<span class="hljs-string">&apos;Lt. Daniel Kaffee&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(JackN,AFewGoodMen,{roles:[<span class="hljs-string">&apos;Col. Nathan R. Jessup&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(DemiM,AFewGoodMen,{roles:[<span class="hljs-string">&apos;Lt. Cdr. JoAnne Galloway&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(KevinB,AFewGoodMen,{roles:[<span class="hljs-string">&apos;Capt. Jack Ross&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(KieferS,AFewGoodMen,{ roles:[<span class="hljs-string">&apos;Lt. Jonathan Kendrick&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(NoahW,AFewGoodMen,{roles:[<span class="hljs-string">&apos;Cpl. Jeffrey Barnes&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(CubaG,AFewGoodMen,{ roles:[<span class="hljs-string">&apos;Cpl. Carl Hammaker&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(KevinP,AFewGoodMen,{roles:[<span class="hljs-string">&apos;Lt. Sam Weinberg&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(JTW,AFewGoodMen,{roles:[<span class="hljs-string">&apos;Lt. Col. Matthew Andrew Markinson&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(JamesM,AFewGoodMen,{roles:[<span class="hljs-string">&apos;Pfc. Louden Downey&apos;</span>], year: <span class="hljs-number">1992</span>});
+actsIn.save(ChristopherG,AFewGoodMen,{ roles:[<span class="hljs-string">&apos;Dr. Stone&apos;</span>], year: <span class="hljs-number">1992</span>});
+
+<span class="hljs-keyword">var</span> TopGun = movies.save({_key:<span class="hljs-string">&quot;TopGun&quot;</span>, title:<span class="hljs-string">&quot;Top Gun&quot;</span>, released:<span class="hljs-number">1986</span>, tagline:<span class="hljs-string">&apos;I feel the need, the need for speed.&apos;</span>})._id;
+<span class="hljs-keyword">var</span> KellyM = actors.save({_key:<span class="hljs-string">&quot;KellyM&quot;</span>, name:<span class="hljs-string">&apos;Kelly McGillis&apos;</span>, born:<span class="hljs-number">1957</span>})._id;
+<span class="hljs-keyword">var</span> ValK = actors.save({_key:<span class="hljs-string">&quot;ValK&quot;</span>, name:<span class="hljs-string">&apos;Val Kilmer&apos;</span>, born:<span class="hljs-number">1959</span>})._id;
+<span class="hljs-keyword">var</span> AnthonyE = actors.save({_key:<span class="hljs-string">&quot;AnthonyE&quot;</span>, name:<span class="hljs-string">&apos;Anthony Edwards&apos;</span>, born:<span class="hljs-number">1962</span>})._id;
+<span class="hljs-keyword">var</span> TomS = actors.save({_key:<span class="hljs-string">&quot;TomS&quot;</span>, name:<span class="hljs-string">&apos;Tom Skerritt&apos;</span>, born:<span class="hljs-number">1933</span>})._id;
+<span class="hljs-keyword">var</span> MegR = actors.save({_key:<span class="hljs-string">&quot;MegR&quot;</span>, name:<span class="hljs-string">&apos;Meg Ryan&apos;</span>, born:<span class="hljs-number">1961</span>})._id;
+actsIn.save(TomC,TopGun,{roles:[<span class="hljs-string">&apos;Maverick&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(KellyM,TopGun,{roles:[<span class="hljs-string">&apos;Charlie&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(ValK,TopGun,{roles:[<span class="hljs-string">&apos;Iceman&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(AnthonyE,TopGun,{roles:[<span class="hljs-string">&apos;Goose&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(TomS,TopGun,{roles:[<span class="hljs-string">&apos;Viper&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(MegR,TopGun,{roles:[<span class="hljs-string">&apos;Carole&apos;</span>], year: <span class="hljs-number">1986</span>});
+
+<span class="hljs-keyword">var</span> JerryMaguire = movies.save({_key:<span class="hljs-string">&quot;JerryMaguire&quot;</span>, title:<span class="hljs-string">&apos;Jerry Maguire&apos;</span>, released:<span class="hljs-number">2000</span>, tagline:<span class="hljs-string">&apos;The rest of his life begins now.&apos;</span>})._id;
+<span class="hljs-keyword">var</span> ReneeZ = actors.save({_key:<span class="hljs-string">&quot;ReneeZ&quot;</span>, name:<span class="hljs-string">&apos;Renee Zellweger&apos;</span>, born:<span class="hljs-number">1969</span>})._id;
+<span class="hljs-keyword">var</span> KellyP = actors.save({_key:<span class="hljs-string">&quot;KellyP&quot;</span>, name:<span class="hljs-string">&apos;Kelly Preston&apos;</span>, born:<span class="hljs-number">1962</span>})._id;
+<span class="hljs-keyword">var</span> JerryO = actors.save({_key:<span class="hljs-string">&quot;JerryO&quot;</span>, name:<span class="hljs-string">&quot;Jerry O&apos;Connell&quot;</span>, born:<span class="hljs-number">1974</span>})._id;
+<span class="hljs-keyword">var</span> JayM = actors.save({_key:<span class="hljs-string">&quot;JayM&quot;</span>, name:<span class="hljs-string">&apos;Jay Mohr&apos;</span>, born:<span class="hljs-number">1970</span>})._id;
+<span class="hljs-keyword">var</span> BonnieH = actors.save({_key:<span class="hljs-string">&quot;BonnieH&quot;</span>, name:<span class="hljs-string">&apos;Bonnie Hunt&apos;</span>, born:<span class="hljs-number">1961</span>})._id;
+<span class="hljs-keyword">var</span> ReginaK = actors.save({_key:<span class="hljs-string">&quot;ReginaK&quot;</span>, name:<span class="hljs-string">&apos;Regina King&apos;</span>, born:<span class="hljs-number">1971</span>})._id;
+<span class="hljs-keyword">var</span> JonathanL = actors.save({_key:<span class="hljs-string">&quot;JonathanL&quot;</span>, name:<span class="hljs-string">&apos;Jonathan Lipnicki&apos;</span>, born:<span class="hljs-number">1996</span>})._id;
+actsIn.save(TomC,JerryMaguire,{roles:[<span class="hljs-string">&apos;Jerry Maguire&apos;</span>], year: <span class="hljs-number">2000</span>});
+actsIn.save(CubaG,JerryMaguire,{roles:[<span class="hljs-string">&apos;Rod Tidwell&apos;</span>], year: <span class="hljs-number">2000</span>});
+actsIn.save(ReneeZ,JerryMaguire,{roles:[<span class="hljs-string">&apos;Dorothy Boyd&apos;</span>], year: <span class="hljs-number">2000</span>});
+actsIn.save(KellyP,JerryMaguire,{roles:[<span class="hljs-string">&apos;Avery Bishop&apos;</span>], year: <span class="hljs-number">2000</span>});
+actsIn.save(JerryO,JerryMaguire,{roles:[<span class="hljs-string">&apos;Frank Cushman&apos;</span>], year: <span class="hljs-number">2000</span>});
+actsIn.save(JayM,JerryMaguire,{roles:[<span class="hljs-string">&apos;Bob Sugar&apos;</span>], year: <span class="hljs-number">2000</span>});
+actsIn.save(BonnieH,JerryMaguire,{roles:[<span class="hljs-string">&apos;Laurel Boyd&apos;</span>], year: <span class="hljs-number">2000</span>});
+actsIn.save(ReginaK,JerryMaguire,{roles:[<span class="hljs-string">&apos;Marcee Tidwell&apos;</span>], year: <span class="hljs-number">2000</span>});
+actsIn.save(JonathanL,JerryMaguire,{roles:[<span class="hljs-string">&apos;Ray Boyd&apos;</span>], year: <span class="hljs-number">2000</span>});
+
+<span class="hljs-keyword">var</span> StandByMe = movies.save({_key:<span class="hljs-string">&quot;StandByMe&quot;</span>, title:<span class="hljs-string">&quot;Stand By Me&quot;</span>, released:<span class="hljs-number">1986</span>, tagline:<span class="hljs-string">&quot;For some, it&apos;s the last real taste of innocence, and the first real taste of life. But for everyone, it&apos;s the time that memories are made of.&quot;</span>})._id;
+<span class="hljs-keyword">var</span> RiverP = actors.save({_key:<span class="hljs-string">&quot;RiverP&quot;</span>, name:<span class="hljs-string">&apos;River Phoenix&apos;</span>, born:<span class="hljs-number">1970</span>})._id;
+<span class="hljs-keyword">var</span> CoreyF = actors.save({_key:<span class="hljs-string">&quot;CoreyF&quot;</span>, name:<span class="hljs-string">&apos;Corey Feldman&apos;</span>, born:<span class="hljs-number">1971</span>})._id;
+<span class="hljs-keyword">var</span> WilW = actors.save({_key:<span class="hljs-string">&quot;WilW&quot;</span>, name:<span class="hljs-string">&apos;Wil Wheaton&apos;</span>, born:<span class="hljs-number">1972</span>})._id;
+<span class="hljs-keyword">var</span> JohnC = actors.save({_key:<span class="hljs-string">&quot;JohnC&quot;</span>, name:<span class="hljs-string">&apos;John Cusack&apos;</span>, born:<span class="hljs-number">1966</span>})._id;
+<span class="hljs-keyword">var</span> MarshallB = actors.save({_key:<span class="hljs-string">&quot;MarshallB&quot;</span>, name:<span class="hljs-string">&apos;Marshall Bell&apos;</span>, born:<span class="hljs-number">1942</span>})._id;
+actsIn.save(WilW,StandByMe,{roles:[<span class="hljs-string">&apos;Gordie Lachance&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(RiverP,StandByMe,{roles:[<span class="hljs-string">&apos;Chris Chambers&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(JerryO,StandByMe,{roles:[<span class="hljs-string">&apos;Vern Tessio&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(CoreyF,StandByMe,{roles:[<span class="hljs-string">&apos;Teddy Duchamp&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(JohnC,StandByMe,{roles:[<span class="hljs-string">&apos;Denny Lachance&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(KieferS,StandByMe,{roles:[<span class="hljs-string">&apos;Ace Merrill&apos;</span>], year: <span class="hljs-number">1986</span>});
+actsIn.save(MarshallB,StandByMe,{roles:[<span class="hljs-string">&apos;Mr. Lachance&apos;</span>], year: <span class="hljs-number">1986</span>});
+
+<span class="hljs-keyword">var</span> AsGoodAsItGets = movies.save({_key:<span class="hljs-string">&quot;AsGoodAsItGets&quot;</span>, title:<span class="hljs-string">&apos;As Good as It Gets&apos;</span>, released:<span class="hljs-number">1997</span>, tagline:<span class="hljs-string">&apos;A comedy from the heart that goes for the throat.&apos;</span>})._id;
+<span class="hljs-keyword">var</span> HelenH = actors.save({_key:<span class="hljs-string">&quot;HelenH&quot;</span>, name:<span class="hljs-string">&apos;Helen Hunt&apos;</span>, born:<span class="hljs-number">1963</span>})._id;
+<span class="hljs-keyword">var</span> GregK = actors.save({_key:<span class="hljs-string">&quot;GregK&quot;</span>, name:<span class="hljs-string">&apos;Greg Kinnear&apos;</span>, born:<span class="hljs-number">1963</span>})._id;
+actsIn.save(JackN,AsGoodAsItGets,{roles:[<span class="hljs-string">&apos;Melvin Udall&apos;</span>], year: <span class="hljs-number">1997</span>});
+actsIn.save(HelenH,AsGoodAsItGets,{roles:[<span class="hljs-string">&apos;Carol Connelly&apos;</span>], year: <span class="hljs-number">1997</span>});
+actsIn.save(GregK,AsGoodAsItGets,{roles:[<span class="hljs-string">&apos;Simon Bishop&apos;</span>], year: <span class="hljs-number">1997</span>});
+actsIn.save(CubaG,AsGoodAsItGets,{roles:[<span class="hljs-string">&apos;Frank Sachs&apos;</span>], year: <span class="hljs-number">1997</span>});
+
+<span class="hljs-keyword">var</span> WhatDreamsMayCome = movies.save({_key:<span class="hljs-string">&quot;WhatDreamsMayCome&quot;</span>, title:<span class="hljs-string">&apos;What Dreams May Come&apos;</span>, released:<span class="hljs-number">1998</span>, tagline:<span class="hljs-string">&apos;After life there is more. The end is just the beginning.&apos;</span>})._id;
+<span class="hljs-keyword">var</span> AnnabellaS = actors.save({_key:<span class="hljs-string">&quot;AnnabellaS&quot;</span>, name:<span class="hljs-string">&apos;Annabella Sciorra&apos;</span>, born:<span class="hljs-number">1960</span>})._id;
+<span class="hljs-keyword">var</span> MaxS = actors.save({_key:<span class="hljs-string">&quot;MaxS&quot;</span>, name:<span class="hljs-string">&apos;Max von Sydow&apos;</span>, born:<span class="hljs-number">1929</span>})._id;
+<span class="hljs-keyword">var</span> WernerH = actors.save({_key:<span class="hljs-string">&quot;WernerH&quot;</span>, name:<span class="hljs-string">&apos;Werner Herzog&apos;</span>, born:<span class="hljs-number">1942</span>})._id;
+<span class="hljs-keyword">var</span> Robin = actors.save({_key:<span class="hljs-string">&quot;Robin&quot;</span>, name:<span class="hljs-string">&apos;Robin Williams&apos;</span>, born:<span class="hljs-number">1951</span>})._id;
+actsIn.save(Robin,WhatDreamsMayCome,{roles:[<span class="hljs-string">&apos;Chris Nielsen&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(CubaG,WhatDreamsMayCome,{roles:[<span class="hljs-string">&apos;Albert Lewis&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(AnnabellaS,WhatDreamsMayCome,{roles:[<span class="hljs-string">&apos;Annie Collins-Nielsen&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(MaxS,WhatDreamsMayCome,{roles:[<span class="hljs-string">&apos;The Tracker&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(WernerH,WhatDreamsMayCome,{roles:[<span class="hljs-string">&apos;The Face&apos;</span>], year: <span class="hljs-number">1998</span>});
+
+<span class="hljs-keyword">var</span> SnowFallingonCedars = movies.save({_key:<span class="hljs-string">&quot;SnowFallingonCedars&quot;</span>, title:<span class="hljs-string">&apos;Snow Falling on Cedars&apos;</span>, released:<span class="hljs-number">1999</span>, tagline:<span class="hljs-string">&apos;First loves last. Forever.&apos;</span>})._id;
+<span class="hljs-keyword">var</span> EthanH = actors.save({_key:<span class="hljs-string">&quot;EthanH&quot;</span>, name:<span class="hljs-string">&apos;Ethan Hawke&apos;</span>, born:<span class="hljs-number">1970</span>})._id;
+<span class="hljs-keyword">var</span> RickY = actors.save({_key:<span class="hljs-string">&quot;RickY&quot;</span>, name:<span class="hljs-string">&apos;Rick Yune&apos;</span>, born:<span class="hljs-number">1971</span>})._id;
+<span class="hljs-keyword">var</span> JamesC = actors.save({_key:<span class="hljs-string">&quot;JamesC&quot;</span>, name:<span class="hljs-string">&apos;James Cromwell&apos;</span>, born:<span class="hljs-number">1940</span>})._id;
+actsIn.save(EthanH,SnowFallingonCedars,{roles:[<span class="hljs-string">&apos;Ishmael Chambers&apos;</span>], year: <span class="hljs-number">1999</span>});
+actsIn.save(RickY,SnowFallingonCedars,{roles:[<span class="hljs-string">&apos;Kazuo Miyamoto&apos;</span>], year: <span class="hljs-number">1999</span>});
+actsIn.save(MaxS,SnowFallingonCedars,{roles:[<span class="hljs-string">&apos;Nels Gudmundsson&apos;</span>], year: <span class="hljs-number">1999</span>});
+actsIn.save(JamesC,SnowFallingonCedars,{roles:[<span class="hljs-string">&apos;Judge Fielding&apos;</span>], year: <span class="hljs-number">1999</span>});
+
+<span class="hljs-keyword">var</span> YouveGotMail = movies.save({_key:<span class="hljs-string">&quot;YouveGotMail&quot;</span>, title:<span class="hljs-string">&quot;You&apos;ve Got Mail&quot;</span>, released:<span class="hljs-number">1998</span>, tagline:<span class="hljs-string">&apos;At odds in life... in love on-line.&apos;</span>})._id;
+<span class="hljs-keyword">var</span> ParkerP = actors.save({_key:<span class="hljs-string">&quot;ParkerP&quot;</span>, name:<span class="hljs-string">&apos;Parker Posey&apos;</span>, born:<span class="hljs-number">1968</span>})._id;
+<span class="hljs-keyword">var</span> DaveC = actors.save({_key:<span class="hljs-string">&quot;DaveC&quot;</span>, name:<span class="hljs-string">&apos;Dave Chappelle&apos;</span>, born:<span class="hljs-number">1973</span>})._id;
+<span class="hljs-keyword">var</span> SteveZ = actors.save({_key:<span class="hljs-string">&quot;SteveZ&quot;</span>, name:<span class="hljs-string">&apos;Steve Zahn&apos;</span>, born:<span class="hljs-number">1967</span>})._id;
+<span class="hljs-keyword">var</span> TomH = actors.save({_key:<span class="hljs-string">&quot;TomH&quot;</span>, name:<span class="hljs-string">&apos;Tom Hanks&apos;</span>, born:<span class="hljs-number">1956</span>})._id;
+actsIn.save(TomH,YouveGotMail,{roles:[<span class="hljs-string">&apos;Joe Fox&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(MegR,YouveGotMail,{roles:[<span class="hljs-string">&apos;Kathleen Kelly&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(GregK,YouveGotMail,{roles:[<span class="hljs-string">&apos;Frank Navasky&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(ParkerP,YouveGotMail,{roles:[<span class="hljs-string">&apos;Patricia Eden&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(DaveC,YouveGotMail,{roles:[<span class="hljs-string">&apos;Kevin Jackson&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(SteveZ,YouveGotMail,{roles:[<span class="hljs-string">&apos;George Pappas&apos;</span>], year: <span class="hljs-number">1998</span>});
+
+<span class="hljs-keyword">var</span> SleeplessInSeattle = movies.save({_key:<span class="hljs-string">&quot;SleeplessInSeattle&quot;</span>, title:<span class="hljs-string">&apos;Sleepless in Seattle&apos;</span>, released:<span class="hljs-number">1993</span>, tagline:<span class="hljs-string">&apos;What if someone you never met, someone you never saw, someone you never knew was the only someone for you?&apos;</span>})._id;
+<span class="hljs-keyword">var</span> RitaW = actors.save({_key:<span class="hljs-string">&quot;RitaW&quot;</span>, name:<span class="hljs-string">&apos;Rita Wilson&apos;</span>, born:<span class="hljs-number">1956</span>})._id;
+<span class="hljs-keyword">var</span> BillPull = actors.save({_key:<span class="hljs-string">&quot;BillPull&quot;</span>, name:<span class="hljs-string">&apos;Bill Pullman&apos;</span>, born:<span class="hljs-number">1953</span>})._id;
+<span class="hljs-keyword">var</span> VictorG = actors.save({_key:<span class="hljs-string">&quot;VictorG&quot;</span>, name:<span class="hljs-string">&apos;Victor Garber&apos;</span>, born:<span class="hljs-number">1949</span>})._id;
+<span class="hljs-keyword">var</span> RosieO = actors.save({_key:<span class="hljs-string">&quot;RosieO&quot;</span>, name:<span class="hljs-string">&quot;Rosie O&apos;Donnell&quot;</span>, born:<span class="hljs-number">1962</span>})._id;
+actsIn.save(TomH,SleeplessInSeattle,{roles:[<span class="hljs-string">&apos;Sam Baldwin&apos;</span>], year: <span class="hljs-number">1993</span>});
+actsIn.save(MegR,SleeplessInSeattle,{roles:[<span class="hljs-string">&apos;Annie Reed&apos;</span>], year: <span class="hljs-number">1993</span>});
+actsIn.save(RitaW,SleeplessInSeattle,{roles:[<span class="hljs-string">&apos;Suzy&apos;</span>], year: <span class="hljs-number">1993</span>});
+actsIn.save(BillPull,SleeplessInSeattle,{roles:[<span class="hljs-string">&apos;Walter&apos;</span>], year: <span class="hljs-number">1993</span>});
+actsIn.save(VictorG,SleeplessInSeattle,{roles:[<span class="hljs-string">&apos;Greg&apos;</span>], year: <span class="hljs-number">1993</span>});
+actsIn.save(RosieO,SleeplessInSeattle,{roles:[<span class="hljs-string">&apos;Becky&apos;</span>], year: <span class="hljs-number">1993</span>});
+
+<span class="hljs-keyword">var</span> JoeVersustheVolcano = movies.save({_key:<span class="hljs-string">&quot;JoeVersustheVolcano&quot;</span>, title:<span class="hljs-string">&apos;Joe Versus the Volcano&apos;</span>, released:<span class="hljs-number">1990</span>, tagline:<span class="hljs-string">&apos;A story of love, lava and burning desire.&apos;</span>})._id;
+<span class="hljs-keyword">var</span> Nathan = actors.save({_key:<span class="hljs-string">&quot;Nathan&quot;</span>, name:<span class="hljs-string">&apos;Nathan Lane&apos;</span>, born:<span class="hljs-number">1956</span>})._id;
+actsIn.save(TomH,JoeVersustheVolcano,{roles:[<span class="hljs-string">&apos;Joe Banks&apos;</span>], year: <span class="hljs-number">1990</span>});
+actsIn.save(MegR,JoeVersustheVolcano,{roles:[<span class="hljs-string">&apos;DeDe&apos;</span>, <span class="hljs-string">&apos;Angelica Graynamore&apos;</span>, <span class="hljs-string">&apos;Patricia Graynamore&apos;</span>], year: <span class="hljs-number">1990</span>});
+actsIn.save(Nathan,JoeVersustheVolcano,{roles:[<span class="hljs-string">&apos;Baw&apos;</span>], year: <span class="hljs-number">1990</span>});
+
+<span class="hljs-keyword">var</span> WhenHarryMetSally = movies.save({_key:<span class="hljs-string">&quot;WhenHarryMetSally&quot;</span>, title:<span class="hljs-string">&apos;When Harry Met Sally&apos;</span>, released:<span class="hljs-number">1998</span>, tagline:<span class="hljs-string">&apos;At odds in life... in love on-line.&apos;</span>})._id;
+<span class="hljs-keyword">var</span> BillyC = actors.save({_key:<span class="hljs-string">&quot;BillyC&quot;</span>, name:<span class="hljs-string">&apos;Billy Crystal&apos;</span>, born:<span class="hljs-number">1948</span>})._id;
+<span class="hljs-keyword">var</span> CarrieF = actors.save({_key:<span class="hljs-string">&quot;CarrieF&quot;</span>, name:<span class="hljs-string">&apos;Carrie Fisher&apos;</span>, born:<span class="hljs-number">1956</span>})._id;
+<span class="hljs-keyword">var</span> BrunoK = actors.save({_key:<span class="hljs-string">&quot;BrunoK&quot;</span>, name:<span class="hljs-string">&apos;Bruno Kirby&apos;</span>, born:<span class="hljs-number">1949</span>})._id;
+actsIn.save(BillyC,WhenHarryMetSally,{roles:[<span class="hljs-string">&apos;Harry Burns&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(MegR,WhenHarryMetSally,{roles:[<span class="hljs-string">&apos;Sally Albright&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(CarrieF,WhenHarryMetSally,{roles:[<span class="hljs-string">&apos;Marie&apos;</span>], year: <span class="hljs-number">1998</span>});
+actsIn.save(BrunoK,WhenHarryMetSally,{roles:[<span class="hljs-string">&apos;Jess&apos;</span>], year: <span class="hljs-number">1998</span>});
+</code></pre>
+<h2 id="all-actors-who-acted-in-movie1-or-movie2">All actors who acted in &quot;movie1&quot; OR &quot;movie2&quot;</h2>
+<p>Say we want to find all actors who acted in &quot;TheMatrix&quot; OR &quot;TheDevilsAdvocate&quot;:</p>
+<p>First lets try to get all actors for one movie:</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;RETURN NEIGHBORS(movies, actsIn, &apos;TheMatrix&apos;, &apos;any&apos;)&quot;</span>).toArray();
+</code></pre>
+<p>Result:</p>
+<pre><code class="lang-json">[
+  [
+    <span class="hljs-string">&quot;actors/Keanu&quot;</span>,
+    <span class="hljs-string">&quot;actors/Hugo&quot;</span>,
+    <span class="hljs-string">&quot;actors/Emil&quot;</span>,
+    <span class="hljs-string">&quot;actors/Carrie&quot;</span>,
+    <span class="hljs-string">&quot;actors/Laurence&quot;</span>
+  ]
+]
+</code></pre>
+<p>Now we continue to form a UNION_DISTINCT of two NEIGHBORS queries which will be the solution:</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;RETURN UNION_DISTINCT(NEIGHBORS(movies, actsIn, &apos;TheDevilsAdvocate&apos;, &apos;any&apos;), NEIGHBORS(movies, actsIn, &apos;TheMatrix&apos;, &apos;any&apos;))&quot;</span>).toArray();
+</code></pre>
+<pre><code class="lang-json">[
+  [
+    <span class="hljs-string">&quot;actors/Emil&quot;</span>,
+    <span class="hljs-string">&quot;actors/Hugo&quot;</span>,
+    <span class="hljs-string">&quot;actors/Carrie&quot;</span>,
+    <span class="hljs-string">&quot;actors/Laurence&quot;</span>,
+    <span class="hljs-string">&quot;actors/Keanu&quot;</span>,
+    <span class="hljs-string">&quot;actors/Al&quot;</span>,
+    <span class="hljs-string">&quot;actors/Charlize&quot;</span>
+  ]
+]
+</code></pre>
+<h2 id="all-actors-who-acted-in-both-movie1-and-movie2-">All actors who acted in both &quot;movie1&quot; AND &quot;movie2&quot; ?</h2>
+<p>This is almost identical to the question above.
+But this time we are not intrested in a UNION but in a INTERSECTION:</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;RETURN INTERSECTION(NEIGHBORS(movies, actsIn, &apos;TheDevilsAdvocate&apos;, &apos;any&apos;), NEIGHBORS(movies, actsIn, &apos;TheMatrix&apos;, &apos;any&apos;))&quot;</span>).toArray();
+</code></pre>
+<pre><code class="lang-json">[
+  [
+    <span class="hljs-string">&quot;actors/Keanu&quot;</span>
+  ]
+]
+</code></pre>
+<h2 id="all-common-movies-between-actor1-and-actor2-">All common movies between &quot;actor1&quot; and &quot;actor2&quot; ?</h2>
+<p>This is actually identical to the question about common actors in movie1 and movie2.
+We just have to change the starting vertices.
+As an example let&apos;s find all movies where Hugo Weaving (&quot;Hugo&quot;) and Keanu Reeves are co-starring:</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;RETURN INTERSECTION(NEIGHBORS(actors, actsIn, &apos;Hugo&apos;, &apos;any&apos;), NEIGHBORS(actors, actsIn, &apos;Keanu&apos;, &apos;any&apos;))&quot;</span>).toArray();
+</code></pre>
+<pre><code class="lang-json">[
+  [
+    <span class="hljs-string">&quot;movies/TheMatrixRevolutions&quot;</span>,
+    <span class="hljs-string">&quot;movies/TheMatrixReloaded&quot;</span>,
+    <span class="hljs-string">&quot;movies/TheMatrix&quot;</span>
+  ]
+]
+</code></pre>
+<h2 id="all-actors-who-acted-in-3-or-more-movies-">All actors who acted in 3 or more movies ?</h2>
+<p>This question is different, we cannot make use of the neighbors function here.
+Instead we will make use of the edge-index and the COLLECT statement of AQL for grouping.
+The basic idea is to group all edges by their startVertex (which in this dataset is always the actor).
+Then we remove all actors with less than 3 movies from the result.
+As I am also interested in the number of movies an actor has acted in, I included the value in the result as well:</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;FOR x IN actsIn COLLECT actor = x._from WITH COUNT INTO counter FILTER counter &gt;= 3 RETURN {actor: actor, movies: counter}&quot;</span>).toArray()
+</code></pre>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Carrie&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/CubaG&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Hugo&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Keanu&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Laurence&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/MegR&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">5</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/TomC&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/TomH&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  }
+]
+</code></pre>
+<h2 id="all-movies-where-exactly-6-actors-acted-in-">All movies where exactly 6 actors acted in ?</h2>
+<p>The same idea as in the query before, but with equality filter, however now we need the movie instead of the actor, so we return the _to attribute:</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;FOR x IN actsIn COLLECT movie = x._to WITH COUNT INTO counter FILTER counter == 6 RETURN movie&quot;</span>).toArray()
+</code></pre>
+<pre><code class="lang-json">[
+  <span class="hljs-string">&quot;movies/SleeplessInSeattle&quot;</span>,
+  <span class="hljs-string">&quot;movies/TopGun&quot;</span>,
+  <span class="hljs-string">&quot;movies/YouveGotMail&quot;</span>
+]
+</code></pre>
+<h2 id="the-number-of-actors-by-movie-">The number of actors by movie ?</h2>
+<p>We remember in our dataset _to on the edge corresponds to the movie, so we count how often the same _to appears.
+This is the number of actors.
+The query is almost identical to the ones before but without the FILTER after COLLECT:</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;FOR x IN actsIn COLLECT movie = x._to WITH COUNT INTO counter RETURN {movie: movie, actors: counter}&quot;</span>).toArray()
+</code></pre>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/AFewGoodMen&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">11</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/AsGoodAsItGets&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/JerryMaguire&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">9</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/JoeVersustheVolcano&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/SleeplessInSeattle&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">6</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/SnowFallingonCedars&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/StandByMe&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">7</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/TheDevilsAdvocate&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/TheMatrix&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">5</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/TheMatrixReloaded&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/TheMatrixRevolutions&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/TopGun&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">6</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/WhatDreamsMayCome&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">5</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/WhenHarryMetSally&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;movie&quot;</span> : <span class="hljs-string">&quot;movies/YouveGotMail&quot;</span>,
+    <span class="hljs-string">&quot;actors&quot;</span> : <span class="hljs-number">6</span>
+  }
+]
+</code></pre>
+<h2 id="the-number-of-movies-by-actor-">The number of movies by actor ?</h2>
+<p>I think you get the picture by now ;)</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;FOR x IN actsIn COLLECT actor = x._from WITH COUNT INTO counter RETURN {actor: actor, movies: counter}&quot;</span>).toArray()
+</code></pre>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Al&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/AnnabellaS&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/AnthonyE&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/BillPull&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/BillyC&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/BonnieH&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/BrunoK&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Carrie&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/CarrieF&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Charlize&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/ChristopherG&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/CoreyF&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/CubaG&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/DaveC&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/DemiM&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Emil&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/EthanH&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/GregK&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">2</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/HelenH&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Hugo&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JackN&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">2</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JamesC&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JamesM&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JayM&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JerryO&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">2</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JohnC&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JonathanL&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JTW&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Keanu&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">4</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/KellyM&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/KellyP&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/KevinB&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/KevinP&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/KieferS&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">2</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Laurence&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/MarshallB&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/MaxS&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">2</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/MegR&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">5</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Nathan&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/NoahW&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/ParkerP&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/ReginaK&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/ReneeZ&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/RickY&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/RitaW&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/RiverP&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Robin&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/RosieO&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/SteveZ&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/TomC&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/TomH&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">3</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/TomS&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/ValK&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/VictorG&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/WernerH&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/WilW&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  }
+]
+</code></pre>
+<h2 id="the-number-of-movies-acted-in-between-2005-and-2010-by-actor-">The number of movies acted in between 2005 and 2010 by actor ?</h2>
+<p>This query is where a Multi Model database actually shines.
+First of all we want to use it in production, so we set a skiplistindex on year.
+This allows as to execute fast range queries like between 2005 and 2010.</p>
+<pre><code class="lang-js">db.actsIn.ensureSkiplist(<span class="hljs-string">&quot;year&quot;</span>)
+</code></pre>
+<p>Now we slightly modify our movies by actor query.
+However my dataset contains only older movies, so I changed the year range from 1990 - 1995:</p>
+<pre><code class="lang-js">db._query(<span class="hljs-string">&quot;FOR x IN actsIn FILTER x.year &gt;= 1990 &amp;&amp; x.year &lt;= 1995 COLLECT actor = x._from WITH COUNT INTO counter RETURN {actor: actor, movies: counter}&quot;</span>).toArray()
+</code></pre>
+<pre><code class="lang-json">[
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/BillPull&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/ChristopherG&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/CubaG&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/DemiM&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JackN&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JamesM&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/JTW&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/KevinB&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/KevinP&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/KieferS&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/MegR&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">2</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/Nathan&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/NoahW&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/RitaW&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/RosieO&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/TomC&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/TomH&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">2</span>
+  },
+  {
+    <span class="hljs-string">&quot;actor&quot;</span> : <span class="hljs-string">&quot;actors/VictorG&quot;</span>,
+    <span class="hljs-string">&quot;movies&quot;</span> : <span class="hljs-number">1</span>
+  }
+]
+</code></pre>
+<h2 id="comment">Comment</h2>
+<p><strong>Author:</strong> <a href="https://github.com/mchacki" target="_blank">Michael Hackstein</a></p>
+<p><strong>Tags:</strong> #graph #examples</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Graph/CustomVisitorFromNodeJs.html" class="navigation navigation-prev " aria-label="Previous page: Using a custom Visitor"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Graph/JavaDriverXmlData.html" class="navigation navigation-next " aria-label="Next page: Add XML data to ArangoDB with Java"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB Cookbook -->
+</html>

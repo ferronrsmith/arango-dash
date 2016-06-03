@@ -1,0 +1,1424 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB Cookbook -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Importing Data | ArangoDB Cookbook</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Administration/ReplicatingData.html" />
+    
+    
+    <link rel="prev" href="../Administration/Authentication.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <!--
+  <select id="version-switcher">
+    <option value="devel">VERSION_NUMBER</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  -->
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="7.2"
+        data-chapter-title="Importing Data"
+        data-filepath="Administration/ImportingData.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 12:54:56 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="DocumentInheritance.html">
+            
+                
+                    <a href="../DocumentInheritance.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Modelling Document Inheritance
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="AccessingShapesData.html">
+            
+                
+                    <a href="../AccessingShapesData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Accessing Shapes Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="AQL/index.html">
+            
+                
+                    <a href="../AQL/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="AQL/Joins.html">
+            
+                
+                    <a href="../AQL/Joins.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Using Joins in AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="AQL/DynamicAttributeNames.html">
+            
+                
+                    <a href="../AQL/DynamicAttributeNames.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Using Dynamic Attribute Names
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="AQL/CreatingTestData.html">
+            
+                
+                    <a href="../AQL/CreatingTestData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Creating Test-data using AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="AQL/DiffingDocuments.html">
+            
+                
+                    <a href="../AQL/DiffingDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                        Diffing Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="AQL/AvoidingInjection.html">
+            
+                
+                    <a href="../AQL/AvoidingInjection.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                        Avoiding Parameter Injection
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="AQL/MultilineQueryStrings.html">
+            
+                
+                    <a href="../AQL/MultilineQueryStrings.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.6.</b>
+                        
+                        Multiline Query Strings
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Graph/index.html">
+            
+                
+                    <a href="../Graph/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Graph
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Graph/FindingLeafNodesAql.html">
+            
+                
+                    <a href="../Graph/FindingLeafNodesAql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Finding Leaf Nodes with AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Graph/FilteringNodesAql.html">
+            
+                
+                    <a href="../Graph/FilteringNodesAql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Filtering Nodes with AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Graph/CountingNodesEfficientlyAql.html">
+            
+                
+                    <a href="../Graph/CountingNodesEfficientlyAql.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Counting Nodes efficiently with AQL
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="Graph/FulldepthTraversal.html">
+            
+                
+                    <a href="../Graph/FulldepthTraversal.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                        Fulldepth Graph-Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="Graph/FindingConnectedVerticesForSubgraphs.html">
+            
+                
+                    <a href="../Graph/FindingConnectedVerticesForSubgraphs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                        Vertices for Subgraphs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="Graph/JavaDriverGraphExampleVertex.html">
+            
+                
+                    <a href="../Graph/JavaDriverGraphExampleVertex.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                        Vertex example with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="Graph/JavaDriverBaseDocument.html">
+            
+                
+                    <a href="../Graph/JavaDriverBaseDocument.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.7.</b>
+                        
+                        Accessing base documents with Java
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="Graph/CustomVisitorFromNodeJs.html">
+            
+                
+                    <a href="../Graph/CustomVisitorFromNodeJs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.8.</b>
+                        
+                        Using a custom Visitor
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="Graph/ExampleActorsAndMovies.html">
+            
+                
+                    <a href="../Graph/ExampleActorsAndMovies.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.9.</b>
+                        
+                        Example AQL Queries for Graphs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="Graph/JavaDriverXmlData.html">
+            
+                
+                    <a href="../Graph/JavaDriverXmlData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.10.</b>
+                        
+                        Add XML data to ArangoDB with Java
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Foxx/index.html">
+            
+                
+                    <a href="../Foxx/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Foxx
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Foxx/FirstSteps.html">
+            
+                
+                    <a href="../Foxx/FirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        My first Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Foxx/FirstStepsLegacy.html">
+            
+                
+                    <a href="../Foxx/FirstStepsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        My first Foxx App pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Foxx/Auth.html">
+            
+                
+                    <a href="../Foxx/Auth.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Adding Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="Foxx/AuthLegacy.html">
+            
+                
+                    <a href="../Foxx/AuthLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        Adding Authentication pre-2.5
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="Foxx/MakingRequests.html">
+            
+                
+                    <a href="../Foxx/MakingRequests.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        Using external APIs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="Foxx/Queues.html">
+            
+                
+                    <a href="../Foxx/Queues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="Foxx/QueuesLegacy.html">
+            
+                
+                    <a href="../Foxx/QueuesLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        Legacy background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="Foxx/CustomQueueJobsLegacy.html">
+            
+                
+                    <a href="../Foxx/CustomQueueJobsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        Legacy custom Background jobs
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="Foxx/Scripts.html">
+            
+                
+                    <a href="../Foxx/Scripts.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        Creating a Foxx script
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="Foxx/CustomQueueJobs.html">
+            
+                
+                    <a href="../Foxx/CustomQueueJobs.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        Custom job types for Queues
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="Foxx/GeneratorFirstSteps.html">
+            
+                
+                    <a href="../Foxx/GeneratorFirstSteps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        My first FoxxGenerator App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="Foxx/Deploy.html">
+            
+                
+                    <a href="../Foxx/Deploy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        How to deploy a Foxx App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.13" data-path="Foxx/MakingAppAccessible.html">
+            
+                
+                    <a href="../Foxx/MakingAppAccessible.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.13.</b>
+                        
+                        Apps accessible from the Web
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.14" data-path="Foxx/ApiKeys.html">
+            
+                
+                    <a href="../Foxx/ApiKeys.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.14.</b>
+                        
+                        API-Key Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.15" data-path="Foxx/BinaryFileUploads.html">
+            
+                
+                    <a href="../Foxx/BinaryFileUploads.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.15.</b>
+                        
+                        Handling Binary HTTP documents in Foxx
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.16" data-path="Foxx/BinaryHttpPost.html">
+            
+                
+                    <a href="../Foxx/BinaryHttpPost.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.16.</b>
+                        
+                        Sending Binary HTTP documents from Foxx
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.17" data-path="Foxx/Testing.html">
+            
+                
+                    <a href="../Foxx/Testing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.17.</b>
+                        
+                        Foxx Testing
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="UseCases/index.html">
+            
+                
+                    <a href="../UseCases/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Use Cases / Examples
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="UseCases/CrawlingGithubPromises.html">
+            
+                
+                    <a href="../UseCases/CrawlingGithubPromises.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Crawling Github with Promises
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="UseCases/SailsJS.html">
+            
+                
+                    <a href="../UseCases/SailsJS.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Using ArangoDB with Sails.js
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="UseCases/PopulatingAnAutocompleteTextbox.html">
+            
+                
+                    <a href="../UseCases/PopulatingAnAutocompleteTextbox.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Populating a Textbox
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="UseCases/ExportingData.html">
+            
+                
+                    <a href="../UseCases/ExportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Exporting Data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Administration/index.html">
+            
+                
+                    <a href="../Administration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Administration/Authentication.html">
+            
+                
+                    <a href="../Administration/Authentication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Using Authentication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="7.2" data-path="Administration/ImportingData.html">
+            
+                
+                    <a href="../Administration/ImportingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Importing Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Administration/ReplicatingData.html">
+            
+                
+                    <a href="../Administration/ReplicatingData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Replicating Data
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="Administration/XCopyInstallWindows.html">
+            
+                
+                    <a href="../Administration/XCopyInstallWindows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.4.</b>
+                        
+                        XCopy Install Windows
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Compiling/index.html">
+            
+                
+                    <a href="../Compiling/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Compiling / Build
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Compiling/Debian.html">
+            
+                
+                    <a href="../Compiling/Debian.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Compile on Debian
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="Compiling/Windows.html">
+            
+                
+                    <a href="../Compiling/Windows.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Compile on Windows
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="Compiling/WindowsLegacy.html">
+            
+                
+                    <a href="../Compiling/WindowsLegacy.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                        Compile on Windows pre-2.4
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="Compiling/RunningCustomBuild.html">
+            
+                
+                    <a href="../Compiling/RunningCustomBuild.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                        Running Custom Build
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.5" data-path="Compiling/Windows30.html">
+            
+                
+                    <a href="../Compiling/Windows30.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                        Compile 3.0 on Windows (devel)
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Cloud/index.html">
+            
+                
+                    <a href="../Cloud/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Cloud, DCOS and Docker
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Cloud/Aws.html">
+            
+                
+                    <a href="../Cloud/Aws.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Running on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Cloud/AwsUpdate.html">
+            
+                
+                    <a href="../Cloud/AwsUpdate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Update on AWS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Cloud/Azure.html">
+            
+                
+                    <a href="../Cloud/Azure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Running on Azure
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Cloud/DockerContainer.html">
+            
+                
+                    <a href="../Cloud/DockerContainer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Docker ArangoDB
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Cloud/NodeJsDocker.html">
+            
+                
+                    <a href="../Cloud/NodeJsDocker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Docker with NodeJS App
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Cloud/GiantSwarm.html">
+            
+                
+                    <a href="../Cloud/GiantSwarm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        In the GiantSwarm
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Cloud/Mesosphere.html">
+            
+                
+                    <a href="../Cloud/Mesosphere.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        ArangoDB in Mesos
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Monitoring/Collectd.html">
+            
+                
+                    <a href="../Monitoring/Collectd.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Monitoring
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Monitoring/SlaveStatus.html">
+            
+                
+                    <a href="../Monitoring/SlaveStatus.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Collectd - Replication Slaves
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Monitoring/TrafficWithIPAccounting.html">
+            
+                
+                    <a href="../Monitoring/TrafficWithIPAccounting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Collectd - Network usage
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="Monitoring/OtherRelevantMetrics.html">
+            
+                
+                    <a href="../Monitoring/OtherRelevantMetrics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                        Collectd - more Metrics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.4" data-path="Monitoring/FoxxApps.html">
+            
+                
+                    <a href="../Monitoring/FoxxApps.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                        Collectd - Monitoring Foxx
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB Cookbook</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="importing-data">Importing data</h1>
+<h2 id="problem">Problem</h2>
+<p>I want to import data from a file into ArangoDB.</p>
+<h2 id="solution">Solution</h2>
+<p>ArangoDB comes with a command-line tool utility named <code>arangoimp</code>. This utility can be
+used for importing JSON-encoded, CSV, and tab-separated files into ArangoDB.</p>
+<p><code>arangoimp</code> needs to be invoked from the command-line once for each import file.
+The target collection can already exist or can be created by the import run.</p>
+<h2 id="importing-jsonencoded-data">Importing JSON-encoded data</h2>
+<h3 id="input-formats">Input formats</h3>
+<p>There are two supported input formats for importing JSON-encoded data into ArangoDB:</p>
+<ul>
+<li><p><strong>line-by-line format</strong>: This format expects each line in the input file to be a valid
+JSON objects. No line breaks must occur within each single JSON object</p>
+</li>
+<li><p><strong>array format</strong>: Expects a file containing a single array of JSON objects. Whitespace is
+allowed for formatting inside the JSON array and the JSON objects</p>
+</li>
+</ul>
+<p>Here&apos;s an example for the <strong>line-by-line format</strong> looks like this:</p>
+<pre><code class="lang-js">{<span class="hljs-string">&quot;author&quot;</span>:<span class="hljs-string">&quot;Frank Celler&quot;</span>,<span class="hljs-string">&quot;time&quot;</span>:<span class="hljs-string">&quot;2011-10-26 08:42:49 +0200&quot;</span>,<span class="hljs-string">&quot;sha&quot;</span>:<span class="hljs-string">&quot;c413859392a45873936cbe40797970f8eed93ff9&quot;</span>,<span class="hljs-string">&quot;message&quot;</span>:<span class="hljs-string">&quot;first commit&quot;</span>,<span class="hljs-string">&quot;user&quot;</span>:<span class="hljs-string">&quot;f.celler&quot;</span>}
+{<span class="hljs-string">&quot;author&quot;</span>:<span class="hljs-string">&quot;Frank Celler&quot;</span>,<span class="hljs-string">&quot;time&quot;</span>:<span class="hljs-string">&quot;2011-10-26 21:32:36 +0200&quot;</span>,<span class="hljs-string">&quot;sha&quot;</span>:<span class="hljs-string">&quot;10bb77b8cc839201ff59a778f0c740994083c96e&quot;</span>,<span class="hljs-string">&quot;message&quot;</span>:<span class="hljs-string">&quot;initial release&quot;</span>,<span class="hljs-string">&quot;user&quot;</span>:<span class="hljs-string">&quot;f.celler&quot;</span>}
+...
+</code></pre>
+<p>Here&apos;s an example for the same data in <strong>array format</strong>:</p>
+<pre><code class="lang-js">[
+  {
+    <span class="hljs-string">&quot;author&quot;</span>: <span class="hljs-string">&quot;Frank Celler&quot;</span>,
+    <span class="hljs-string">&quot;time&quot;</span>: <span class="hljs-string">&quot;2011-10-26 08:42:49 +0200&quot;</span>,
+    <span class="hljs-string">&quot;sha&quot;</span>: <span class="hljs-string">&quot;c413859392a45873936cbe40797970f8eed93ff9&quot;</span>,
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;first commit&quot;</span>,
+    <span class="hljs-string">&quot;user&quot;</span>: <span class="hljs-string">&quot;f.celler&quot;</span>
+  },
+  {
+    <span class="hljs-string">&quot;author&quot;</span>: <span class="hljs-string">&quot;Frank Celler&quot;</span>,
+    <span class="hljs-string">&quot;time&quot;</span>: <span class="hljs-string">&quot;2011-10-26 21:32:36 +0200&quot;</span>,
+    <span class="hljs-string">&quot;sha&quot;</span>: <span class="hljs-string">&quot;10bb77b8cc839201ff59a778f0c740994083c96e&quot;</span>,
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;initial release&quot;</span>,
+    <span class="hljs-string">&quot;user&quot;</span>: <span class="hljs-string">&quot;f.celler&quot;</span>
+  },
+  ...
+]
+</code></pre>
+<h3 id="importing-json-data-in-linebyline-format">Importing JSON data in line-by-line format</h3>
+<p>An example data file in <strong>line-by-line format</strong> can be downloaded 
+<a href="http://jsteemann.github.io/downloads/code/git-commits-single-line.json" target="_blank">here</a>. The example
+file contains all the commits to the ArangoDB repository as shown by <code>git log --reverse</code>.</p>
+<p>The following commands will import the data from the file into a collection named <code>commits</code>:</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># download file</span>
+wget http://jsteemann.github.io/downloads/code/git-commits-single-line.json
+
+<span class="hljs-comment"># actually import data</span>
+arangoimp --file git-commits-single-line.json --collection commits --create-collection <span class="hljs-literal">true</span>
+</code></pre>
+<p>Note that no file type has been specified when <code>arangoimp</code> was invoked. This is because <code>json</code>
+is its default input format.</p>
+<p>The other parameters used have the following meanings:</p>
+<ul>
+<li><code>file</code>: input filename</li>
+<li><code>collection</code>: name of the target collection</li>
+<li><code>create-collection</code>: whether or not the collection should be created if it does not exist</li>
+</ul>
+<p>The result of the import printed by <code>arangoimp</code> should be:</p>
+<pre><code>created:          20039
+warnings/errors:  0
+total:            20039
+</code></pre><p>The collection <code>commits</code> should now contain the example commit data as present in the input file.</p>
+<h3 id="importing-json-data-in-array-format">Importing JSON data in array format</h3>
+<p>An example input file for the <strong>array format</strong> can be found <a href="http://jsteemann.github.io/downloads/code/git-commits-array.json" target="_blank">here</a>.</p>
+<p>The command for importing JSON data in <strong>array format</strong> is similar to what we&apos;ve done before:</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># download file</span>
+wget http://jsteemann.github.io/downloads/code/git-commits-array.json
+
+<span class="hljs-comment"># actually import data</span>
+arangoimp --file git-commits-array.json --collection commits --create-collection <span class="hljs-literal">true</span>
+</code></pre>
+<p>Though the import command is the same (except the filename), there is a notable difference between the
+two JSON formats: for the <strong>array format</strong>, <code>arangoimp</code> will read and parse the JSON in its entirety
+before it sends any data to the ArangoDB server. That means the whole input file must fit into 
+<code>arangoimp</code>&apos;s buffer. By default, <code>arangoimp</code> will allocate a 16 MiB internal buffer, and input files bigger 
+than that will be rejected with the following message:</p>
+<pre><code>import file is too big. please increase the value of --batch-size (currently 16777216).
+</code></pre><p>So for JSON input files in <strong>array format</strong> it might be necessary to increase the value of <code>--batch-size</code>
+in order to have the file imported. Alternatively, the input file can be converted to <strong>line-by-line format</strong>
+manually.</p>
+<h3 id="importing-csv-data">Importing CSV data</h3>
+<p>Data can also be imported from a CSV file. An example file can be found <a href="http://jsteemann.github.io/downloads/code/git-commits.csv" target="_blank">here</a>.</p>
+<p>The <code>--type</code> parameter for the import command must now be set to <code>csv</code>:</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># download file</span>
+wget http://jsteemann.github.io/downloads/code/git-commits.csv
+
+<span class="hljs-comment"># actually import data</span>
+arangoimp --file git-commits.csv --type csv --collection commits --create-collection <span class="hljs-literal">true</span>
+</code></pre>
+<p>For the CSV import, the first line in the input file has a special meaning: every value listed in the
+first line will be treated as an attribute name for the values in all following lines. All following
+lines should also have the same number of &quot;columns&quot;.</p>
+<p>&quot;columns&quot; inside the CSV input file can be left empty though. If a &quot;column&quot; is left empty in a line,
+then this value will be omitted for the import so the respective attribute will not be set in the imported
+document. Note that values from the input file that are enclosed in double quotes will always be imported as 
+strings. To import numeric values, boolean values or the <code>null</code> value, don&apos;t enclose these values in quotes in
+the input file. Note that leading zeros in numeric values will be removed. Importing numbers with leading 
+zeros will only work when putting the numbers into strings.</p>
+<p>Here is an example CSV file:</p>
+<pre><code class="lang-plain">&quot;author&quot;,&quot;time&quot;,&quot;sha&quot;,&quot;message&quot;
+&quot;Frank Celler&quot;,&quot;2011-10-26 08:42:49 +0200&quot;,&quot;c413859392a45873936cbe40797970f8eed93ff9&quot;,&quot;first commit&quot;
+&quot;Frank Celler&quot;,&quot;2011-10-26 21:32:36 +0200&quot;,&quot;10bb77b8cc839201ff59a778f0c740994083c96e&quot;,&quot;initial release&quot;
+...
+</code></pre>
+<p><code>arangoimp</code> supports Windows (CRLF) and Unix (LF) line breaks. Line breaks might also occur inside values 
+that are enclosed with the quote character.</p>
+<p>The default separator for CSV files is the comma. It can be changed using the <code>--separator</code> parameter
+when invoking <code>arangoimp</code>. The quote character defaults to the double quote (<strong>&quot;</strong>). To use a literal double 
+quote inside a &quot;column&quot; in the import data, use two double quotes. To change the quote character, use the
+<code>--quote</code> parameter. To use a backslash for escaping quote characters, please set the option <code>--backslash-escape</code>
+to <code>true</code>.</p>
+<h3 id="changing-the-database-and-server-endpoint">Changing the database and server endpoint</h3>
+<p>By default, <code>arangoimp</code> will connect to the default database on <code>127.0.0.1:8529</code> with a user named
+<code>root</code>. To change this, use the following parameters:</p>
+<ul>
+<li><code>server.database</code>: name of the database to use when importing (default: <code>_system</code>)</li>
+<li><code>server.endpoint</code>: address of the ArangoDB server (default: <code>tcp://127.0.0.1:8529</code>)</li>
+</ul>
+<h3 id="using-authentication">Using authentication</h3>
+<p><code>arangoimp</code> will by default send an username <code>root</code> and an empty password to the ArangoDB
+server. This is ArangoDB&apos;s default configuration, and it should be changed. To make <code>arangoimp</code>
+use a different username or password, the following command-line arguments can be used:</p>
+<ul>
+<li><code>server.username</code>: username, used if authentication is enabled on server</li>
+<li><code>server.password</code>: password for user, used if authentication is enabled on server</li>
+</ul>
+<p>The password argument can also be omitted in order to avoid having it saved in the shell&apos;s
+command-line history. When specifying a username but omitting the password parameter,
+<code>arangoimp</code> will prompt for a password.</p>
+<h3 id="additional-parameters">Additional parameters</h3>
+<p>By default, <code>arangoimp</code> will import data into the specified collection but will not touch
+existing data. Often it is convenient to first remove all data from a collection and then run
+the import. <code>arangoimp</code> supports this with the optional <code>--overwrite</code> flag. When setting it to
+<code>true</code>, all documents in the collection will be removed prior to the import.</p>
+<p><strong>Author:</strong> <a href="https://github.com/jsteemann" target="_blank">Jan Steemann</a></p>
+<p><strong>Tags</strong>: #arangoimp #import</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Administration/Authentication.html" class="navigation navigation-prev " aria-label="Previous page: Using Authentication"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Administration/ReplicatingData.html" class="navigation navigation-next " aria-label="Next page: Replicating Data"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB Cookbook -->
+</html>

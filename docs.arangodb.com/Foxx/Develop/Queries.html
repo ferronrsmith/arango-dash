@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Queries | ArangoDB 2.8.2 Documentation</title>
+        <title>Queries | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="13.3.8" data-chapter-title="Queries" data-filepath="Foxx/Develop/Queries.md" data-basepath="../.." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="13.3.8" data-chapter-title="Queries" data-filepath="Foxx/Develop/Queries.md" data-basepath="../.." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4073,13 +4073,23 @@
 </code></pre>
 <p><a name="aql_template_strings"></a></p>
 <h2 id="aql-template-strings">AQL Template Strings</h2>
-<p>ArangoDB supports ES2015-style template strings for queries using the <code>aqlQuery</code> template helper.</p>
+<p>ArangoDB supports ES2015-style template strings for queries using the <code>aqlQuery</code> template helper; First lets
+have a look at how its working, then use it for a query:</p>
 <p><strong>Examples</strong></p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> db = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;org/arangodb&apos;</span>).db;
 <span class="hljs-keyword">var</span> <span class="hljs-built_in">console</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;console&apos;</span>);
 
 <span class="hljs-keyword">var</span> isAdmin = <span class="hljs-literal">true</span>;
 <span class="hljs-keyword">var</span> userCollection = applicationContext.collection(<span class="hljs-string">&apos;users&apos;</span>);
+
+<span class="hljs-keyword">var</span> key = <span class="hljs-string">&apos;testKey&apos;</span>;
+aqlQuery<span class="hljs-string">`FOR c IN mycollection FILTER c._key == <span class="hljs-subst">${key}</span> RETURN c._key`</span>;
+<span class="hljs-keyword">var</span> results_in = {
+  <span class="hljs-string">&quot;query&quot;</span> : <span class="hljs-string">&quot;FOR c IN mycollection FILTER c._key == @value0 RETURN c._key&quot;</span>, 
+  <span class="hljs-string">&quot;bindVars&quot;</span> : { 
+    <span class="hljs-string">&quot;value0&quot;</span> : <span class="hljs-string">&quot;testKey&quot;</span> 
+  } 
+}
 
 <span class="hljs-keyword">var</span> usernames = db._query(aqlQuery<span class="hljs-string">`
     FOR user IN <span class="hljs-subst">${userCollection}</span>
@@ -4263,5 +4273,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

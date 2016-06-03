@@ -1,0 +1,1955 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Bulk Import / Export | ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../BulkImports/ImportingSelfContained.html" />
+    
+    
+    <link rel="prev" href="../AsyncResultsManagement/index.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="15"
+        data-chapter-title="Bulk Import / Export"
+        data-filepath="BulkImports/README.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:44 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="General/index.html">
+            
+                
+                    <a href="../General/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        General HTTP Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Api/index.html">
+            
+                
+                    <a href="../Api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        HTTP Interface
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Database/index.html">
+            
+                
+                    <a href="../Database/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Databases
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="Database/DatabaseEndpoint.html">
+            
+                
+                    <a href="../Database/DatabaseEndpoint.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        To-Endpoint
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="Database/DatabaseManagement.html">
+            
+                
+                    <a href="../Database/DatabaseManagement.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="Database/NotesOnDatabases.html">
+            
+                
+                    <a href="../Database/NotesOnDatabases.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                        Notes on Databases
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="Collection/index.html">
+            
+                
+                    <a href="../Collection/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Collections
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="Collection/Creating.html">
+            
+                
+                    <a href="../Collection/Creating.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Creating
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="Collection/Getting.html">
+            
+                
+                    <a href="../Collection/Getting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Getting Information
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="Collection/Modifying.html">
+            
+                
+                    <a href="../Collection/Modifying.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                        Modifying
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Document/index.html">
+            
+                
+                    <a href="../Document/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Documents
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Document/AddressAndEtag.html">
+            
+                
+                    <a href="../Document/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Basics and Terminology
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Document/WorkingWithDocuments.html">
+            
+                
+                    <a href="../Document/WorkingWithDocuments.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Working with Documents
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Edge/index.html">
+            
+                
+                    <a href="../Edge/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Edge/AddressAndEtag.html">
+            
+                
+                    <a href="../Edge/AddressAndEtag.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Address and ETag
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Edge/WorkingWithEdges.html">
+            
+                
+                    <a href="../Edge/WorkingWithEdges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Working with Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Gharial/index.html">
+            
+                
+                    <a href="../Gharial/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        General Graph
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Gharial/Management.html">
+            
+                
+                    <a href="../Gharial/Management.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Gharial/Vertices.html">
+            
+                
+                    <a href="../Gharial/Vertices.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Vertices
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Gharial/Edges.html">
+            
+                
+                    <a href="../Gharial/Edges.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Edges
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Traversal/index.html">
+            
+                
+                    <a href="../Traversal/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="AqlQueryCursor/index.html">
+            
+                
+                    <a href="../AqlQueryCursor/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        AQL Query Cursors
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="AqlQueryCursor/QueryResults.html">
+            
+                
+                    <a href="../AqlQueryCursor/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="AqlQueryCursor/AccessingCursors.html">
+            
+                
+                    <a href="../AqlQueryCursor/AccessingCursors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Accessing Cursors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="AqlQuery/index.html">
+            
+                
+                    <a href="../AqlQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        AQL Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="AqlQueryCache/index.html">
+            
+                
+                    <a href="../AqlQueryCache/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        AQL Query Cache
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="AqlUserFunctions/index.html">
+            
+                
+                    <a href="../AqlUserFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        AQL User Functions Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="SimpleQuery/index.html">
+            
+                
+                    <a href="../SimpleQuery/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        Simple Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="AsyncResultsManagement/index.html">
+            
+                
+                    <a href="../AsyncResultsManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        Async Result Handling
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="15" data-path="BulkImports/index.html">
+            
+                
+                    <a href="../BulkImports/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        Bulk Import / Export
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1" data-path="BulkImports/ImportingSelfContained.html">
+            
+                
+                    <a href="../BulkImports/ImportingSelfContained.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                        JSON Documents
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.2" data-path="BulkImports/ImportingHeadersAndValues.html">
+            
+                
+                    <a href="../BulkImports/ImportingHeadersAndValues.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                        Headers &amp; Values
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.3" data-path="BatchRequest/index.html">
+            
+                
+                    <a href="../BatchRequest/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.3.</b>
+                        
+                        Batch Requests
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.4" data-path="Export/index.html">
+            
+                
+                    <a href="../Export/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.4.</b>
+                        
+                        Exporting data
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="Indexes/index.html">
+            
+                
+                    <a href="../Indexes/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        Indexes
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="Indexes/WorkingWith.html">
+            
+                
+                    <a href="../Indexes/WorkingWith.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        Working with Indexes
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.2" data-path="Indexes/Hash.html">
+            
+                
+                    <a href="../Indexes/Hash.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.2.</b>
+                        
+                        Hash
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.3" data-path="Indexes/Skiplist.html">
+            
+                
+                    <a href="../Indexes/Skiplist.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.3.</b>
+                        
+                        Skiplist
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.4" data-path="Indexes/Geo.html">
+            
+                
+                    <a href="../Indexes/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.4.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="16.5" data-path="Indexes/Fulltext.html">
+            
+                
+                    <a href="../Indexes/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.5.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="17" data-path="Transaction/index.html">
+            
+                
+                    <a href="../Transaction/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>17.</b>
+                        
+                        Transactions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18" data-path="Replications/index.html">
+            
+                
+                    <a href="../Replications/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.</b>
+                        
+                        Replication
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="18.1" data-path="Replications/ReplicationDump.html">
+            
+                
+                    <a href="../Replications/ReplicationDump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.1.</b>
+                        
+                        Replication Dump
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.2" data-path="Replications/ReplicationLogger.html">
+            
+                
+                    <a href="../Replications/ReplicationLogger.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.2.</b>
+                        
+                        Replication Logger
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.3" data-path="Replications/ReplicationApplier.html">
+            
+                
+                    <a href="../Replications/ReplicationApplier.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.3.</b>
+                        
+                        Replication Applier
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="18.4" data-path="Replications/OtherReplication.html">
+            
+                
+                    <a href="../Replications/OtherReplication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>18.4.</b>
+                        
+                        Other Replication Commands
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="19" data-path="ShardingInterface/index.html">
+            
+                
+                    <a href="../ShardingInterface/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>19.</b>
+                        
+                        Sharding
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="20" data-path="AdministrationAndMonitoring/index.html">
+            
+                
+                    <a href="../AdministrationAndMonitoring/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                        Monitoring
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="21" data-path="Endpoints/index.html">
+            
+                
+                    <a href="../Endpoints/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>21.</b>
+                        
+                        Endpoints
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="22" data-path="UserManagement/index.html">
+            
+                
+                    <a href="../UserManagement/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>22.</b>
+                        
+                        User Management
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="23" data-path="Tasks/index.html">
+            
+                
+                    <a href="../Tasks/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>23.</b>
+                        
+                        Tasks
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="24" data-path="MiscellaneousFunctions/index.html">
+            
+                
+                    <a href="../MiscellaneousFunctions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>24.</b>
+                        
+                        Miscellaneous functions
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="http_interface_for_bulk_imports"></a></p>
+<h1 id="http-interface-for-bulk-imports">HTTP Interface for Bulk Imports</h1>
+<p>ArangoDB provides an HTTP interface to import multiple documents at once into a
+collection. This is known as a bulk import.</p>
+<p>The data uploaded must be provided in JSON format. There are two mechanisms to
+import the data:</p>
+<ul>
+<li>self-contained JSON documents: in this case, each document contains all 
+attribute names and values. Attribute names may be completely different
+among the documents uploaded</li>
+<li>attribute names plus document data: in this case, the first array must 
+contain the attribute names of the documents that follow. The following arrays
+containing only the attribute values. Attribute values will be mapped to the 
+attribute names by positions.</li>
+</ul>
+<p>The endpoint address is <em>/_api/import</em> for both input mechanisms. Data must be
+sent to this URL using an HTTP POST request. The data to import must be
+contained in the body of the POST request.</p>
+<p>The <em>collection</em> query parameter must be used to specify the target collection for
+the import. Importing data into a non-existing collection will produce an error. </p>
+<p>The <em>waitForSync</em> query parameter can be set to <em>true</em> to make the import only 
+return if all documents have been synced to disk.</p>
+<p>The <em>complete</em> query parameter can be set to <em>true</em> to make the entire import fail if
+any of the uploaded documents is invalid and cannot be imported. In this case,
+no documents will be imported by the import run, even if a failure happens at the
+end of the import. </p>
+<p>If <em>complete</em> has a value other than <em>true</em>, valid documents will be imported while 
+invalid documents will be rejected, meaning only some of the uploaded documents 
+might have been imported.</p>
+<p>The <em>details</em> query parameter can be set to <em>true</em> to make the import API return
+details about documents that could not be imported. If <em>details</em> is <em>true</em>, then
+the result will also contain a <em>details</em> attribute which is an array of detailed
+error messages. If the <em>details</em> is set to <em>false</em> or omitted, no details will be
+returned.</p>
+<h3 id="imports-document-values">imports document values</h3>
+<p> imports documents from JSON-encoded lists</p>
+<p><code>POST /_api/import#document</code>
+<strong>Post Body</strong>
+ <em>documents</em> (required):
+The body must consist of JSON-encoded arrays of attribute values, with one
+line per document. The first row of the request must be a JSON-encoded
+array of attribute names. These attribute names are used for the data in the
+subsequent lines.</p>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>collection</em> (required):
+The collection name.</li>
+<li><em>fromPrefix</em> (optional):
+An optional prefix for the values in <code>_from</code> attributes. If specified, the
+value is automatically prepended to each <code>_from</code> input value. This allows
+specifying just the keys for <code>_from</code>.</li>
+<li><em>toPrefix</em> (optional):
+An optional prefix for the values in <code>_to</code> attributes. If specified, the
+value is automatically prepended to each <code>_to</code> input value. This allows
+specifying just the keys for <code>_to</code>.</li>
+<li><em>overwrite</em> (optional):
+If this parameter has a value of <code>true</code> or <code>yes</code>, then all data in the
+collection will be removed prior to the import. Note that any existing
+index definitions will be preseved.</li>
+<li><em>waitForSync</em> (optional):
+Wait until documents have been synced to disk before returning.</li>
+<li><em>onDuplicate</em> (optional):
+Controls what action is carried out in case of a unique key constraint
+violation. Possible values are:</li>
+<li><em>error</em>: this will not import the current document because of the unique
+key constraint violation. This is the default setting.</li>
+<li><em>update</em>: this will update an existing document in the database with the
+data specified in the request. Attributes of the existing document that
+are not present in the request will be preseved.</li>
+<li><em>replace</em>: this will replace an existing document in the database with the
+data specified in the request.</li>
+<li><em>ignore</em>: this will not update an existing document and simply ignore the
+error caused by the unique key constraint violation.
+Note that <em>update</em>, <em>replace</em> and <em>ignore</em> will only work when the
+import document in the request contains the <em>_key</em> attribute. <em>update</em> and
+<em>replace</em> may also fail because of secondary unique key constraint
+violations.</li>
+<li><em>complete</em> (optional):
+If set to <code>true</code> or <code>yes</code>, it will make the whole import fail if any error
+occurs. Otherwise the import will continue even if some documents cannot
+be imported.</li>
+<li><em>details</em> (optional):
+If set to <code>true</code> or <code>yes</code>, the result will include an attribute <code>details</code>
+with details about documents that could not be imported.</li>
+</ul>
+<p><strong>NOTE</strong> Swagger examples won&apos;t work due to the anchor.
+Creates documents in the collection identified by <code>collection-name</code>.
+The first line of the request body must contain a JSON-encoded array of
+attribute names. All following lines in the request body must contain
+JSON-encoded arrays of attribute values. Each line is interpreted as a
+separate document, and the values specified will be mapped to the array
+of attribute names specified in the first header line.
+The response is a JSON object with the following attributes:</p>
+<ul>
+<li><code>created</code>: number of documents imported.</li>
+<li><code>errors</code>: number of documents that were not imported due to an error.</li>
+<li><code>empty</code>: number of empty lines found in the input (will only contain a
+value greater zero for types <code>documents</code> or <code>auto</code>).</li>
+<li><code>updated</code>: number of updated/replaced documents (in case <code>onDuplicate</code>
+was set to either <code>update</code> or <code>replace</code>).</li>
+<li><code>ignored</code>: number of failed but ignored insert operations (in case
+<code>onDuplicate</code> was set to <code>ignore</code>).</li>
+<li><code>details</code>: if query parameter <code>details</code> is set to true, the result will
+contain a <code>details</code> attribute which is an array with more detailed
+information about which documents could not be inserted.
+Note: this API is currently not supported on cluster coordinators.</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if all documents could be imported successfully.</li>
+<li><em>400</em>:
+is returned if <code>type</code> contains an invalid value, no <code>collection</code> is
+specified, the documents are incorrectly encoded, or the request
+is malformed.</li>
+<li><em>404</em>:
+is returned if <code>collection</code> or the <code>_from</code> or <code>_to</code> attributes of an
+imported edge refer to an unknown collection.</li>
+<li><em>409</em>:
+is returned if the import would trigger a unique key violation and
+<code>complete</code> is set to <code>true</code>.</li>
+<li><em>500</em>:
+is returned if the server cannot auto-generate a document key (out of keys
+error) for a document with no user-defined key.</li>
+<li><em>501</em>:
+The server will respond with <em>HTTP 501</em> if this API is called on a cluster
+coordinator.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Importing two documents, with attributes <code>_key</code>, <code>value1</code> and <code>value2</code> each. One
+line in the import data is empty</p>
+<div id="RestImportCsvExample_container">
+<div id="RestImportCsvExample_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products &lt;&lt;EOF
+[ &quot;_key&quot;, &quot;value1&quot;, &quot;value2&quot; ]
+[ &quot;abc&quot;, 25, &quot;test&quot; ]
+
+[ &quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span> 
+}
+</pre>
+</div>
+<div id="RestImportCsvExample_short" onclick="$(&apos;#RestImportCsvExample_short&apos;).hide(); $(&apos;#RestImportCsvExample_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products &lt;&lt;EOF
+[ &quot;_key&quot;, &quot;value1&quot;, &quot;value2&quot; ]
+[ &quot;abc&quot;, 25, &quot;test&quot; ]
+
+[ &quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Importing into an edge collection, with attributes <code>_from</code>, <code>_to</code> and <code>name</code></p>
+<div id="RestImportCsvEdge_container">
+<div id="RestImportCsvEdge_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=links &lt;&lt;EOF
+[ &quot;_from&quot;, &quot;_to&quot;, &quot;name&quot; ]
+[ &quot;products/123&quot;,&quot;products/234&quot;, &quot;some name&quot; ]
+[ &quot;products/332&quot;, &quot;products/abc&quot;, &quot;other name&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span> 
+}
+</pre>
+</div>
+<div id="RestImportCsvEdge_short" onclick="$(&apos;#RestImportCsvEdge_short&apos;).hide(); $(&apos;#RestImportCsvEdge_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=links &lt;&lt;EOF
+[ &quot;_from&quot;, &quot;_to&quot;, &quot;name&quot; ]
+[ &quot;products/123&quot;,&quot;products/234&quot;, &quot;some name&quot; ]
+[ &quot;products/332&quot;, &quot;products/abc&quot;, &quot;other name&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Importing into an edge collection, omitting <code>_from</code> or <code>_to</code></p>
+<div id="RestImportCsvEdgeInvalid_container">
+<div id="RestImportCsvEdgeInvalid_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=links&amp;details=true &lt;&lt;EOF
+[ &quot;name&quot; ]
+[ &quot;some name&quot; ]
+[ &quot;other name&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;details&quot;</span> : [ 
+    <span class="hljs-string">&quot;at position 1: missing &apos;_from&apos; or &apos;_to&apos; attribute, offending document: {\&quot;name\&quot;:\&quot;some name\&quot;}&quot;</span>, 
+    <span class="hljs-string">&quot;at position 2: missing &apos;_from&apos; or &apos;_to&apos; attribute, offending document: {\&quot;name\&quot;:\&quot;other name\&quot;}&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="RestImportCsvEdgeInvalid_short" onclick="$(&apos;#RestImportCsvEdgeInvalid_short&apos;).hide(); $(&apos;#RestImportCsvEdgeInvalid_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=links&amp;details=true &lt;&lt;EOF
+[ &quot;name&quot; ]
+[ &quot;some name&quot; ]
+[ &quot;other name&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Violating a unique constraint, but allow partial imports</p>
+<div id="RestImportCsvUniqueContinue_container">
+<div id="RestImportCsvUniqueContinue_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;details=true &lt;&lt;EOF
+[ &quot;_key&quot;, &quot;value1&quot;, &quot;value2&quot; ]
+[ &quot;abc&quot;, 25, &quot;test&quot; ]
+[&quot;abc&quot;, &quot;bar&quot;, &quot;baz&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;details&quot;</span> : [ 
+    <span class="hljs-string">&quot;at position 2: creating document failed with error &apos;unique constraint violated&apos;, offending document: {\&quot;_key\&quot;:\&quot;abc\&quot;,\&quot;value1\&quot;:\&quot;bar\&quot;,\&quot;value2\&quot;:\&quot;baz\&quot;}&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="RestImportCsvUniqueContinue_short" onclick="$(&apos;#RestImportCsvUniqueContinue_short&apos;).hide(); $(&apos;#RestImportCsvUniqueContinue_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;details=true &lt;&lt;EOF
+[ &quot;_key&quot;, &quot;value1&quot;, &quot;value2&quot; ]
+[ &quot;abc&quot;, 25, &quot;test&quot; ]
+[&quot;abc&quot;, &quot;bar&quot;, &quot;baz&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Violating a unique constraint, not allowing partial imports</p>
+<div id="RestImportCsvUniqueFail_container">
+<div id="RestImportCsvUniqueFail_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;complete=true &lt;&lt;EOF
+[ &quot;_key&quot;, &quot;value1&quot;, &quot;value2&quot; ]
+[ &quot;abc&quot;, 25, &quot;test&quot; ]
+[&quot;abc&quot;, &quot;bar&quot;, &quot;baz&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">409</span> Conflict
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;cannot create document, unique constraint violated&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">409</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">1210</span> 
+}
+</pre>
+</div>
+<div id="RestImportCsvUniqueFail_short" onclick="$(&apos;#RestImportCsvUniqueFail_short&apos;).hide(); $(&apos;#RestImportCsvUniqueFail_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;complete=true &lt;&lt;EOF
+[ &quot;_key&quot;, &quot;value1&quot;, &quot;value2&quot; ]
+[ &quot;abc&quot;, 25, &quot;test&quot; ]
+[&quot;abc&quot;, &quot;bar&quot;, &quot;baz&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">409</span> Conflict
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using a non-existing collection</p>
+<div id="RestImportCsvInvalidCollection_container">
+<div id="RestImportCsvInvalidCollection_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products &lt;&lt;EOF
+[ &quot;_key&quot;, &quot;value1&quot;, &quot;value2&quot; ]
+[ &quot;abc&quot;, 25, &quot;test&quot; ]
+[&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;collection &apos;products&apos; not found&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">404</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">1203</span> 
+}
+</pre>
+</div>
+<div id="RestImportCsvInvalidCollection_short" onclick="$(&apos;#RestImportCsvInvalidCollection_short&apos;).hide(); $(&apos;#RestImportCsvInvalidCollection_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products &lt;&lt;EOF
+[ &quot;_key&quot;, &quot;value1&quot;, &quot;value2&quot; ]
+[ &quot;abc&quot;, 25, &quot;test&quot; ]
+[&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot; ]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using a malformed body</p>
+<div id="RestImportCsvInvalidBody_container">
+<div id="RestImportCsvInvalidBody_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products &lt;&lt;EOF
+{ &quot;_key&quot;: &quot;foo&quot;, &quot;value1&quot;: &quot;bar&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;no JSON array found in second line&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">400</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">400</span> 
+}
+</pre>
+</div>
+<div id="RestImportCsvInvalidBody_short" onclick="$(&apos;#RestImportCsvInvalidBody_short&apos;).hide(); $(&apos;#RestImportCsvInvalidBody_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products &lt;&lt;EOF
+{ &quot;_key&quot;: &quot;foo&quot;, &quot;value1&quot;: &quot;bar&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+<h3 id="imports-documents-from-json">imports documents from JSON</h3>
+<p> imports documents from JSON</p>
+<p><code>POST /_api/import#json</code>
+<strong>Post Body</strong>
+ <em>documents</em> (required):
+The body must either be a JSON-encoded array of objects or a string with
+multiple JSON objects separated by newlines.</p>
+<p><strong>Query Parameters</strong></p>
+<ul>
+<li><em>type</em> (required):
+Determines how the body of the request will be interpreted. <code>type</code> can have
+the following values:</li>
+<li><code>documents</code>: when this type is used, each line in the request body is
+expected to be an individual JSON-encoded document. Multiple JSON objects
+in the request body need to be separated by newlines.</li>
+<li><code>list</code>: when this type is used, the request body must contain a single
+JSON-encoded array of individual objects to import.</li>
+<li><code>auto</code>: if set, this will automatically determine the body type (either
+<code>documents</code> or <code>list</code>).</li>
+<li><em>collection</em> (required):
+The collection name.</li>
+<li><em>fromPrefix</em> (optional):
+An optional prefix for the values in <code>_from</code> attributes. If specified, the
+value is automatically prepended to each <code>_from</code> input value. This allows
+specifying just the keys for <code>_from</code>.</li>
+<li><em>toPrefix</em> (optional):
+An optional prefix for the values in <code>_to</code> attributes. If specified, the
+value is automatically prepended to each <code>_to</code> input value. This allows
+specifying just the keys for <code>_to</code>.</li>
+<li><em>overwrite</em> (optional):
+If this parameter has a value of <code>true</code> or <code>yes</code>, then all data in the
+collection will be removed prior to the import. Note that any existing
+index definitions will be preseved.</li>
+<li><em>waitForSync</em> (optional):
+Wait until documents have been synced to disk before returning.</li>
+<li><em>onDuplicate</em> (optional):
+Controls what action is carried out in case of a unique key constraint
+violation. Possible values are:</li>
+<li><em>error</em>: this will not import the current document because of the unique
+key constraint violation. This is the default setting.</li>
+<li><em>update</em>: this will update an existing document in the database with the 
+data specified in the request. Attributes of the existing document that
+are not present in the request will be preseved.</li>
+<li><em>replace</em>: this will replace an existing document in the database with the
+data specified in the request. </li>
+<li><em>ignore</em>: this will not update an existing document and simply ignore the
+error caused by a unique key constraint violation.
+Note that that <em>update</em>, <em>replace</em> and <em>ignore</em> will only work when the
+import document in the request contains the <em>_key</em> attribute. <em>update</em> and
+<em>replace</em> may also fail because of secondary unique key constraint violations.</li>
+<li><em>complete</em> (optional):
+If set to <code>true</code> or <code>yes</code>, it will make the whole import fail if any error
+occurs. Otherwise the import will continue even if some documents cannot
+be imported.</li>
+<li><em>details</em> (optional):
+If set to <code>true</code> or <code>yes</code>, the result will include an attribute <code>details</code>
+with details about documents that could not be imported.</li>
+</ul>
+<p><strong>NOTE</strong> Swagger examples won&apos;t work due to the anchor.
+Creates documents in the collection identified by <code>collection-name</code>.
+The JSON representations of the documents must be passed as the body of the
+POST request. The request body can either consist of multiple lines, with
+each line being a single stand-alone JSON object, or a singe JSON array with
+sub-objects.
+The response is a JSON object with the following attributes:</p>
+<ul>
+<li><code>created</code>: number of documents imported.</li>
+<li><code>errors</code>: number of documents that were not imported due to an error.</li>
+<li><code>empty</code>: number of empty lines found in the input (will only contain a
+value greater zero for types <code>documents</code> or <code>auto</code>).</li>
+<li><code>updated</code>: number of updated/replaced documents (in case <code>onDuplicate</code>
+was set to either <code>update</code> or <code>replace</code>).</li>
+<li><code>ignored</code>: number of failed but ignored insert operations (in case
+<code>onDuplicate</code> was set to <code>ignore</code>).</li>
+<li><code>details</code>: if query parameter <code>details</code> is set to true, the result will
+contain a <code>details</code> attribute which is an array with more detailed
+information about which documents could not be inserted.
+Note: this API is currently not supported on cluster coordinators.</li>
+</ul>
+<p><strong>Return Codes</strong></p>
+<ul>
+<li><em>201</em>:
+is returned if all documents could be imported successfully.</li>
+<li><em>400</em>:
+is returned if <code>type</code> contains an invalid value, no <code>collection</code> is
+specified, the documents are incorrectly encoded, or the request
+is malformed.</li>
+<li><em>404</em>:
+is returned if <code>collection</code> or the <code>_from</code> or <code>_to</code> attributes of an
+imported edge refer to an unknown collection.</li>
+<li><em>409</em>:
+is returned if the import would trigger a unique key violation and
+<code>complete</code> is set to <code>true</code>.</li>
+<li><em>500</em>:
+is returned if the server cannot auto-generate a document key (out of keys
+error) for a document with no user-defined key.</li>
+<li><em>501</em>:
+The server will respond with <em>HTTP 501</em> if this API is called on a cluster
+coordinator.</li>
+</ul>
+<p><strong>Examples</strong></p>
+<p>Importing documents with heterogenous attributes from a JSON array</p>
+<div id="RestImportJsonList_container">
+<div id="RestImportJsonList_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=list &lt;&lt;EOF
+[ 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;abc&quot;</span>, 
+    <span class="hljs-string">&quot;value1&quot;</span> : <span class="hljs-number">25</span>, 
+    <span class="hljs-string">&quot;value2&quot;</span> : <span class="hljs-string">&quot;test&quot;</span>, 
+    <span class="hljs-string">&quot;allowed&quot;</span> : <span class="hljs-literal">true</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;foo&quot;</span>, 
+    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;baz&quot;</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;name&quot;</span> : { 
+      <span class="hljs-string">&quot;detailed&quot;</span> : <span class="hljs-string">&quot;detailed name&quot;</span>, 
+      <span class="hljs-string">&quot;short&quot;</span> : <span class="hljs-string">&quot;short name&quot;</span> 
+    } 
+  } 
+]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span> 
+}
+</pre>
+</div>
+<div id="RestImportJsonList_short" onclick="$(&apos;#RestImportJsonList_short&apos;).hide(); $(&apos;#RestImportJsonList_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=list &lt;&lt;EOF
+[ 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;abc&quot;</span>, 
+    <span class="hljs-string">&quot;value1&quot;</span> : <span class="hljs-number">25</span>, 
+    <span class="hljs-string">&quot;value2&quot;</span> : <span class="hljs-string">&quot;test&quot;</span>, 
+    <span class="hljs-string">&quot;allowed&quot;</span> : <span class="hljs-literal">true</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;foo&quot;</span>, 
+    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;baz&quot;</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;name&quot;</span> : { 
+      <span class="hljs-string">&quot;detailed&quot;</span> : <span class="hljs-string">&quot;detailed name&quot;</span>, 
+      <span class="hljs-string">&quot;short&quot;</span> : <span class="hljs-string">&quot;short name&quot;</span> 
+    } 
+  } 
+]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Importing documents from individual JSON lines</p>
+<div id="RestImportJsonLines_container">
+<div id="RestImportJsonLines_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=documents &lt;&lt;EOF
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: 25, &quot;value2&quot;: &quot;test&quot;,&quot;allowed&quot;: true }
+{ &quot;_key&quot;: &quot;foo&quot;, &quot;name&quot;: &quot;baz&quot; }
+
+{ &quot;name&quot;: { &quot;detailed&quot;: &quot;detailed name&quot;, &quot;short&quot;: &quot;short name&quot; } }
+
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span> 
+}
+</pre>
+</div>
+<div id="RestImportJsonLines_short" onclick="$(&apos;#RestImportJsonLines_short&apos;).hide(); $(&apos;#RestImportJsonLines_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=documents &lt;&lt;EOF
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: 25, &quot;value2&quot;: &quot;test&quot;,&quot;allowed&quot;: true }
+{ &quot;_key&quot;: &quot;foo&quot;, &quot;name&quot;: &quot;baz&quot; }
+
+{ &quot;name&quot;: { &quot;detailed&quot;: &quot;detailed name&quot;, &quot;short&quot;: &quot;short name&quot; } }
+
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using the auto type detection</p>
+<div id="RestImportJsonType_container">
+<div id="RestImportJsonType_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=auto &lt;&lt;EOF
+[ 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;abc&quot;</span>, 
+    <span class="hljs-string">&quot;value1&quot;</span> : <span class="hljs-number">25</span>, 
+    <span class="hljs-string">&quot;value2&quot;</span> : <span class="hljs-string">&quot;test&quot;</span>, 
+    <span class="hljs-string">&quot;allowed&quot;</span> : <span class="hljs-literal">true</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;foo&quot;</span>, 
+    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;baz&quot;</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;name&quot;</span> : { 
+      <span class="hljs-string">&quot;detailed&quot;</span> : <span class="hljs-string">&quot;detailed name&quot;</span>, 
+      <span class="hljs-string">&quot;short&quot;</span> : <span class="hljs-string">&quot;short name&quot;</span> 
+    } 
+  } 
+]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">3</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span> 
+}
+</pre>
+</div>
+<div id="RestImportJsonType_short" onclick="$(&apos;#RestImportJsonType_short&apos;).hide(); $(&apos;#RestImportJsonType_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=auto &lt;&lt;EOF
+[ 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;abc&quot;</span>, 
+    <span class="hljs-string">&quot;value1&quot;</span> : <span class="hljs-number">25</span>, 
+    <span class="hljs-string">&quot;value2&quot;</span> : <span class="hljs-string">&quot;test&quot;</span>, 
+    <span class="hljs-string">&quot;allowed&quot;</span> : <span class="hljs-literal">true</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;foo&quot;</span>, 
+    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;baz&quot;</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;name&quot;</span> : { 
+      <span class="hljs-string">&quot;detailed&quot;</span> : <span class="hljs-string">&quot;detailed name&quot;</span>, 
+      <span class="hljs-string">&quot;short&quot;</span> : <span class="hljs-string">&quot;short name&quot;</span> 
+    } 
+  } 
+]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Importing into an edge collection, with attributes <code>_from</code>, <code>_to</code> and <code>name</code></p>
+<div id="RestImportJsonEdge_container">
+<div id="RestImportJsonEdge_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=links&amp;type=documents &lt;&lt;EOF
+{ &quot;_from&quot;: &quot;products/123&quot;, &quot;_to&quot;: &quot;products/234&quot; }
+{&quot;_from&quot;: &quot;products/332&quot;, &quot;_to&quot;: &quot;products/abc&quot;,   &quot;name&quot;: &quot;other name&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">2</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span> 
+}
+</pre>
+</div>
+<div id="RestImportJsonEdge_short" onclick="$(&apos;#RestImportJsonEdge_short&apos;).hide(); $(&apos;#RestImportJsonEdge_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=links&amp;type=documents &lt;&lt;EOF
+{ &quot;_from&quot;: &quot;products/123&quot;, &quot;_to&quot;: &quot;products/234&quot; }
+{&quot;_from&quot;: &quot;products/332&quot;, &quot;_to&quot;: &quot;products/abc&quot;,   &quot;name&quot;: &quot;other name&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Importing into an edge collection, omitting <code>_from</code> or <code>_to</code></p>
+<div id="RestImportJsonEdgeInvalid_container">
+<div id="RestImportJsonEdgeInvalid_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=links&amp;type=list&amp;details=true &lt;&lt;EOF
+[ 
+  { 
+    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;some name&quot;</span> 
+  } 
+]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;details&quot;</span> : [ 
+    <span class="hljs-string">&quot;at position 1: missing &apos;_from&apos; or &apos;_to&apos; attribute, offending document: {\&quot;name\&quot;:\&quot;some name\&quot;}&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="RestImportJsonEdgeInvalid_short" onclick="$(&apos;#RestImportJsonEdgeInvalid_short&apos;).hide(); $(&apos;#RestImportJsonEdgeInvalid_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=links&amp;type=list&amp;details=true &lt;&lt;EOF
+[ 
+  { 
+    <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;some name&quot;</span> 
+  } 
+]
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Violating a unique constraint, but allow partial imports</p>
+<div id="RestImportJsonUniqueContinue_container">
+<div id="RestImportJsonUniqueContinue_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=documents&amp;details=true &lt;&lt;EOF
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: 25, &quot;value2&quot;: &quot;test&quot; }
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: &quot;bar&quot;, &quot;value2&quot;: &quot;baz&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
+  <span class="hljs-string">&quot;created&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;errors&quot;</span> : <span class="hljs-number">1</span>, 
+  <span class="hljs-string">&quot;empty&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;updated&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;ignored&quot;</span> : <span class="hljs-number">0</span>, 
+  <span class="hljs-string">&quot;details&quot;</span> : [ 
+    <span class="hljs-string">&quot;at position 2: creating document failed with error &apos;unique constraint violated&apos;, offending document: {\&quot;_key\&quot;:\&quot;abc\&quot;,\&quot;value1\&quot;:\&quot;bar\&quot;,\&quot;value2\&quot;:\&quot;baz\&quot;}&quot;</span> 
+  ] 
+}
+</pre>
+</div>
+<div id="RestImportJsonUniqueContinue_short" onclick="$(&apos;#RestImportJsonUniqueContinue_short&apos;).hide(); $(&apos;#RestImportJsonUniqueContinue_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=documents&amp;details=true &lt;&lt;EOF
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: 25, &quot;value2&quot;: &quot;test&quot; }
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: &quot;bar&quot;, &quot;value2&quot;: &quot;baz&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Violating a unique constraint, not allowing partial imports</p>
+<div id="RestImportJsonUniqueFail_container">
+<div id="RestImportJsonUniqueFail_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=documents&amp;complete=true &lt;&lt;EOF
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: 25, &quot;value2&quot;: &quot;test&quot; }
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: &quot;bar&quot;, &quot;value2&quot;: &quot;baz&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">409</span> Conflict
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;cannot create document, unique constraint violated&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">409</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">1210</span> 
+}
+</pre>
+</div>
+<div id="RestImportJsonUniqueFail_short" onclick="$(&apos;#RestImportJsonUniqueFail_short&apos;).hide(); $(&apos;#RestImportJsonUniqueFail_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=documents&amp;complete=true &lt;&lt;EOF
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: 25, &quot;value2&quot;: &quot;test&quot; }
+{ &quot;_key&quot;: &quot;abc&quot;, &quot;value1&quot;: &quot;bar&quot;, &quot;value2&quot;: &quot;baz&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">409</span> Conflict
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using a non-existing collection</p>
+<div id="RestImportJsonInvalidCollection_container">
+<div id="RestImportJsonInvalidCollection_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=documents &lt;&lt;EOF
+{ &quot;name&quot;: &quot;test&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;collection &apos;products&apos; not found&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">404</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">1203</span> 
+}
+</pre>
+</div>
+<div id="RestImportJsonInvalidCollection_short" onclick="$(&apos;#RestImportJsonInvalidCollection_short&apos;).hide(); $(&apos;#RestImportJsonInvalidCollection_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=documents &lt;&lt;EOF
+{ &quot;name&quot;: &quot;test&quot; }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+<p>Using a malformed body</p>
+<div id="RestImportJsonInvalidBody_container">
+<div id="RestImportJsonInvalidBody_long" onclick="" style="Display: none;">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=list &lt;&lt;EOF
+{ }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+{ 
+  <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
+  <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;expecting a JSON array in the request&quot;</span>, 
+  <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">400</span>, 
+  <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">400</span> 
+}
+</pre>
+</div>
+<div id="RestImportJsonInvalidBody_short" onclick="$(&apos;#RestImportJsonInvalidBody_short&apos;).hide(); $(&apos;#RestImportJsonInvalidBody_long&apos;).show();">
+<pre>
+shell&gt; curl -X POST --data-binary @- --dump - http://localhost:8529/_api/import?collection=products&amp;type=list &lt;&lt;EOF
+{ }
+EOF
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">400</span> Bad Request
+content-type: application/json; charset=utf<span class="hljs-number">-8</span>
+
+</pre><div class="example_show_button">show response body</div>
+</div>
+</div>
+
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../AsyncResultsManagement/index.html" class="navigation navigation-prev " aria-label="Previous page: Async Result Handling"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../BulkImports/ImportingSelfContained.html" class="navigation navigation-next " aria-label="Next page: JSON Documents"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) HTTP API Documentation -->
+</html>

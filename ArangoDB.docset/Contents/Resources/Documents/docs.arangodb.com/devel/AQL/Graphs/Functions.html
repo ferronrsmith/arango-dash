@@ -1,0 +1,1724 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Other | ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Advanced/index.html" />
+    
+    
+    <link rel="prev" href="../Graphs/Operations.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="7.3"
+        data-chapter-title="Other"
+        data-filepath="Graphs/Functions.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:53 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="Invocation/index.html">
+            
+                
+                    <a href="../Invocation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        How to invoke AQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="Invocation/WithArangosh.html">
+            
+                
+                    <a href="../Invocation/WithArangosh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        with Arangosh
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Invocation/WithWebInterface.html">
+            
+                
+                    <a href="../Invocation/WithWebInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        with the Web Interface
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Fundamentals/index.html">
+            
+                
+                    <a href="../Fundamentals/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        AQL Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="Fundamentals/Syntax.html">
+            
+                
+                    <a href="../Fundamentals/Syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        AQL Syntax
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Fundamentals/DataTypes.html">
+            
+                
+                    <a href="../Fundamentals/DataTypes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Data types
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Fundamentals/BindParameters.html">
+            
+                
+                    <a href="../Fundamentals/BindParameters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Bind Parameters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Fundamentals/TypeValueOrder.html">
+            
+                
+                    <a href="../Fundamentals/TypeValueOrder.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Type and value order
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="Fundamentals/DocumentData.html">
+            
+                
+                    <a href="../Fundamentals/DocumentData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Accessing data from collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="Fundamentals/QueryResults.html">
+            
+                
+                    <a href="../Fundamentals/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="Fundamentals/QueryErrors.html">
+            
+                
+                    <a href="../Fundamentals/QueryErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        Query Errors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Operators.html">
+            
+                
+                    <a href="../Operators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Operators
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="DataModification.html">
+            
+                
+                    <a href="../DataModification.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Data Modification Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Operations/index.html">
+            
+                
+                    <a href="../Operations/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        High level Operations
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Operations/For.html">
+            
+                
+                    <a href="../Operations/For.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        FOR
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Operations/Return.html">
+            
+                
+                    <a href="../Operations/Return.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        RETURN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Operations/Filter.html">
+            
+                
+                    <a href="../Operations/Filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        FILTER
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="Operations/Sort.html">
+            
+                
+                    <a href="../Operations/Sort.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        SORT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="Operations/Limit.html">
+            
+                
+                    <a href="../Operations/Limit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        LIMIT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="Operations/Let.html">
+            
+                
+                    <a href="../Operations/Let.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        LET
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="Operations/Collect.html">
+            
+                
+                    <a href="../Operations/Collect.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        COLLECT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="Operations/Remove.html">
+            
+                
+                    <a href="../Operations/Remove.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        REMOVE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="Operations/Update.html">
+            
+                
+                    <a href="../Operations/Update.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        UPDATE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="Operations/Replace.html">
+            
+                
+                    <a href="../Operations/Replace.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        REPLACE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="Operations/Insert.html">
+            
+                
+                    <a href="../Operations/Insert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        INSERT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="Operations/Upsert.html">
+            
+                
+                    <a href="../Operations/Upsert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        UPSERT
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Functions/index.html">
+            
+                
+                    <a href="../Functions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Functions/TypeCast.html">
+            
+                
+                    <a href="../Functions/TypeCast.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Type cast
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Functions/String.html">
+            
+                
+                    <a href="../Functions/String.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        String
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="Functions/Numeric.html">
+            
+                
+                    <a href="../Functions/Numeric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Numeric
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="Functions/Date.html">
+            
+                
+                    <a href="../Functions/Date.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Date
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="Functions/Array.html">
+            
+                
+                    <a href="../Functions/Array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Array
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="Functions/Document.html">
+            
+                
+                    <a href="../Functions/Document.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object / Document
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="Functions/Geo.html">
+            
+                
+                    <a href="../Functions/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="Functions/Fulltext.html">
+            
+                
+                    <a href="../Functions/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="Functions/Miscellaneous.html">
+            
+                
+                    <a href="../Functions/Miscellaneous.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        Miscellaneous
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Graphs/index.html">
+            
+                
+                    <a href="../Graphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Graphs/Traversals.html">
+            
+                
+                    <a href="../Graphs/Traversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Graphs/Operations.html">
+            
+                
+                    <a href="../Graphs/Operations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Named Operations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="7.3" data-path="Graphs/Functions.html">
+            
+                
+                    <a href="../Graphs/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Other
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Advanced/index.html">
+            
+                
+                    <a href="../Advanced/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Advanced Features
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Advanced/ArrayOperators.html">
+            
+                
+                    <a href="../Advanced/ArrayOperators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Array Operators
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Examples/index.html">
+            
+                
+                    <a href="../Examples/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Usual Query Patterns
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Examples/Counting.html">
+            
+                
+                    <a href="../Examples/Counting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Counting
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Examples/DataModificationQueries.html">
+            
+                
+                    <a href="../Examples/DataModificationQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Data-modification queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Examples/CombiningQueries.html">
+            
+                
+                    <a href="../Examples/CombiningQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Subqueries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Examples/ProjectionsAndFilters.html">
+            
+                
+                    <a href="../Examples/ProjectionsAndFilters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Projections and filters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Examples/Join.html">
+            
+                
+                    <a href="../Examples/Join.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Joins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Examples/Grouping.html">
+            
+                
+                    <a href="../Examples/Grouping.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        Grouping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Examples/CombiningGraphTraversals.html">
+            
+                
+                    <a href="../Examples/CombiningGraphTraversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="Examples/QueriesNoCollections.html">
+            
+                
+                    <a href="../Examples/QueriesNoCollections.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        Queries without collections
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Extending/index.html">
+            
+                
+                    <a href="../Extending/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        User Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Extending/Conventions.html">
+            
+                
+                    <a href="../Extending/Conventions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Conventions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Extending/Functions.html">
+            
+                
+                    <a href="../Extending/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Registering Functions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="ExecutionAndPerformance/index.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Execution and Performance
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="ExecutionAndPerformance/QueryStatistics.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/QueryStatistics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Query statistics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="ExecutionAndPerformance/ParsingQueries.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/ParsingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Parsing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="ExecutionAndPerformance/ExplainingQueries.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/ExplainingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        Explaining queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="ExecutionAndPerformance/Optimizer.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/Optimizer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        Optimizing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="ExecutionAndPerformance/QueryCache.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/QueryCache.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Caching query results
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="CommonErrors.html">
+            
+                
+                    <a href="../CommonErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Common Errors
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="graph_functions"></a></p>
+<h1 id="graph-functions">Graph functions</h1>
+<p>AQL has the following functions to traverse loosely-structured graphs consisting of 
+an edge collection and plus the vertices connected by it. If you have created a graph 
+using the general-graph module you may want to use its more specific <a href="Operations.html">Graph operations</a> 
+instead.</p>
+<p><a name="determining_direct_connections"></a></p>
+<h2 id="determining-direct-connections">Determining direct connections</h2>
+<p><a name="edges"></a></p>
+<h3 id="edges">Edges</h3>
+<p><em>EDGES(edgecollection, startvertex, direction, edgeexamples, options)</em>:</p>
+<p>Return all edges connected to the vertex <em>startvertex</em> as an array. The possible values for
+<em>direction</em> are:</p>
+<ul>
+<li><em>outbound</em>: Return all outbound edges</li>
+<li><em>inbound</em>: Return all inbound edges</li>
+<li><em>any</em>: Return outbound and inbound edges</li>
+</ul>
+<p>The <em>edgeexamples</em> parameter can optionally be used to restrict the results to specific
+edge connections only. The matching is then done via the <em>MATCHES</em> function.
+To not restrict the result to specific connections, <em>edgeexamples</em> should be left
+unspecified. </p>
+<p>Options is a JSON object that can contain the following properties:</p>
+<ul>
+<li><em>includeVertices</em>: A boolean value, when set to true the return format will be modified.
+   The function will then return an object with two attributes <em>edge</em> and <em>vertex</em> containing
+   the respective elements.</li>
+</ul>
+<p>In order to specify only options but no <em>edgeExamples</em> set <em>edgeExamples</em> to <em>null</em>.</p>
+<p><em>Examples</em></p>
+<pre><code>  EDGES(friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;)
+  EDGES(friendrelations, &quot;friends/john&quot;, &quot;any&quot;, [ { &quot;$label&quot;: &quot;knows&quot; } ])
+  EDGES(friendrelations, &quot;friends/john&quot;, &quot;any&quot;, [ { &quot;$label&quot;: &quot;knows&quot; } ], {includeVertices: true})
+  EDGES(friendrelations, &quot;friends/john&quot;, &quot;any&quot;, null, {includeVertices: true})
+</code></pre><p><a name="neighbors"></a></p>
+<h3 id="neighbors">Neighbors</h3>
+<p><em>NEIGHBORS(vertexcollection, edgecollection, startvertex, direction, edgeexamples, options)</em>:</p>
+<p>Returns <code>_id</code> values of all distinct neighbors that are directly connected to the
+vertex <em>startvertex</em> as an array.</p>
+<p>The possible values for <em>direction</em> are:</p>
+<ul>
+<li><em>outbound</em>: Return all outbound edges</li>
+<li><em>inbound</em>: Return all inbound edges</li>
+<li><em>any</em>: Return outbound and inbound edges</li>
+</ul>
+<p>The <em>edgeexamples</em> parameter can optionally be used to restrict the results to specific
+edge connections only. The matching is then done via the <em>MATCHES</em> function.
+To not restrict the result to specific connections, <em>edgeexamples</em> should be left
+unspecified.</p>
+<p>The <em>options</em> parameter is an object and used to modify the result.
+Available options:</p>
+<ul>
+<li><em>includeData</em> is a boolean value to define if the returned documents should be extracted instead
+of returning their ids only. The default is <em>false</em>.</li>
+</ul>
+<p>Note: in ArangoDB versions prior to 2.6 <em>NEIGHBORS</em> returned the array of neighbor vertices together
+with their connecting edges including all attributes and not only the ids. 
+To include the data and not only the ids set the <em>includeData</em> option to <em>true</em> in 2.6 and above.
+To create the result format of 2.5 and earlier please replace the NEIGHBORS function by EDGES
+with the option <em>includeVertices</em> set to true.</p>
+<p><em>Examples</em></p>
+<pre><code>  NEIGHBORS(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;)
+  NEIGHBORS(users, usersrelations, &quot;users/john&quot;, &quot;any&quot;, [ { &quot;$label&quot;: &quot;recommends&quot; } ] )
+  NEIGHBORS(users, usersrelations, &quot;users/john&quot;, &quot;any&quot;, [ { &quot;$label&quot;: &quot;recommends&quot; } ], {includeData: true})
+</code></pre><p><a name="general_purpose_traversals"></a></p>
+<h2 id="general-purpose-traversals">General Purpose Traversals</h2>
+<p>General purpose traversals with its extendability by visitor functions offer more possibilities over the newer <a href="Traversals.html">AQL graph traversals</a>,
+however unless you need some of these features you should <a href="Traversals.html">prefer AQL graph traversals</a>.</p>
+<p><a name="traversal"></a></p>
+<h3 id="traversal">Traversal</h3>
+<p><em>TRAVERSAL(vertexcollection, edgecollection, startVertex, direction, options)</em>: 
+Traverses the graph described by <em>vertexcollection</em> and <em>edgecollection</em>, 
+starting at the vertex identified by id <em>startVertex</em>. Vertex connectivity is
+specified by the <em>direction</em> parameter:</p>
+<ul>
+<li><em>&quot;outbound&quot;</em>: Vertices are connected in <em>_from</em> to <em>_to</em> order</li>
+<li><em>&quot;inbound&quot;</em>: Vertices are connected in <em>_to</em> to <em>_from</em> order</li>
+<li><em>&quot;any&quot;</em>: Vertices are connected in both <em>_to</em> to <em>_from</em> and in 
+<em>_from</em> to <em>_to</em> order</li>
+</ul>
+<p>Additional options for the traversal can be provided via the <em>options</em> document:</p>
+<ul>
+<li><em>strategy</em>: Defines the traversal strategy. Possible values are <em>depthfirst</em> 
+and <em>breadthfirst</em>. Defaults to <em>depthfirst</em></li>
+<li><em>order</em>: Defines the traversal order: Possible values are <em>preorder</em>, <em>postorder</em>,
+and <em>preorder-expander</em>. Defaults to <em>preorder</em></li>
+<li><em>itemOrder</em>: Defines the level item order. Can be <em>forward</em> or 
+<em>backward</em>. Defaults to <em>forward</em></li>
+<li><em>minDepth</em>: Minimum path depths for vertices to be included. This can be used to
+include only vertices in the result that are found after a certain minimum depth.
+Defaults to 0 </li>
+<li><em>maxIterations</em>: Maximum number of iterations in each traversal. This number can be
+set to prevent endless loops in traversal of cyclic graphs. When a traversal performs
+as many iterations as the <em>maxIterations</em> value, the traversal will abort with an
+error. If <em>maxIterations</em> is not set, a server-defined value will be used</li>
+<li><em>maxDepth</em>: Maximum path depth for sub-edges expansion. This can be used to 
+limit the depth of the traversal to a sensible amount. This should especially be used
+for big graphs to limit the traversal to some sensible amount, and for graphs 
+containing cycles to prevent infinite traversals. The maximum depth defaults to 256, 
+with the chance of this value being non-sensical. For several graphs, a much lower
+maximum depth is sensible, whereas for other, more array-oriented graphs a higher
+depth should be used</li>
+<li><em>paths</em>: If <em>true</em>, the paths encountered during the traversal will
+also be returned along with each traversed vertex. If <em>false</em>, only the 
+encountered vertices will be returned.</li>
+<li><em>uniqueness</em>: An optional document with the following attributes:<ul>
+<li><em>vertices</em>: <ul>
+<li><em>none</em>: No vertex uniqueness is enforced</li>
+<li><em>global</em>: A vertex may be visited at most once. This is the default.</li>
+<li><em>path</em>: A vertex is visited only if not already contained in the current
+traversal path</li>
+</ul>
+</li>
+<li><em>edges</em>: <ul>
+<li><em>none</em>: No edge uniqueness is enforced</li>
+<li><em>global</em>: An edge may be visited at most once. This is the default</li>
+<li><em>path</em>: An edge is visited only if not already contained in the current
+traversal path</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><em>followEdges</em>: An optional array of example edge documents that the traversal will
+expand into. If no examples are given, the traversal will follow all edges. If one
+or many edge examples are given, the traversal will only follow an edge if it matches
+at least one of the specified examples. <em>followEdges</em> can also be a string with the
+name of an AQL user-defined function that should be responsible for checking if an
+edge should be followed. In this case, the AQL function will is expected to have the
+following signature:</p>
+<pre><code>function (config, vertex, edge, path)
+</code></pre><p>The function is expected to return a boolean value. If it returns <em>true</em>, the edge
+will be followed. If <em>false</em> is returned, the edge will be ignored.</p>
+</li>
+<li><p><em>filterVertices</em>: An optional array of example vertex documents that the traversal will
+treat specially. If no examples are given, the traversal will handle all encountered
+vertices equally. If one or many vertex examples are given, the traversal will exclude
+any non-matching vertex from the result and/or not descend into it. Optionally,
+<em>filterVertices</em> can contain a string containing the name of a user-defined AQL function 
+that should be responsible for filtering. If so, the AQL function is expected to have the 
+following signature:</p>
+<pre><code>function (config, vertex, path)
+</code></pre><p>If a custom AQL function is used for <em>filterVertices</em>, it is expected to return one of 
+the following values:</p>
+<ul>
+<li><em>[ ]</em>: Include the vertex in the result and descend into its connected edges</li>
+<li><em>[ &quot;prune&quot; ]</em>: Will include the vertex in the result but not descend into its connected edges</li>
+<li><em>[ &quot;exclude&quot; ]</em>: Will not include the vertex in the result but descend into its connected edges</li>
+<li><em>[ &quot;prune&quot;, &quot;exclude&quot; ]</em>: Will completely ignore the vertex and its connected edges</li>
+</ul>
+</li>
+<li><p><em>vertexFilterMethod</em>: Only useful in conjunction with <em>filterVertices</em> and if no user-defined
+AQL function is used. If specified, it will influence how vertices are handled that don&apos;t match 
+the examples in <em>filterVertices</em>:</p>
+<ul>
+<li><em>[ &quot;prune&quot; ]</em>: Will include non-matching vertices in the result but not descend into them</li>
+<li><em>[ &quot;exclude&quot; ]</em>: Will not include non-matching vertices in the result but descend into them</li>
+<li><em>[ &quot;prune&quot;, &quot;exclude&quot; ]</em>: Will completely ignore the vertex and its connected edges</li>
+</ul>
+</li>
+<li><p><em>visitor</em>: If specified, must be a string containing the name of a custom AQL function that
+will be called whenever the traversal visits a vertex. The custom AQL function is expected 
+to have the following signature:</p>
+<pre><code>function (config, result, vertex, path, connections)
+</code></pre><p>There are two modes for custom AQL visitor functions, depending on the value of the option
+<em>visitorReturnsResults</em>. If it is set to <em>true</em>, then any value returned by the visitor will
+be appended to the list of results of the TRAVERSAL function. If <em>visitorReturnsResults</em> is
+set to <em>false</em>, then any value returned by the custom visitor function will be ignored.
+Instead, the visitor function is allowed to modify its <em>result</em> function parameter value 
+in-place. The contents of this variable at the end of the traversal will then be the
+results of the TRAVERSAL function.</p>
+<p>Note: The <em>connections</em> function parameter value will contain the edges connected to the 
+vertex only if <em>order</em> was set to <em>preorder-expander</em>. Otherwise, the value of this parameter 
+will be <em>undefined</em>.</p>
+<p>The following custom visitor functions are predefined and can be used by specifying the function
+name in the <em>visitor</em> attribute:</p>
+<ul>
+<li><p><em>&quot;_AQL::HASATTRIBUTESVISITOR&quot;</em>: this visitor will produce an object if it contains the
+attributes specified in <em>data.attributes</em> for each visited vertex. If <em>data.type</em> is <em>&quot;all&quot;</em>,
+then the object will only be returned if all specified attributes are present in the vertex,
+if <em>data.type</em> is <em>&quot;any&quot;</em>, the object will be returned if the vertex contains any of the
+specified attributes. If the optional <em>data.allowNull</em> is set to <code>false</code>, then the object
+will only be returned if an attribute is present <strong>and</strong> does not contain a <code>null</code> value.
+Otherwise an object will be returned already if the attribute is present.</p>
+</li>
+<li><p><em>&quot;_AQL::PROJECTINGVISITOR&quot;</em>: this visitor will produce an object with the attributes 
+specified in <em>data.attributes</em> for each visited vertex. This can be used to create a 
+projection of each visited vertex&apos; document.</p>
+</li>
+<li><p><em>&quot;_AQL::IDVISITOR&quot;</em>: this visitor will return the _id attribute of each visited vertex.</p>
+</li>
+<li><p><em>&quot;_AQL::KEYVISITOR&quot;</em>: this visitor will return the _key attribute of each visited vertex.</p>
+</li>
+<li><p><em>&quot;_AQL::COUNTINGVISITOR&quot;</em>: this visitor will return a single number indicating the number
+of vertices visited.</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><em>visitorReturnsResults</em>: only useful in combination with a custom AQL visitor function. If
+set to <em>true</em>, the data returned by the visitor will be appended to the result. If set to
+<em>false</em>, any return value of the visitor function will be ignored. Instead, the visitor 
+function can modify its <em>result</em> parameter value in-place. At the end of the traversal,
+<em>result</em> is expected to be an array.</p>
+</li>
+<li><p><em>data</em>: only useful in combination with custom AQL visitor or filter functions. This attribute can
+be used to pass arbitrary data into the custom visitor function. The value contained in the
+<em>data</em> attribute will be made available to the <em>visitor</em> and <em>filterVertices</em> functions in the <em>config.data</em>
+attribute.</p>
+</li>
+</ul>
+<p>By default, the result of the TRAVERSAL function is an array of traversed points. Each point 
+is an object consisting of the following attributes:</p>
+<ul>
+<li><em>vertex</em>: The vertex at the traversal point</li>
+<li><em>path</em>: The path history for the traversal point. The path is a document with the
+attributes <em>vertices</em> and <em>edges</em>, which are both arrays. Note that <em>path</em> is only present
+in the result if the <em>paths</em> attribute is set in the <em>options</em></li>
+</ul>
+<p>When using a custom AQL function as a visitor, the result may have a different structure.</p>
+<p><em>Examples</em></p>
+<pre><code>  TRAVERSAL(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, {
+    strategy: &quot;depthfirst&quot;,
+    order: &quot;postorder&quot;,
+    itemOrder: &quot;backward&quot;,
+    maxDepth: 6,
+    paths: true
+  })
+
+  // filtering on specific edges (by specifying example edges)
+  TRAVERSAL(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, {
+    strategy: &quot;breadthfirst&quot;,
+    order: &quot;preorder&quot;,
+    itemOrder: &quot;forward&quot;,
+    followEdges: [ { type: &quot;knows&quot; }, { state: &quot;FL&quot; } ]
+  })
+
+  // filtering on specific edges and vertices
+  TRAVERSAL(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, {
+    strategy: &quot;breadthfirst&quot;,
+    order: &quot;preorder&quot;,
+    itemOrder: &quot;forward&quot;,
+    followEdges: [ { type: &quot;knows&quot; }, { state: &quot;FL&quot; } ],
+    filterVertices: [ { isActive: true }, { isDeleted: false } ],
+    vertexFilterMethod: [ &quot;prune&quot;, &quot;exclude&quot; ]
+  })
+
+  // using user-defined AQL functions for edge and vertex filtering
+  TRAVERSAL(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, {
+    followEdges: &quot;myfunctions::checkedge&quot;,
+    filterVertices: &quot;myfunctions::checkvertex&quot;
+  })
+
+  // to register the custom AQL functions, execute something in the fashion of the 
+  // following commands in arangosh once: 
+  var aqlfunctions = require(&quot;@arangodb/aql/functions&quot;);
+
+  // these are the actual filter functions
+  aqlfunctions.register(&quot;myfunctions::checkedge&quot;, function (config, vertex, edge, path) { 
+    return (edge.type !== &apos;dislikes&apos;); // don&apos;t follow these edges
+  }, false);
+
+  aqlfunctions.register(&quot;myfunctions::checkvertex&quot;, function (config, vertex, path) { 
+    if (vertex.isDeleted || ! vertex.isActive) {
+      return [ &quot;prune&quot;, &quot;exclude&quot; ]; // exclude these and don&apos;t follow them
+    }
+    return [ ]; // include everything else
+  }, false);
+
+
+  // using a custom visitor to return only leaf-nodes
+  TRAVERSAL(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, {
+    visitor: &quot;myfunctions::leafnodevisitor&quot;,
+    visitorReturnsResults: true,
+    order: &quot;preorder-expander&quot;
+  })
+
+  // to register the custom AQL function visitor that only returns leaf nodes, run
+  // the following commands in arangosh once:
+  var aqlfunctions = require(&quot;@arangodb/aql/functions&quot;);
+
+  aqlfunctions.register(&quot;myfunctions::leafnodevisitor&quot;, function (config, vertex, edge, path, connections) { 
+    if (connected &amp;&amp; connected.length === 0) {
+      // will put the vertex into the result if it does not have any further connections
+      return vertex;
+    }
+  }, false);
+
+
+  // using a custom visitor to only count leaf-nodes
+  TRAVERSAL(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, {
+    visitor: &quot;myfunctions::countingleafnodevisitor&quot;,
+    visitorReturnsResults: false,
+    order: &quot;preorder-expander&quot;
+  })
+
+  // registering the custom counting leaf node visitor function
+  aqlfunctions.register(&quot;myfunctions::countingleafnodevisitor&quot;, function (config, vertex, edge, path, connections) { 
+    if (result.length === 0) {
+      // first call, push 0 into the result
+      result.push(0);
+    }
+
+    if (connected &amp;&amp; connected.length === 0) {
+      // found a leaf node. now increase our counter
+      result[0]++;
+    }
+  }, false);
+
+
+  // using one of the predefined visitor functions
+  TRAVERSAL(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, {
+    visitor: &quot;_AQL::COUNTINGVISITOR&quot;
+  })
+
+
+  // passing data into a visitor
+  TRAVERSAL(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, {
+    visitor: &quot;_AQL::PROJECTINGVISITOR&quot;,
+    data: { attributes: [ &quot;_id&quot;, &quot;_key&quot;, &quot;name&quot; ] }
+  })
+</code></pre><p><a name="traversal_tree"></a></p>
+<h3 id="traversal-tree">Traversal Tree</h3>
+<p><em>TRAVERSAL_TREE(vertexcollection, edgecollection, startVertex, direction, connectName, options)</em>: 
+Traverses the graph described by <em>vertexcollection</em> and <em>edgecollection</em>, 
+starting at the vertex identified by id <em>startVertex</em> and creates a hierarchical result.
+Vertex connectivity is establish by inserted an attribute which has the name specified via
+the <em>connectName</em> parameter. Connected vertices will be placed in this attribute as an 
+array.</p>
+<p>The <em>options</em> are the same as for the <em>TRAVERSAL</em> function, except that the result will
+be set up in a way that resembles a depth-first, pre-order visitation result. Thus, the
+<em>strategy</em> and <em>order</em> attributes of the <em>options</em> attribute will be ignored.</p>
+<p><em>Examples</em></p>
+<pre><code>  TRAVERSAL_TREE(friends, friendrelations, &quot;friends/john&quot;, &quot;outbound&quot;, &quot;likes&quot;, { 
+    itemOrder: &quot;forward&quot;
+  })
+</code></pre><p><a name="shortest_path"></a></p>
+<h3 id="shortest-path">Shortest Path</h3>
+<p><em>SHORTEST_PATH(vertexcollection, edgecollection, startVertex, endVertex, direction, options)</em>: 
+Determines the first shortest path from the <em>startVertex</em> to the <em>endVertex</em>.
+Both vertices must be present in the vertex collection specified in <em>vertexcollection</em>,
+and any connecting edges must be present in the collection specified by <em>edgecollection</em>.
+Vertex connectivity is specified by the <em>direction</em> parameter:</p>
+<ul>
+<li><em>&quot;outbound&quot;</em>: Vertices are connected in <em>_from</em> to <em>_to</em> order</li>
+<li><em>&quot;inbound&quot;</em>: Vertices are connected in <em>_to</em> to <em>_from</em> order</li>
+<li><em>&quot;any&quot;</em>: Vertices are connected in both <em>_to</em> to <em>_from</em> and in 
+<em>_from</em> to <em>_to</em> order
+The search is aborted when a shortest path is found. Only the first shortest path will be
+returned. Any vertex will be visited at most once by the search.</li>
+</ul>
+<p>Additional options for the shortest path can be provided via the <em>options</em> document:</p>
+<ul>
+<li><em>maxIterations</em>: Maximum number of iterations in the search. This number can be
+set to bound long-running searches. When a search performs as many iterations as the 
+<em>maxIterations</em> value, the search will abort with an error. If <em>maxIterations</em> is not 
+set, a server-defined value may be used.</li>
+<li><em>includeData</em>: Defines if the documents found on the path should be extracted or not.
+   Default <em>false</em>, will only return the <em>_id</em> values.</li>
+<li><p><em>distance</em>: a custom function with the following signature:</p>
+<pre><code>function (config, vertex1, vertex2, edge)
+</code></pre><p>Both vertices and the connecting edge will be passed into the function. The function
+is expected to return a numeric value that expresses the distance between the two
+vertices. Higher values will mean higher distances, giving the connection a lower
+priority in further analysis.
+If this options is not specified all vertices are assumed to have the
+same distance (1) to each other. If a function name is specified, it must have been
+registered as a regular user-defined AQL function.</p>
+</li>
+<li><p><em>weight</em>: The name of a attribute weight attribute.
+  If so this specific attribute will be examined on every edge on the path and will
+  be used as a distance. In order to let this work properly you have to make sure
+  to store only numerical values in this attribute. If the attribute is not present
+  on any edge the value given in the <em>defaultWeight</em> option is used as a replacement.
+  Using a weight attribute is only allowed in combination with <em>defaultWeight</em>.</p>
+</li>
+<li><p><em>defaultWeight</em>: Only useful in combination with an attribute name given in <em>weight</em>.
+  If any edge does not have the attribute required for <em>weight</em> the numeric value
+  defined by this option is used.</p>
+</li>
+<li><p><em>followEdges</em>: An optional array of example edge documents that the search will
+expand into. If no examples are given, the search will follow all edges. If one
+or many edge examples are given, the search will only follow an edge if it matches
+at least one of the specified examples. <em>followEdges</em> can also be a string with the
+name of an AQL user-defined function that should be responsible for checking if an
+edge should be followed. In this case, the AQL function will is expected to have the
+following signature:</p>
+<pre><code>function (config, vertex, edge, path)
+</code></pre><p>The function is expected to return a boolean value. If it returns <em>true</em>, the edge
+will be followed. If <em>false</em> is returned, the edge will be ignored.</p>
+</li>
+<li><p><em>filterVertices</em>: An optional array of example vertex documents that the search will
+treat specially. If no examples are given, the search will handle all encountered
+vertices equally. If one or many vertex examples are given, the search will exclude
+the vertex from the result and/or not descend into it. Optionally, <em>filterVertices</em> can 
+be a string containing the name of a user-defined AQL function that should be responsible 
+for filtering. If so, the custom AQL function is expected to have the following signature:</p>
+<pre><code>function (config, vertex, path)
+</code></pre><p>If a custom AQL function is used, it is expected to return one of the following values:</p>
+<ul>
+<li><em>[ ]</em>: Include the vertex in the result and descend into its connected edges</li>
+<li><em>[ &quot;prune&quot; ]</em>: Will include the vertex in the result but not descend into its connected edges</li>
+<li><em>[ &quot;exclude&quot; ]</em>: Will not include the vertex in the result but descend into its connected edges</li>
+<li><em>[ &quot;prune&quot;, &quot;exclude&quot; ]</em>: Will completely ignore the vertex and its connected edges</li>
+</ul>
+</li>
+<li><p><em>visitor</em>: If specified, must be a string containing the name of a custom AQL function that
+will be called whenever the traversal visits a vertex. The custom AQL function is expected 
+to have the following signature:</p>
+<pre><code>function (config, result, vertex, path, connections)
+</code></pre><p>There are two modes for custom AQL visitor functions, depending on the value of the option
+<em>visitorReturnsResults</em>. If it is set to <em>true</em>, then any value returned by the visitor will
+be appended to the list of results of the TRAVERSAL function. If <em>visitorReturnsResults</em> is
+set to <em>false</em>, then any value returned by the custom visitor function will be ignored.
+Instead, the visitor function is allowed to modify its <em>result</em> function parameter value 
+in-place. The contents of this variable at the end of the traversal will then be the
+results of the TRAVERSAL function.</p>
+<p>Note: The <em>connections</em> function parameter value will contain the edges connected to the 
+vertex only if <em>order</em> was set to <em>preorder-expander</em>. Otherwise, the value of this parameter 
+will be <em>undefined</em>.</p>
+</li>
+<li><p><em>visitorReturnsResults</em>: only useful in combination with a custom AQL visitor function. If
+set to <em>true</em>, the data returned by the visitor will be appended to the result. If set to
+<em>false</em>, any return value of the visitor function will be ignored. Instead, the visitor 
+function can modify its <em>result</em> parameter value in-place. At the end of the traversal,
+<em>result</em> is expected to be an array.</p>
+</li>
+<li><p><em>data</em>: only useful in combination with custom AQL visitor or filter functions. This attribute can
+be used to pass arbitrary data into the custom visitor function. The value contained in the
+<em>data</em> attribute will be made available to the <em>visitor</em> and <em>filterVertices</em> functions in the <em>config.data</em>
+attribute.</p>
+</li>
+</ul>
+<p>By default, the result of the SHORTEST_PATH function is an object consisting of the following attributes:</p>
+<ul>
+<li><em>vertices</em>: The list of all vertices encountered on the path.</li>
+<li><em>edges</em>: The list of all edges encountered on the path.</li>
+<li><em>distance</em>: The total distance needed on this path. Using the given distance computation.</li>
+</ul>
+<p>When using a custom AQL function as a visitor, the result may have a different structure.</p>
+<p><em>Examples</em></p>
+<pre><code>  SHORTEST_PATH(cities, motorways, &quot;cities/CGN&quot;, &quot;cities/MUC&quot;, &quot;outbound&quot;)
+
+  // using a user-defined distance function
+  SHORTEST_PATH(cities, motorways, &quot;cities/CGN&quot;, &quot;cities/MUC&quot;, &quot;outbound&quot;, {
+    paths: true,
+    distance: &quot;myfunctions::citydistance&quot;
+  })
+
+  // using a user-defined function to filter edges
+  SHORTEST_PATH(cities, motorways, &quot;cities/CGN&quot;, &quot;cities/MUC&quot;, &quot;outbound&quot;, {
+    paths: true,
+    followEdges: &quot;myfunctions::checkedge&quot;
+  })
+
+  // to register a custom AQL distance function, execute something in the fashion of the 
+  // following commands in arangosh once: 
+  var aqlfunctions = require(&quot;@arangodb/aql/functions&quot;);
+
+  // this is the actual distance function
+  aqlfunctions.register(&quot;myfunctions::distance&quot;, function (config, vertex1, vertex2, edge) { 
+    return Math.sqrt(Math.pow(vertex1.x - vertex2.x) + Math.pow(vertex1.y - vertex2.y));
+  }, false);
+
+  // this is the filter function for the edges
+  aqlfunctions.register(&quot;myfunctions::checkedge&quot;, function (config, vertex, edge, path) { 
+    return (edge.underConstruction === false); // don&apos;t follow these edges
+  }, false);
+</code></pre><p><a name="other_functions"></a></p>
+<h2 id="other-functions">Other functions</h2>
+<p><a name="paths"></a></p>
+<h3 id="paths">Paths</h3>
+<p><em>PATHS(vertexcollection, edgecollection, direction, options)</em>: 
+returns an array of paths through the graph defined by the nodes in the collection 
+<em>vertexcollection</em> and edges in the collection <em>edgecollection</em>. For each vertex
+in <em>vertexcollection</em>, it will determine the paths through the graph depending on the
+value of <em>direction</em>:</p>
+<ul>
+<li><em>&quot;outbound&quot;</em>: Follow all paths that start at the current vertex and lead to another vertex</li>
+<li><em>&quot;inbound&quot;</em>: Follow all paths that lead from another vertex to the current vertex</li>
+<li><em>&quot;any&quot;</em>: Combination of <em>&quot;outbound&quot;</em> and <em>&quot;inbound&quot;</em>
+The default value for <em>direction</em> is <em>&quot;outbound&quot;</em>.
+If specified, <em>options</em> must be a JavaScript object with the following optional attributes:</li>
+<li><em>minLength</em>: specifies the minimum length of the paths to be returned. The default is 0.</li>
+<li><em>maxLength</em>: specifies the maximum length of the paths to be returned. The default is 10.</li>
+<li><em>followcycles</em>: if true, cyclic paths will be followed as well. This is turned off by
+default.</li>
+</ul>
+<p>The result of the function is an array of paths. Paths of length 0 will also be returned. Each 
+path is a document consisting of the following attributes:</p>
+<ul>
+<li><em>vertices</em>: array of vertices visited along the path</li>
+<li><em>edges</em>: array of edges visited along the path (may be empty)</li>
+<li><em>source</em>: start vertex of path</li>
+<li><em>destination</em>: destination vertex of path</li>
+</ul>
+<p><em>Examples</em></p>
+<pre><code>  PATHS(friends, friendrelations, &quot;outbound&quot;)
+
+  FOR p IN PATHS(friends, friendrelations, &quot;outbound&quot;, { minLength: 2, maxLength: 2 }) 
+    FILTER p.source._id == &quot;users/123456&quot;
+    RETURN p.vertices[*].name
+</code></pre><p><a name="graph_consistency"></a></p>
+<h2 id="graph-consistency">Graph consistency</h2>
+<p>When <a href="../../Manual/Graphs/GeneralGraphs/Management.html#remove-a-vertex">using the graph management functions to remove vertices</a>
+you have the guaranty that all referencing edges are also removed.
+However, if you use document features alone to remove vertices, no edge collections will be adjusted.
+This results in an edge with its  <code>_from</code> or <code>_to</code> attribute referring to vanished vertices.</p>
+<p>Now we query such a graph using the <a href="#neighbors">neighbors</a> or the <a href="#shortest-path">shortest path</a> functions.
+If <em>includeData</em> wasn&apos;t enabled, the referred missing vertex will not be queried, and thus the result
+set will contain the referral to this missing vertex.
+If <em>includeData</em> is enabled, these missing vertices will be touched by the query.</p>
+<p>In order to keep the result set consistent between <em>includeData</em> enabled or disabled, a <code>null</code> will be padded to fill the gap for each missing vertex.</p>
+<p><a name="performance_notes"></a></p>
+<h2 id="performance-notes">Performance notes</h2>
+<p>When using any of AQL&apos;s general purpose traversal functions, please make sure that the graph 
+does not contain cycles, or that you at least specify some maximum depth or uniqueness 
+criteria for a traversal. In contrast <a href="Traversals.html">AQL graph traversals</a> won&apos;t trap on cycles.</p>
+<p>If no bounds are set, a traversal may run into an endless loop in a cyclic graph or sub-graph.
+Even in a non-cyclic graph, traversing far into the graph may consume a lot of processing
+time and memory to create the result set.</p>
+<p>By default, traversals are restricted to process a limited amount of vertices only and then
+abort. This is to protect the user from unintentionally running a traversal that will not 
+abort or consume lots of resources. The maximum number of vertices that a traversal will
+process is specified by the optional <em>maxIterations</em> configuration value. If the number of
+vertices processed in a traversal reaches this cap will, the traversal will abort and throw
+a <em>too many iterations</em> exception.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Graphs/Operations.html" class="navigation navigation-prev " aria-label="Previous page: Named Operations"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Advanced/index.html" class="navigation navigation-next " aria-label="Next page: Advanced Features"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+</html>

@@ -67,6 +67,6 @@ val="$1"
 if [ -z "${val}" ]; then
 	proc	
 elif [ "${val}" == "c" ]; then
-	proc
 	clean
+  proc
 fi

@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Arangoimp | ArangoDB 2.8.2 Documentation</title>
+        <title>Arangoimp | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="19.4" data-chapter-title="Arangoimp" data-filepath="HttpBulkImports/Arangoimp.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="19.4" data-chapter-title="Arangoimp" data-filepath="HttpBulkImports/Arangoimp.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4330,6 +4330,17 @@ any value in this attribute is ignored on import.</li>
 <p>If you import values into <em>_key</em>, you should make sure they are valid and unique.</p>
 <p>When importing data into an edge collection, you should make sure that all import
 documents can <em>_from</em> and <em>_to</em> and that their values point to existing documents.</p>
+<p>To avoid specifying complete document ids (consisting of collection names and document
+keys) for <em>_from</em> and <em>_to</em> values, there are the options <em>--from-collection-prefix</em> and
+<em>--to-collection-prefix</em>. If specified, these values will be automatically prepended
+to each value in <em>_from</em> (or <em>_to</em> resp.). This allows specifying only document keys
+inside <em>_from</em> and/or <em>_to</em>.</p>
+<p><em>Example</em></p>
+<pre><code>&gt; arangoimp --from-collection-prefix users --to-collection-prefix products ...
+</code></pre><p>Importing the following document will then create an edge between <em>users/1234</em> and
+<em>products/4321</em>:</p>
+<pre><code class="lang-js">{ <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;1234&quot;</span>, <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;4321&quot;</span>, <span class="hljs-string">&quot;desc&quot;</span> : <span class="hljs-string">&quot;users/1234 is connected to products/4321&quot;</span> }
+</code></pre>
 
                     
                     </section>
@@ -4385,5 +4396,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

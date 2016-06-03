@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Working with | ArangoDB 2.8.2 Documentation</title>
+        <title>Working with | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="18.3.2" data-chapter-title="Working with" data-filepath="HttpDocument/WorkingWithDocuments.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="18.3.2" data-chapter-title="Working with" data-filepath="HttpDocument/WorkingWithDocuments.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4063,11 +4063,15 @@
 <!-- arangod/RestHandler/RestDocumentHandler.cpp -->
 <h3 id="read-document">Read document</h3>
 <p> reads a single document</p>
-<p><code>GET /_api/document/{document-handle}</code></p>
+<p><code>GET /_api/document/{collection-name}/{document-key}</code></p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-The handle of the document.</li>
+<li><p><em>collection-name</em> (required):
+The name of the collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the document.</p>
+</li>
 </ul>
 <p><strong>Header Parameters</strong></p>
 <ul>
@@ -4111,27 +4115,27 @@ attributes <em>_id</em> and <em>_key</em> will be returned.</p>
 <div id="RestDocumentHandlerReadDocument_container">
 <div id="RestDocumentHandlerReadDocument_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl --dump - http://localhost:8529/_api/document/products/729586808
+shell&gt; curl --dump - http://localhost:8529/_api/document/products/731640040
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;729586808&quot;</span>
+etag: <span class="hljs-string">&quot;731640040&quot;</span>
 
 { 
   <span class="hljs-string">&quot;hello&quot;</span> : <span class="hljs-string">&quot;world&quot;</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/729586808&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;729586808&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;729586808&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/731640040&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;731640040&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;731640040&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerReadDocument_short" onclick="$(&apos;#RestDocumentHandlerReadDocument_short&apos;).hide(); $(&apos;#RestDocumentHandlerReadDocument_long&apos;).show();">
 <pre>
-shell&gt; curl --dump - http://localhost:8529/_api/document/products/729586808
+shell&gt; curl --dump - http://localhost:8529/_api/document/products/731640040
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;729586808&quot;</span>
+etag: <span class="hljs-string">&quot;731640040&quot;</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4141,7 +4145,7 @@ etag: <span class="hljs-string">&quot;729586808&quot;</span>
 <div id="RestDocumentHandlerReadDocumentIfNoneMatch_container">
 <div id="RestDocumentHandlerReadDocumentIfNoneMatch_long">
 <pre>
-shell&gt; curl --header &apos;If-None-Match: &quot;733256824&quot;&apos; --dump - http://localhost:8529/_api/document/products/733256824
+shell&gt; curl --header &apos;If-None-Match: &quot;735310056&quot;&apos; --dump - http://localhost:8529/_api/document/products/735310056
 
 </pre>
 </div>
@@ -4256,14 +4260,14 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;728013944&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">728013944</span>
+etag: <span class="hljs-string">&quot;730067176&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">730067176</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/728013944&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;728013944&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;728013944&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/730067176&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;730067176&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;730067176&quot;</span> 
 }
 </pre>
 </div>
@@ -4275,8 +4279,8 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;728013944&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">728013944</span>
+etag: <span class="hljs-string">&quot;730067176&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">730067176</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4293,14 +4297,14 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;727489656&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">727489656</span>
+etag: <span class="hljs-string">&quot;729542888&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">729542888</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/727489656&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;727489656&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;727489656&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/729542888&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;729542888&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;729542888&quot;</span> 
 }
 </pre>
 </div>
@@ -4312,8 +4316,8 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;727489656&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">727489656</span>
+etag: <span class="hljs-string">&quot;729542888&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">729542888</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4330,14 +4334,14 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;729062520&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">729062520</span>
+etag: <span class="hljs-string">&quot;731115752&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">731115752</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/729062520&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;729062520&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;729062520&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/731115752&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;731115752&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;731115752&quot;</span> 
 }
 </pre>
 </div>
@@ -4349,8 +4353,8 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">201</span> Created
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;729062520&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">729062520</span>
+etag: <span class="hljs-string">&quot;731115752&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">731115752</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4366,14 +4370,14 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;728538232&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">728538232</span>
+etag: <span class="hljs-string">&quot;730591464&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">730591464</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/728538232&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;728538232&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;728538232&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/730591464&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;730591464&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;730591464&quot;</span> 
 }
 </pre>
 </div>
@@ -4385,8 +4389,8 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;728538232&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">728538232</span>
+etag: <span class="hljs-string">&quot;730591464&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">730591464</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4459,14 +4463,18 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 <!-- arangod/RestHandler/RestDocumentHandler.cpp -->
 <h3 id="replace-document">Replace document</h3>
 <p> replaces a document</p>
-<p><code>PUT /_api/document/{document-handle}</code></p>
+<p><code>PUT /_api/document/{collection-name}/{document-key}</code></p>
 <p><strong>Post Body</strong>
  <em>document</em> (required):
 A JSON representation of the new document.</p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-The handle of the document.</li>
+<li><p><em>collection-name</em> (required):
+The name of the collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the document.</p>
+</li>
 </ul>
 <p><strong>Query Parameters</strong></p>
 <ul>
@@ -4492,7 +4500,8 @@ using the <em>if-match</em> HTTP header.</li>
 If the document exists and can be updated, then a <em>HTTP 201</em> is returned
 and the &quot;ETag&quot; header field contains the new revision of the document.</p>
 <p>If the new document passed in the body of the request contains the
-<em>document-handle</em> in the attribute <em>_id</em> and the revision in <em>_rev</em>,
+<em>document-handle</em> in the attribute <em>_id</em> and the revision
+in <em>_rev</em>,
 these attributes will be ignored. Only the URI and the &quot;ETag&quot; header are
 relevant in order to avoid confusion when using proxies.</p>
 <p>Optionally, the query parameter <em>waitForSync</em> can be used to force
@@ -4528,7 +4537,7 @@ document revision id as returned in the <em>_rev</em> attribute of a document or
 by an HTTP <em>etag</em> header.</p>
 <p>For example, to conditionally replace a document based on a specific revision
 id, you can use the following request:</p>
-<p><code>PUT /_api/document/document-handle?rev=etag</code></p>
+<p><code>PUT /_api/document/collection-name/document-key?rev=etag</code></p>
 <p>If a target revision id is provided in the request (e.g. via the <em>etag</em> value
 in the <em>rev</em> URL query parameter above), ArangoDB will check that
 the revision id of the document found in the database is equal to the target
@@ -4536,7 +4545,7 @@ revision id provided in the request. If there is a mismatch between the revision
 id, then by default a <em>HTTP 412</em> conflict is returned and no replacement is
 performed.</p>
 <p>The conditional update behavior can be overridden with the <em>policy</em> URL query parameter:</p>
-<p><code>PUT /_api/document/document-handle?policy=policy</code></p>
+<p><code>PUT /_api/document/collection-name/document-key?policy=policy</code></p>
 <p>If <em>policy</em> is set to <em>error</em>, then the behavior is as before: replacements
 will fail if the revision id found in the database does not match the target
 revision id specified in the request.</p>
@@ -4572,33 +4581,33 @@ attributes <em>_id</em> and <em>_key</em> will be returned.</p>
 <div id="RestDocumentHandlerUpdateDocument_container">
 <div id="RestDocumentHandlerUpdateDocument_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/733846648 &lt;&lt;EOF
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/735899880 &lt;&lt;EOF
 {&quot;Hello&quot;: &quot;you&quot;}
 EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;734174328&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">733846648</span>
+etag: <span class="hljs-string">&quot;736227560&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">735899880</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/733846648&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;734174328&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;733846648&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/735899880&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;736227560&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;735899880&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerUpdateDocument_short" onclick="$(&apos;#RestDocumentHandlerUpdateDocument_short&apos;).hide(); $(&apos;#RestDocumentHandlerUpdateDocument_long&apos;).show();">
 <pre>
-shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/733846648 &lt;&lt;EOF
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/735899880 &lt;&lt;EOF
 {&quot;Hello&quot;: &quot;you&quot;}
 EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;734174328&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">733846648</span>
+etag: <span class="hljs-string">&quot;736227560&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">735899880</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4608,7 +4617,7 @@ location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-b
 <div id="RestDocumentHandlerUpdateDocumentUnknownHandle_container">
 <div id="RestDocumentHandlerUpdateDocumentUnknownHandle_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/738040952 &lt;&lt;EOF
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/740094184 &lt;&lt;EOF
 {}
 EOF
 
@@ -4625,7 +4634,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 </div>
 <div id="RestDocumentHandlerUpdateDocumentUnknownHandle_short" onclick="$(&apos;#RestDocumentHandlerUpdateDocumentUnknownHandle_short&apos;).hide(); $(&apos;#RestDocumentHandlerUpdateDocumentUnknownHandle_long&apos;).show();">
 <pre>
-shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/738040952 &lt;&lt;EOF
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/740094184 &lt;&lt;EOF
 {}
 EOF
 
@@ -4640,34 +4649,34 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 <div id="RestDocumentHandlerUpdateDocumentIfMatchOther_container">
 <div id="RestDocumentHandlerUpdateDocumentIfMatchOther_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X PUT --header &apos;If-Match: &quot;735026296&quot;&apos; --data-binary @- --dump - http://localhost:8529/_api/document/products/734698616 &lt;&lt;EOF
+shell&gt; curl -X PUT --header &apos;If-Match: &quot;737079528&quot;&apos; --data-binary @- --dump - http://localhost:8529/_api/document/products/736751848 &lt;&lt;EOF
 {&quot;other&quot;:&quot;content&quot;}
 EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">412</span> Precondition Failed
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;734698616&quot;</span>
+etag: <span class="hljs-string">&quot;736751848&quot;</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
   <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">412</span>, 
   <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">1200</span>, 
   <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;precondition failed&quot;</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/734698616&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;734698616&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;734698616&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/736751848&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;736751848&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;736751848&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerUpdateDocumentIfMatchOther_short" onclick="$(&apos;#RestDocumentHandlerUpdateDocumentIfMatchOther_short&apos;).hide(); $(&apos;#RestDocumentHandlerUpdateDocumentIfMatchOther_long&apos;).show();">
 <pre>
-shell&gt; curl -X PUT --header &apos;If-Match: &quot;735026296&quot;&apos; --data-binary @- --dump - http://localhost:8529/_api/document/products/734698616 &lt;&lt;EOF
+shell&gt; curl -X PUT --header &apos;If-Match: &quot;737079528&quot;&apos; --data-binary @- --dump - http://localhost:8529/_api/document/products/736751848 &lt;&lt;EOF
 {&quot;other&quot;:&quot;content&quot;}
 EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">412</span> Precondition Failed
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;734698616&quot;</span>
+etag: <span class="hljs-string">&quot;736751848&quot;</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4677,33 +4686,33 @@ etag: <span class="hljs-string">&quot;734698616&quot;</span>
 <div id="RestDocumentHandlerUpdateDocumentIfMatchOtherLastWriteWins_container">
 <div id="RestDocumentHandlerUpdateDocumentIfMatchOtherLastWriteWins_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X PUT --header &apos;If-Match: &quot;736140408&quot;&apos; --data-binary @- --dump - http://localhost:8529/_api/document/products/735812728?policy=last &lt;&lt;EOF
+shell&gt; curl -X PUT --header &apos;If-Match: &quot;738193640&quot;&apos; --data-binary @- --dump - http://localhost:8529/_api/document/products/737865960?policy=last &lt;&lt;EOF
 {}
 EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;736402552&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">735812728</span>
+etag: <span class="hljs-string">&quot;738455784&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">737865960</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/735812728&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;736402552&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;735812728&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/737865960&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;738455784&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;737865960&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerUpdateDocumentIfMatchOtherLastWriteWins_short" onclick="$(&apos;#RestDocumentHandlerUpdateDocumentIfMatchOtherLastWriteWins_short&apos;).hide(); $(&apos;#RestDocumentHandlerUpdateDocumentIfMatchOtherLastWriteWins_long&apos;).show();">
 <pre>
-shell&gt; curl -X PUT --header &apos;If-Match: &quot;736140408&quot;&apos; --data-binary @- --dump - http://localhost:8529/_api/document/products/735812728?policy=last &lt;&lt;EOF
+shell&gt; curl -X PUT --header &apos;If-Match: &quot;738193640&quot;&apos; --data-binary @- --dump - http://localhost:8529/_api/document/products/737865960?policy=last &lt;&lt;EOF
 {}
 EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;736402552&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">735812728</span>
+etag: <span class="hljs-string">&quot;738455784&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">737865960</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4713,34 +4722,34 @@ location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-b
 <div id="RestDocumentHandlerUpdateDocumentRevOther_container">
 <div id="RestDocumentHandlerUpdateDocumentRevOther_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/736926840?rev=737254520 &lt;&lt;EOF
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/738980072?rev=739307752 &lt;&lt;EOF
 {&quot;other&quot;:&quot;content&quot;}
 EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">412</span> Precondition Failed
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;736926840&quot;</span>
+etag: <span class="hljs-string">&quot;738980072&quot;</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
   <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">412</span>, 
   <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">1200</span>, 
   <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;precondition failed&quot;</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/736926840&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;736926840&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;736926840&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/738980072&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;738980072&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;738980072&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerUpdateDocumentRevOther_short" onclick="$(&apos;#RestDocumentHandlerUpdateDocumentRevOther_short&apos;).hide(); $(&apos;#RestDocumentHandlerUpdateDocumentRevOther_long&apos;).show();">
 <pre>
-shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/736926840?rev=737254520 &lt;&lt;EOF
+shell&gt; curl -X PUT --data-binary @- --dump - http://localhost:8529/_api/document/products/738980072?rev=739307752 &lt;&lt;EOF
 {&quot;other&quot;:&quot;content&quot;}
 EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">412</span> Precondition Failed
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;736926840&quot;</span>
+etag: <span class="hljs-string">&quot;738980072&quot;</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4749,14 +4758,18 @@ etag: <span class="hljs-string">&quot;736926840&quot;</span>
 <!-- arangod/RestHandler/RestDocumentHandler.cpp -->
 <h3 id="patch-document">Patch document</h3>
 <p> updates a document</p>
-<p><code>PATCH /_api/document/{document-handle}</code></p>
+<p><code>PATCH /_api/document/{collection-name}/{document-key}</code></p>
 <p><strong>Post Body</strong>
  <em>document</em> (required):
 A JSON representation of the document update.</p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-The handle of the document.</li>
+<li><p><em>collection-name</em> (required):
+The name of the collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the document.</p>
+</li>
 </ul>
 <p><strong>Query Parameters</strong></p>
 <ul>
@@ -4849,7 +4862,7 @@ attributes <em>_id</em> and <em>_key</em> will be returned.</p>
 <div id="RestDocumentHandlerPatchDocument_container">
 <div id="RestDocumentHandlerPatchDocument_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/723688568 &lt;&lt;EOF
+shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/725741800 &lt;&lt;EOF
 { 
   <span class="hljs-string">&quot;hello&quot;</span> : <span class="hljs-string">&quot;world&quot;</span> 
 }
@@ -4857,16 +4870,16 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;724016248&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">723688568</span>
+etag: <span class="hljs-string">&quot;726069480&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">725741800</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/723688568&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;724016248&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;723688568&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725741800&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;726069480&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725741800&quot;</span> 
 }
-shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/723688568 &lt;&lt;EOF
+shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/725741800 &lt;&lt;EOF
 { 
   <span class="hljs-string">&quot;numbers&quot;</span> : { 
     <span class="hljs-string">&quot;one&quot;</span> : <span class="hljs-number">1</span>, 
@@ -4879,20 +4892,20 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;724606072&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">723688568</span>
+etag: <span class="hljs-string">&quot;726659304&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">725741800</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/723688568&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;724606072&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;723688568&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725741800&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;726659304&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725741800&quot;</span> 
 }
-shell&gt; curl --dump - http://localhost:8529/_api/document/products/723688568
+shell&gt; curl --dump - http://localhost:8529/_api/document/products/725741800
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;724606072&quot;</span>
+etag: <span class="hljs-string">&quot;726659304&quot;</span>
 
 { 
   <span class="hljs-string">&quot;one&quot;</span> : <span class="hljs-string">&quot;world&quot;</span>, 
@@ -4903,11 +4916,11 @@ etag: <span class="hljs-string">&quot;724606072&quot;</span>
     <span class="hljs-string">&quot;two&quot;</span> : <span class="hljs-number">2</span>, 
     <span class="hljs-string">&quot;three&quot;</span> : <span class="hljs-number">3</span> 
   }, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/723688568&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;724606072&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;723688568&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725741800&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;726659304&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725741800&quot;</span> 
 }
-shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/723688568?keepNull=false &lt;&lt;EOF
+shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/725741800?keepNull=false &lt;&lt;EOF
 { 
   <span class="hljs-string">&quot;hello&quot;</span> : <span class="hljs-literal">null</span>, 
   <span class="hljs-string">&quot;numbers&quot;</span> : { 
@@ -4918,20 +4931,20 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;725064824&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">723688568</span>
+etag: <span class="hljs-string">&quot;727118056&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">725741800</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/723688568&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;725064824&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;723688568&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725741800&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;727118056&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725741800&quot;</span> 
 }
-shell&gt; curl --dump - http://localhost:8529/_api/document/products/723688568
+shell&gt; curl --dump - http://localhost:8529/_api/document/products/725741800
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;725064824&quot;</span>
+etag: <span class="hljs-string">&quot;727118056&quot;</span>
 
 { 
   <span class="hljs-string">&quot;one&quot;</span> : <span class="hljs-string">&quot;world&quot;</span>, 
@@ -4942,15 +4955,15 @@ etag: <span class="hljs-string">&quot;725064824&quot;</span>
     <span class="hljs-string">&quot;three&quot;</span> : <span class="hljs-number">3</span>, 
     <span class="hljs-string">&quot;four&quot;</span> : <span class="hljs-number">4</span> 
   }, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/723688568&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;725064824&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;723688568&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725741800&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;727118056&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725741800&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerPatchDocument_short" onclick="$(&apos;#RestDocumentHandlerPatchDocument_short&apos;).hide(); $(&apos;#RestDocumentHandlerPatchDocument_long&apos;).show();">
 <pre>
-shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/723688568 &lt;&lt;EOF
+shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/725741800 &lt;&lt;EOF
 { 
   <span class="hljs-string">&quot;hello&quot;</span> : <span class="hljs-string">&quot;world&quot;</span> 
 }
@@ -4958,8 +4971,8 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;724016248&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">723688568</span>
+etag: <span class="hljs-string">&quot;726069480&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">725741800</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4969,11 +4982,11 @@ location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-b
 <div id="RestDocumentHandlerPatchDocumentMerge_container">
 <div id="RestDocumentHandlerPatchDocumentMerge_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl --dump - http://localhost:8529/_api/document/products/725916792
+shell&gt; curl --dump - http://localhost:8529/_api/document/products/727970024
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;725916792&quot;</span>
+etag: <span class="hljs-string">&quot;727970024&quot;</span>
 
 { 
   <span class="hljs-string">&quot;inhabitants&quot;</span> : { 
@@ -4981,11 +4994,11 @@ etag: <span class="hljs-string">&quot;725916792&quot;</span>
     <span class="hljs-string">&quot;india&quot;</span> : <span class="hljs-number">1263590000</span>, 
     <span class="hljs-string">&quot;usa&quot;</span> : <span class="hljs-number">319220000</span> 
   }, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725916792&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;725916792&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725916792&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/727970024&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;727970024&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;727970024&quot;</span> 
 }
-shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/725916792?mergeObjects=true &lt;&lt;EOF
+shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/727970024?mergeObjects=true &lt;&lt;EOF
 { 
   <span class="hljs-string">&quot;inhabitants&quot;</span> : { 
     <span class="hljs-string">&quot;indonesia&quot;</span> : <span class="hljs-number">252164800</span>, 
@@ -4994,11 +5007,11 @@ shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/doc
 }
 EOF
 
-shell&gt; curl --dump - http://localhost:8529/_api/document/products/725916792
+shell&gt; curl --dump - http://localhost:8529/_api/document/products/727970024
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;726441080&quot;</span>
+etag: <span class="hljs-string">&quot;728494312&quot;</span>
 
 { 
   <span class="hljs-string">&quot;inhabitants&quot;</span> : { 
@@ -5008,11 +5021,11 @@ etag: <span class="hljs-string">&quot;726441080&quot;</span>
     <span class="hljs-string">&quot;indonesia&quot;</span> : <span class="hljs-number">252164800</span>, 
     <span class="hljs-string">&quot;brazil&quot;</span> : <span class="hljs-number">203553000</span> 
   }, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725916792&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;726441080&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725916792&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/727970024&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;728494312&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;727970024&quot;</span> 
 }
-shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/725916792?mergeObjects=false &lt;&lt;EOF
+shell&gt; curl -X PATCH --data-binary @- --dump - http://localhost:8529/_api/document/products/727970024?mergeObjects=false &lt;&lt;EOF
 { 
   <span class="hljs-string">&quot;inhabitants&quot;</span> : { 
     <span class="hljs-string">&quot;pakistan&quot;</span> : <span class="hljs-number">188346000</span> 
@@ -5022,38 +5035,38 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;726899832&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">725916792</span>
+etag: <span class="hljs-string">&quot;728953064&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/<span class="hljs-built_in">document</span>/products/<span class="hljs-number">727970024</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725916792&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;726899832&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725916792&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/727970024&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;728953064&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;727970024&quot;</span> 
 }
-shell&gt; curl --dump - http://localhost:8529/_api/document/products/725916792
+shell&gt; curl --dump - http://localhost:8529/_api/document/products/727970024
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;726899832&quot;</span>
+etag: <span class="hljs-string">&quot;728953064&quot;</span>
 
 { 
   <span class="hljs-string">&quot;inhabitants&quot;</span> : { 
     <span class="hljs-string">&quot;pakistan&quot;</span> : <span class="hljs-number">188346000</span> 
   }, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/725916792&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;726899832&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;725916792&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/727970024&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;728953064&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;727970024&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerPatchDocumentMerge_short" onclick="$(&apos;#RestDocumentHandlerPatchDocumentMerge_short&apos;).hide(); $(&apos;#RestDocumentHandlerPatchDocumentMerge_long&apos;).show();">
 <pre>
-shell&gt; curl --dump - http://localhost:8529/_api/document/products/725916792
+shell&gt; curl --dump - http://localhost:8529/_api/document/products/727970024
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;725916792&quot;</span>
+etag: <span class="hljs-string">&quot;727970024&quot;</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -5062,11 +5075,15 @@ etag: <span class="hljs-string">&quot;725916792&quot;</span>
 <!-- arangod/RestHandler/RestDocumentHandler.cpp -->
 <h3 id="removes-a-document">Removes a document</h3>
 <p> removes a document</p>
-<p><code>DELETE /_api/document/{document-handle}</code></p>
+<p><code>DELETE /_api/document/{collection-name}/{document-key}</code></p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-Removes the document identified by <em>document-handle</em>.</li>
+<li><p><em>collection-name</em> (required):
+The name of the collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the document.</p>
+</li>
 </ul>
 <p><strong>Query Parameters</strong></p>
 <ul>
@@ -5091,7 +5108,7 @@ using the <em>if-match</em> HTTP header.</li>
 </ul>
 <p>The body of the response contains a JSON object with the information about
 the handle and the revision. The attribute <em>_id</em> contains the known
-<em>document-handle</em> of the removed document, <em>_key</em> contains the key which 
+<em>document-handle</em> of the removed document, <em>_key</em> contains the key which
 uniquely identifies a document in a given collection, and the attribute <em>_rev</em>
 contains the new document revision.</p>
 <p>If the <em>waitForSync</em> parameter is not specified or set to
@@ -5125,22 +5142,22 @@ attributes <em>_id</em> and <em>_key</em> will be returned.</p>
 <div id="RestDocumentHandlerDeleteDocument_container">
 <div id="RestDocumentHandlerDeleteDocument_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/document/products/721132664
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/document/products/723185896
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/721132664&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;721132664&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;721132664&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/723185896&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;723185896&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;723185896&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerDeleteDocument_short" onclick="$(&apos;#RestDocumentHandlerDeleteDocument_short&apos;).hide(); $(&apos;#RestDocumentHandlerDeleteDocument_long&apos;).show();">
 <pre>
-shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/document/products/721132664
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/document/products/723185896
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -5153,7 +5170,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 <div id="RestDocumentHandlerDeleteDocumentUnknownHandle_container">
 <div id="RestDocumentHandlerDeleteDocumentUnknownHandle_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/document/products/722836600
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/document/products/724889832
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -5168,7 +5185,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 </div>
 <div id="RestDocumentHandlerDeleteDocumentUnknownHandle_short" onclick="$(&apos;#RestDocumentHandlerDeleteDocumentUnknownHandle_short&apos;).hide(); $(&apos;#RestDocumentHandlerDeleteDocumentUnknownHandle_long&apos;).show();">
 <pre>
-shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/document/products/722836600
+shell&gt; curl -X DELETE --dump - http://localhost:8529/_api/document/products/724889832
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">404</span> Not Found
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
@@ -5181,30 +5198,30 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 <div id="RestDocumentHandlerDeleteDocumentIfMatchOther_container">
 <div id="RestDocumentHandlerDeleteDocumentIfMatchOther_long" onclick="" style="Display: none;">
 <pre>
-shell&gt; curl -X DELETE --header &apos;If-Match: &quot;722181240&quot;&apos; --dump - http://localhost:8529/_api/document/products/721853560
+shell&gt; curl -X DELETE --header &apos;If-Match: &quot;724234472&quot;&apos; --dump - http://localhost:8529/_api/document/products/723906792
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">412</span> Precondition Failed
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;721853560&quot;</span>
+etag: <span class="hljs-string">&quot;723906792&quot;</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">true</span>, 
   <span class="hljs-string">&quot;code&quot;</span> : <span class="hljs-number">412</span>, 
   <span class="hljs-string">&quot;errorNum&quot;</span> : <span class="hljs-number">1200</span>, 
   <span class="hljs-string">&quot;errorMessage&quot;</span> : <span class="hljs-string">&quot;precondition failed&quot;</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/721853560&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;721853560&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;721853560&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;products/723906792&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;723906792&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;723906792&quot;</span> 
 }
 </pre>
 </div>
 <div id="RestDocumentHandlerDeleteDocumentIfMatchOther_short" onclick="$(&apos;#RestDocumentHandlerDeleteDocumentIfMatchOther_short&apos;).hide(); $(&apos;#RestDocumentHandlerDeleteDocumentIfMatchOther_long&apos;).show();">
 <pre>
-shell&gt; curl -X DELETE --header &apos;If-Match: &quot;722181240&quot;&apos; --dump - http://localhost:8529/_api/document/products/721853560
+shell&gt; curl -X DELETE --header &apos;If-Match: &quot;724234472&quot;&apos; --dump - http://localhost:8529/_api/document/products/723906792
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">412</span> Precondition Failed
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;721853560&quot;</span>
+etag: <span class="hljs-string">&quot;723906792&quot;</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -5213,11 +5230,15 @@ etag: <span class="hljs-string">&quot;721853560&quot;</span>
 <!-- arangod/RestHandler/RestDocumentHandler.cpp -->
 <h3 id="read-document-header">Read document header</h3>
 <p> reads a single document head</p>
-<p><code>HEAD /_api/document/{document-handle}</code></p>
+<p><code>HEAD /_api/document/{collection-name}/{document-key}</code></p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-The handle of the document.</li>
+<li><p><em>collection-name</em> (required):
+The name of the collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the document.</p>
+</li>
 </ul>
 <p><strong>Query Parameters</strong></p>
 <ul>
@@ -5264,7 +5285,7 @@ document&apos;s current revision in the <em>etag</em> header.</p>
 <div id="RestDocumentHandlerReadDocumentHead_container">
 <div id="RestDocumentHandlerReadDocumentHead_long">
 <pre>
-shell&gt; curl -X HEAD --dump - http://localhost:8529/_api/document/products/732667000
+shell&gt; curl -X HEAD --dump - http://localhost:8529/_api/document/products/734720232
 
 </pre>
 </div>
@@ -5312,9 +5333,9 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 { 
   <span class="hljs-string">&quot;documents&quot;</span> : [ 
-    <span class="hljs-string">&quot;/_db/_system/_api/document/products/731421816&quot;</span>, 
-    <span class="hljs-string">&quot;/_db/_system/_api/document/products/731749496&quot;</span>, 
-    <span class="hljs-string">&quot;/_db/_system/_api/document/products/732077176&quot;</span> 
+    <span class="hljs-string">&quot;/_db/_system/_api/document/products/733475048&quot;</span>, 
+    <span class="hljs-string">&quot;/_db/_system/_api/document/products/734130408&quot;</span>, 
+    <span class="hljs-string">&quot;/_db/_system/_api/document/products/733802728&quot;</span> 
   ] 
 }
 </pre>
@@ -5341,9 +5362,9 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
 
 { 
   <span class="hljs-string">&quot;documents&quot;</span> : [ 
-    <span class="hljs-string">&quot;730831992&quot;</span>, 
-    <span class="hljs-string">&quot;730504312&quot;</span>, 
-    <span class="hljs-string">&quot;730176632&quot;</span> 
+    <span class="hljs-string">&quot;732885224&quot;</span>, 
+    <span class="hljs-string">&quot;732229864&quot;</span>, 
+    <span class="hljs-string">&quot;732557544&quot;</span> 
   ] 
 }
 </pre>
@@ -5442,5 +5463,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

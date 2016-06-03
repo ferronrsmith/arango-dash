@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Working with Edges | ArangoDB 2.8.2 Documentation</title>
+        <title>Working with Edges | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="18.4.2" data-chapter-title="Working with Edges" data-filepath="HttpEdge/WorkingWithEdges.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="18.4.2" data-chapter-title="Working with Edges" data-filepath="HttpEdge/WorkingWithEdges.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4064,11 +4064,15 @@
 <!-- arangod/RestHandler/RestEdgeHandler.cpp -->
 <h3 id="read-edge">Read edge</h3>
 <p> reads a single edge</p>
-<p><code>GET /_api/edge/{document-handle}</code></p>
+<p><code>GET /_api/edge/{collection-name}/{document-key}</code></p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-The handle of the edge document.</li>
+<li><p><em>collection-name</em> (required):
+The name of the edge collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the edge document.</p>
+</li>
 </ul>
 <p><strong>Header Parameters</strong></p>
 <ul>
@@ -4202,26 +4206,26 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;740924536&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/edge/edges/<span class="hljs-number">740924536</span>
+etag: <span class="hljs-string">&quot;742977768&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/edge/edges/<span class="hljs-number">742977768</span>
 
 { 
   <span class="hljs-string">&quot;error&quot;</span> : <span class="hljs-literal">false</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/740924536&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;740924536&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;740924536&quot;</span> 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/742977768&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;742977768&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;742977768&quot;</span> 
 }
-shell&gt; curl --dump - http://localhost:8529/_api/edge/edges/740924536
+shell&gt; curl --dump - http://localhost:8529/_api/edge/edges/742977768
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;740924536&quot;</span>
+etag: <span class="hljs-string">&quot;742977768&quot;</span>
 
 { 
   <span class="hljs-string">&quot;name&quot;</span> : <span class="hljs-string">&quot;Emil&quot;</span>, 
-  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/740924536&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;740924536&quot;</span>, 
-  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;740924536&quot;</span>, 
+  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/742977768&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;742977768&quot;</span>, 
+  <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;742977768&quot;</span>, 
   <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
   <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/2&quot;</span> 
 }
@@ -4237,8 +4241,8 @@ EOF
 
 HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">202</span> Accepted
 content-type: application/json; charset=utf-<span class="hljs-number">8</span>
-etag: <span class="hljs-string">&quot;740924536&quot;</span>
-location: <span class="hljs-regexp">/_db/</span>_system/_api/edge/edges/<span class="hljs-number">740924536</span>
+etag: <span class="hljs-string">&quot;742977768&quot;</span>
+location: <span class="hljs-regexp">/_db/</span>_system/_api/edge/edges/<span class="hljs-number">742977768</span>
 
 </pre><div class="example_show_button">show response body</div>
 </div>
@@ -4247,14 +4251,18 @@ location: <span class="hljs-regexp">/_db/</span>_system/_api/edge/edges/<span cl
 <!-- arangod/RestHandler/RestEdgeHandler.cpp -->
 <h3 id="patches-edge">Patches edge</h3>
 <p> updates an edge</p>
-<p><code>PATCH /_api/edge/{document-handle}</code></p>
+<p><code>PATCH /_api/edge/{collection-name}/{document-key}</code></p>
 <p><strong>Post Body</strong>
  <em>document</em> (required):
 A JSON representation of the edge update.</p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-The handle of the edge document.</li>
+<li><p><em>collection-name</em> (required):
+The name of the edge collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the edge document.</p>
+</li>
 </ul>
 <p><strong>Query Parameters</strong></p>
 <ul>
@@ -4348,14 +4356,18 @@ attributes <em>_id</em> and <em>_key</em> will be returned.</p>
 </ul>
 <h3 id="replaces-an-edge">replaces an edge</h3>
 <p> replaces an edge</p>
-<p><code>PUT /_api/edge/{document-handle}</code></p>
+<p><code>PUT /_api/edge/{collection-name}/{document-key}</code></p>
 <p><strong>Post Body</strong>
  <em>edge</em> (required):
 A JSON representation of the new edge data.</p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-The handle of the edge document.</li>
+<li><p><em>collection-name</em> (required):
+The name of the edge collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the edge document.</p>
+</li>
 </ul>
 <p><strong>Query Parameters</strong></p>
 <ul>
@@ -4420,7 +4432,7 @@ by an HTTP <em>etag</em> header.</p>
 <p>For example, to conditionally replace an edge document based on a specific revision
 id, you can use the following request:</p>
 <ul>
-<li>PUT /_api/document/<em>document-handle</em>?rev=<em>etag</em></li>
+<li>PUT /_api/document/<em>collection-name</em>/<em>document-key</em>?rev=<em>etag</em></li>
 </ul>
 <p>If a target revision id is provided in the request (e.g. via the <em>etag</em> value
 in the <em>rev</em> URL query parameter above), ArangoDB will check that
@@ -4430,7 +4442,7 @@ id, then by default a <em>HTTP 412</em> conflict is returned and no replacement 
 performed.</p>
 <p>The conditional update behavior can be overridden with the <em>policy</em> URL query parameter:</p>
 <ul>
-<li>PUT /_api/document/<em>document-handle</em>?policy=<em>policy</em></li>
+<li>PUT /_api/document/<em>collection-name</em>/<em>document-key</em>?policy=<em>policy</em></li>
 </ul>
 <p>If <em>policy</em> is set to <em>error</em>, then the behavior is as before: replacements
 will fail if the revision id found in the database does not match the target
@@ -4466,11 +4478,15 @@ attributes <em>_id</em> and <em>_key</em> will be returned.</p>
 </ul>
 <h3 id="deletes-edge">Deletes edge</h3>
 <p> deletes an edge</p>
-<p><code>DELETE /_api/edge/{document-handle}</code></p>
+<p><code>DELETE /_api/edge/{collection-name}/{document-key}</code></p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-Deletes the edge document identified by <em>document-handle</em>.</li>
+<li><p><em>collection-name</em> (required):
+The name of the edge collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the edge document.</p>
+</li>
 </ul>
 <p><strong>Query Parameters</strong></p>
 <ul>
@@ -4527,11 +4543,15 @@ attributes <em>_id</em> and <em>_key</em> will be returned.</p>
 </ul>
 <h3 id="read-edge-header">Read edge header</h3>
 <p> reads a single edge head</p>
-<p><code>HEAD /_api/edge/{document-handle}</code></p>
+<p><code>HEAD /_api/edge/{collection-name}/{document-key}</code></p>
 <p><strong>Path Parameters</strong></p>
 <ul>
-<li><em>document-handle</em> (required):
-The handle of the edge document.</li>
+<li><p><em>collection-name</em> (required):
+The name of the edge collection.</p>
+</li>
+<li><p><em>document-key</em> (required):
+The key of the edge document.</p>
+</li>
 </ul>
 <p><strong>Query Parameters</strong></p>
 <ul>
@@ -4621,7 +4641,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
     { 
       <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v2 -&gt; v1&quot;</span>, 
       <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/6&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;745053304&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;747106536&quot;</span>, 
       <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;6&quot;</span>, 
       <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/2&quot;</span>, 
       <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span> 
@@ -4629,7 +4649,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
     { 
       <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v4 -&gt; v1&quot;</span>, 
       <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/7&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;745577592&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;747630824&quot;</span>, 
       <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;7&quot;</span>, 
       <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/4&quot;</span>, 
       <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span> 
@@ -4637,7 +4657,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
     { 
       <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v1 -&gt; v3&quot;</span>, 
       <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/5&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;744529016&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;746582248&quot;</span>, 
       <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;5&quot;</span>, 
       <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
       <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/3&quot;</span> 
@@ -4677,7 +4697,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
     { 
       <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v2 -&gt; v1&quot;</span>, 
       <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/6&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;749771896&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;751825128&quot;</span>, 
       <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;6&quot;</span>, 
       <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/2&quot;</span>, 
       <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span> 
@@ -4685,7 +4705,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
     { 
       <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v4 -&gt; v1&quot;</span>, 
       <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/7&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;750296184&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;752349416&quot;</span>, 
       <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;7&quot;</span>, 
       <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/4&quot;</span>, 
       <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span> 
@@ -4725,7 +4745,7 @@ content-type: application/json; charset=utf-<span class="hljs-number">8</span>
     { 
       <span class="hljs-string">&quot;$label&quot;</span> : <span class="hljs-string">&quot;v1 -&gt; v3&quot;</span>, 
       <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;edges/5&quot;</span>, 
-      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;753966200&quot;</span>, 
+      <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;756019432&quot;</span>, 
       <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;5&quot;</span>, 
       <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;vertices/1&quot;</span>, 
       <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;vertices/3&quot;</span> 
@@ -4806,5 +4826,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

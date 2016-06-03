@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Graph Management | ArangoDB 2.8.2 Documentation</title>
+        <title>Graph Management | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="12.1.1" data-chapter-title="Graph Management" data-filepath="GeneralGraphs/Management.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="12.1.1" data-chapter-title="Graph Management" data-filepath="GeneralGraphs/Management.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4579,11 +4579,11 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph_module = <span class="h
 arangosh&gt; graph_module._drop(<span class="hljs-string">&quot;social&quot;</span>);
 <span class="hljs-literal">true</span>
 arangosh&gt; db._collection(<span class="hljs-string">&quot;female&quot;</span>);
-[ArangoCollection <span class="hljs-number">1297783928</span>, <span class="hljs-string">&quot;female&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1297084648</span>, <span class="hljs-string">&quot;female&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; db._collection(<span class="hljs-string">&quot;male&quot;</span>);
-[ArangoCollection <span class="hljs-number">1297915000</span>, <span class="hljs-string">&quot;male&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+[ArangoCollection <span class="hljs-number">1297215720</span>, <span class="hljs-string">&quot;male&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
 arangosh&gt; db._collection(<span class="hljs-string">&quot;relation&quot;</span>);
-[ArangoCollection <span class="hljs-number">1298046072</span>, <span class="hljs-string">&quot;relation&quot;</span> (type edge, status loaded)]
+[ArangoCollection <span class="hljs-number">1297346792</span>, <span class="hljs-string">&quot;relation&quot;</span> (type edge, status loaded)]
 </pre>
 </div>
 </div>
@@ -4688,7 +4688,7 @@ arangosh&gt; <span class="hljs-keyword">var</span> ed2 = graph_module._relation(
 arangosh&gt; <span class="hljs-keyword">var</span> graph = graph_module._create(<span class="hljs-string">&quot;myGraph&quot;</span>, [ed1, ed2]);
 arangosh&gt; graph._deleteEdgeDefinition(<span class="hljs-string">&quot;myEC1&quot;</span>);
 arangosh&gt; db._collection(<span class="hljs-string">&quot;myEC1&quot;</span>);
-[ArangoCollection <span class="hljs-number">1885379704</span>, <span class="hljs-string">&quot;myEC1&quot;</span> (type edge, status loaded)]
+[ArangoCollection <span class="hljs-number">1884221672</span>, <span class="hljs-string">&quot;myEC1&quot;</span> (type edge, status loaded)]
 </pre>
 </div>
 </div>
@@ -4835,7 +4835,7 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph.male.save({name: <span class="hljs-string">&quot;Floyd&quot;</span>, _key: <span class="hljs-string">&quot;floyd&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;male/floyd&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1857985656&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1856827624&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;floyd&quot;</span> 
 }
 </pre>
@@ -4874,13 +4874,13 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph.male.save({neym: <span class="hljs-string">&quot;Jon&quot;</span>, _key: <span class="hljs-string">&quot;john&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;male/john&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1854053496&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1852895464&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;john&quot;</span> 
 }
 arangosh&gt; graph.male.replace(<span class="hljs-string">&quot;male/john&quot;</span>, {name: <span class="hljs-string">&quot;John&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;male/john&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1854250104&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1853092072&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;john&quot;</span> 
 }
 </pre>
@@ -4920,13 +4920,13 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph.female.save({name: <span class="hljs-string">&quot;Lynda&quot;</span>, _key: <span class="hljs-string">&quot;linda&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;female/linda&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1861721208&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1860563176&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;linda&quot;</span> 
 }
 arangosh&gt; graph.female.update(<span class="hljs-string">&quot;female/linda&quot;</span>, {name: <span class="hljs-string">&quot;Linda&quot;</span>, _key: <span class="hljs-string">&quot;linda&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;female/linda&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1861917816&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1860759784&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;linda&quot;</span> 
 }
 </pre>
@@ -4965,7 +4965,7 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph.male.save({name: <span class="hljs-string">&quot;Kermit&quot;</span>, _key: <span class="hljs-string">&quot;kermit&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;male/kermit&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1849597048&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1848439016&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;kermit&quot;</span> 
 }
 arangosh&gt; db._exists(<span class="hljs-string">&quot;male/kermit&quot;</span>)
@@ -5018,7 +5018,7 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;male/bob&quot;</span>, <span class="hljs-string">&quot;female/alice&quot;</span>, {type: <span class="hljs-string">&quot;married&quot;</span>, _key: <span class="hljs-string">&quot;bobAndAlice&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/bobAndAlice&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1325177976&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1324478696&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;bobAndAlice&quot;</span> 
 }
 </pre>
@@ -5073,13 +5073,13 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {typo: <span class="hljs-string">&quot;nose&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1321245816&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1320546536&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span> 
 }
 arangosh&gt; graph.relation.replace(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, {type: <span class="hljs-string">&quot;knows&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1321442424&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1320743144&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span> 
 }
 </pre>
@@ -5119,13 +5119,13 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {type: <span class="hljs-string">&quot;knows&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1332452472&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1331753192&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span> 
 }
 arangosh&gt; graph.relation.update(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, {type: <span class="hljs-string">&quot;quarrelled&quot;</span>, _key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1332649080&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1331949800&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span> 
 }
 </pre>
@@ -5163,7 +5163,7 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph.relation.save(<span class="hljs-string">&quot;female/alice&quot;</span>, <span class="hljs-string">&quot;female/diana&quot;</span>, {_key: <span class="hljs-string">&quot;aliceAndDiana&quot;</span>});
 { 
   <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>, 
-  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1316854904&quot;</span>, 
+  <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1316155624&quot;</span>, 
   <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;aliceAndDiana&quot;</span> 
 }
 arangosh&gt; db._exists(<span class="hljs-string">&quot;relation/aliceAndDiana&quot;</span>)
@@ -5220,9 +5220,9 @@ arangosh&gt; <span class="hljs-keyword">var</span> graph = examples.loadGraph(<s
 arangosh&gt; graph._getConnectingEdges({isCapital : <span class="hljs-literal">true</span>}, {isCapital : <span class="hljs-literal">true</span>});
 [ 
   { 
-    <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;internationalHighway/1642175608&quot;</span>, 
-    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1642175608&quot;</span>, 
-    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1642175608&quot;</span>, 
+    <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;internationalHighway/1641017576&quot;</span>, 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;1641017576&quot;</span>, 
+    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;1641017576&quot;</span>, 
     <span class="hljs-string">&quot;_from&quot;</span> : <span class="hljs-string">&quot;germanCity/Berlin&quot;</span>, 
     <span class="hljs-string">&quot;_to&quot;</span> : <span class="hljs-string">&quot;frenchCity/Paris&quot;</span>, 
     <span class="hljs-string">&quot;distance&quot;</span> : <span class="hljs-number">1200</span> 
@@ -5294,5 +5294,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>

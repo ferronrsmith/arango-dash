@@ -1,0 +1,1833 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <!-- Start book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Date | ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="author" content="ArangoDB GmbH">
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../Functions/Array.html" />
+    
+    
+    <link rel="prev" href="../Functions/Numeric.html" />
+    
+
+        <!-- head:end -->
+<script type="text/javascript" src="../styles/header.js"></script><link rel="stylesheet" type="text/css" href="../styles/header.css">
+    </head>
+    <body>
+        <!-- body:start -->
+<div id="header">
+  <div id="logo">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_2016.png">
+    </a>
+  </div>
+  <div id="logo-small">
+    <a href="https://arangodb.com/">
+      <img src="https://docs.arangodb.com/assets/arangodb_logo_small_2016.png">
+    </a>
+  </div>
+  <select id="version-switcher">
+    <option value="devel">v3.0.x-devel (2016-06-02)</option>
+    <option value="2.8">v2.8</option>
+    <option value="2.7">v2.7</option>
+    <option value="2.6">v2.6</option>
+    <option value="2.5">v2.5</option>
+    <option value="2.4">v2.4</option>
+    <option value="2.3">v2.3</option>
+    <option value="2.2">v2.2</option>
+    <option value="2.1">v2.1</option>
+  </select>
+  <div class="google-search">
+    <gcse:searchbox-only></gcse:searchbox-only>
+  </div>
+  <ul id="navmenu">
+    <li>
+      <a href="https://docs.arangodb.com/devel/Manual/index.html">Manual</a>
+    </li>
+    <li class="active-tab">
+      <a href="https://docs.arangodb.com/devel/AQL/index.html">AQL</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/devel/HTTP/index.html">HTTP</a>
+    </li>
+    <li>
+      <a href="https://docs.arangodb.com/cookbook">Cookbook</a>
+    </li>
+    <li class="socialIcons">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="blank" name="github">
+        <i title="GitHub" class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons">
+      <a href="http://stackoverflow.com/questions/tagged/arangodb" target="blank" name="stackoverflow">
+        <i title="Stackoverflow" class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="blank" name="google groups">
+        <img title="Google Groups" alt="Google Groups" src="https://docs.arangodb.com/assets/googlegroupsIcon.png" />
+      </a>
+    </li>
+  </ul>
+</div>
+        
+    <div class="book"
+        data-level="6.4"
+        data-chapter-title="Date"
+        data-filepath="Functions/Date.md"
+        data-basepath=".."
+        data-revision="Thu Jun 02 2016 11:44:53 GMT+0000 (UTC)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="Invocation/index.html">
+            
+                
+                    <a href="../Invocation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        How to invoke AQL
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="Invocation/WithArangosh.html">
+            
+                
+                    <a href="../Invocation/WithArangosh.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        with Arangosh
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Invocation/WithWebInterface.html">
+            
+                
+                    <a href="../Invocation/WithWebInterface.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        with the Web Interface
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="Fundamentals/index.html">
+            
+                
+                    <a href="../Fundamentals/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        AQL Fundamentals
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="Fundamentals/Syntax.html">
+            
+                
+                    <a href="../Fundamentals/Syntax.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        AQL Syntax
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="Fundamentals/DataTypes.html">
+            
+                
+                    <a href="../Fundamentals/DataTypes.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Data types
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="Fundamentals/BindParameters.html">
+            
+                
+                    <a href="../Fundamentals/BindParameters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Bind Parameters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="Fundamentals/TypeValueOrder.html">
+            
+                
+                    <a href="../Fundamentals/TypeValueOrder.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                        Type and value order
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="Fundamentals/DocumentData.html">
+            
+                
+                    <a href="../Fundamentals/DocumentData.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                        Accessing data from collections
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="Fundamentals/QueryResults.html">
+            
+                
+                    <a href="../Fundamentals/QueryResults.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.6.</b>
+                        
+                        Query Results
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="Fundamentals/QueryErrors.html">
+            
+                
+                    <a href="../Fundamentals/QueryErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.7.</b>
+                        
+                        Query Errors
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="Operators.html">
+            
+                
+                    <a href="../Operators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Operators
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="DataModification.html">
+            
+                
+                    <a href="../DataModification.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Data Modification Queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="Operations/index.html">
+            
+                
+                    <a href="../Operations/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        High level Operations
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="Operations/For.html">
+            
+                
+                    <a href="../Operations/For.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        FOR
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="Operations/Return.html">
+            
+                
+                    <a href="../Operations/Return.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        RETURN
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="Operations/Filter.html">
+            
+                
+                    <a href="../Operations/Filter.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        FILTER
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="Operations/Sort.html">
+            
+                
+                    <a href="../Operations/Sort.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        SORT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="Operations/Limit.html">
+            
+                
+                    <a href="../Operations/Limit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                        LIMIT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="Operations/Let.html">
+            
+                
+                    <a href="../Operations/Let.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                        LET
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="Operations/Collect.html">
+            
+                
+                    <a href="../Operations/Collect.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                        COLLECT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="Operations/Remove.html">
+            
+                
+                    <a href="../Operations/Remove.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                        REMOVE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="Operations/Update.html">
+            
+                
+                    <a href="../Operations/Update.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                        UPDATE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.10" data-path="Operations/Replace.html">
+            
+                
+                    <a href="../Operations/Replace.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.10.</b>
+                        
+                        REPLACE
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.11" data-path="Operations/Insert.html">
+            
+                
+                    <a href="../Operations/Insert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.11.</b>
+                        
+                        INSERT
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.12" data-path="Operations/Upsert.html">
+            
+                
+                    <a href="../Operations/Upsert.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.12.</b>
+                        
+                        UPSERT
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="Functions/index.html">
+            
+                
+                    <a href="../Functions/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="Functions/TypeCast.html">
+            
+                
+                    <a href="../Functions/TypeCast.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Type cast
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="Functions/String.html">
+            
+                
+                    <a href="../Functions/String.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        String
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="Functions/Numeric.html">
+            
+                
+                    <a href="../Functions/Numeric.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                        Numeric
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.4" data-path="Functions/Date.html">
+            
+                
+                    <a href="../Functions/Date.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                        Date
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="Functions/Array.html">
+            
+                
+                    <a href="../Functions/Array.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.5.</b>
+                        
+                        Array
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="Functions/Document.html">
+            
+                
+                    <a href="../Functions/Document.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.6.</b>
+                        
+                        Object / Document
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="Functions/Geo.html">
+            
+                
+                    <a href="../Functions/Geo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.7.</b>
+                        
+                        Geo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="Functions/Fulltext.html">
+            
+                
+                    <a href="../Functions/Fulltext.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.8.</b>
+                        
+                        Fulltext
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="Functions/Miscellaneous.html">
+            
+                
+                    <a href="../Functions/Miscellaneous.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.9.</b>
+                        
+                        Miscellaneous
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="Graphs/index.html">
+            
+                
+                    <a href="../Graphs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Graphs
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="Graphs/Traversals.html">
+            
+                
+                    <a href="../Graphs/Traversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Traversal
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="Graphs/Operations.html">
+            
+                
+                    <a href="../Graphs/Operations.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Named Operations
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="Graphs/Functions.html">
+            
+                
+                    <a href="../Graphs/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        Other
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="Advanced/index.html">
+            
+                
+                    <a href="../Advanced/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Advanced Features
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="Advanced/ArrayOperators.html">
+            
+                
+                    <a href="../Advanced/ArrayOperators.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Array Operators
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="Examples/index.html">
+            
+                
+                    <a href="../Examples/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Usual Query Patterns
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="Examples/Counting.html">
+            
+                
+                    <a href="../Examples/Counting.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Counting
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="Examples/DataModificationQueries.html">
+            
+                
+                    <a href="../Examples/DataModificationQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Data-modification queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="Examples/CombiningQueries.html">
+            
+                
+                    <a href="../Examples/CombiningQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.3.</b>
+                        
+                        Subqueries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.4" data-path="Examples/ProjectionsAndFilters.html">
+            
+                
+                    <a href="../Examples/ProjectionsAndFilters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.4.</b>
+                        
+                        Projections and filters
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.5" data-path="Examples/Join.html">
+            
+                
+                    <a href="../Examples/Join.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.5.</b>
+                        
+                        Joins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.6" data-path="Examples/Grouping.html">
+            
+                
+                    <a href="../Examples/Grouping.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.6.</b>
+                        
+                        Grouping
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.7" data-path="Examples/CombiningGraphTraversals.html">
+            
+                
+                    <a href="../Examples/CombiningGraphTraversals.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.7.</b>
+                        
+                        Traversals
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.8" data-path="Examples/QueriesNoCollections.html">
+            
+                
+                    <a href="../Examples/QueriesNoCollections.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.8.</b>
+                        
+                        Queries without collections
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="Extending/index.html">
+            
+                
+                    <a href="../Extending/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        User Functions
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="Extending/Conventions.html">
+            
+                
+                    <a href="../Extending/Conventions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                        Conventions
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="Extending/Functions.html">
+            
+                
+                    <a href="../Extending/Functions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Registering Functions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="ExecutionAndPerformance/index.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Execution and Performance
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="ExecutionAndPerformance/QueryStatistics.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/QueryStatistics.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Query statistics
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="ExecutionAndPerformance/ParsingQueries.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/ParsingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Parsing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="ExecutionAndPerformance/ExplainingQueries.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/ExplainingQueries.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        Explaining queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="ExecutionAndPerformance/Optimizer.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/Optimizer.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        Optimizing queries
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="ExecutionAndPerformance/QueryCache.html">
+            
+                
+                    <a href="../ExecutionAndPerformance/QueryCache.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Caching query results
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="CommonErrors.html">
+            
+                
+                    <a href="../CommonErrors.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Common Errors
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p><a name="date_functions"></a></p>
+<h1 id="date-functions">Date functions</h1>
+<p>AQL offers functionality to work with dates. Dates are no data types of their own in
+AQL (neither are they in JSON, which is usually used as format to ship data into and
+out of ArangoDB). Instead, dates in AQL are typically represented by either numbers
+(timestamps) or strings.</p>
+<p>All functions that require dates as arguments accept the following input values:</p>
+<ul>
+<li><p>numeric timestamps, indicating the number of milliseconds elapsed since the UNIX
+epoch (i.e. January 1st 1970 00:00:00.000 UTC).
+An example timestamp value is <em>1399472349522</em>, which translates to
+<em>2014-05-07T14:19:09.522Z</em>.</p>
+</li>
+<li><p>date time strings in formats <em>YYYY-MM-DDTHH:MM:SS.MMM</em>,
+<em>YYYY-MM-DD HH:MM:SS.MMM</em>, or <em>YYYY-MM-DD</em> Milliseconds are always optional.
+A timezone difference may optionally be added at the end of the string, with the
+hours and minutes that need to be added or subtracted to the date time value.
+For example, <em>2014-05-07T14:19:09+01:00</em> can be used to specify a one hour offset,
+and <em>2014-05-07T14:19:09+07:30</em> can be specified for seven and half hours offset.
+Negative offsets are also possible. Alternatively to an offset, a <em>Z</em> can be used
+to indicate UTC / Zulu time.</p>
+<p>An example value is <em>2014-05-07T14:19:09.522Z</em> meaning May 7th 2014, 14:19:09 and
+522 milliseconds, UTC / Zulu time. Another example value without time component is
+<em>2014-05-07Z</em>.</p>
+<p>Please note that if no timezone offset is specified in a date string, ArangoDB will
+assume UTC time automatically. This is done to ensure portability of queries across
+servers with different timezone settings, and because timestamps will always be
+UTC-based.</p>
+</li>
+</ul>
+<pre><code class="lang-js">DATE_HOUR( <span class="hljs-number">2</span> * <span class="hljs-number">60</span> * <span class="hljs-number">60</span> * <span class="hljs-number">1000</span> ) <span class="hljs-comment">// 2</span>
+DATE_HOUR(<span class="hljs-string">&quot;1970-01-01T02:00:00&quot;</span>) <span class="hljs-comment">// 2</span>
+</code></pre>
+<p>You are free to store age determinations of specimens, incomplete or fuzzy dates and
+the like in different, more appropriate ways of course. AQL&apos;s date functions will
+most certainly not be of any help for such dates, but you can still use language
+constructs like <a href="../Operations/Sort.html">SORT</a> (which also supports sorting of arrays)
+and <a href="../../Manual/Indexing/index.html">indexes</a> like skiplists.</p>
+<p><a name="current_date_and_time"></a></p>
+<h2 id="current-date-and-time">Current date and time</h2>
+<p><a name="date_now()"></a></p>
+<h3 id="datenow">DATE_NOW()</h3>
+<p><code>DATE_NOW() &#x2192; timestamp</code></p>
+<p>Get the current date time as numeric timestamp.</p>
+<ul>
+<li>returns <strong>timestamp</strong> (number): the current time as a timestamp.
+The return value has millisecond precision. To convert the return value to
+seconds, divide it by 1000.</li>
+</ul>
+<p>Note that this function is evaluated on every invocation and may return
+different values when invoked multiple times in the same query. Assign it
+to a variable to use the exact same timestamp multiple times.</p>
+<p><a name="conversion"></a></p>
+<h2 id="conversion">Conversion</h2>
+<p><em>DATE_TIMESTAMP()</em> and <em>DATE_ISO8601()</em> can be used to convert ISO 8601 date time
+strings to numeric timestamps and numeric timestamps to ISO 8601 date time strings.</p>
+<p>Both also support individual date components as separate function arguments,
+in the following order:</p>
+<ul>
+<li>year</li>
+<li>month</li>
+<li>day</li>
+<li>hour</li>
+<li>minute</li>
+<li>second</li>
+<li>millisecond</li>
+</ul>
+<p>All components following <em>day</em> are optional and can be omitted. Note that no
+timezone offsets can be specified when using separate date components, and UTC /
+Zulu time will be used.</p>
+<p>The following calls to <em>DATE_TIMESTAMP()</em> are equivalent and will all return
+<em>1399472349522</em>:</p>
+<pre><code class="lang-js">DATE_TIMESTAMP(<span class="hljs-string">&quot;2014-05-07T14:19:09.522&quot;</span>)
+DATE_TIMESTAMP(<span class="hljs-string">&quot;2014-05-07T14:19:09.522Z&quot;</span>)
+DATE_TIMESTAMP(<span class="hljs-string">&quot;2014-05-07 14:19:09.522&quot;</span>)
+DATE_TIMESTAMP(<span class="hljs-string">&quot;2014-05-07 14:19:09.522Z&quot;</span>)
+DATE_TIMESTAMP(<span class="hljs-number">2014</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">14</span>, <span class="hljs-number">19</span>, <span class="hljs-number">9</span>, <span class="hljs-number">522</span>)
+DATE_TIMESTAMP(<span class="hljs-number">1399472349522</span>)
+</code></pre>
+<p>The same is true for calls to <em>DATE_ISO8601()</em> that also accepts variable input
+formats:</p>
+<pre><code class="lang-js">DATE_ISO8601(<span class="hljs-string">&quot;2014-05-07T14:19:09.522Z&quot;</span>)
+DATE_ISO8601(<span class="hljs-string">&quot;2014-05-07 14:19:09.522Z&quot;</span>)
+DATE_ISO8601(<span class="hljs-number">2014</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">14</span>, <span class="hljs-number">19</span>, <span class="hljs-number">9</span>, <span class="hljs-number">522</span>)
+DATE_ISO8601(<span class="hljs-number">1399472349522</span>)
+</code></pre>
+<p>The above functions are all equivalent and will return <em>&quot;2014-05-07T14:19:09.522Z&quot;</em>.</p>
+<p><a name="date_iso8601()"></a></p>
+<h3 id="dateiso8601">DATE_ISO8601()</h3>
+<p><code>DATE_ISO8601(date) &#x2192; dateString</code></p>
+<p>Return an ISO 8601 date time string from <em>date</em>.
+The date time string will always use UTC / Zulu time, indicated by the <em>Z</em> at its end.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>dateString</strong>: date and time expressed according to ISO 8601, in Zulu time</li>
+</ul>
+<p><code>DATE_ISO8601(year, month, day, hour, minute, second, millisecond) &#x2192; dateString</code></p>
+<p>Return a ISO 8601 date time string from <em>date</em>, but allows to specify the individual
+date components separately. All parameters after <em>day</em> are optional.</p>
+<ul>
+<li><strong>year</strong> (number): typically in the range 0..9999, e.g. <em>2017</em></li>
+<li><strong>month</strong> (number): 1..12 for January through December
+(unlike JavaScript, which uses the slightly confusing range 0..11)</li>
+<li><strong>day</strong> (number): 1..31 (upper bound depends on number of days in month)</li>
+<li><strong>hour</strong> (number, <em>optional</em>): 0..23</li>
+<li><strong>minute</strong> (number, <em>optional</em>): 0..59</li>
+<li><strong>second</strong> (number, <em>optional</em>): 0..59</li>
+<li><strong>milliseconds</strong> (number, <em>optional</em>): 0..999</li>
+<li>returns <strong>dateString</strong>: date and time expressed according to ISO 8601, in Zulu time</li>
+</ul>
+<p><a name="date_timestamp()"></a></p>
+<h3 id="datetimestamp">DATE_TIMESTAMP()</h3>
+<p><code>DATE_TIMESTAMP(date) &#x2192; timestamp</code></p>
+<p>Create a UTC timestamp value from <em>date</em>. The return value has millisecond precision.
+To convert the return value to seconds, divide it by 1000.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>timestamp</strong> (number): numeric timestamp</li>
+</ul>
+<p><code>DATE_TIMESTAMP(year, month, day, hour, minute, second, millisecond) &#x2192; timestamp</code></p>
+<p>Create a UTC timestamp value, but allows to specify the individual date components
+separately. All parameters after <em>day</em> are optional.</p>
+<ul>
+<li><strong>year</strong> (number): typically in the range 0..9999, e.g. <em>2017</em></li>
+<li><strong>month</strong> (number): 1..12 for January through December
+(unlike JavaScript, which uses the slightly confusing range 0..11)</li>
+<li><strong>day</strong> (number): 1..31 (upper bound depends on number of days in month)</li>
+<li><strong>hour</strong> (number, <em>optional</em>): 0..23</li>
+<li><strong>minute</strong> (number, <em>optional</em>): 0..59</li>
+<li><strong>second</strong> (number, <em>optional</em>): 0..59</li>
+<li><strong>milliseconds</strong> (number, <em>optional</em>): 0..999</li>
+<li>returns <strong>timestamp</strong> (number): numeric timestamp</li>
+</ul>
+<p>Negative values are not allowed, result in <em>null</em> and cause a warning.
+Values greater than the upper range bound overflow to the larger components
+(e.g. an hour of 26 is automatically turned into an additional day and two hours):</p>
+<pre><code class="lang-js">DATE_TIMESTAMP(<span class="hljs-number">2016</span>, <span class="hljs-number">12</span>, -<span class="hljs-number">1</span>) <span class="hljs-comment">// returns null and issues a warning</span>
+DATE_TIMESTAMP(<span class="hljs-number">2016</span>, <span class="hljs-number">2</span>, <span class="hljs-number">32</span>) <span class="hljs-comment">// returns 1456963200000, which is March 3rd, 2016</span>
+DATE_TIMESTAMP(<span class="hljs-number">1970</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">26</span>) <span class="hljs-comment">// returns 93600000, which is January 2nd, 1970, at 2 a.m.</span>
+</code></pre>
+<p><a name="is_datestring()"></a></p>
+<h3 id="isdatestring">IS_DATESTRING()</h3>
+<p><code>IS_DATESTRING(value) &#x2192; bool</code></p>
+<p>Check if an arbitrary string is suitable for interpretation as date time string.</p>
+<ul>
+<li><strong>value</strong> (string): an arbitrary string</li>
+<li>returns <strong>bool</strong> (bool): <em>true</em> if <em>value</em> is a string that can be used
+in a date function. This includes partial dates such as <em>2015</em> or <em>2015-10</em> and
+strings containing invalid dates such as <em>2015-02-31</em>. The function will return
+<em>false</em> for all non-string values, even if some of them may be usable in date
+functions.</li>
+</ul>
+<p><a name="processing"></a></p>
+<h2 id="processing">Processing</h2>
+<p><a name="date_dayofweek()"></a></p>
+<h3 id="datedayofweek">DATE_DAYOFWEEK()</h3>
+<p><code>DATE_DAYOFWEEK(date) &#x2192; weekdayNumber</code></p>
+<p>Return the weekday number of <em>date</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>weekdayNumber</strong> (number): 0..6 as follows:<ul>
+<li>0 &#x2013; Sunday</li>
+<li>1 &#x2013; Monday</li>
+<li>2 &#x2013; Tuesday</li>
+<li>3 &#x2013; Wednesday</li>
+<li>4 &#x2013; Thursday</li>
+<li>5 &#x2013; Friday</li>
+<li>6 &#x2013; Saturday</li>
+</ul>
+</li>
+</ul>
+<p><a name="date_year()"></a></p>
+<h3 id="dateyear">DATE_YEAR()</h3>
+<p><code>DATE_YEAR(date) &#x2192; year</code></p>
+<p>Return the year of <em>date</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>year</strong> (number): the year part of <em>date</em> as a number</li>
+</ul>
+<p><a name="date_month()"></a></p>
+<h3 id="datemonth">DATE_MONTH()</h3>
+<p><code>DATE_MONTH(date) &#x2192; month</code></p>
+<p>Return the month of <em>date</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>month</strong> (number): the month part of <em>date</em> as a number</li>
+</ul>
+<p><a name="date_day()"></a></p>
+<h3 id="dateday">DATE_DAY()</h3>
+<p><code>DATE_DAY(date) &#x2192; day</code></p>
+<p>Return the day of <em>date</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>day</strong> (number): the day part of <em>date</em> as a number</li>
+</ul>
+<p><a name="date_hour()"></a></p>
+<h3 id="datehour">DATE_HOUR()</h3>
+<p>Return the hour of <em>date</em>.</p>
+<p><code>DATE_HOUR(date) &#x2192; hour</code></p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>hour</strong> (number): the hour part of <em>date</em> as a number</li>
+</ul>
+<p><a name="date_minute()"></a></p>
+<h3 id="dateminute">DATE_MINUTE()</h3>
+<p><code>DATE_MINUTE(date) &#x2192; minute</code></p>
+<p>Return the minute of <em>date</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>minute</strong> (number): the minute part of <em>date</em> as a number</li>
+</ul>
+<p><a name="date_second()"></a></p>
+<h3 id="datesecond">DATE_SECOND()</h3>
+<p><code>DATE_SECOND(date) &#x2192; second</code></p>
+<p>Return the second of <em>date</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>second</strong> (number): the seconds part of <em>date</em> as a number</li>
+</ul>
+<p><a name="date_millisecond()"></a></p>
+<h3 id="datemillisecond">DATE_MILLISECOND()</h3>
+<p><code>DATE_MILLISECOND(date) &#x2192; millisecond</code></p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>millisecond</strong> (number): the milliseconds part of <em>date</em> as a number</li>
+</ul>
+<p><a name="date_dayofyear()"></a></p>
+<h3 id="datedayofyear">DATE_DAYOFYEAR()</h3>
+<p><code>DATE_DAYOFYEAR(date) &#x2192; dayOfYear</code></p>
+<p>Return the day of year of <em>date</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>dayOfYear</strong> (number): the day of year number of <em>date</em>.
+The return values range from 1 to 365, or 366 in a leap year respectively.</li>
+</ul>
+<p><a name="date_isoweek()"></a></p>
+<h3 id="dateisoweek">DATE_ISOWEEK()</h3>
+<p><code>DATE_ISOWEEK(date) &#x2192; weekDate</code></p>
+<p>Return the week date of <em>date</em> according to ISO 8601.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>weekDate</strong> (number): the ISO week date of <em>date</em>. The return values
+range from 1 to 53. Monday is considered the first day of the week. There are no
+fractional weeks, thus the last days in December may belong to the first week of
+the next year, and the first days in January may be part of the previous year&apos;s
+last week.</li>
+</ul>
+<p><a name="date_leapyear()"></a></p>
+<h3 id="dateleapyear">DATE_LEAPYEAR()</h3>
+<p><code>DATE_LEAPYEAR(date) &#x2192; leapYear</code></p>
+<p>Return whether <em>date</em> is in a leap year.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>leapYear</strong> (bool): <em>true</em> if <em>date</em> is in a leap year, <em>false</em> otherwise</li>
+</ul>
+<p><a name="date_quarter()"></a></p>
+<h3 id="datequarter">DATE_QUARTER()</h3>
+<p><code>DATE_QUARTER(date) &#x2192; quarter</code></p>
+<p>Return which quarter <em>date</em> belongs to.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>quarter</strong> (number): the quarter of the given date (1-based):<ul>
+<li>1 &#x2013; January, February, March</li>
+<li>2 &#x2013; April, May, June</li>
+<li>3 &#x2013; July, August, September</li>
+<li>4 &#x2013; October, November, December</li>
+</ul>
+</li>
+</ul>
+<p><a name="date_days_in_month()"></a></p>
+<h3 id="datedaysinmonth">DATE_DAYS_IN_MONTH()</h3>
+<p>Return the number of days in the month of <em>date</em>.</p>
+<p><code>DATE_DAYS_IN_MONTH(date) &#x2192; daysInMonth</code></p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li>returns <strong>daysInMonth</strong> (number): the number of days in <em>date</em>&apos;s month (28..31)</li>
+</ul>
+<p><a name="date_format()"></a></p>
+<h3 id="dateformat">DATE_FORMAT()</h3>
+<p><code>DATE_FORMAT(date, format) &#x2192; str</code></p>
+<p>Format a date according to the given format string.</p>
+<ul>
+<li><strong>date</strong> (string|number): a date string or timestamp</li>
+<li><strong>format</strong> (string): a format string, see below</li>
+<li>returns <strong>str</strong> (string): a formatted date string</li>
+</ul>
+<p><em>format</em> supports the following placeholders (case-insensitive):</p>
+<ul>
+<li>%t &#x2013; timestamp, in milliseconds since midnight 1970-01-01</li>
+<li>%z &#x2013; ISO date (0000-00-00T00:00:00.000Z)</li>
+<li>%w &#x2013; day of week (0..6)</li>
+<li>%y &#x2013; year (0..9999)</li>
+<li>%yy &#x2013; year (00..99), abbreviated (last two digits)</li>
+<li>%yyyy &#x2013; year (0000..9999), padded to length of 4</li>
+<li>%yyyyyy &#x2013; year (-009999 .. +009999), with sign prefix and padded to length of 6</li>
+<li>%m &#x2013; month (1..12)</li>
+<li>%mm &#x2013; month (01..12), padded to length of 2</li>
+<li>%d &#x2013; day (1..31)</li>
+<li>%dd &#x2013; day (01..31), padded to length of 2</li>
+<li>%h &#x2013; hour (0..23)</li>
+<li>%hh &#x2013; hour (00..23), padded to length of 2</li>
+<li>%i &#x2013; minute (0..59)</li>
+<li>%ii &#x2013; minute (00..59), padded to length of 2</li>
+<li>%s &#x2013; second (0..59)</li>
+<li>%ss &#x2013; second (00..59), padded to length of 2</li>
+<li>%f &#x2013; millisecond (0..999)</li>
+<li>%fff &#x2013; millisecond (000..999), padded to length of 3</li>
+<li>%x &#x2013; day of year (1..366)</li>
+<li>%xxx &#x2013; day of year (001..366), padded to length of 3</li>
+<li>%k &#x2013; ISO week date (1..53)</li>
+<li>%kk &#x2013; ISO week date (01..53), padded to length of 2</li>
+<li>%l &#x2013; leap year (0 or 1)</li>
+<li>%q &#x2013; quarter (1..4)</li>
+<li>%a &#x2013; days in month (28..31)</li>
+<li>%mmm &#x2013; abbreviated English name of month (Jan..Dec)</li>
+<li>%mmmm &#x2013; English name of month (January..December)</li>
+<li>%www &#x2013; abbreviated English name of weekday (Sun..Sat)</li>
+<li>%wwww &#x2013; English name of weekday (Sunday..Saturday)</li>
+<li>%&amp; &#x2013; special escape sequence for rare occasions</li>
+<li>%% &#x2013; literal %</li>
+<li>% &#x2013; ignored</li>
+</ul>
+<p><code>%yyyy</code> does not enforce a length of 4 for years before 0 and past 9999.
+The same format as for <code>%yyyyyy</code> will be used instead. <code>%yy</code> preserves the
+sign for negative years and may thus return 3 characters in total.</p>
+<p>Single <code>%</code> characters will be ignored. Use <code>%%</code> for a literal <code>%</code>. To resolve
+ambiguities like in <code>%mmonth</code> (unpadded month number + the string &quot;month&quot;)
+between <code>%mm</code> + &quot;onth&quot; and <code>%m</code> + &quot;month&quot;, use the escape sequence <code>%&amp;</code>:
+<code>%m%&amp;month</code>.</p>
+<p>Note that <em>DATE_FORMAT()</em> is a rather costly operation and may not be suitable for large
+datasets (like over 1 million dates). If possible, avoid formatting dates on
+server-side and leave it up to the client to do so. This function should only
+be used for special date comparisons or to store the formatted dates in the
+database. For better performance, use the primitive <code>DATE_*()</code> functions
+together with <code>CONCAT()</code> if possible.</p>
+<p>Examples:</p>
+<pre><code class="lang-js">DATE_FORMAT(DATE_NOW(), <span class="hljs-string">&quot;%q/%yyyy&quot;</span>) <span class="hljs-comment">// quarter and year (e.g. &quot;3/2015&quot;)</span>
+DATE_FORMAT(DATE_NOW(), <span class="hljs-string">&quot;%dd.%mm.%yyyy %hh:%ii:%ss,%fff&quot;</span>) <span class="hljs-comment">// e.g. &quot;18.09.2015 15:30:49,374&quot;</span>
+DATE_FORMAT(<span class="hljs-string">&quot;1969&quot;</span>, <span class="hljs-string">&quot;Summer of &apos;%yy&quot;</span>) <span class="hljs-comment">// &quot;Summer of &apos;69&quot;</span>
+DATE_FORMAT(<span class="hljs-string">&quot;2016&quot;</span>, <span class="hljs-string">&quot;%%l = %l&quot;</span>) <span class="hljs-comment">// &quot;%l = 1&quot; (2016 is a leap year)</span>
+DATE_FORMAT(<span class="hljs-string">&quot;2016-03-01&quot;</span>, <span class="hljs-string">&quot;%xxx%&quot;</span>) <span class="hljs-comment">// &quot;063&quot;, trailing % ignored</span>
+</code></pre>
+<p><a name="comparison_and_calculation"></a></p>
+<h2 id="comparison-and-calculation">Comparison and calculation</h2>
+<p><a name="date_add()"></a></p>
+<h3 id="dateadd">DATE_ADD()</h3>
+<p><code>DATE_ADD(date, amount, unit) &#x2192; isoDate</code></p>
+<p>Add <em>amount</em> given in <em>unit</em> to <em>date</em> and return the calculated date.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li><strong>amount</strong> (number|string): number of <em>unit</em>s to add (positive value) or
+subtract (negative value). It is recommended to use positive values only,
+and use <a href="#datesubtract">DATE_SUBTRACT()</a> for subtractions instead.</li>
+<li><strong>unit</strong> (string): either of the following to specify the time unit to add or
+subtract (case-insensitive):<ul>
+<li>y, year, years</li>
+<li>m, month, months</li>
+<li>w, week, weeks</li>
+<li>d, day, days</li>
+<li>h, hour, hours</li>
+<li>i, minute, minutes</li>
+<li>s, second, seconds</li>
+<li>f, millisecond, milliseconds</li>
+</ul>
+</li>
+<li>returns <strong>isoDate</strong> (string): the calculated ISO 8601 date time string</li>
+</ul>
+<pre><code class="lang-js">DATE_ADD(DATE_NOW(), -<span class="hljs-number">1</span>, <span class="hljs-string">&quot;day&quot;</span>) <span class="hljs-comment">// yesterday; also see DATE_SUBTRACT()</span>
+DATE_ADD(DATE_NOW(), <span class="hljs-number">3</span>, <span class="hljs-string">&quot;months&quot;</span>) <span class="hljs-comment">// in three months</span>
+DATE_ADD(DATE_ADD(<span class="hljs-string">&quot;2015-04-01&quot;</span>, <span class="hljs-number">5</span>, <span class="hljs-string">&quot;years&quot;</span>), <span class="hljs-number">1</span>, <span class="hljs-string">&quot;month&quot;</span>) <span class="hljs-comment">// May 1st 2020</span>
+DATE_ADD(<span class="hljs-string">&quot;2015-04-01&quot;</span>, <span class="hljs-number">12</span>*<span class="hljs-number">5</span> + <span class="hljs-number">1</span>, <span class="hljs-string">&quot;months&quot;</span>) <span class="hljs-comment">// also May 1st 2020</span>
+DATE_ADD(DATE_TIMESTAMP(DATE_YEAR(DATE_NOW()), <span class="hljs-number">12</span>, <span class="hljs-number">24</span>), -<span class="hljs-number">4</span>, <span class="hljs-string">&quot;years&quot;</span>) <span class="hljs-comment">// Christmas four years ago</span>
+DATE_ADD(DATE_ADD(<span class="hljs-string">&quot;2016-02&quot;</span>, <span class="hljs-string">&quot;month&quot;</span>, <span class="hljs-number">1</span>), -<span class="hljs-number">1</span>, <span class="hljs-string">&quot;day&quot;</span>) <span class="hljs-comment">// last day of February (29th, because 2016 is a leap year!)</span>
+</code></pre>
+<p><code>DATE_ADD(date, isoDuration) &#x2192; isoDate</code></p>
+<p>You may also pass an ISO duration string as <em>amount</em> and leave out <em>unit</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li><strong>isoDuration</strong> (string): an ISO 8601 duration string to add to <em>date</em>, see below</li>
+<li>returns <strong>isoDate</strong> (string):  the calculated ISO 8601 date time string</li>
+</ul>
+<p>The format is <code>P_Y_M_W_DT_H_M_._S</code>, where underscores stand for digits and
+letters for time intervals - except for the separators <code>P</code> (period) and <code>T</code> (time).
+The meaning of the other letters are:</p>
+<ul>
+<li>Y &#x2013; years</li>
+<li>M &#x2013; months (if before T)</li>
+<li>W &#x2013; weeks</li>
+<li>D &#x2013; days</li>
+<li>H &#x2013; hours</li>
+<li>M &#x2013; minutes (if after T)</li>
+<li>S &#x2013; seconds (optionally with 3 decimal places for milliseconds)</li>
+</ul>
+<p>The string must be prefixed by a <code>P</code>. A separating <code>T</code> is only required if
+<code>H</code>, <code>M</code> and/or <code>S</code> are specified. You only need to specify the needed pairs
+of letters and numbers.</p>
+<pre><code class="lang-js">DATE_ADD(DATE_NOW(), <span class="hljs-string">&quot;P1Y&quot;</span>) <span class="hljs-comment">// add 1 year</span>
+DATE_ADD(DATE_NOW(), <span class="hljs-string">&quot;P3M2W&quot;</span>) <span class="hljs-comment">// add 3 months and 2 weeks</span>
+DATE_ADD(DATE_NOW(), <span class="hljs-string">&quot;P5DT26H&quot;</span>) <span class="hljs-comment">// add 5 days and 26 hours (=6 days and 2 hours)</span>
+DATE_ADD(<span class="hljs-string">&quot;2000-01-01&quot;</span>, <span class="hljs-string">&quot;PT4H&quot;</span>) <span class="hljs-comment">// add 4 hours</span>
+DATE_ADD(<span class="hljs-string">&quot;2000-01-01&quot;</span>, <span class="hljs-string">&quot;PT30M44.4S&quot;</span> <span class="hljs-comment">// add 30 minutes, 44 seconds and 400 ms</span>
+DATE_ADD(<span class="hljs-string">&quot;2000-01-01&quot;</span>, <span class="hljs-string">&quot;P1Y2M3W4DT5H6M7.89S&quot;</span> <span class="hljs-comment">// add a bit of everything</span>
+</code></pre>
+<p><a name="date_subtract()"></a></p>
+<h3 id="datesubtract">DATE_SUBTRACT()</h3>
+<p><code>DATE_SUBTRACT(date, amount, unit) &#x2192; isoDate</code></p>
+<p>Subtract <em>amount</em> given in <em>unit</em> from <em>date</em> and return the calculated date.</p>
+<p>It works the same as <a href="#dateadd">DATE_ADD()</a>, except that it subtracts. It is
+equivalent to calling <em>DATE_ADD()</em> with a negative amount, except that
+<em>DATE_SUBTRACT()</em> can also subtract ISO durations. Note that negative ISO
+durations are not supported (i.e. starting with <code>-P</code>, like <code>-P1Y</code>).</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li><strong>amount</strong> (number|string): number of <em>unit</em>s to subtract (positive value) or
+add (negative value). It is recommended to use positive values only,
+and use <a href="#dateadd">DATE_ADD()</a> for additions instead.</li>
+<li><strong>unit</strong> (string): either of the following to specify the time unit to add or
+subtract (case-insensitive):<ul>
+<li>y, year, years</li>
+<li>m, month, months</li>
+<li>w, week, weeks</li>
+<li>d, day, days</li>
+<li>h, hour, hours</li>
+<li>i, minute, minutes</li>
+<li>s, second, seconds</li>
+<li>f, millisecond, milliseconds</li>
+</ul>
+</li>
+<li>returns <strong>isoDate</strong> (string): the calculated ISO 8601 date time string</li>
+</ul>
+<p><code>DATE_SUBTRACT(date, isoDuration) &#x2192; isoDate</code></p>
+<p>You may also pass an ISO duration string as <em>amount</em> and leave out <em>unit</em>.</p>
+<ul>
+<li><strong>date</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li><strong>isoDuration</strong> (string): an ISO 8601 duration string to subtract from <em>date</em>,
+see below</li>
+<li>returns <strong>isoDate</strong> (string): the calculated ISO 8601 date time string</li>
+</ul>
+<p>The format is <code>P_Y_M_W_DT_H_M_._S</code>, where underscores stand for digits and
+letters for time intervals - except for the separators <code>P</code> (period) and <code>T</code> (time).
+The meaning of the other letters are:</p>
+<ul>
+<li>Y &#x2013; years</li>
+<li>M &#x2013; months (if before T)</li>
+<li>W &#x2013; weeks</li>
+<li>D &#x2013; days</li>
+<li>H &#x2013; hours</li>
+<li>M &#x2013; minutes (if after T)</li>
+<li>S &#x2013; seconds (optionally with 3 decimal places for milliseconds)</li>
+</ul>
+<p>The string must be prefixed by a <code>P</code>. A separating <code>T</code> is only required if
+<code>H</code>, <code>M</code> and/or <code>S</code> are specified. You only need to specify the needed pairs
+of letters and numbers.</p>
+<pre><code class="lang-js">DATE_SUBTRACT(DATE_NOW(), <span class="hljs-number">1</span>, <span class="hljs-string">&quot;day&quot;</span>) <span class="hljs-comment">// yesterday</span>
+DATE_SUBTRACT(DATE_TIMESTAMP(DATE_YEAR(DATE_NOW()), <span class="hljs-number">12</span>, <span class="hljs-number">24</span>), <span class="hljs-number">4</span>, <span class="hljs-string">&quot;years&quot;</span>) <span class="hljs-comment">// Christmas four years ago</span>
+DATE_SUBTRACT(DATE_ADD(<span class="hljs-string">&quot;2016-02&quot;</span>, <span class="hljs-string">&quot;month&quot;</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span>, <span class="hljs-string">&quot;day&quot;</span>) <span class="hljs-comment">// last day of February (29th, because 2016 is a leap year!)</span>
+DATE_SUBTRACT(DATE_NOW(), <span class="hljs-string">&quot;P4D&quot;</span>) <span class="hljs-comment">// four days ago</span>
+DATE_SUBTRACT(DATE_NOW(), <span class="hljs-string">&quot;PT1H3M&quot;</span>) <span class="hljs-comment">// 1 hour and 30 minutes ago</span>
+</code></pre>
+<p><a name="date_diff()"></a></p>
+<h3 id="datediff">DATE_DIFF()</h3>
+<p><code>DATE_DIFF(date1, date2, unit, asFloat) &#x2192; diff</code></p>
+<p>Calculate the difference between two dates in given time <em>unit</em>, optionally
+with decimal places.</p>
+<ul>
+<li><strong>date1</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li><strong>date2</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li><strong>unit</strong> (string): either of the following to specify the time unit to return the
+difference in (case-insensitive):<ul>
+<li>y, year, years</li>
+<li>m, month, months</li>
+<li>w, week, weeks</li>
+<li>d, day, days</li>
+<li>h, hour, hours</li>
+<li>i, minute, minutes</li>
+<li>s, second, seconds</li>
+<li>f, millisecond, milliseconds</li>
+</ul>
+</li>
+<li><strong>asFloat</strong> (boolean, <em>optional</em>): if set to <em>true</em>, decimal places will be
+preserved in the result. The default is <em>false</em> and an integer is returned.</li>
+<li>returns <strong>diff</strong> (number): the calculated difference as number in <em>unit</em>.
+The value will be negative if <em>date2</em> is before <em>date1</em>.</li>
+</ul>
+<p><a name="date_compare()"></a></p>
+<h3 id="datecompare">DATE_COMPARE()</h3>
+<p><code>DATE_COMPARE(date1, date2, unitRangeStart, unitRangeEnd) &#x2192; bool</code></p>
+<p>Check if two partial dates match.</p>
+<ul>
+<li><strong>date1</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li><strong>date2</strong> (number|string): numeric timestamp or ISO 8601 date time string</li>
+<li><strong>unitRangeStart</strong> (string): unit to start from, see below</li>
+<li><strong>unitRangeEnd</strong> (string, <em>optional</em>):  unit to end with, leave out to only
+compare the component as specified by <em>unitRangeStart</em>. An error is raised if
+<em>unitRangeEnd</em> is a unit before <em>unitRangeStart</em>.</li>
+<li>returns <strong>bool</strong> (bool): <em>true</em> if the dates match, <em>false</em> otherwise</li>
+</ul>
+<p>The parts to compare are defined by a range of time units. The full range is:
+years, months, days, hours, minutes, seconds, milliseconds (in this order).</p>
+<p>All components of <em>date1</em> and <em>date2</em> as specified by the range will be compared.
+You can refer to the units as:</p>
+<ul>
+<li>y, year, years</li>
+<li>m, month, months</li>
+<li>d, day, days</li>
+<li>h, hour, hours</li>
+<li>i, minute, minutes</li>
+<li>s, second, seconds</li>
+<li>f, millisecond, milliseconds</li>
+</ul>
+<pre><code class="lang-js">// Compare months and days, true on birthdays if you&apos;re born on 4th of April
+DATE_COMPARE(&quot;1985-04-04&quot;, DATE_NOW(), &quot;months&quot;, &quot;days&quot;)
+
+// Will only match on one day if the current year is a leap year!
+// You may want to add or subtract one day from date1 to match every year.
+DATE_COMPARE(&quot;1984-02-29&quot;, DATE_NOW(), &quot;months&quot;, days&quot;)
+
+// compare years, months and days (true, because it&apos;s the same day)
+DATE_COMPARE(&quot;2001-01-01T15:30:45.678Z&quot;, &quot;2001-01-01T08:08:08.008Z&quot;, &quot;years&quot;, &quot;days&quot;)
+</code></pre>
+<p>You can directly compare ISO date <strong>strings</strong> if you want to find dates before or
+after a certain date, or in between two dates (<code>&gt;=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>).
+No special date function is required. Equality tests (<code>==</code> and <code>!=</code>) will only
+match the exact same date and time however. You may use <code>SUBSTRING()</code> to
+compare partial date strings, <code>DATE_COMPARE()</code> is basically a convenience
+function for that. However, neither is really required to limit a search to a
+certain day as demonstrated here:</p>
+<pre><code class="lang-js">FOR doc IN coll
+    FILTER doc.date &gt;= <span class="hljs-string">&quot;2015-05-15&quot;</span> AND doc.date &lt; <span class="hljs-string">&quot;2015-05-16&quot;</span>
+    RETURN doc
+</code></pre>
+<p>Every ISO date on that day is greater than or equal to <code>2015-05-15</code> in a string
+comparison (e.g. <code>2015-05-15T11:30:00.000Z</code>). Dates before <code>2015-05-15</code> are smaller
+and therefore filtered out by the first condition. Every date past <code>2015-05-15</code> is
+greater than this date in a string comparison, and therefore filtered out by the
+second condition. The result is that the time components in the dates you compare
+with are &quot;ignored&quot;. The query will return every document with <em>date</em> ranging from
+<code>2015-05-15T00:00:00.000Z</code> to <code>2015-05-15T23:99:99.999Z</code>. It would also include
+<code>2015-05-15T24:00:00.000Z</code>, but that date is actually <code>2015-05-16T00:00:00.000Z</code>
+and can only occur if inserted manually (you may want to pass dates through
+<a href="#dateiso8601">DATE_ISO8601()</a> to ensure a correct date representation).</p>
+<p>Leap days in leap years (29th of February) must be always handled manually,
+if you require so (e.g. birthday checks):</p>
+<pre><code class="lang-js">LET today = DATE_NOW()
+LET noLeapYear = NOT DATE_LEAPYEAR(today)
+
+FOR user IN users
+    LET birthday = noLeapYear AND
+                   DATE_MONTH(user.birthday) == <span class="hljs-number">2</span> AND
+                   DATE_DAY(user.birthday) == <span class="hljs-number">29</span>
+                   ? DATE_SUBTRACT(user.birthday, <span class="hljs-number">1</span>, <span class="hljs-string">&quot;day&quot;</span>) <span class="hljs-comment">/* treat like 28th in non-leap years */</span>
+                   : user.birthday
+    FILTER DATE_COMPARE(today, birthday, <span class="hljs-string">&quot;month&quot;</span>, <span class="hljs-string">&quot;day&quot;</span>)
+    <span class="hljs-comment">/* includes leaplings on the 28th of February in non-leap years,
+     * but excludes them in leap years which do have a 29th February.
+     * Replace DATE_SUBTRACT() by DATE_ADD() to include them on the 1st of March
+     * in non-leap years instead (depends on local jurisdiction).
+     */</span>
+    RETURN user
+</code></pre>
+<p><a name="working_with_dates_and_indices"></a></p>
+<h2 id="working-with-dates-and-indices">Working with dates and indices</h2>
+<p>There are two recommended ways to store timestamps in ArangoDB:</p>
+<ul>
+<li>as string with <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a> UTC timestamp</li>
+<li>as <a href="https://en.wikipedia.org/wiki/Epoch_%28reference_date%29" target="_blank">Epoch number</a></li>
+</ul>
+<p>The sort order of both is identical due to the sort properties of ISO date strings.
+You can&apos;t mix both types, numbers and strings, in a single attribute however.</p>
+<p>You can use <a href="../../Manual/Indexing/Skiplist.html">skiplist indices</a> with both date types.
+When chosing string representations, you can work with string comparisons (less than,
+greater than etc.) to express time ranges in your queries while still utilizing
+skiplist indices:</p>
+<div id="working_with_date_time_container">
+<div id="working_with_date_time_long" onclick="" style="Display: none;">
+<pre>
+arangosh&gt; db._create(<span class="hljs-string">&quot;exampleTime&quot;</span>);
+[ArangoCollection <span class="hljs-number">37158</span>, <span class="hljs-string">&quot;exampleTime&quot;</span> (type <span class="hljs-built_in">document</span>, status loaded)]
+arangosh&gt; <span class="hljs-keyword">var</span> timestamps = [<span class="hljs-string">&quot;2014-05-07T14:19:09.522&quot;</span>,<span class="hljs-string">&quot;2014-05-07T21:19:09.522&quot;</span>,<span class="hljs-string">&quot;2014-05-08T04:19:09.522&quot;</span>,<span class="hljs-string">&quot;2014-05-08T11:19:09.522&quot;</span>,<span class="hljs-string">&quot;2014-05-08T18:19:09.522&quot;</span>];
+arangosh&gt; <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) db.exampleTime.save({value:i, ts: timestamps[i]})
+arangosh&gt; db._query(<span class="hljs-string">&quot;FOR d IN exampleTime FILTER d.ts &gt; &apos;2014-05-07T14:19:09.522&apos; and d.ts &lt; &apos;2014-05-08T18:19:09.522&apos; RETURN d&quot;</span>).toArray()
+[ 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;37165&quot;</span>, 
+    <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;exampleTime/37165&quot;</span>, 
+    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;37165&quot;</span>, 
+    <span class="hljs-string">&quot;ts&quot;</span> : <span class="hljs-string">&quot;2014-05-07T21:19:09.522&quot;</span>, 
+    <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">1</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;37171&quot;</span>, 
+    <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;exampleTime/37171&quot;</span>, 
+    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;37171&quot;</span>, 
+    <span class="hljs-string">&quot;ts&quot;</span> : <span class="hljs-string">&quot;2014-05-08T11:19:09.522&quot;</span>, 
+    <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">3</span> 
+  }, 
+  { 
+    <span class="hljs-string">&quot;_key&quot;</span> : <span class="hljs-string">&quot;37168&quot;</span>, 
+    <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;exampleTime/37168&quot;</span>, 
+    <span class="hljs-string">&quot;_rev&quot;</span> : <span class="hljs-string">&quot;37168&quot;</span>, 
+    <span class="hljs-string">&quot;ts&quot;</span> : <span class="hljs-string">&quot;2014-05-08T04:19:09.522&quot;</span>, 
+    <span class="hljs-string">&quot;value&quot;</span> : <span class="hljs-number">2</span> 
+  } 
+]
+</pre>
+</div>
+<div id="working_with_date_time_short" onclick="$(&apos;#working_with_date_time_short&apos;).hide(); $(&apos;#working_with_date_time_long&apos;).show();">
+<pre>
+arangosh&gt; db._create(<span class="hljs-string">&quot;exampleTime&quot;</span>);
+arangosh&gt; <span class="hljs-keyword">var</span> timestamps = [<span class="hljs-string">&quot;2014-05-07T14:19:09.522&quot;</span>,<span class="hljs-string">&quot;2014-05-07T21:19:09.522&quot;</span>,<span class="hljs-string">&quot;2014-05-08T04:19:09.522&quot;</span>,<span class="hljs-string">&quot;2014-05-08T11:19:09.522&quot;</span>,<span class="hljs-string">&quot;2014-05-08T18:19:09.522&quot;</span>];
+arangosh&gt; <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) db.exampleTime.save({value:i, ts: timestamps[i]})
+arangosh&gt; db._query(<span class="hljs-string">&quot;FOR d IN exampleTime FILTER d.ts &gt; &apos;2014-05-07T14:19:09.522&apos; and d.ts &lt; &apos;2014-05-08T18:19:09.522&apos; RETURN d&quot;</span>).toArray()
+</pre><div class="example_show_button">show execution results</div>
+</div>
+</div>
+
+
+
+<p>The first and the last timestamp in the array are excluded from the result by the <code>FILTER</code>.</p>
+<p><a name="limitations"></a></p>
+<h2 id="limitations">Limitations</h2>
+<p>Note that dates before the year 1583 aren&apos;t allowed by the
+<a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a> standard by default, because
+they lie before the official introduction of the Gregorian calendar and may thus
+be incorrect or invalid. All AQL date functions apply the same rules to every
+date according to the Gregorian calendar system, even if inappropriate. That
+does not constitute a problem, unless you deal with dates prior to 1583 and
+especially years before Christ. The standard allows negative years, but requires
+special treatment of positive years too, if negative years are used (e.g.
+<code>+002015-05-15</code> and <code>-000753-01-01</code>). This is rarely used however, and AQL does
+not use the 7-character version for years between 0 and 9999 in ISO strings.
+Keep in mind that they can&apos;t be properly compared to dates outside that range.
+Sorting of negative dates does not result in a meaningful order, with years longer
+ago last, but months, days and the time components in otherwise correct order.</p>
+<p>Leap seconds are ignored, just as they are in JavaScript as per
+<a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.1" target="_blank">ECMAScript Language Specifications</a>.</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../Functions/Numeric.html" class="navigation navigation-prev " aria-label="Previous page: Numeric"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../Functions/Array.html" class="navigation navigation-next " aria-label="Next page: Array"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.1.1/anchor.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-anchorjs/anchor-style.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-piwik/plugin.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"addcssjs":{"js":["styles/header.js"],"css":["styles/header.css"]},"add-header":{"BASE_PATH":"https://docs.arangodb.com/devel"},"piwik":{"URL":"www.arangodb.com/piwik/","siteId":12},"toggle-chapters":{},"anchorjs":{},"highlight":{},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+<script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
+    </body>
+    <!-- End of book ArangoDB v3.0.x-devel (2016-06-02) AQL Documentation -->
+</html>

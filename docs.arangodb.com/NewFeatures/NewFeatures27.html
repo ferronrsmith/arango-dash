@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en" >
-    <!-- Start book ArangoDB 2.8.2 Documentation -->
+    <!-- Start book ArangoDB 2.8.9 Documentation -->
     <head>
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Whats New in 2.7 | ArangoDB 2.8.2 Documentation</title>
+        <title>Whats New in 2.7 | ArangoDB 2.8.9 Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.5.2">
@@ -55,7 +55,7 @@
     <body>
         <!-- body:start -->
         
-    <div class="book" data-level="2.1" data-chapter-title="Whats New in 2.7" data-filepath="NewFeatures/NewFeatures27.md" data-basepath=".." data-revision="Wed Feb 10 2016 10:18:39 GMT+0100 (CET)">
+    <div class="book" data-level="2.1" data-chapter-title="Whats New in 2.7" data-filepath="NewFeatures/NewFeatures27.md" data-basepath=".." data-revision="Sun May 22 2016 21:07:38 GMT+0200 (CEST)">
     
 
 <div class="book-summary">
@@ -4048,7 +4048,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >ArangoDB 2.8.2 Documentation</a>
+        <a href="../" >ArangoDB 2.8.9 Documentation</a>
     </h1>
 </div>
 
@@ -4411,24 +4411,6 @@ of times.</p>
 The new documentation is based on Swagger 2.0 and opens in a separate web page.</p>
 <p><a name="foxx_improvements"></a></p>
 <h2 id="foxx-improvements">Foxx improvements</h2>
-<p><a name="es2015_classes"></a></p>
-<h3 id="es2015-classes">ES2015 Classes</h3>
-<p>All Foxx constructors have been replaced with ES2015 classes and can be extended using the class syntax. 
-The <code>extend</code> method is still supported at the moment but will become deprecated in ArangoDB 2.8 and removed in ArangoDB 2.9.</p>
-<p><strong>Before:</strong></p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> Foxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;org/arangodb/foxx&apos;</span>);
-<span class="hljs-keyword">var</span> MyModel = Foxx.Model.extend({
-  <span class="hljs-comment">// ...</span>
-  schema: {<span class="hljs-comment">/* ... */</span>}
-});
-</code></pre>
-<p><strong>After:</strong></p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> Foxx = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;org/arangodb/foxx&apos;</span>);
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyModel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Foxx</span>.<span class="hljs-title">Model</span> </span>{
-  <span class="hljs-comment">// ...</span>
-}
-MyModel.prototype.schema = {<span class="hljs-comment">/* ... */</span>};
-</code></pre>
 <p><a name="confidential_configuration"></a></p>
 <h3 id="confidential-configuration">Confidential configuration</h3>
 <p>It is now possible to specify configuration options with the type <code>password</code>. The password type is equivalent to the text type but will be masked in the web frontend to prevent accidental exposure of confidential options like API keys and passwords when configuring your Foxx application.</p>
@@ -4585,5 +4567,5 @@ require(["gitbook"], function(gitbook) {
         <!-- body:end -->
 <script type="text/javascript">var _paq = _paq || [];_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function() {var u=(("https:" == document.location.protocol) ? "https" : "http") + "://www.arangodb.com/piwik/";_paq.push(['setTrackerUrl', u+'piwik.php']);_paq.push(['setSiteId', 12]);var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);})();</script><noscript><p><img src="http://www.arangodb.com/piwik/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
     </body>
-    <!-- End of book ArangoDB 2.8.2 Documentation -->
+    <!-- End of book ArangoDB 2.8.9 Documentation -->
 </html>
