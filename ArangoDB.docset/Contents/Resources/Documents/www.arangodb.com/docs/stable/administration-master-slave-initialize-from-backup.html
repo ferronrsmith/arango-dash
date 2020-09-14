@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="administration-master-slave-initialize-from-backup.html">
+<title>Speeding up slave initialization | ArangoDB Documentation</title>
+<meta itemprop="description" name="description" content="A slave can be faster initialized using a backup of the master in Master/Slave replication." />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:url" content="https://www.arangodb.com/docs/stable/administration-master-slave-initialize-from-backup.html" />
+<meta property="og:title" content="Speeding up slave initialization | ArangoDB Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="A slave can be faster initialized using a backup of the master in Master/Slave replication." />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81053435-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-81053435-1');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5LQ7HC');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('provide', 'adblockTracker', function(tracker, opts) {
+    var ad = document.createElement('ins');
+    ad.className = 'AdSense';
+    ad.style.display = 'block';
+    ad.style.position = 'absolute';
+    ad.style.top = '-1px';
+    ad.style.height = '1px';
+    document.body.appendChild(ad);
+    tracker.set('dimension' + opts.dimensionIndex, !ad.clientHeight);
+    document.body.removeChild(ad);
+  });
+
+  ga('create', 'UA-81053435-6', 'auto');
+  ga('require', 'adblockTracker', {dimensionIndex: 1});
+  ga('send', 'pageview');
+</script>
+
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  twq('init','nz793');
+  twq('track','PageView');
+</script>
+
+<script type="text/javascript">
+  _linkedin_partner_id = "499017";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(){var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})();
+</script>
+
+<link rel="shortcut icon" href="../../wp-content/uploads/2018/07/www.arangodb.com-favicon.png">
+<link rel="stylesheet" href="../styles/gitbook/style.css">
+<link rel="stylesheet" href="../styles/gitbook/highlight-website.css">
+<link rel="stylesheet" href="../styles/gitbook/fontsettings-website.css">
+<link rel="stylesheet" href="../styles/website.css">
+<link rel="stylesheet" href="../styles/header.css">
+<link rel="stylesheet" href="../styles/navbar.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/pygments-vs.css">
+<script src="../js/jquery-3.4.0.min.js"></script>
+<script src="../js/site.js"></script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ7HC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=499017&fmt=gif" /></noscript>
+
+<div class="arangodb-header">
+  <div class="arangodb-logo">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <div class="arangodb-logo-small">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_small_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <select class="arangodb-version-switcher">
+      <option value="devel">3.8</option>
+      <option value="stable">3.7</option>
+      <option value="3.6">3.6</option>
+      <option value="3.5">3.5</option>
+      <option value="3.4" disabled>3.4</option>
+      <option value="3.3" disabled>3.3</option>
+  </select>
+  <script type="text/javascript">
+    var versionAliases = {"stable":"3.7","devel":"3.8"};
+    var current = location.href;
+
+    var selectedVersion = current.split('/')[4];
+    var switcher = document.querySelector(".arangodb-version-switcher");
+
+    for (var i = 0; i < switcher.options.length; i++) {
+      var value = switcher.options.item(i).value;
+      if (value == selectedVersion) {
+        switcher.value = value;
+      } else if (versionAliases[value] == selectedVersion) {
+        switcher.value = value;
+      }
+    }
+    
+    switcher.addEventListener('change', function(event) {
+      var current = location.href;
+      var urlElements = current.split('/');
+      urlElements[4] = event.target.value;
+      var newUrl = urlElements.join("/");
+      location.href = newUrl;
+    });
+  </script>
+  <ul class="arangodb-navmenu">
+    <li class="active-tab">
+      <a href="index.html" data-book="Manual">Manual</a>
+    </li>
+    <li>
+      <a href="aql/index.html" data-book="AQL">AQL</a>
+    </li>
+    <li>
+      <a href="http/index.html" data-book="HTTP">HTTP</a>
+    </li>
+    <li>
+      <a href="drivers/index.html" data-book="Drivers">Drivers</a>
+    </li>
+    <li>
+      <a href="oasis/index.html" data-book="Oasis">Oasis</a>
+    </li>
+    <li class="socialIcons" title="GitHub">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons" title="StackOverflow">
+      <a href="https://stackoverflow.com/questions/tagged/arangodb" target="_blank">
+        <i class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups" title="Google Groups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="_blank">
+        <img alt="Google Groups" src="../assets/googlegroupsIcon.png">
+      </a>
+    </li>
+    <li class="socialIcons" title="Slack">
+      <a href="https://slack.arangodb.com" target="_blank">
+        <i class="fa fa-slack"></i>
+      </a>
+    </li>
+    <li>
+      <div class="searchbar">
+        <div id="search-searchbar"></div>
+      </div>
+    </li>
+    <li class="placeholder">
+      <div style="width: 15px"></div>
+    </li>
+  </ul>
+  <div id="search-hits"></div>
+</div>
+ 
+  <div class="book with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+      <nav role="navigation">
+    <ul class="summary">
+  <li class="chapter">
+  <a href="index.html">Introduction</a>
+  </li>
+  <li class="chapter">
+  <a href="highlights.html">Highlights</a>
+  </li>
+  <li class="header">GETTING FAMILIAR</li>
+  <li class="chapter">
+  <a href="getting-started.html">Getting Started</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="getting-started-installation.html">Installation</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-authentication.html">Authentication</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-web-interface.html">Web Interface</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-databases-collections-documents.html">Databases, Collections and Documents</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-querying-the-database.html">Querying the Database</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-coming-from-sql.html">Coming from SQL</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-next-steps.html">Next Steps</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="tutorials.html">Tutorials</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="tutorials-reduce-memory-footprint.html">Reduce Memory Footprint</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-starter.html">ArangoDB Starter</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-dc2-dc.html">Datacenter to datacenter Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes.html">Kubernetes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="tutorials-kubernetes-eks.html">Amazon EKS</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-gke.html">Google GKE</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-aks.html">Azure AKS</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes-dc2-dc.html">DC2DC on Kubernetes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="programs.html">Programs & Tools</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="programs-arangod.html">ArangoDB Server</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangod-options.html">Options</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="programs-arangod-global.html">Global</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-agency.html">Agency</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-arangosearch.html">ArangoSearch</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-audit.html">Audit</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cache.html">Cache</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-backup.html">Backup</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-compaction.html">Compaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-database.html">Database</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-foxx.html">Foxx</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-frontend.html">Frontend</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-http.html">HTTP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-javascript.html">JavaScript</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ldap.html">LDAP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-log.html">Log</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-network.html">Network</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-nonce.html">Nonce</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-query.html">Query</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-random.html">Random</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-replication.html">Replication</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rclone.html">Rclone</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rocksdb.html">RocksDB</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-server.html">Server</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ssl.html">SSL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-tcp.html">TCP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-temp.html">Temp</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-transaction.html">Transaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ttl.html">TTL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-vst.html">VST</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-wal.html">WAL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangod-env-vars.html">Environment variables</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-web-interface.html">Web Interface</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-web-interface-dashboard.html">Dashboard</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-cluster.html">Cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-collections.html">Collections</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-document.html">Document</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-aql-editor.html">Queries</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-graphs.html">Graphs</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-services.html">Services</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-users.html">Users</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-logs.html">Logs</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangosh.html">ArangoDB Shell</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangosh-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-starter.html">ArangoDB Starter</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-starter-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-security.html">Security</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-architecture.html">Architecture</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangodump.html">Arangodump</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangodump-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-maskings.html">Maskings</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-limitations.html">Limitations</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangorestore.html">Arangorestore</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangorestore-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-fast-cluster-restore.html">Fast Cluster Restore</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobackup.html">Arangobackup</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobackup-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobackup-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoimport.html">Arangoimport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-json.html">Examples JSON</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-csv.html">Examples CSV</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoexport.html">Arangoexport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoexport-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoexport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobench.html">Arangobench</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobench-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobench-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoinspect.html">Arangoinspect</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoinspect-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoinspect-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-foxx-cli.html">Foxx CLI</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-foxx-cli-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="header">CORE TOPICS</li>
+  <li class="chapter">
+  <a href="data-modeling.html">Data models & modeling</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="data-modeling-concepts.html">Concepts</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-databases.html">Databases</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-databases-working-with.html">Working with Databases</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-databases-notes.html">Notes about Databases</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-collections.html">Collections</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-collections-collection-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-collections-database-methods.html">Database Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-documents.html">Documents</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-documents-document-address.html">Basics and Terminology</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-document-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-schema-validation.html">Schema Validation</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-monetary-data-without-precision-loss.html">Monetary data without precision loss</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-graphs-vertices-edges.html">Graphs, Vertices & Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-views.html">Views</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-views-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-views-view-methods.html">View Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-naming-conventions.html">Naming Conventions</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-database-names.html">Database Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-collection-and-view-names.html">Collection and View Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-document-keys.html">Document Keys</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-attribute-names.html">Attribute Names</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-operational-factors.html">Operational Factors</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="indexing.html">Indexing</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="indexing-index-basics.html">Index Basics</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-which-index.html">Which index to use when</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-index-utilization.html">Index Utilization</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-working-with-indexes.html">Working with Indexes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="indexing-persistent.html">Persistent</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-ttl.html">TTL Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-fulltext.html">Fulltext Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-geo.html">Geo-spatial Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-vertex-centric.html">Vertex Centric Indexes</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="transactions.html">Transactions</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="transactions-transaction-invocation.html">Transaction invocation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-passing.html">Passing parameters</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-locking-and-isolation.html">Locking and isolation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-durability.html">Durability</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-limitations.html">Limitations</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="graphs.html">Graphs</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="graphs-general-graphs.html">General Graphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-general-graphs-management.html">Graph Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-general-graphs-functions.html">Graph Functions</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-satellite-graphs.html">SatelliteGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-management.html">Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-smart-graphs.html">SmartGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-smart-graphs-management.html">SmartGraph Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-traversals.html">Traversals</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-traversals-using-traversal-objects.html">Using Traversal Objects</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-traversals-example-data.html">Example Data</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-edges.html">Working with Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="graphs-pregel.html">Pregel</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="arangosearch.html">ArangoSearch</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="arangosearch-views.html">Views</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-analyzers.html">Analyzers</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-examples.html">Examples</a>
+      </li>
+    </ul>
+  </li>
+  <li class="header">ADVANCED TOPICS</li>
+  <li class="chapter">
+  <a href="architecture.html">Architecture</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="architecture-deployment-modes.html">ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="architecture-deployment-modes-single-instance.html">Single Instance</a>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-data-models.html">Data Models</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-sharding.html">Data Sharding</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-dc2-dc.html">Datacenter to datacenter replication</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-introduction.html">Introduction</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-applicability.html">Applicability</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-requirements.html">Requirements</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="architecture-single-instance-vs-cluster.html">Single Instance vs. Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-storage-engines.html">Storage Engines</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-replication.html">Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-write-ahead-log.html">Write-ahead log</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="foxx.html">Foxx Microservices</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="foxx-getting-started.html">Getting started</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-guides.html">Guides</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-guides-routing.html">Working with routers</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-collections.html">Working with collections</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-queries.html">Writing queries</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-development-mode.html">Development mode</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-testing.html">Testing Foxx services</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-cluster.html">Foxx in a cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-scripts.html">Scripts and scheduling</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-bundled-node-modules.html">Using Node modules</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-webpack.html">Using Webpack with Foxx</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-auth.html">Authentication and sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-dependencies.html">Linking services together</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-files.html">Working with files</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-making-requests.html">Making requests</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-browser.html">Access from the browser</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-legacy-mode.html">Working with 2.x services</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-reference.html">Reference</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-reference-manifest.html">Service manifest</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-context.html">Service context</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-routers.html">Routers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-routers-endpoints.html">Endpoints</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-middleware.html">Middleware</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-request.html">Request</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-sessions.html">Sessions middleware</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-sessions-storages.html">Session storages</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-collection.html">Collection storage</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-jwt.html">JWT storage</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-sessions-transports.html">Session transports</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-cookie.html">Cookie transport</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-header.html">Header transport</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-modules.html">Related modules</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-modules-auth.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth1.html">OAuth 1.0a</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth2.html">OAuth 2.0</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-graph-ql.html">GraphQL</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-queues.html">Queues</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-deployment.html">Deployment</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-migrating2x.html">Migrating 2.x services</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-migrating2x-wayback.html">Migrating from pre-2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-manifest.html">manifest.json</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-context.html">applicationContext</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-repositories.html">Repositories and Models</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-controllers.html">Controllers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-endpoints.html">Request context</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-errors.html">Error handling</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-middleware.html">Before/After/Around</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-request.html">Request object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-response.html">Response object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-io-c.html">Dependency Injection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-sessions.html">Sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-auth.html">Auth and OAuth2</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-queries.html">Foxx Queries</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="satellites.html">SatelliteCollections</a>
+  </li>
+  <li class="chapter">
+  <a href="smartjoins.html">SmartJoins</a>
+  </li>
+  <li class="header">OPERATIONS</li>
+  <li class="chapter">
+  <a href="installation.html">Installation</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="installation-linux.html">Linux</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-linux-osconfiguration.html">Operating System Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-linux-ostuning-scripts.html">Linux OS Tuning Script Examples</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="installation-mac-osx.html">macOS</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-windows.html">Windows</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-compiling.html">Compiling</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-compiling-debian.html">Compile on Debian</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-windows.html">Compile on Windows</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-running-custom-build.html">Running Custom Build</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-jemalloc.html">Recompiling jemalloc</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="uninstallation.html">Uninstallation</a>
+  </li>
+  <li class="chapter">
+  <a href="deployment.html">Deployment</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="deployment-modes.html">By ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-single-instance.html">Single Instance</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-single-instance-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-single-instance-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-master-slave-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-active-failover-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-active-failover-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-cluster-preliminary-information.html">Preliminary Information</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-manual-start.html">Manual Start</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-kubernetes.html">Kubernetes</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-dc2-dc.html">Multiple Datacenters</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-dc2-dc-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-master.html">ArangoSync Master</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-workers.html">ArangoSync Workers</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-prometheus-grafana.html">Prometheus & Grafana</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-standalone-agency.html">Standalone Agency</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-technology.html">By Technology</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-manually.html">Manually</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-arango-dbstarter.html">ArangoDB Starter</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-docker.html">Docker</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-kubernetes.html">Kubernetes</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-kubernetes-usage.html">Using the Operator</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-dashboards.html">Dashboards</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-resource.html">Deployment Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-resource.html">Backup Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-policy-resource.html">BackupPolicy Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-driver-configuration.html">Driver Configuration</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-helm.html">Helm</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-authentication.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-scaling.html">Scaling</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-drain.html">Draining Nodes</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-upgrading.html">Upgrading</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-config-and-secrets.html">ArangoDB Configuration & Secrets</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-metrics.html">Metrics</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-services-and-load-balancer.html">Services & Load balancer</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-replication-resource.html">Deployment Replication Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage.html">Storage</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage-resource.html">Storage Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-tls.html">TLS</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-troubleshooting.html">Troubleshooting</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-cloud.html">In the Cloud</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-cloud-aws.html">AWS</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cloud-azure.html">Azure</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-production-checklist.html">Production Checklist</a>
+      </li>
+      <li class="chapter">
+      <a href="deployment-migrating-single-instance-cluster.html">Migrating Single Instance to Cluster</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="backup-restore.html">Backup & Restore</a>
+  </li>
+  <li class="chapter">
+  <a href="upgrading.html">Upgrading</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="upgrading-general-info.html">General Upgrade Information</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-community-to-enterprise.html">Community to Enterprise Upgrade</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-osspecific-info.html">OS-specific Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-linux.html">Upgrading on Linux</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-mac-os.html">Upgrading on macOS</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-windows.html">Upgrading on Windows</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-starter.html">Upgrading Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-manually.html">Upgrading Manual Deployments</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-manually-active-failover.html">Upgrading an Active Failover deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-manually-cluster.html">Upgrading a Cluster</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-kubernetes.html">Upgrading Kubernetes Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-version-specific.html">Version Specific Upgrade Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading34.html">Upgrading to 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading33.html">Upgrading to 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading32.html">Upgrading to 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading31.html">Upgrading to 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading30.html">Upgrading to 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading28.html">Upgrading to 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading26.html">Upgrading to 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading25.html">Upgrading to 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading24.html">Upgrading to 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading23.html">Upgrading to 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading22.html">Upgrading to 2.2</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="downgrading.html">Downgrading</a>
+  </li>
+  <li class="chapter">
+  <a href="scaling.html">Scaling</a>
+  </li>
+  <li class="chapter selected">
+  <a href="administration.html">Administration</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="administration-configuration.html">Configuration</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-import-export.html">Import & Export</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-managing-users.html">User Management</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-managing-users-in-arangosh.html">In Arangosh</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-engine-switch-engine.html">Switch Storage Engine</a>
+      </li>
+      <li class="chapter selected">
+      <a href="administration-master-slave.html">Master/Slave</a>
+        <ul class="articles">
+          <li class="chapter selected">
+          <a href="administration-master-slave-setting-up.html">Setting up</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="administration-master-slave-replication-applier.html">Replication Applier</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-database-setup.html">Per-Database Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-server-level-setup.html">Server-Level Setup</a>
+              </li>
+              <li class="chapter selected active">
+              <a href="administration-master-slave-initialize-from-backup.html">Speeding Up Slave Initialization</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="administration-master-slave-syncing-collections.html">Syncing Collections</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-active-failover.html">Active Failover</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-cluster.html">Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-starter.html">ArangoDB Starter Administration</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-starter-removal.html">Removal Procedure</a>
+          </li>
+          <li class="chapter">
+          <a href="administration-starter-recovery.html">Recovery Procedure</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="security.html">Security</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="security-security-options.html">Security Options</a>
+      </li>
+      <li class="chapter">
+      <a href="security-change-root-password.html">Change Root Password</a>
+      </li>
+      <li class="chapter">
+      <a href="security-encryption.html">Encryption at Rest</a>
+      </li>
+      <li class="chapter">
+      <a href="security-auditing.html">Auditing</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="security-auditing-audit-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="security-auditing-audit-events.html">Events</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="security-starter.html">Securing Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="security-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="monitoring.html">Monitoring</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="monitoring-log-levels.html">Log Levels</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-collectd.html">Collectd</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="monitoring-collectd-slave-status.html">Replication Slaves</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-traffic-with-ipaccounting.html">Network usage</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-other-relevant-metrics.html">More metrics</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-foxx-apps.html">Monitoring Foxx</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="troubleshooting.html">Troubleshooting</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="troubleshooting-arangod.html">arangod</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-emergency-console.html">Emergency Console</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-cluster.html">Cluster</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="troubleshooting-cluster-agency-dump.html">Agency Dump</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li><hr/></li>
+  <li class="chapter">
+  <a href="release-notes.html">Release Notes</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="release-notes-37.html">Version 3.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features37.html">What's New in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues37.html">Known Issues in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes37.html">Incompatible changes in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-api-changes37.html">API changes in 3.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-36.html">Version 3.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features36.html">What's New in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues36.html">Known Issues in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes36.html">Incompatible changes in 3.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-35.html">Version 3.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features35.html">What's New in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues35.html">Known Issues in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes35.html">Incompatible changes in 3.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-34.html">Version 3.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features34.html">What's New in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues34.html">Known Issues in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes34.html">Incompatible changes in 3.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-33.html">Version 3.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features33.html">What's New in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues33.html">Known Issues in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes33.html">Incompatible changes in 3.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-32.html">Version 3.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features32.html">What's New in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues32.html">Known Issues in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes32.html">Incompatible changes in 3.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-31.html">Version 3.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features31.html">What's New in 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes31.html">Incompatible changes in 3.1</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-30.html">Version 3.0</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features30.html">What's New in 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes30.html">Incompatible changes in 3.0</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-28.html">Version 2.8</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features28.html">What's New in 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes28.html">Incompatible changes in 2.8</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-27.html">Version 2.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features27.html">What's New in 2.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes27.html">Incompatible changes in 2.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-26.html">Version 2.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features26.html">What's New in 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes26.html">Incompatible changes in 2.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-25.html">Version 2.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features25.html">What's New in 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes25.html">Incompatible changes in 2.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-24.html">Version 2.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features24.html">What's New in 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes24.html">Incompatible changes in 2.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-23.html">Version 2.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features23.html">What's New in 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes23.html">Incompatible changes in 2.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-22.html">Version 2.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features22.html">What's New in 2.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-21.html">Version 2.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features21.html">What's New in 2.1</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="appendix.html">Appendix</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="appendix-references.html">References</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-references-dbobject.html">db</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-collection-object.html">collection</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-cursor-object.html">cursor</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-java-script-modules.html">JavaScript Modules</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-java-script-modules-arango-db.html">@arangodb</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-analyzers.html">analyzers</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-console.html">console</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-crypto.html">crypto</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-file-system.html">fs</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-request.html">request</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-actions.html">actions</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-queries.html">queries</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-wal.html">Write-ahead log</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-tasks.html">Task Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-deprecated.html">Deprecated</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-deprecated-simple-queries.html">Simple Queries</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-pagination.html">Pagination</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-modification-queries.html">Modification Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-geo-queries.html">Geo Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-fulltext-queries.html">Fulltext Queries</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-error-codes.html">Error codes and meanings</a>
+      </li>
+      <li class="chapter">
+      <a href="appendix-glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</nav>
+    </div>
+    <div class="book-body">
+      <script type="text/javascript">
+          var availableVersions = ["devel","stable","3.6","3.5",];
+          versionSwitcherSetAvailable(availableVersions);
+      </script>
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <a class="btn pull-left js-toolbar-action hamburger" aria-label=""><i class="fa fa-align-justify"></i></a>
+          <a class="btn pull-left js-toolbar-action" aria-label="" href="https://github.com/arangodb/docs/edit/master/3.7/administration-master-slave-initialize-from-backup.md" target="_blank"><i class="fa fa-github"></i> Contribute</a>
+        </div>
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+            <section class="normal markdown-section">
+              <h1 id="speeding-up-slave-initialization">Speeding up slave initialization</h1>
+
+<p>If you have a very big database and want to set up a Master/Slave replication
+between two or more ArangoDB instances, then transferring the entire database
+over the network may take a long time. In order to speed-up the replication
+initialization process the slave can be initialized <strong>using a backup</strong> of
+the master.</p>
+
+<p>For the following example setup, we will use the instance with endpoint
+<code class="language-plaintext highlighter-rouge">tcp://master.domain.org:8529</code> as master, and the instance with endpoint
+<code class="language-plaintext highlighter-rouge">tcp://slave.domain.org:8530</code> as slave.</p>
+
+<p>The goal is to have all data from the database ` _system<code class="language-plaintext highlighter-rouge"> on master replicated
+to the database </code>_system` on the slave (the same process can be applied for
+other databases).</p>
+
+<h2 id="preparation">Preparation</h2>
+
+<p>First of all you have to start the master server, using a command like the above:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arangod <span class="nt">--server</span>.endpoint tcp://master.domain.org:8529
+</code></pre></div></div>
+
+<p>Depending on your storage engine you also want to adjust the following options:</p>
+
+<ul>
+  <li>
+    <p>MMFiles:<br />
+<code class="language-plaintext highlighter-rouge">--wal.historic-logfiles</code><br />
+maximum number of historic logfiles to keep after collection (default: 10)</p>
+  </li>
+  <li>
+    <p>RocksDB:<br />
+<code class="language-plaintext highlighter-rouge">--rocksdb.wal-file-timeout</code><br />
+timeout after which unused WAL files are deleted in seconds (default: 10)</p>
+  </li>
+</ul>
+
+<p>The options above prevent the premature removal of old WAL files from the master,
+and are useful in case intense write operations happen on the master while you
+are initializing the slave. In fact, if you do not tune these options, what can
+happen is that the master WAL files do not include all the write operations
+happened after the backup is taken. This may lead to situations in which the
+initialized slave is missing some data, or fails to start.</p>
+
+<p>Now you have to create a dump from the master using the tool <code class="language-plaintext highlighter-rouge">arangodump</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arangodump <span class="nt">--output-directory</span> <span class="s2">"dump"</span> <span class="nt">--server</span>.endpoint tcp://master.domain.org:8529
+</code></pre></div></div>
+
+<p>Please adapt the <code class="language-plaintext highlighter-rouge">arangodump</code> command to your specific case.</p>
+
+<p>The following is a possible <code class="language-plaintext highlighter-rouge">arangodump</code> output:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Server version: 3.3
+Connected to ArangoDB <span class="s1">'tcp://master.domain.org:8529'</span>, database: <span class="s1">'_system'</span>, username: <span class="s1">'root'</span>
+Writing dump to output directory <span class="s1">'dump'</span>
+Last tick provided by server is: 37276350
+<span class="c"># Dumping document collection 'TestNums'...</span>
+<span class="c"># Dumping document collection 'TestNums2'...</span>
+<span class="c"># Dumping document collection 'frenchCity'...</span>
+<span class="c"># Dumping document collection 'germanCity'...</span>
+<span class="c"># Dumping document collection 'persons'...</span>
+<span class="c"># Dumping edge collection 'frenchHighway'...</span>
+<span class="c"># Dumping edge collection 'germanHighway'...</span>
+<span class="c"># Dumping edge collection 'internationalHighway'...</span>
+<span class="c"># Dumping edge collection 'knows'...</span>
+Processed 9 collection<span class="o">(</span>s<span class="o">)</span>, wrote 1298855504 byte<span class="o">(</span>s<span class="o">)</span> into datafiles, sent 32 batch<span class="o">(</span>es<span class="o">)</span>
+</code></pre></div></div>
+
+<p>In line <em>4</em> the last server <code class="language-plaintext highlighter-rouge">tick</code> is displayed. This value will be useful when
+we will start the replication, to have the <code class="language-plaintext highlighter-rouge">replication-applier</code> start
+replicating exactly from that <code class="language-plaintext highlighter-rouge">tick</code>.</p>
+
+<p>Next you have to start the slave:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arangod <span class="nt">--server</span>.endpoint tcp://slave.domain.org:8530
+</code></pre></div></div>
+
+<p>If you are running master and slave on the same server (just for test), please
+make sure you give your slave a different data directory.</p>
+
+<p>Now you are ready to restore the dump with the tool <code class="language-plaintext highlighter-rouge">arangorestore</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arangorestore <span class="nt">--input-directory</span> <span class="s2">"dump"</span> <span class="nt">--server</span>.endpoint tcp://slave.domain.org:8530
+</code></pre></div></div>
+
+<p>Again, please adapt the command above in case you are using a database different
+than <code class="language-plaintext highlighter-rouge">_system</code>.</p>
+
+<p>Once the restore is finished there are two possible approaches to start the
+replication:</p>
+
+<ol>
+  <li>with sync check (slower, but easier)</li>
+  <li>without sync check (faster, but last server tick needs to be provided correctly)</li>
+</ol>
+
+<h3 id="approach-1-all-in-one-setup">Approach 1: All-in-one setup</h3>
+
+<p>Start replication on the slave with <code class="language-plaintext highlighter-rouge">arangosh</code> using the following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arangosh <span class="nt">--server</span>.endpoint tcp://slave.domain.org:8530
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">_useDatabase</span><span class="p">(</span><span class="dl">"</span><span class="s2">_system</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb/replication</span><span class="dl">"</span><span class="p">).</span><span class="nx">setupReplication</span><span class="p">({</span>
+  <span class="na">endpoint</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tcp://master.domain.org:8529</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">myuser</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mypasswd</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">verbose</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">includeSystem</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">incremental</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">autoResync</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>The following is the printed output:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>still synchronizing... last received status: 2017-12-06T14:06:25Z: fetching collection keys <span class="k">for </span>collection <span class="s1">'TestNums'</span> from /_api/replication/keys/keys?collection<span class="o">=</span>7173693&amp;to<span class="o">=</span>57482456&amp;serverId<span class="o">=</span>24282855553110&amp;batchId<span class="o">=</span>57482462
+still synchronizing... last received status: 2017-12-06T14:06:25Z: fetching collection keys <span class="k">for </span>collection <span class="s1">'TestNums'</span> from /_api/replication/keys/keys?collection<span class="o">=</span>7173693&amp;to<span class="o">=</span>57482456&amp;serverId<span class="o">=</span>24282855553110&amp;batchId<span class="o">=</span>57482462
+<span class="o">[</span>...]
+still synchronizing... last received status: 2017-12-06T14:07:13Z: sorting 10000000 <span class="nb">local </span>key<span class="o">(</span>s<span class="o">)</span> <span class="k">for </span>collection <span class="s1">'TestNums'</span>
+still synchronizing... last received status: 2017-12-06T14:07:13Z: sorting 10000000 <span class="nb">local </span>key<span class="o">(</span>s<span class="o">)</span> <span class="k">for </span>collection <span class="s1">'TestNums'</span>
+<span class="o">[</span>...]
+still synchronizing... last received status: 2017-12-06T14:09:10Z: fetching master collection dump <span class="k">for </span>collection <span class="s1">'TestNums3'</span>, <span class="nb">type</span>: document, <span class="nb">id </span>37276943, batch 2, markers processed: 15278, bytes received: 2097258
+still synchronizing... last received status: 2017-12-06T14:09:18Z: fetching master collection dump <span class="k">for </span>collection <span class="s1">'TestNums5'</span>, <span class="nb">type</span>: document, <span class="nb">id </span>37276973, batch 5, markers processed: 123387, bytes received: 17039688
+<span class="o">[</span>...]
+still synchronizing... last received status: 2017-12-06T14:13:49Z: fetching master collection dump <span class="k">for </span>collection <span class="s1">'TestNums5'</span>, <span class="nb">type</span>: document, <span class="nb">id </span>37276973, batch 132, markers processed: 9641823, bytes received: 1348744116
+still synchronizing... last received status: 2017-12-06T14:13:59Z: fetching collection keys <span class="k">for </span>collection <span class="s1">'frenchCity'</span> from /_api/replication/keys/keys?collection<span class="o">=</span>27174045&amp;to<span class="o">=</span>57482456&amp;serverId<span class="o">=</span>24282855553110&amp;batchId<span class="o">=</span>57482462
+<span class="o">{</span> 
+  <span class="s2">"state"</span> : <span class="o">{</span> 
+    <span class="s2">"running"</span> : <span class="nb">true</span>, 
+    <span class="s2">"lastAppliedContinuousTick"</span> : null, 
+    <span class="s2">"lastProcessedContinuousTick"</span> : null, 
+    <span class="s2">"lastAvailableContinuousTick"</span> : null, 
+    <span class="s2">"safeResumeTick"</span> : null, 
+    <span class="s2">"progress"</span> : <span class="o">{</span> 
+      <span class="s2">"time"</span> : <span class="s2">"2017-12-06T14:13:59Z"</span>, 
+      <span class="s2">"message"</span> : <span class="s2">"send batch finish command to url /_api/replication/batch/57482462?serverId=24282855553110"</span>, 
+      <span class="s2">"failedConnects"</span> : 0 
+    <span class="o">}</span>, 
+    <span class="s2">"totalRequests"</span> : 0, 
+    <span class="s2">"totalFailedConnects"</span> : 0, 
+    <span class="s2">"totalEvents"</span> : 0, 
+    <span class="s2">"totalOperationsExcluded"</span> : 0, 
+    <span class="s2">"lastError"</span> : <span class="o">{</span> 
+      <span class="s2">"errorNum"</span> : 0 
+    <span class="o">}</span>, 
+    <span class="s2">"time"</span> : <span class="s2">"2017-12-06T14:13:59Z"</span> 
+  <span class="o">}</span>, 
+  <span class="s2">"server"</span> : <span class="o">{</span> 
+    <span class="s2">"version"</span> : <span class="s2">"3.3.devel"</span>, 
+    <span class="s2">"serverId"</span> : <span class="s2">"24282855553110"</span> 
+  <span class="o">}</span>, 
+  <span class="s2">"endpoint"</span> : <span class="s2">"tcp://master.domain.org:8529"</span>, 
+  <span class="s2">"database"</span> : <span class="s2">"_system"</span> 
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This is the same command that you would use to start replication even without
+taking a backup first. The difference, in this case, is that the data that is
+present already on the slave (and that has been restored from the backup) this
+time is not transferred over the network from the master to the slave.</p>
+
+<p>The command above will only check that the data already included in the slave
+is in sync with the master. After this check, the <code class="language-plaintext highlighter-rouge">replication-applier</code> will
+make sure that all write operations that happened on the master after the
+backup are replicated on the slave.</p>
+
+<p>While this approach is definitely faster than transferring the whole database
+over the network, since a sync check is performed, it can still require some time.</p>
+
+<h3 id="approach-2-apply-replication-by-tick">Approach 2: Apply replication by tick</h3>
+
+<p>In this approach, the sync check described above is not performed. As a result
+this approach is faster as the existing slave data is not checked.
+Write operations are executed starting from the <code class="language-plaintext highlighter-rouge">tick</code> you provide and continue
+with the master’s available <code class="language-plaintext highlighter-rouge">ticks</code>.</p>
+
+<p>This is still a secure way to start replication as far as the correct <code class="language-plaintext highlighter-rouge">tick</code>
+is passed.</p>
+
+<p>As previously mentioned the last <code class="language-plaintext highlighter-rouge">tick</code> provided by the master is displayed
+when using <code class="language-plaintext highlighter-rouge">arangodump</code>. In our example the last tick was <strong>37276350</strong>.</p>
+
+<p>First of all you have to apply the properties of the replication, using
+<code class="language-plaintext highlighter-rouge">arangosh</code> on the slave:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>arangosh <span class="nt">--server</span>.endpoint tcp://slave.domain.org:8530
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">_useDatabase</span><span class="p">(</span><span class="dl">"</span><span class="s2">_system</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb/replication</span><span class="dl">"</span><span class="p">).</span><span class="nx">applier</span><span class="p">.</span><span class="nx">properties</span><span class="p">({</span>
+  <span class="na">endpoint</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tcp://master.domain.org:8529</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">username</span><span class="p">:</span> <span class="dl">"</span><span class="s2">myuser</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">mypasswd</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">verbose</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">includeSystem</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="na">incremental</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">autoResync</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+</code></pre></div></div>
+
+<p>Then you can start the replication with the last provided <code class="language-plaintext highlighter-rouge">logtick</code> of the
+master (output of <code class="language-plaintext highlighter-rouge">arangodump</code>):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb/replication</span><span class="dl">"</span><span class="p">).</span><span class="nx">applier</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="mi">37276350</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The following is the printed output:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span> 
+  <span class="s2">"state"</span> : <span class="o">{</span> 
+    <span class="s2">"running"</span> : <span class="nb">true</span>, 
+    <span class="s2">"lastAppliedContinuousTick"</span> : null, 
+    <span class="s2">"lastProcessedContinuousTick"</span> : null, 
+    <span class="s2">"lastAvailableContinuousTick"</span> : null, 
+    <span class="s2">"safeResumeTick"</span> : null, 
+    <span class="s2">"progress"</span> : <span class="o">{</span> 
+      <span class="s2">"time"</span> : <span class="s2">"2017-12-06T13:26:04Z"</span>, 
+      <span class="s2">"message"</span> : <span class="s2">"applier initially created for database '_system'"</span>, 
+      <span class="s2">"failedConnects"</span> : 0 
+    <span class="o">}</span>, 
+    <span class="s2">"totalRequests"</span> : 0, 
+    <span class="s2">"totalFailedConnects"</span> : 0, 
+    <span class="s2">"totalEvents"</span> : 0, 
+    <span class="s2">"totalOperationsExcluded"</span> : 0, 
+    <span class="s2">"lastError"</span> : <span class="o">{</span> 
+      <span class="s2">"errorNum"</span> : 0 
+    <span class="o">}</span>, 
+    <span class="s2">"time"</span> : <span class="s2">"2017-12-06T13:33:25Z"</span> 
+  <span class="o">}</span>, 
+  <span class="s2">"server"</span> : <span class="o">{</span> 
+    <span class="s2">"version"</span> : <span class="s2">"3.3.devel"</span>, 
+    <span class="s2">"serverId"</span> : <span class="s2">"176090204017635"</span> 
+  <span class="o">}</span>, 
+  <span class="s2">"endpoint"</span> : <span class="s2">"tcp://master.domain.org:8529"</span>, 
+  <span class="s2">"database"</span> : <span class="s2">"_system"</span> 
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>After the replication has been started with the command above, you can use the
+<code class="language-plaintext highlighter-rouge">applier.state</code> command to check how far the last applied <code class="language-plaintext highlighter-rouge">tick</code> on the slave
+is far from the last available master <code class="language-plaintext highlighter-rouge">tick</code>:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>require<span class="o">(</span><span class="s2">"@arangodb/replication"</span><span class="o">)</span>.applier.state<span class="o">()</span>
+<span class="o">{</span> 
+  <span class="s2">"state"</span> : <span class="o">{</span> 
+    <span class="s2">"running"</span> : <span class="nb">true</span>, 
+    <span class="s2">"lastAppliedContinuousTick"</span> : <span class="s2">"42685113"</span>, 
+    <span class="s2">"lastProcessedContinuousTick"</span> : <span class="s2">"42685113"</span>, 
+    <span class="s2">"lastAvailableContinuousTick"</span> : <span class="s2">"57279944"</span>, 
+    <span class="s2">"safeResumeTick"</span> : <span class="s2">"37276974"</span>, 
+    <span class="s2">"progress"</span> : <span class="o">{</span> 
+      <span class="s2">"time"</span> : <span class="s2">"2017-12-06T13:35:25Z"</span>, 
+      <span class="s2">"message"</span> : <span class="s2">"fetching master log from tick 42685113, first regular tick 37276350, barrier: 0, open transactions: 1"</span>, 
+      <span class="s2">"failedConnects"</span> : 0 
+    <span class="o">}</span>, 
+    <span class="s2">"totalRequests"</span> : 190, 
+    <span class="s2">"totalFailedConnects"</span> : 0, 
+    <span class="s2">"totalEvents"</span> : 2704032, 
+    <span class="s2">"totalOperationsExcluded"</span> : 0, 
+    <span class="s2">"lastError"</span> : <span class="o">{</span> 
+      <span class="s2">"errorNum"</span> : 0 
+    <span class="o">}</span>, 
+    <span class="s2">"time"</span> : <span class="s2">"2017-12-06T13:35:25Z"</span> 
+  <span class="o">}</span>, 
+  <span class="s2">"server"</span> : <span class="o">{</span> 
+    <span class="s2">"version"</span> : <span class="s2">"3.3.devel"</span>, 
+    <span class="s2">"serverId"</span> : <span class="s2">"176090204017635"</span> 
+  <span class="o">}</span>, 
+  <span class="s2">"endpoint"</span> : <span class="s2">"tcp://master.domain.org:8529"</span>, 
+  <span class="s2">"database"</span> : <span class="s2">"_system"</span> 
+<span class="o">}</span>
+</code></pre></div></div>
+
+            </section>
+            
+<section class="page-nav">
+  <a href="administration-master-slave-server-level-setup.html">&#x276e;&nbsp;&nbsp;Server-Level Setup</a>
+  <a class="next" href="administration-master-slave-syncing-collections.html">Syncing Collections&nbsp;&nbsp;&#x276f;</a>
+  <div style="clear: both"></div>
+</section>
+            <div id="page-footer" class="localized-footer">
+              <hr>
+              <p>© ArangoDB - the native multi-model NoSQL database</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var disablePageToc = null;
+          if (!disablePageToc) {
+            generateToc();
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+  <!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'IOUJQ85602',
+  indexName: 'dev_DOCS',
+  apiKey: '1fc63d8ff5b71963f0354561b770b591',
+  searchFunction: function(helper) {
+    var container = document.querySelector('#search-hits');
+
+    if (helper.state.query === '') {
+        container.style.display = 'none';
+    } else {
+        container.style.display = '';
+    }
+
+    helper.search();
+  }
+});
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-searchbar',
+    placeholder: 'Search Documentation...',
+    poweredBy: false // This is required if you're on the free Community plan
+  })
+);
+search.addWidget(
+    instantsearch.widgets.hits({
+        container: '#search-hits',
+        templates: {
+            item: function(hit) {
+                return '<div class="post-item">' +
+                    '<a class="post-link" href="https://www.arangodb.com/docs'&#32;+&#32;hit.url&#32;+&#32;'"><div>' + (hit.headings[0] || "ArangoDB Documentation") + '</div>' +
+                    '<div class="post-snippet">' + hit.excerpt_text + '</div></a>' +
+                    '</div>';
+            },
+        },
+    })
+);
+
+// Starting the search
+search.start();
+</script>
+  <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/2482448.js"></script>
+</body>
+</html>

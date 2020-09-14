@@ -1,0 +1,2801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="release-notes-upgrading-changes34.html">
+<title>Incompatible changes in 3.4 | Version 3.4 | Release Notes | Manual | ArangoDB Documentation</title>
+<meta itemprop="description" name="description" content="It is recommended to check the following list of incompatible changes before upgrading to ArangoDB 3.4" />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:url" content="https://www.arangodb.com/docs/stable/release-notes-upgrading-changes34.html" />
+<meta property="og:title" content="Incompatible changes in 3.4 | Version 3.4 | Release Notes | Manual | ArangoDB Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="It is recommended to check the following list of incompatible changes before upgrading to ArangoDB 3.4" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81053435-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-81053435-1');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5LQ7HC');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('provide', 'adblockTracker', function(tracker, opts) {
+    var ad = document.createElement('ins');
+    ad.className = 'AdSense';
+    ad.style.display = 'block';
+    ad.style.position = 'absolute';
+    ad.style.top = '-1px';
+    ad.style.height = '1px';
+    document.body.appendChild(ad);
+    tracker.set('dimension' + opts.dimensionIndex, !ad.clientHeight);
+    document.body.removeChild(ad);
+  });
+
+  ga('create', 'UA-81053435-6', 'auto');
+  ga('require', 'adblockTracker', {dimensionIndex: 1});
+  ga('send', 'pageview');
+</script>
+
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  twq('init','nz793');
+  twq('track','PageView');
+</script>
+
+<script type="text/javascript">
+  _linkedin_partner_id = "499017";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(){var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})();
+</script>
+
+<link rel="shortcut icon" href="../../wp-content/uploads/2018/07/www.arangodb.com-favicon.png">
+<link rel="stylesheet" href="../styles/gitbook/style.css">
+<link rel="stylesheet" href="../styles/gitbook/highlight-website.css">
+<link rel="stylesheet" href="../styles/gitbook/fontsettings-website.css">
+<link rel="stylesheet" href="../styles/website.css">
+<link rel="stylesheet" href="../styles/header.css">
+<link rel="stylesheet" href="../styles/navbar.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/pygments-vs.css">
+<script src="../js/jquery-3.4.0.min.js"></script>
+<script src="../js/site.js"></script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ7HC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=499017&fmt=gif" /></noscript>
+
+<div class="arangodb-header">
+  <div class="arangodb-logo">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <div class="arangodb-logo-small">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_small_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <select class="arangodb-version-switcher">
+      <option value="devel">3.8</option>
+      <option value="stable">3.7</option>
+      <option value="3.6">3.6</option>
+      <option value="3.5">3.5</option>
+      <option value="3.4">3.4</option>
+      <option value="3.3" disabled>3.3</option>
+  </select>
+  <script type="text/javascript">
+    var versionAliases = {"stable":"3.7","devel":"3.8"};
+    var current = location.href;
+
+    var selectedVersion = current.split('/')[4];
+    var switcher = document.querySelector(".arangodb-version-switcher");
+
+    for (var i = 0; i < switcher.options.length; i++) {
+      var value = switcher.options.item(i).value;
+      if (value == selectedVersion) {
+        switcher.value = value;
+      } else if (versionAliases[value] == selectedVersion) {
+        switcher.value = value;
+      }
+    }
+    
+    switcher.addEventListener('change', function(event) {
+      var current = location.href;
+      var urlElements = current.split('/');
+      urlElements[4] = event.target.value;
+      var newUrl = urlElements.join("/");
+      location.href = newUrl;
+    });
+  </script>
+  <ul class="arangodb-navmenu">
+    <li class="active-tab">
+      <a href="index.html" data-book="Manual">Manual</a>
+    </li>
+    <li>
+      <a href="aql/index.html" data-book="AQL">AQL</a>
+    </li>
+    <li>
+      <a href="http/index.html" data-book="HTTP">HTTP</a>
+    </li>
+    <li>
+      <a href="drivers/index.html" data-book="Drivers">Drivers</a>
+    </li>
+    <li>
+      <a href="oasis/index.html" data-book="Oasis">Oasis</a>
+    </li>
+    <li class="socialIcons" title="GitHub">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons" title="StackOverflow">
+      <a href="https://stackoverflow.com/questions/tagged/arangodb" target="_blank">
+        <i class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups" title="Google Groups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="_blank">
+        <img alt="Google Groups" src="../assets/googlegroupsIcon.png">
+      </a>
+    </li>
+    <li class="socialIcons" title="Slack">
+      <a href="https://slack.arangodb.com" target="_blank">
+        <i class="fa fa-slack"></i>
+      </a>
+    </li>
+    <li>
+      <div class="searchbar">
+        <div id="search-searchbar"></div>
+      </div>
+    </li>
+    <li class="placeholder">
+      <div style="width: 15px"></div>
+    </li>
+  </ul>
+  <div id="search-hits"></div>
+</div>
+ 
+  <div class="book with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+      <nav role="navigation">
+    <ul class="summary">
+  <li class="chapter">
+  <a href="index.html">Introduction</a>
+  </li>
+  <li class="chapter">
+  <a href="highlights.html">Highlights</a>
+  </li>
+  <li class="header">GETTING FAMILIAR</li>
+  <li class="chapter">
+  <a href="getting-started.html">Getting Started</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="getting-started-installation.html">Installation</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-authentication.html">Authentication</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-web-interface.html">Web Interface</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-databases-collections-documents.html">Databases, Collections and Documents</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-querying-the-database.html">Querying the Database</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-coming-from-sql.html">Coming from SQL</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-next-steps.html">Next Steps</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="tutorials.html">Tutorials</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="tutorials-reduce-memory-footprint.html">Reduce Memory Footprint</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-starter.html">ArangoDB Starter</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-dc2-dc.html">Datacenter to datacenter Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes.html">Kubernetes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="tutorials-kubernetes-eks.html">Amazon EKS</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-gke.html">Google GKE</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-aks.html">Azure AKS</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes-dc2-dc.html">DC2DC on Kubernetes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="programs.html">Programs & Tools</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="programs-arangod.html">ArangoDB Server</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangod-options.html">Options</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="programs-arangod-global.html">Global</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-agency.html">Agency</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-arangosearch.html">ArangoSearch</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-audit.html">Audit</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cache.html">Cache</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-backup.html">Backup</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-compaction.html">Compaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-database.html">Database</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-foxx.html">Foxx</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-frontend.html">Frontend</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-http.html">HTTP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-javascript.html">JavaScript</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ldap.html">LDAP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-log.html">Log</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-network.html">Network</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-nonce.html">Nonce</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-query.html">Query</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-random.html">Random</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-replication.html">Replication</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rclone.html">Rclone</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rocksdb.html">RocksDB</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-server.html">Server</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ssl.html">SSL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-tcp.html">TCP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-temp.html">Temp</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-transaction.html">Transaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ttl.html">TTL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-vst.html">VST</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-wal.html">WAL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangod-env-vars.html">Environment variables</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-web-interface.html">Web Interface</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-web-interface-dashboard.html">Dashboard</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-cluster.html">Cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-collections.html">Collections</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-document.html">Document</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-aql-editor.html">Queries</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-graphs.html">Graphs</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-services.html">Services</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-users.html">Users</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-logs.html">Logs</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangosh.html">ArangoDB Shell</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangosh-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-starter.html">ArangoDB Starter</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-starter-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-security.html">Security</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-architecture.html">Architecture</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangodump.html">Arangodump</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangodump-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-maskings.html">Maskings</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-limitations.html">Limitations</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangorestore.html">Arangorestore</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangorestore-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-fast-cluster-restore.html">Fast Cluster Restore</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobackup.html">Arangobackup</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobackup-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobackup-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoimport.html">Arangoimport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-json.html">Examples JSON</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-csv.html">Examples CSV</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoexport.html">Arangoexport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoexport-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoexport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobench.html">Arangobench</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobench-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobench-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoinspect.html">Arangoinspect</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoinspect-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoinspect-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-foxx-cli.html">Foxx CLI</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-foxx-cli-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="header">CORE TOPICS</li>
+  <li class="chapter">
+  <a href="data-modeling.html">Data models & modeling</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="data-modeling-concepts.html">Concepts</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-databases.html">Databases</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-databases-working-with.html">Working with Databases</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-databases-notes.html">Notes about Databases</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-collections.html">Collections</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-collections-collection-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-collections-database-methods.html">Database Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-documents.html">Documents</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-documents-document-address.html">Basics and Terminology</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-document-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-schema-validation.html">Schema Validation</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-monetary-data-without-precision-loss.html">Monetary data without precision loss</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-graphs-vertices-edges.html">Graphs, Vertices & Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-views.html">Views</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-views-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-views-view-methods.html">View Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-naming-conventions.html">Naming Conventions</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-database-names.html">Database Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-collection-and-view-names.html">Collection and View Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-document-keys.html">Document Keys</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-attribute-names.html">Attribute Names</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-operational-factors.html">Operational Factors</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="indexing.html">Indexing</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="indexing-index-basics.html">Index Basics</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-which-index.html">Which index to use when</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-index-utilization.html">Index Utilization</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-working-with-indexes.html">Working with Indexes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="indexing-persistent.html">Persistent</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-ttl.html">TTL Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-fulltext.html">Fulltext Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-geo.html">Geo-spatial Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-vertex-centric.html">Vertex Centric Indexes</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="transactions.html">Transactions</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="transactions-transaction-invocation.html">Transaction invocation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-passing.html">Passing parameters</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-locking-and-isolation.html">Locking and isolation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-durability.html">Durability</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-limitations.html">Limitations</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="graphs.html">Graphs</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="graphs-general-graphs.html">General Graphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-general-graphs-management.html">Graph Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-general-graphs-functions.html">Graph Functions</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-satellite-graphs.html">SatelliteGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-management.html">Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-smart-graphs.html">SmartGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-smart-graphs-management.html">SmartGraph Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-traversals.html">Traversals</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-traversals-using-traversal-objects.html">Using Traversal Objects</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-traversals-example-data.html">Example Data</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-edges.html">Working with Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="graphs-pregel.html">Pregel</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="arangosearch.html">ArangoSearch</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="arangosearch-views.html">Views</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-analyzers.html">Analyzers</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-examples.html">Examples</a>
+      </li>
+    </ul>
+  </li>
+  <li class="header">ADVANCED TOPICS</li>
+  <li class="chapter">
+  <a href="architecture.html">Architecture</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="architecture-deployment-modes.html">ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="architecture-deployment-modes-single-instance.html">Single Instance</a>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-data-models.html">Data Models</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-sharding.html">Data Sharding</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-dc2-dc.html">Datacenter to datacenter replication</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-introduction.html">Introduction</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-applicability.html">Applicability</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-requirements.html">Requirements</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="architecture-single-instance-vs-cluster.html">Single Instance vs. Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-storage-engines.html">Storage Engines</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-replication.html">Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-write-ahead-log.html">Write-ahead log</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="foxx.html">Foxx Microservices</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="foxx-getting-started.html">Getting started</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-guides.html">Guides</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-guides-routing.html">Working with routers</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-collections.html">Working with collections</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-queries.html">Writing queries</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-development-mode.html">Development mode</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-testing.html">Testing Foxx services</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-cluster.html">Foxx in a cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-scripts.html">Scripts and scheduling</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-bundled-node-modules.html">Using Node modules</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-webpack.html">Using Webpack with Foxx</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-auth.html">Authentication and sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-dependencies.html">Linking services together</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-files.html">Working with files</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-making-requests.html">Making requests</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-browser.html">Access from the browser</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-legacy-mode.html">Working with 2.x services</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-reference.html">Reference</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-reference-manifest.html">Service manifest</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-context.html">Service context</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-routers.html">Routers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-routers-endpoints.html">Endpoints</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-middleware.html">Middleware</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-request.html">Request</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-sessions.html">Sessions middleware</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-sessions-storages.html">Session storages</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-collection.html">Collection storage</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-jwt.html">JWT storage</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-sessions-transports.html">Session transports</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-cookie.html">Cookie transport</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-header.html">Header transport</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-modules.html">Related modules</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-modules-auth.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth1.html">OAuth 1.0a</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth2.html">OAuth 2.0</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-graph-ql.html">GraphQL</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-queues.html">Queues</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-deployment.html">Deployment</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-migrating2x.html">Migrating 2.x services</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-migrating2x-wayback.html">Migrating from pre-2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-manifest.html">manifest.json</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-context.html">applicationContext</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-repositories.html">Repositories and Models</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-controllers.html">Controllers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-endpoints.html">Request context</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-errors.html">Error handling</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-middleware.html">Before/After/Around</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-request.html">Request object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-response.html">Response object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-io-c.html">Dependency Injection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-sessions.html">Sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-auth.html">Auth and OAuth2</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-queries.html">Foxx Queries</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="satellites.html">SatelliteCollections</a>
+  </li>
+  <li class="chapter">
+  <a href="smartjoins.html">SmartJoins</a>
+  </li>
+  <li class="header">OPERATIONS</li>
+  <li class="chapter">
+  <a href="installation.html">Installation</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="installation-linux.html">Linux</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-linux-osconfiguration.html">Operating System Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-linux-ostuning-scripts.html">Linux OS Tuning Script Examples</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="installation-mac-osx.html">macOS</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-windows.html">Windows</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-compiling.html">Compiling</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-compiling-debian.html">Compile on Debian</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-windows.html">Compile on Windows</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-running-custom-build.html">Running Custom Build</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-jemalloc.html">Recompiling jemalloc</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="uninstallation.html">Uninstallation</a>
+  </li>
+  <li class="chapter">
+  <a href="deployment.html">Deployment</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="deployment-modes.html">By ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-single-instance.html">Single Instance</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-single-instance-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-single-instance-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-master-slave-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-active-failover-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-active-failover-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-cluster-preliminary-information.html">Preliminary Information</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-manual-start.html">Manual Start</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-kubernetes.html">Kubernetes</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-dc2-dc.html">Multiple Datacenters</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-dc2-dc-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-master.html">ArangoSync Master</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-workers.html">ArangoSync Workers</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-prometheus-grafana.html">Prometheus & Grafana</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-standalone-agency.html">Standalone Agency</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-technology.html">By Technology</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-manually.html">Manually</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-arango-dbstarter.html">ArangoDB Starter</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-docker.html">Docker</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-kubernetes.html">Kubernetes</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-kubernetes-usage.html">Using the Operator</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-dashboards.html">Dashboards</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-resource.html">Deployment Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-resource.html">Backup Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-policy-resource.html">BackupPolicy Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-driver-configuration.html">Driver Configuration</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-helm.html">Helm</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-authentication.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-scaling.html">Scaling</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-drain.html">Draining Nodes</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-upgrading.html">Upgrading</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-config-and-secrets.html">ArangoDB Configuration & Secrets</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-metrics.html">Metrics</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-services-and-load-balancer.html">Services & Load balancer</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-replication-resource.html">Deployment Replication Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage.html">Storage</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage-resource.html">Storage Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-tls.html">TLS</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-troubleshooting.html">Troubleshooting</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-cloud.html">In the Cloud</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-cloud-aws.html">AWS</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cloud-azure.html">Azure</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-production-checklist.html">Production Checklist</a>
+      </li>
+      <li class="chapter">
+      <a href="deployment-migrating-single-instance-cluster.html">Migrating Single Instance to Cluster</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="backup-restore.html">Backup & Restore</a>
+  </li>
+  <li class="chapter">
+  <a href="upgrading.html">Upgrading</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="upgrading-general-info.html">General Upgrade Information</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-community-to-enterprise.html">Community to Enterprise Upgrade</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-osspecific-info.html">OS-specific Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-linux.html">Upgrading on Linux</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-mac-os.html">Upgrading on macOS</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-windows.html">Upgrading on Windows</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-starter.html">Upgrading Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-manually.html">Upgrading Manual Deployments</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-manually-active-failover.html">Upgrading an Active Failover deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-manually-cluster.html">Upgrading a Cluster</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-kubernetes.html">Upgrading Kubernetes Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-version-specific.html">Version Specific Upgrade Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading34.html">Upgrading to 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading33.html">Upgrading to 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading32.html">Upgrading to 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading31.html">Upgrading to 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading30.html">Upgrading to 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading28.html">Upgrading to 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading26.html">Upgrading to 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading25.html">Upgrading to 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading24.html">Upgrading to 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading23.html">Upgrading to 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading22.html">Upgrading to 2.2</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="downgrading.html">Downgrading</a>
+  </li>
+  <li class="chapter">
+  <a href="scaling.html">Scaling</a>
+  </li>
+  <li class="chapter">
+  <a href="administration.html">Administration</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="administration-configuration.html">Configuration</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-import-export.html">Import & Export</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-managing-users.html">User Management</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-managing-users-in-arangosh.html">In Arangosh</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-engine-switch-engine.html">Switch Storage Engine</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-master-slave.html">Master/Slave</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-master-slave-setting-up.html">Setting up</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="administration-master-slave-replication-applier.html">Replication Applier</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-database-setup.html">Per-Database Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-server-level-setup.html">Server-Level Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-initialize-from-backup.html">Speeding Up Slave Initialization</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="administration-master-slave-syncing-collections.html">Syncing Collections</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-active-failover.html">Active Failover</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-cluster.html">Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-starter.html">ArangoDB Starter Administration</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-starter-removal.html">Removal Procedure</a>
+          </li>
+          <li class="chapter">
+          <a href="administration-starter-recovery.html">Recovery Procedure</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="security.html">Security</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="security-security-options.html">Security Options</a>
+      </li>
+      <li class="chapter">
+      <a href="security-change-root-password.html">Change Root Password</a>
+      </li>
+      <li class="chapter">
+      <a href="security-encryption.html">Encryption at Rest</a>
+      </li>
+      <li class="chapter">
+      <a href="security-auditing.html">Auditing</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="security-auditing-audit-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="security-auditing-audit-events.html">Events</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="security-starter.html">Securing Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="security-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="monitoring.html">Monitoring</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="monitoring-log-levels.html">Log Levels</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-collectd.html">Collectd</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="monitoring-collectd-slave-status.html">Replication Slaves</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-traffic-with-ipaccounting.html">Network usage</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-other-relevant-metrics.html">More metrics</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-foxx-apps.html">Monitoring Foxx</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="troubleshooting.html">Troubleshooting</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="troubleshooting-arangod.html">arangod</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-emergency-console.html">Emergency Console</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-cluster.html">Cluster</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="troubleshooting-cluster-agency-dump.html">Agency Dump</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li><hr/></li>
+  <li class="chapter selected">
+  <a href="release-notes.html">Release Notes</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="release-notes-37.html">Version 3.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features37.html">What's New in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues37.html">Known Issues in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes37.html">Incompatible changes in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-api-changes37.html">API changes in 3.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-36.html">Version 3.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features36.html">What's New in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues36.html">Known Issues in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes36.html">Incompatible changes in 3.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-35.html">Version 3.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features35.html">What's New in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues35.html">Known Issues in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes35.html">Incompatible changes in 3.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter selected">
+      <a href="release-notes-34.html">Version 3.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features34.html">What's New in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues34.html">Known Issues in 3.4</a>
+          </li>
+          <li class="chapter selected active">
+          <a href="release-notes-upgrading-changes34.html">Incompatible changes in 3.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-33.html">Version 3.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features33.html">What's New in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues33.html">Known Issues in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes33.html">Incompatible changes in 3.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-32.html">Version 3.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features32.html">What's New in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues32.html">Known Issues in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes32.html">Incompatible changes in 3.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-31.html">Version 3.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features31.html">What's New in 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes31.html">Incompatible changes in 3.1</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-30.html">Version 3.0</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features30.html">What's New in 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes30.html">Incompatible changes in 3.0</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-28.html">Version 2.8</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features28.html">What's New in 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes28.html">Incompatible changes in 2.8</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-27.html">Version 2.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features27.html">What's New in 2.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes27.html">Incompatible changes in 2.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-26.html">Version 2.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features26.html">What's New in 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes26.html">Incompatible changes in 2.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-25.html">Version 2.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features25.html">What's New in 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes25.html">Incompatible changes in 2.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-24.html">Version 2.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features24.html">What's New in 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes24.html">Incompatible changes in 2.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-23.html">Version 2.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features23.html">What's New in 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes23.html">Incompatible changes in 2.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-22.html">Version 2.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features22.html">What's New in 2.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-21.html">Version 2.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features21.html">What's New in 2.1</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="appendix.html">Appendix</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="appendix-references.html">References</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-references-dbobject.html">db</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-collection-object.html">collection</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-cursor-object.html">cursor</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-java-script-modules.html">JavaScript Modules</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-java-script-modules-arango-db.html">@arangodb</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-analyzers.html">analyzers</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-console.html">console</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-crypto.html">crypto</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-file-system.html">fs</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-request.html">request</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-actions.html">actions</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-queries.html">queries</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-wal.html">Write-ahead log</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-tasks.html">Task Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-deprecated.html">Deprecated</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-deprecated-simple-queries.html">Simple Queries</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-pagination.html">Pagination</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-modification-queries.html">Modification Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-geo-queries.html">Geo Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-fulltext-queries.html">Fulltext Queries</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-error-codes.html">Error codes and meanings</a>
+      </li>
+      <li class="chapter">
+      <a href="appendix-glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</nav>
+    </div>
+    <div class="book-body">
+      <script type="text/javascript">
+          var availableVersions = ["devel","stable","3.6","3.5","3.4",];
+          versionSwitcherSetAvailable(availableVersions);
+      </script>
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <a class="btn pull-left js-toolbar-action hamburger" aria-label=""><i class="fa fa-align-justify"></i></a>
+          <a class="btn pull-left js-toolbar-action" aria-label="" href="https://github.com/arangodb/docs/edit/master/3.7/release-notes-upgrading-changes34.md" target="_blank"><i class="fa fa-github"></i> Contribute</a>
+        </div>
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+            <section class="normal markdown-section">
+              <h1 id="incompatible-changes-in-arangodb-34">Incompatible changes in ArangoDB 3.4</h1>
+
+<p>It is recommended to check the following list of incompatible changes <strong>before</strong>
+upgrading to ArangoDB 3.4, and adjust any client programs if necessary.</p>
+
+<p>The following incompatible changes have been made in ArangoDB 3.4:</p>
+
+<h2 id="release-packages">Release packages</h2>
+
+<p>The official ArangoDB release packages for Linux are now built as static executables
+linked with the <a href="https://www.musl-libc.org/" target="_blank">musl libc</a> standard library. For Linux,
+there are release packages for the Debian-based family of Linux distributions (.deb), 
+and packages for RedHat-based distributions (.rpm). There are no specialized binaries 
+for the individual Linux distributions nor for their individual subversions.</p>
+
+<p>The release packages are intended to be reasonably portable (see minimum supported
+architectures below) and should run on a variety of different Linux distributions and
+versions.</p>
+
+<p>Release packages are provided for Windows and macOS as well.</p>
+
+<h2 id="supported-architectures">Supported architectures</h2>
+
+<p>The minimum supported architecture for the official release packages of ArangoDB is
+now the Westmere architecture.</p>
+
+<p>All release packages are built with compiler optimizations that require at least
+this architecture. The following CPU features are required for running an official
+release package (note: these are all included in the Westmere architecture and upwards):</p>
+
+<ul>
+  <li>SSE2</li>
+  <li>SSE3</li>
+  <li>SSE4.1</li>
+  <li>SSE4.2</li>
+  <li>PCLMUL</li>
+</ul>
+
+<p>In case the target platform does not conform to these requirements, ArangoDB may
+not work correctly.</p>
+
+<p>The compiled-in architecture optimizations can be retrieved on most platforms by 
+invoking the <em>arangod</em> binary with the <code class="language-plaintext highlighter-rouge">--version</code> option. The optimization switches
+will then show up in the output in the line starting with <code class="language-plaintext highlighter-rouge">optimization-flags</code>, e.g.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ arangod --version
+...
+optimization-flags: -march=westmere -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -mno-sse4a -mno-avx -mno-fma -mno-bmi2 -mno-avx2 -mno-xop -mno-fma4 -mno-avx512f -mno-avx512vl -mno-avx512pf -mno-avx512er -mno-avx512cd -mno-avx512dq -mno-avx512bw -mno-avx512ifma -mno-avx512vbmi
+platform: linux
+</code></pre></div></div>
+
+<p>Note that to get even more target-specific optimizations, it is possible for end
+users to compile ArangoDB on their own with compiler optimizations tailored to the
+target environment.</p>
+
+<h2 id="target-host-requirements">Target host requirements</h2>
+
+<p>When the ArangoDB service is started on a Linux host, it will switch to user 
+<code class="language-plaintext highlighter-rouge">arangodb</code> and group <code class="language-plaintext highlighter-rouge">arangodb</code> at some point during the startup process.
+This user and group are created during ArangoDB package installation as usual.</p>
+
+<p>However, if either the group <code class="language-plaintext highlighter-rouge">arangodb</code> or the user <code class="language-plaintext highlighter-rouge">arangodb</code> cannot be found in
+the target hosts local <code class="language-plaintext highlighter-rouge">/etc/group</code> or <code class="language-plaintext highlighter-rouge">/etc/passwd</code> storage (for example, 
+because system users and groups are stored centrally using NIS, LDAP etc.), then 
+the underlying group-lookup implementation used by ArangoDB will always consult 
+the local nscd (name-service cache daemon) for this. Effectively this requires
+a running nscd instance on hosts that ArangoDB is installed on and that do store
+the operating system users in a place other than the host-local <code class="language-plaintext highlighter-rouge">/etc/group</code> and
+<code class="language-plaintext highlighter-rouge">/etc/passwd</code>.</p>
+
+<h2 id="storage-engine">Storage engine</h2>
+
+<p>In ArangoDB 3.4, the default storage engine for new installations is the RocksDB
+engine. This differs to previous versions (3.2 and 3.3), in which the default
+storage engine was the MMFiles engine.</p>
+
+<p>The MMFiles engine can still be explicitly selected as the storage engine for
+all new installations. It’s only that the “auto” setting for selecting the storage
+engine will now use the RocksDB engine instead of MMFiles engine.</p>
+
+<p>In the following scenarios, the effectively selected storage engine for new
+installations will be RocksDB:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--server.storage-engine rocksdb</code></li>
+  <li><code class="language-plaintext highlighter-rouge">--server.storage-engine auto</code></li>
+  <li><code class="language-plaintext highlighter-rouge">--server.storage-engine</code> option not specified</li>
+</ul>
+
+<p>The MMFiles storage engine will be selected for new installations only when 
+explicitly selected:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--server.storage-engine mmfiles</code></li>
+</ul>
+
+<p>To make users aware of that the RocksDB storage engine was chosen automatically
+due to an explicit other storage engine selection, 3.4 will come up with the following
+startup warning:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>using default storage engine 'rocksdb', as no storage engine was explicitly selected via the `--server.storage-engine` option.
+please note that default storage engine has changed from 'mmfiles' to 'rocksdb' in ArangoDB 3.4
+</code></pre></div></div>
+
+<p>On upgrade, any existing ArangoDB installation will keep its previously selected
+storage engine. The change of the default storage engine in 3.4 is thus only relevant
+for new ArangoDB installations and/or existing cluster setups for which new server 
+nodes get added later. All server nodes in a cluster setup should use the same
+storage engine to work reliably. Using different storage engines in a cluster is
+unsupported.</p>
+
+<p>To validate that the different nodes in a cluster deployment use the same storage
+engine throughout the entire cluster, there is now a startup check performed by
+each Coordinator. Each Coordinator will contact all DB-Servers and check if the
+same engine on the DB-Server is the same as its local storage engine. In case 
+there is any discrepancy, the Coordinator will abort its startup.</p>
+
+<h2 id="geo-indexes">Geo indexes</h2>
+
+<ul>
+  <li>
+    <p>The on-disk storage format for indexes of type <code class="language-plaintext highlighter-rouge">geo</code> has changed for the RocksDB
+storage engine. This also affects <code class="language-plaintext highlighter-rouge">geo1</code> and <code class="language-plaintext highlighter-rouge">geo2</code> indexes.</p>
+
+    <p>This <strong>requires</strong> users to start the arangod process with the
+<code class="language-plaintext highlighter-rouge">--database.auto-upgrade true</code> option to allow ArangoDB recreating these 
+indexes using the new on-disk format.</p>
+
+    <p>The on-disk format for geo indexes is incompatible with the on-disk format used
+in 3.3 and 3.2, so an in-place downgrade from 3.4 to 3.3 is not supported.</p>
+  </li>
+  <li>
+    <p>Geo indexes will now be reported no longer as <em>geo1</em> or <em>geo2</em> but as type <code class="language-plaintext highlighter-rouge">geo</code>. 
+The two previously known geo index types (<code class="language-plaintext highlighter-rouge">geo1</code>and <code class="language-plaintext highlighter-rouge">geo2</code>) are <strong>deprecated</strong>. 
+APIs for creating indexes (<code class="language-plaintext highlighter-rouge">ArangoCollection.ensureIndex</code>) will continue to support 
+<code class="language-plaintext highlighter-rouge">geo1</code>and <code class="language-plaintext highlighter-rouge">geo2</code>.</p>
+  </li>
+</ul>
+
+<h2 id="rocksdb-engine-data-storage-format">RocksDB engine data storage format</h2>
+
+<p>Installations that start using ArangoDB 3.4 will use an optimized on-disk format
+for storing documents using the RocksDB storage engine. The RocksDB engine will also
+a new table format version that was added in a recent version of the RocksDB library
+and that is not available in ArangoDB versions before 3.4.</p>
+
+<p>This format cannot be used with ArangoDB 3.3 or before, meaning it is not possible to 
+perform an in-place downgrade from a fresh 3.4 install to 3.3 or earlier when using the 
+RocksDB engine. For more information on how to downgrade, please refer to the 
+<a href="downgrading.html">Downgrading</a> chapter.</p>
+
+<p>Installations that were originally set up with older versions of ArangoDB (e.g. 3.2
+or 3.3) will continue to use the existing on-disk format for the RocksDB engine
+even with ArangoDB 3.4 (unless you install a fresh 3.4 package and restore a backup
+of your data on this fresh installation).</p>
+
+<p>In order to use the new binary format with existing data, it is required to 
+create a logical dump of the database data, shut down the server, erase the 
+database directory and restore the data from the logical dump. To minimize 
+downtime you can alternatively run a second arangod instance in your system,
+that replicates the original data; once the replication has reached completion, 
+you can switch the instances.</p>
+
+<h2 id="rocksdb-intermediate-commits">RocksDB intermediate commits</h2>
+
+<p>Intermediate commits in the rocksdb engine are now only enabled in standalone AQL queries 
+(not within a JS transaction), standalone truncate as well as for the “import” API.</p>
+
+<p>The options <code class="language-plaintext highlighter-rouge">intermediateCommitCount</code> and <code class="language-plaintext highlighter-rouge">intermediateCommitSize</code> will have no affect
+anymore on transactions started via <code class="language-plaintext highlighter-rouge">/_api/transaction</code>, or <code class="language-plaintext highlighter-rouge">db._executeTransaction()</code>.</p>
+
+<h2 id="rocksdb-background-sync-thread">RocksDB background sync thread</h2>
+
+<p>The RocksDB storage engine in 3.4 has a background WAL syncing thread that by default
+syncs RocksDB’s WAL to disk every 100 milliseconds. This may cause additional background
+I/Os compared to ArangoDB 3.3, but will distribute the sync calls more evenly over time
+than the all-or-nothing file syncs that were performed by previous versions of ArangoDB.</p>
+
+<p>The syncing interval can be configured by adjusting the configuration option 
+<code class="language-plaintext highlighter-rouge">--rocksdb.sync-interval</code>.</p>
+
+<p>Note: this option is not supported on Windows platforms. Setting the sync interval to
+to a value greater than 0 will produce a startup warning on Windows.</p>
+
+<h2 id="rocksdb-write-buffer-size">RocksDB write buffer size</h2>
+
+<p>The total amount of data to build up in all in-memory write buffers (backed by log
+files) is now by default restricted to a certain fraction of the available physical 
+RAM. This helps restricting memory usage for the arangod process, but may have an 
+effect on the RocksDB storage engine’s write performance.</p>
+
+<p>In ArangoDB 3.3 the governing configuration option <code class="language-plaintext highlighter-rouge">--rocksdb.total-write-buffer-size</code>
+had a default value of <code class="language-plaintext highlighter-rouge">0</code>, which meant that the memory usage was not limited. ArangoDB
+3.4 now changes the default value to about 40% of available physical RAM, and 512MiB
+for setups with less than 4GiB of RAM.</p>
+
+<h2 id="threading-and-request-handling">Threading and request handling</h2>
+
+<p>The processing of incoming requests and the execution of requests by server threads
+has changed in 3.4.</p>
+
+<p>Previous ArangoDB versions had a hard-coded implicit lower bound of 64 running 
+threads, and up to which they would increase the number of running server threads.
+That value could be increased further by adjusting the option <code class="language-plaintext highlighter-rouge">--server.maximal-threads</code>.
+The configuration option <code class="language-plaintext highlighter-rouge">--server.threads</code> existed, but did not effectively set
+or limit the number of running threads.</p>
+
+<p>In ArangoDB 3.4, the number of threads ArangoDB uses for request handling can now 
+be strictly bounded by configuration options.</p>
+
+<p>The number of server threads is now configured by the following startup options:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--server.minimal-threads</code>: determines the minimum number of request processing
+threads the server will start and always keep around</li>
+  <li><code class="language-plaintext highlighter-rouge">--server.maximal-threads</code>: determines the maximum number of request processing 
+threads the server will start for request handling. If that number of threads is 
+already running, arangod will not start further threads for request handling</li>
+</ul>
+
+<p>The actual number of request processing threads is adjusted dynamically at runtime
+and will float between <code class="language-plaintext highlighter-rouge">--server.minimal-threads</code> and <code class="language-plaintext highlighter-rouge">--server.maximal-threads</code>.</p>
+
+<h2 id="http-rest-api">HTTP REST API</h2>
+
+<p>The following incompatible changes were made in context of ArangoDB’s HTTP REST
+APIs:</p>
+
+<ul>
+  <li>
+    <p>The following, partly undocumented internal REST APIs have been removed in ArangoDB 3.4:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">GET /_admin/test</code></li>
+      <li><code class="language-plaintext highlighter-rouge">GET /_admin/clusterCheckPort</code></li>
+      <li><code class="language-plaintext highlighter-rouge">GET /_admin/cluster-test</code></li>
+      <li><code class="language-plaintext highlighter-rouge">GET /_admin/routing/routes</code></li>
+      <li><code class="language-plaintext highlighter-rouge">GET /_admin/statistics/short</code></li>
+      <li><code class="language-plaintext highlighter-rouge">GET /_admin/statistics/long</code></li>
+      <li><code class="language-plaintext highlighter-rouge">GET /_admin/auth/reload</code></li>
+    </ul>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">GET /_api/index</code> will now return type <code class="language-plaintext highlighter-rouge">geo</code> for geo indexes, not type <code class="language-plaintext highlighter-rouge">geo1</code>
+or <code class="language-plaintext highlighter-rouge">geo2</code> as previous versions did.</p>
+
+    <p>For geo indexes, the index API will not return the attributes <code class="language-plaintext highlighter-rouge">constraint</code> and
+<code class="language-plaintext highlighter-rouge">ignoreNull</code> anymore. These attributes were initially deprecated in ArangoDB 2.5</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">GET /_api/aqlfunction</code> was migrated to match the general structure of
+ArangoDB replies. It now returns an object with a “result” attribute that
+contains the list of available AQL user functions:</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UnitTests::mytest1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"function () { return 1; }"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"isDeterministic"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <p>In previous versions, this REST API returned only the list of available
+AQL user functions on the top level of the response.
+Each AQL user function description now also contains the ‘isDeterministic’ attribute.</p>
+  </li>
+  <li>
+    <p>if authentication is turned on, requests to databases by users with insufficient 
+access rights will be answered with HTTP 401 (Forbidden) instead of HTTP 404 (Not found).</p>
+  </li>
+  <li>
+    <p>the REST handler for user permissions at <code class="language-plaintext highlighter-rouge">/_api/user</code> will now return HTTP 404
+(Not found) when trying to grant or revoke user permissions for a non-existing
+collection.</p>
+
+    <p>This affects the HTTP PUT calls to the endpoint <code class="language-plaintext highlighter-rouge">/_api/user/&lt;user&gt;/&lt;database&gt;/&lt;collection&gt;</code> 
+for collections that do not exist.</p>
+  </li>
+</ul>
+
+<p>The following APIs have been added or augmented:</p>
+
+<ul>
+  <li>
+    <p>additional <code class="language-plaintext highlighter-rouge">stream</code> attribute in queries HTTP API</p>
+
+    <p>The REST APIs for retrieving the list of currently running and slow queries
+at <code class="language-plaintext highlighter-rouge">GET /_api/query/current</code> and <code class="language-plaintext highlighter-rouge">GET /_api/query/slow</code> are now returning an
+additional attribute <code class="language-plaintext highlighter-rouge">stream</code> for each query.</p>
+
+    <p>This attribute indicates whether the query was started using a streaming cursor.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">POST /_api/document/{collection}</code> now supports repsert (replace-insert).</p>
+
+    <p>This can be achieved by using the URL parameter <code class="language-plaintext highlighter-rouge">overwrite=true</code>. When set to 
+<code class="language-plaintext highlighter-rouge">true</code>, insertion will not fail in case of a primary key conflict, but turn 
+into a replace operation.</p>
+
+    <p>When an insert turns into a replace, the previous version of the document can
+be retrieved by passing the URL parameter <code class="language-plaintext highlighter-rouge">returnOld=true</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">POST /_api/aqlfunction</code> now includes an “isNewlyCreated” attribute that indicates
+if a new function was created or if an existing one was replaced (in addition to the
+“code” attribute, which remains 200 for replacement and 201 for creation):</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"201"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"isNewlyCreated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">DELETE /_api/aqlfunction</code> now returns the number of deleted functions:</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deletedCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">GET /_admin/status</code> now returns the attribute <code class="language-plaintext highlighter-rouge">operationMode</code> in addition to
+<code class="language-plaintext highlighter-rouge">mode</code>. The attribute <code class="language-plaintext highlighter-rouge">writeOpsEnabled</code> is now also represented by the new
+attribute <code class="language-plaintext highlighter-rouge">readOnly</code>, which is has an inverted value compared to the original
+attribute. The old attributes are deprecated in favor of the new ones.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">POST /_api/collection</code> now will process the optional <code class="language-plaintext highlighter-rouge">shardingStrategy</code> 
+attribute in the response body in cluster mode.</p>
+
+    <p>This attribute specifies the name of the sharding strategy to use for the 
+collection. Since ArangoDB 3.4 there are different sharding strategies to 
+select from when creating a new collection. The selected <em>shardingStrategy</em> 
+value will remain fixed for the collection and cannot be changed afterwards. 
+This is important to make the collection keep its sharding settings and 
+always find documents already distributed to shards using the same initial 
+sharding algorithm.</p>
+
+    <p>The available sharding strategies are:</p>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">community-compat</code>: default sharding used by ArangoDB
+Community Edition before version 3.4</li>
+      <li><code class="language-plaintext highlighter-rouge">enterprise-compat</code>: default sharding used by ArangoDB
+Enterprise Edition before version 3.4</li>
+      <li><code class="language-plaintext highlighter-rouge">enterprise-smart-edge-compat</code>: default sharding used by smart edge
+collections in ArangoDB Enterprise Edition before version 3.4</li>
+      <li><code class="language-plaintext highlighter-rouge">hash</code>: default sharding used for new collections starting from version 3.4
+(excluding smart edge collections)</li>
+      <li><code class="language-plaintext highlighter-rouge">enterprise-hash-smart-edge</code>: default sharding used for new
+smart edge collections starting from version 3.4</li>
+    </ul>
+
+    <p>If no sharding strategy is specified, the default will be <code class="language-plaintext highlighter-rouge">hash</code> for
+all collections, and <code class="language-plaintext highlighter-rouge">enterprise-hash-smart-edge</code> for all smart edge
+collections (requires the <em>Enterprise Edition</em> of ArangoDB). 
+Manually overriding the sharding strategy does not yet provide a 
+benefit, but it may later in case other sharding strategies are added.</p>
+
+    <p>In single-server mode, the <em>shardingStrategy</em> attribute is meaningless and
+will be ignored.</p>
+  </li>
+  <li>
+    <p>a new API for inspecting the contents of the AQL query results cache has been added
+to endpoint <code class="language-plaintext highlighter-rouge">GET /_api/query/cache/entries</code></p>
+
+    <p>This API returns the current contents of the AQL query results cache of the 
+currently selected database.</p>
+  </li>
+  <li>
+    <p>APIs for view management have been added at endpoint <code class="language-plaintext highlighter-rouge">/_api/view</code>.</p>
+  </li>
+  <li>
+    <p>The REST APIs for modifying graphs at endpoint <code class="language-plaintext highlighter-rouge">/_api/gharial</code> now support returning
+the old revision of vertices / edges after modifying them. The APIs also supports 
+returning the just-inserted vertex / edge. This is in line with the already existing 
+single-document functionality provided at endpoint <code class="language-plaintext highlighter-rouge">/_api/document</code>.</p>
+
+    <p>The old/new revisions can be accessed by passing the URL parameters <code class="language-plaintext highlighter-rouge">returnOld</code> and
+<code class="language-plaintext highlighter-rouge">returnNew</code> to the following endpoints:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">/_api/gharial/&lt;graph&gt;/vertex/&lt;collection&gt;</code></li>
+      <li><code class="language-plaintext highlighter-rouge">/_api/gharial/&lt;graph&gt;/edge/&lt;collection&gt;</code></li>
+    </ul>
+
+    <p>The exception from this is that the HTTP DELETE verb for these APIs does not
+support <code class="language-plaintext highlighter-rouge">returnOld</code> because that would make the existing API incompatible.</p>
+  </li>
+</ul>
+
+<h2 id="aql">AQL</h2>
+
+<ul>
+  <li>
+    <p>all AQL date functions in 3.4 may raise an “invalid date value” warning when given a
+syntactically invalid date string as an input. The rules for valid date strings have been
+made more strict in ArangoDB 3.4.</p>
+
+    <p>In previous versions, passing in a date value with a one-digit hour, minute or second
+component worked just fine, and the date was considered valid.</p>
+
+    <p>From ArangoDB 3.4 onwards, using date values with a one-digit hour, minute or second
+component will render the date value invalid, and make the underlying date functions
+return a value of <code class="language-plaintext highlighter-rouge">null</code> and issue an “invalid date value” warning.</p>
+
+    <p>The following overview details which values are considered valid and invalid in the
+respective ArangoDB versions:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date string</th>
+          <th>3.3</th>
+          <th>3.4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-07-01 05:02:34"</code></td>
+          <td>valid</td>
+          <td>valid</td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-7-1 05:02:34"</code></td>
+          <td>valid</td>
+          <td>valid</td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-7-1 5:02:34"</code></td>
+          <td>valid</td>
+          <td><strong>invalid</strong></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-7-1 05:2:34"</code></td>
+          <td>valid</td>
+          <td><strong>invalid</strong></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-7-1 05:02:4"</code></td>
+          <td>valid</td>
+          <td><strong>invalid</strong></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-07-01T05:02:34"</code></td>
+          <td>valid</td>
+          <td>valid</td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-7-1T05:02:34"</code></td>
+          <td>valid</td>
+          <td>valid</td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-7-1T5:02:34"</code></td>
+          <td>valid</td>
+          <td><strong>invalid</strong></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-7-1T05:2:34"</code></td>
+          <td>valid</td>
+          <td><strong>invalid</strong></td>
+        </tr>
+        <tr>
+          <td><code class="language-plaintext highlighter-rouge">"2019-7-1T05:02:4"</code></td>
+          <td>valid</td>
+          <td><strong>invalid</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>the AQL functions <code class="language-plaintext highlighter-rouge">CALL</code> and <code class="language-plaintext highlighter-rouge">APPLY</code> may now throw the errors 1540
+(<code class="language-plaintext highlighter-rouge">ERROR_QUERY_FUNCTION_NAME_UNKNOWN</code>) and 1541 (<code class="language-plaintext highlighter-rouge">ERROR_QUERY_FUNCTION_ARGUMENT_TYPE_MISMATCH</code>)
+instead of error 1582 (<code class="language-plaintext highlighter-rouge">ERROR_QUERY_FUNCTION_NOT_FOUND</code>) in some situations.</p>
+  </li>
+  <li>
+    <p>the existing “fulltext-index-optimizer” optimizer rule has been removed 
+because its duty is now handled by the new “replace-function-with-index” rule.</p>
+  </li>
+  <li>
+    <p>the behavior of the <code class="language-plaintext highlighter-rouge">fullCount</code> option for AQL queries has changed so that it 
+will only take into account <code class="language-plaintext highlighter-rouge">LIMIT</code> statements on the top level of the query.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">LIMIT</code> statements in subqueries will not have any effect on the <code class="language-plaintext highlighter-rouge">fullCount</code> results
+any more.</p>
+  </li>
+  <li>
+    <p>the AQL functions <code class="language-plaintext highlighter-rouge">NEAR</code>, <code class="language-plaintext highlighter-rouge">WITHIN</code>, <code class="language-plaintext highlighter-rouge">WITHIN_RECTANGLE</code> and <code class="language-plaintext highlighter-rouge">FULLTEXT</code> do not 
+support accessing collections dynamically anymore.</p>
+
+    <p>The name of the underlying collection and the name of the index attribute to be
+used have to specified using either collection name identifiers, string literals 
+or bind parameters, but must not be specified using query variables.</p>
+
+    <p>For example, the following AQL queries are ok:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FOR doc IN NEAR(myCollection, 2.5, 3) RETURN doc
+FOR doc IN NEAR(@@collection, 2.5, 3) RETURN doc
+FOR doc IN FULLTEXT("myCollection", "body", "foxx") RETURN doc
+FOR doc IN FULLTEXT(@@collection, @attribute, "foxx") RETURN doc
+</code></pre></div>    </div>
+
+    <p>Contrary, the following queries will fail to execute with 3.4 because of dynamic
+collection/attribute names used in them:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FOR name IN ["col1", "col2"] FOR doc IN NEAR(name, 2.5, 3) RETURN doc
+
+FOR doc IN collection 
+  FOR match IN FULLTEXT(PARSE_IDENTIFIER(doc).collection, PARSE_IDENTIFIER(doc).key, "foxx") RETURN doc
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>the AQL warning 1577 (“collection used in expression”) will not occur anymore</p>
+
+    <p>It was used in previous versions of ArangoDB when the name of a collection was
+used in an expression in an AQL query, e.g.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RETURN c1 + c2
+</code></pre></div>    </div>
+
+    <p>Due to internal changes in AQL this is not detected anymore in 3.4, so this 
+particular warning will not be raised.</p>
+
+    <p>Additionally, using collections in arbitrary AQL expressions as above is unsupported
+in a mixed cluster that is running a 3.3 Coordinator and 3.4 DB-Server(s). The
+DB-Server(s) running 3.4 will in this case not be able to use a collection in an
+arbitrary expression, and instead throw an error.</p>
+  </li>
+  <li>
+    <p>the undocumented built-in visitor functions for AQL traversals have been removed,
+as they were based on JavaScript implementations:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">HASATTRIBUTESVISITOR</code></li>
+      <li><code class="language-plaintext highlighter-rouge">PROJECTINGVISITOR</code></li>
+      <li><code class="language-plaintext highlighter-rouge">IDVISITOR</code></li>
+      <li><code class="language-plaintext highlighter-rouge">KEYVISITOR</code></li>
+      <li><code class="language-plaintext highlighter-rouge">COUNTINGVISITOR</code></li>
+    </ul>
+
+    <p>Using any of these functions from inside AQL will now produce an error.</p>
+  </li>
+  <li>
+    <p>in previous versions, the AQL optimizer used two different ways of converting 
+strings into numbers. The two different ways have been unified into a single
+way that behaves like the <code class="language-plaintext highlighter-rouge">TO_NUMBER</code> AQL function, which is also the documented
+behavior.</p>
+
+    <p>The change affects arithmetic operations with strings that contain numbers and
+other trailing characters, e.g.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>expression         3.3 result          3.4 result       TO_NUMBER()
+0 + "1a"           0 + 1 = 1           0 + 0 = 0        TO_NUMBER("1a") = 0
+0 + "1 "           0 + 1 = 1           0 + 1 = 1        TO_NUMBER("1 ") = 1
+0 + " 1"           0 + 1 = 1           0 + 1 = 1        TO_NUMBER(" 1") = 1
+0 + "a1"           0 + 0 = 0           0 + 0 = 0        TO_NUMBER("a1") = 0
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>the AQL function <code class="language-plaintext highlighter-rouge">DATE_NOW</code> is now marked as deterministic internally, meaning that
+the optimizer may evaluate the function at query compile time and not at query
+runtime. This will mean that calling the function repeatedly inside the same query will
+now always produce the same result, whereas in previous versions of ArangoDB the
+function may have generated different results.</p>
+
+    <p>Each AQL query that is run will still evaluate the result value of the <code class="language-plaintext highlighter-rouge">DATE_NOW</code> 
+function independently, but only once at the beginning of the query. This is most
+often what is desired anyway, but the change makes <code class="language-plaintext highlighter-rouge">DATE_NOW</code> useless to measure
+time differences inside a single query.</p>
+  </li>
+  <li>
+    <p>the internal AQL function <code class="language-plaintext highlighter-rouge">PASSTHRU</code> (which simply returns its call argument)
+has been changed from being non-deterministic to being deterministic, provided its
+call argument is also deterministic. This change should not affect end users, as
+<code class="language-plaintext highlighter-rouge">PASSTHRU</code> is intended to be used for internal testing only. Should end users use
+this AQL function in any query and need a wrapper to make query parts non-deterministic,
+the <code class="language-plaintext highlighter-rouge">NOOPT</code> AQL function can stand in as a non-deterministic variant of <code class="language-plaintext highlighter-rouge">PASSTHRU</code></p>
+  </li>
+  <li>
+    <p>the AQL query optimizer will by default now create at most 128 different execution
+plans per AQL query. In previous versions the maximum number of plans was 192.</p>
+
+    <p>Normally the AQL query optimizer will generate a single execution plan per AQL query, 
+but there are some cases in which it creates multiple competing plans. More plans
+can lead to better optimized queries, however, plan creation has its costs. The
+more plans are created and shipped through the optimization pipeline, the more
+time will be spent in the optimizer.
+To make the optimizer better cope with some edge cases, the maximum number of plans
+to create is now strictly enforced and was lowered compared to previous versions of
+ArangoDB.</p>
+
+    <p>Note that this default maximum value can be adjusted globally by setting the startup 
+option <code class="language-plaintext highlighter-rouge">--query.optimizer-max-plans</code> or on a per-query basis by setting a query’s
+<code class="language-plaintext highlighter-rouge">maxNumberOfPlans</code> option.</p>
+  </li>
+  <li>
+    <p>When creating query execution plans for a query, the query optimizer was fetching
+the number of documents of the underlying collections in case multiple query
+execution plans were generated. The optimizer used these counts as part of its 
+internal decisions and execution plan costs calculations.</p>
+
+    <p>Fetching the number of documents of a collection can have measurable overhead in a
+cluster, so ArangoDB 3.4 now caches the “number of documents” that are referred to
+when creating query execution plans. This may save a few roundtrips in case the
+same collections are frequently accessed using AQL queries.</p>
+
+    <p>The “number of documents” value was not and is not supposed to be 100% accurate 
+in this stage, as it is used for rough cost estimates only. It is possible however
+that when explaining an execution plan, the “number of documents” estimated for
+a collection is using a cached stale value, and that the estimates change slightly
+over time even if the underlying collection is not modified.</p>
+  </li>
+  <li>
+    <p>AQL query results that are served from the AQL query results cache can now return
+the <em>fullCount</em> attribute as part of the query statistics. Alongside the <em>fullCount</em>
+attribute, other query statistics will be returned. However, these statistics will
+reflect figures generated during the initial query execution, so especially a
+query’s <em>executionTime</em> figure may be misleading for a cached query result.</p>
+  </li>
+</ul>
+
+<h2 id="usage-of-v8">Usage of V8</h2>
+
+<p>The internal usage of the V8 JavaScript engine for non-user actions has been 
+reduced in ArangoDB 3.4. Several APIs have been rewritten to not depend on V8 
+and thus do not require using the V8 engine nor a V8 context for execution
+anymore.</p>
+
+<p>Compared to ArangoDB 3.3, the following parts of ArangoDB can now be used 
+without the V8 engine:</p>
+
+<ul>
+  <li>Agency nodes in a cluster</li>
+  <li>DB-Server nodes in a cluster</li>
+  <li>cluster plan application on DB-Server nodes</li>
+  <li>all of AQL (with the exception of user-defined functions)</li>
+  <li>the graph modification APIs at endpoint <code class="language-plaintext highlighter-rouge">/_api/gharial</code></li>
+  <li>background statistics gathering</li>
+</ul>
+
+<p>Reduced usage of V8 in ArangoDB may allow end users to lower the configured 
+numbers of V8 contexts to start. In terms of configuration options, these
+are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">--javascript.v8-contexts</code>: the maximum number of V8 contexts to create
+(high-water mark)</li>
+  <li><code class="language-plaintext highlighter-rouge">--javascript.v8-contexts-minimum</code>: the minimum number of V8 contexts to 
+create at server start and to keep around permanently (low-water mark)</li>
+</ul>
+
+<p>The default values for these startup options have not been changed in ArangoDB
+3.4, but depending on the actual workload, 3.4 ArangoDB instances may need
+less V8 contexts than 3.3.</p>
+
+<p>As mentioned above, Agency and DB-Server nodes in a cluster does not
+require V8 for any operation in 3.4, so the V8 engine is turned off entirely on
+such nodes, regardless of the number of configured V8 contexts there.</p>
+
+<p>The V8 engine is still enabled on Coordinator servers in a cluster and on single
+server instances. Here the numbe of started V8 contexts may actually be reduced
+in case a lot of the above features are used.</p>
+
+<h2 id="startup-option-changes">Startup option changes</h2>
+
+<p>For arangod, the following startup options have changed:</p>
+
+<ul>
+  <li>
+    <p>the number of server threads is now configured by the following startup options:</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">--server.minimal-threads</code>: determines the minimum number of request processing
+threads the server will start</li>
+      <li><code class="language-plaintext highlighter-rouge">--server.maximal-threads</code>: determines the maximum number of request processing 
+threads the server will start</li>
+    </ul>
+
+    <p>The actual number of request processing threads is adjusted dynamically at runtime
+and will float between <code class="language-plaintext highlighter-rouge">--server.minimal-threads</code> and <code class="language-plaintext highlighter-rouge">--server.maximal-threads</code>.</p>
+  </li>
+  <li>
+    <p>the default value for the existing startup option <code class="language-plaintext highlighter-rouge">--javascript.gc-interval</code>
+has been increased from every 1000 to every 2000 requests, and the default value
+for the option <code class="language-plaintext highlighter-rouge">--javascript.gc-frequency</code> has been increased from 30 to 60 seconds.</p>
+
+    <p>This will make the V8 garbage collection run less often by default than in previous
+versions, reducing CPU load a bit and leaving more V8 contexts available on average.</p>
+  </li>
+  <li>
+    <p>the startup option <code class="language-plaintext highlighter-rouge">--cluster.my-local-info</code> has been removed in favor of persisted 
+server UUIDs.</p>
+
+    <p>The option <code class="language-plaintext highlighter-rouge">--cluster.my-local-info</code> was deprecated since ArangoDB 3.3.</p>
+  </li>
+  <li>
+    <p>the startup option <code class="language-plaintext highlighter-rouge">--database.check-30-revisions</code> was removed. It was used for
+checking the revision ids of documents for having been created with ArangoDB 3.0,
+which required a dump &amp; restore migration of the data to 3.1.</p>
+
+    <p>As direct upgrades from ArangoDB 3.0 to 3.4 or from 3.1 to 3.4 are not supported,
+this option has been removed in 3.4.</p>
+  </li>
+  <li>
+    <p>the startup option <code class="language-plaintext highlighter-rouge">--server.session-timeout</code> has been obsoleted. Setting this 
+option will not have any effect.</p>
+  </li>
+  <li>
+    <p>the option <code class="language-plaintext highlighter-rouge">--replication.automatic-failover</code> was renamed to <code class="language-plaintext highlighter-rouge">--replication.active-failover</code></p>
+
+    <p>Using the old option name will still work in ArangoDB 3.4, but support for the old 
+option name will be removed in future versions of ArangoDB.</p>
+  </li>
+  <li>
+    <p>the option <code class="language-plaintext highlighter-rouge">--rocksdb.block-align-data-blocks</code> has been added</p>
+
+    <p>If set to true, data blocks stored by the RocksDB engine are aligned on lesser of page 
+size and block size, which may waste some memory but may reduce the number of cross-page 
+I/Os operations.</p>
+
+    <p>The default value for this option is <em>false</em>.</p>
+
+    <p>As mentioned above, ArangoDB 3.4 changes the default value of the configuration option 
+<code class="language-plaintext highlighter-rouge">--rocksdb.total-write-buffer-size</code> to about 40% of available physical RAM, and 512MiB
+for setups with less than 4GiB of RAM. In ArangoDB 3.3 this option had a default value
+of <code class="language-plaintext highlighter-rouge">0</code>, which meant that the memory usage for write buffers was not limited.</p>
+  </li>
+</ul>
+
+<h2 id="permissions">Permissions</h2>
+
+<p>The behavior of permissions for databases and collections changed:</p>
+
+<p>The new fallback rule for databases for which no access level is explicitly 
+specified is now:</p>
+
+<ul>
+  <li>Choose the higher access level of:
+    <ul>
+      <li>A wildcard database grant</li>
+      <li>A database grant on the <code class="language-plaintext highlighter-rouge">_system</code> database</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The new fallback rule for collections for which no access level is explicitly 
+specified is now:</p>
+
+<ul>
+  <li>Choose the higher access level of:
+    <ul>
+      <li>Any wildcard access grant in the same database, or on <code class="language-plaintext highlighter-rouge">"*"</code></li>
+      <li>The access level for the current database</li>
+      <li>The access level for the <code class="language-plaintext highlighter-rouge">_system</code> database</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="sslv2">SSLv2</h2>
+
+<p>Support for SSLv2 has been removed from arangod and all client tools.</p>
+
+<p>Startup will now be aborted when using SSLv2 for a server endpoint, or when connecting 
+with one of the client tools via an SSLv2 connection.</p>
+
+<p>SSLv2 has been disabled in the OpenSSL library by default in recent versions
+because of security vulnerabilities inherent in this protocol.</p>
+
+<p>As it is not safe at all to use this protocol, the support for it has also
+been stopped in ArangoDB. End users that use SSLv2 for connecting to ArangoDB
+should change the protocol from SSLv2 to TLSv12 if possible, by adjusting
+the value of the <code class="language-plaintext highlighter-rouge">--ssl.protocol</code> startup option.</p>
+
+<h2 id="replication">Replication</h2>
+
+<p>By default, database-specific and global replication appliers use a slightly
+different configuration in 3.4 than in 3.3. In 3.4 the default value for the
+configuration option <code class="language-plaintext highlighter-rouge">requireFromPresent</code> is now <code class="language-plaintext highlighter-rouge">true</code>, meaning the follower
+will abort the replication when it detects gaps in the leader’s stream of 
+events. Such gaps can happen if the leader has pruned WAL log files with 
+events that have not been fetched by a follower yet, which may happen for 
+example if the network connectivity between follower and leader is bad.</p>
+
+<p>Previous versions of ArangoDB 3.3 used a default value of <code class="language-plaintext highlighter-rouge">false</code> for 
+<code class="language-plaintext highlighter-rouge">requireFromPresent</code>, meaning that any such gaps in the replication data 
+exchange will not cause the replication to stop. 3.4 now stops replication by
+default and writes according errors to the log. Replication can automatically
+be restarted in this case by setting the <code class="language-plaintext highlighter-rouge">autoResync</code> replication configuration
+option to <code class="language-plaintext highlighter-rouge">true</code>.</p>
+
+<h2 id="mixed-engine-clusters">Mixed-engine clusters</h2>
+
+<p>Starting a cluster with Coordinators and DB-Servers using different storage 
+engines is not supported. Doing it anyway will now log an error and abort a 
+Coordinator’s startup.</p>
+
+<p>Previous versions of ArangoDB did not detect the usage of different storage
+engines in a cluster, but the runtime behavior of the cluster was undefined.</p>
+
+<h2 id="client-tools">Client tools</h2>
+
+<p>The client tool <em>arangoimp</em> has been renamed to <em>arangoimport</em> for consistency.</p>
+
+<p>Release packages will still install <em>arangoimp</em> as a symlink to <em>arangoimport</em>, 
+so user scripts invoking <em>arangoimp</em> do not need to be changed to work with
+ArangoDB 3.4. However, user scripts invoking <em>arangoimp</em> should eventually be 
+changed to use <em>arangoimport</em> instead, as that will be the long-term supported 
+way of running imports.</p>
+
+<p>The tools <em>arangodump</em> and <em>arangorestore</em> will now by default work with two
+threads when extracting data from a server or loading data back into a server resp.
+The number of threads to use can be adjusted for both tools by adjusting the
+<code class="language-plaintext highlighter-rouge">--threads</code> parameter when invoking them. This change is noteworthy because in
+previous versions of ArangoDB both tools were single-threaded and only processed
+one collection at a time, while starting with ArangoDB 3.4 by default they will 
+process two collections at a time, with the intended benefit of completing their
+work faster. However, this may create higher load on servers than in previous
+versions of ArangoDB. If the load produced by <em>arangodump</em> or <em>arangorestore</em> is
+higher than desired, please consider setting their <code class="language-plaintext highlighter-rouge">--threads</code> parameter to a 
+value of <code class="language-plaintext highlighter-rouge">1</code> when invoking them.</p>
+
+<p>In the ArangoShell, the undocumented JavaScript module <code class="language-plaintext highlighter-rouge">@arangodb/actions</code> has
+been removed. This module contained the methods <code class="language-plaintext highlighter-rouge">printRouting</code> and <code class="language-plaintext highlighter-rouge">printFlatRouting</code>,
+which were used for debugging purposes only.</p>
+
+<p>In the ArangoShell, the undocumented JavaScript functions <code class="language-plaintext highlighter-rouge">reloadAuth</code> and <code class="language-plaintext highlighter-rouge">routingCache</code>
+have been removed from the <code class="language-plaintext highlighter-rouge">internal</code> module.</p>
+
+<h2 id="foxx-applications">Foxx applications</h2>
+
+<p>The undocumented JavaScript module <code class="language-plaintext highlighter-rouge">@arangodb/database-version</code> has been
+removed, so it cannot be use from Foxx applications anymore The module only
+provided the current version of the database, so any client-side invocations
+can easily be replaced by using the <code class="language-plaintext highlighter-rouge">db._version()</code> instead.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">ShapedJson</code> JavaScript object prototype, a remainder from ArangoDB 2.8 
+for encapsulating database documents, has been removed in ArangoDB 3.4.</p>
+
+<h2 id="miscellaneous-changes">Miscellaneous changes</h2>
+
+<p>For the MMFiles engine, the compactor thread(s) were renamed from “Compactor” 
+to “MMFilesCompactor”.</p>
+
+<p>This change will be visible only on systems which allow assigning names to
+threads.</p>
+
+<h1 id="deprecated-features">Deprecated features</h1>
+
+<p>The following features and APIs are deprecated in ArangoDB 3.4, and will be 
+removed in future versions of ArangoDB:</p>
+
+<ul>
+  <li>
+    <p>the JavaScript-based traversal REST API at <code class="language-plaintext highlighter-rouge">/_api/traversal</code> and the
+underlaying traversal module <code class="language-plaintext highlighter-rouge">@arangodb/graph/traversal</code>:</p>
+
+    <p>This API has several limitations (including low result set sizes) and has 
+effectively been unmaintained since the introduction of native AQL traversal.</p>
+
+    <p>It is recommended to migrate client applications that use the REST API at
+<code class="language-plaintext highlighter-rouge">/_api/traversal</code> to use AQL-based traversal queries instead.</p>
+  </li>
+  <li>
+    <p>the REST API for simple queries at <code class="language-plaintext highlighter-rouge">/_api/simple</code>:</p>
+
+    <p>The simple queries provided by the <code class="language-plaintext highlighter-rouge">/_api/simple</code> endpoint are limited in
+functionality and will internally resort to AQL queries anyway. It is advised
+that client applications also use the equivalent AQL queries instead of 
+using the simple query API, because that is more flexible and allows greater 
+control of how the queries are executed.</p>
+  </li>
+  <li>
+    <p>the REST API for querying endpoints at <code class="language-plaintext highlighter-rouge">/_api/endpoint</code>:</p>
+
+    <p>The API <code class="language-plaintext highlighter-rouge">/_api/endpoint</code> is deprecated since ArangoDB version 3.1. 
+For cluster mode there is <code class="language-plaintext highlighter-rouge">/_api/cluster/endpoints</code> to find all current 
+Coordinator endpoints.</p>
+  </li>
+  <li>
+    <p>accessing collections via their numeric IDs instead of their names. This mostly
+affects the REST APIs at</p>
+
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">/_api/collection/&lt;collection-id&gt;</code></li>
+      <li><code class="language-plaintext highlighter-rouge">/_api/document/&lt;collection-id&gt;</code></li>
+      <li><code class="language-plaintext highlighter-rouge">/_api/simple</code></li>
+    </ul>
+
+    <p>Note that in ArangoDB 3.4 it is still possible to access collections via
+their numeric ID, but the preferred way to access a collections is by its
+user-defined name.</p>
+  </li>
+  <li>
+    <p>the REST API for WAL tailing at <code class="language-plaintext highlighter-rouge">/_api/replication/logger-follow</code>:</p>
+
+    <p>The <code class="language-plaintext highlighter-rouge">logger-follow</code> WAL tailing API has several limitations. A better API
+was introduced at endpoint <code class="language-plaintext highlighter-rouge">/_api/wal/tail</code> in ArangoDB 3.3.</p>
+
+    <p>Client applications using the old tailing API at <code class="language-plaintext highlighter-rouge">/_api/replication/logger-follow</code>
+should switch to the new API eventually.</p>
+  </li>
+  <li>
+    <p>the result attributes <code class="language-plaintext highlighter-rouge">mode</code> and <code class="language-plaintext highlighter-rouge">writeOpsEnabled</code> in the REST API for querying
+a server’s status at <code class="language-plaintext highlighter-rouge">/_admin/status</code>:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">GET /_admin/status</code> returns the additional attributes <code class="language-plaintext highlighter-rouge">operationMode</code> and 
+<code class="language-plaintext highlighter-rouge">readOnly</code> now, which should be used in favor of the old attributes.</p>
+  </li>
+  <li>
+    <p>creating geo indexes via any APIs with one of the types <code class="language-plaintext highlighter-rouge">geo1</code> or <code class="language-plaintext highlighter-rouge">geo2</code>:</p>
+
+    <p>The two previously known geo index types (<code class="language-plaintext highlighter-rouge">geo1</code>and <code class="language-plaintext highlighter-rouge">geo2</code>) are deprecated now.
+Instead, when creating geo indexes, the type <code class="language-plaintext highlighter-rouge">geo</code> should be used.</p>
+
+    <p>The types <code class="language-plaintext highlighter-rouge">geo1</code> and <code class="language-plaintext highlighter-rouge">geo2</code> will still work in ArangoDB 3.4, but may be removed
+in future versions.</p>
+  </li>
+  <li>
+    <p>the persistent index type is marked for removal in 4.0.0 and is thus deprecated.</p>
+
+    <p>This index type was added when there was only the MMFiles storage engine as
+kind of a stop gap. We recommend to switch to RocksDB engine, which persists
+all index types with no difference between skiplist and persistent indexes.</p>
+  </li>
+  <li>
+    <p>the legacy mode for Foxx applications from ArangoDB 2.8 or earlier:</p>
+
+    <p>The legacy mode is described in more detail in the <a href="foxx-guides-legacy-mode.html">Foxx manual</a>.
+To upgrade an existing Foxx application that still uses the legacy mode, please
+follow the steps described in <a href="foxx-migrating2x.html">the manual</a>.</p>
+  </li>
+  <li>
+    <p>the AQL geo functions <code class="language-plaintext highlighter-rouge">NEAR</code>, <code class="language-plaintext highlighter-rouge">WITHIN</code>, <code class="language-plaintext highlighter-rouge">WITHIN_RECTANGLE</code> and <code class="language-plaintext highlighter-rouge">IS_IN_POLYGON</code>:</p>
+
+    <p>The special purpose <code class="language-plaintext highlighter-rouge">NEAR</code> AQL function can be substituted with the
+following AQL (provided there is a geo index present on the <code class="language-plaintext highlighter-rouge">doc.latitude</code>
+and <code class="language-plaintext highlighter-rouge">doc.longitude</code> attributes) since ArangoDB 3.2:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FOR doc in geoSort
+  SORT DISTANCE(doc.latitude, doc.longitude, 0, 0)
+  LIMIT 5
+  RETURN doc
+</code></pre></div>    </div>
+
+    <p><code class="language-plaintext highlighter-rouge">WITHIN</code> can be substituted with the following AQL since ArangoDB 3.2:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FOR doc in geoFilter
+  FILTER DISTANCE(doc.latitude, doc.longitude, 0, 0) &lt; 2000
+  RETURN doc
+</code></pre></div>    </div>
+
+    <p>Compared to using the special purpose AQL functions this approach has the
+advantage that it is more composable, and will also honor any <code class="language-plaintext highlighter-rouge">LIMIT</code> values
+used in the AQL query.</p>
+
+    <p>In ArangoDB 3.4, <code class="language-plaintext highlighter-rouge">NEAR</code>, <code class="language-plaintext highlighter-rouge">WITHIN</code>, <code class="language-plaintext highlighter-rouge">WITHIN_RECTANGLE</code> and <code class="language-plaintext highlighter-rouge">IS_IN_POLYGON</code> 
+will still work and automatically be rewritten by the AQL query optimizer 
+to the above forms. However, AQL queries using the deprecated AQL functions
+should eventually be adjusted.</p>
+  </li>
+  <li>
+    <p>using the <code class="language-plaintext highlighter-rouge">arangoimp</code> binary instead of <code class="language-plaintext highlighter-rouge">arangoimport</code></p>
+
+    <p><code class="language-plaintext highlighter-rouge">arangoimp</code> has been renamed to <code class="language-plaintext highlighter-rouge">arangoimport</code> for consistency in ArangoDB
+3.4, and <code class="language-plaintext highlighter-rouge">arangoimp</code> is just a symbolic link to <code class="language-plaintext highlighter-rouge">arangoimport</code> now.
+<code class="language-plaintext highlighter-rouge">arangoimp</code> is there for compatibility only, but client scripts should 
+eventually be migrated to use <code class="language-plaintext highlighter-rouge">arangoimport</code> instead.</p>
+  </li>
+  <li>
+    <p>the <code class="language-plaintext highlighter-rouge">foxx-manager</code> executable is deprecated and will be removed in ArangoDB 4.</p>
+
+    <p>Please use <a href="programs-foxx-cli.html">Foxx CLI</a> instead.</p>
+  </li>
+</ul>
+
+            </section>
+            
+<section class="page-nav">
+  <a href="release-notes-known-issues34.html">&#x276e;&nbsp;&nbsp;Known Issues in 3.4</a>
+  <a class="next" href="release-notes-33.html">Version 3.3&nbsp;&nbsp;&#x276f;</a>
+  <div style="clear: both"></div>
+</section>
+            <div id="page-footer" class="localized-footer">
+              <hr>
+              <p>© ArangoDB - the native multi-model NoSQL database</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var disablePageToc = null;
+          if (!disablePageToc) {
+            generateToc();
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+  <!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'IOUJQ85602',
+  indexName: 'dev_DOCS',
+  apiKey: '1fc63d8ff5b71963f0354561b770b591',
+  searchFunction: function(helper) {
+    var container = document.querySelector('#search-hits');
+
+    if (helper.state.query === '') {
+        container.style.display = 'none';
+    } else {
+        container.style.display = '';
+    }
+
+    helper.search();
+  }
+});
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-searchbar',
+    placeholder: 'Search Documentation...',
+    poweredBy: false // This is required if you're on the free Community plan
+  })
+);
+search.addWidget(
+    instantsearch.widgets.hits({
+        container: '#search-hits',
+        templates: {
+            item: function(hit) {
+                return '<div class="post-item">' +
+                    '<a class="post-link" href="https://www.arangodb.com/docs'&#32;+&#32;hit.url&#32;+&#32;'"><div>' + (hit.headings[0] || "ArangoDB Documentation") + '</div>' +
+                    '<div class="post-snippet">' + hit.excerpt_text + '</div></a>' +
+                    '</div>';
+            },
+        },
+    })
+);
+
+// Starting the search
+search.start();
+</script>
+  <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/2482448.js"></script>
+</body>
+</html>

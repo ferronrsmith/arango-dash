@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="architecture-deployment-modes-cluster-architecture.html">
+<title>Architecture | Cluster | ArangoDB Deployment Modes | Architecture | Manual | ArangoDB Documentation</title>
+<meta itemprop="description" name="description" content="The Cluster architecture of ArangoDB is a CP master/master model with no single point of failure" />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:url" content="https://www.arangodb.com/docs/stable/architecture-deployment-modes-cluster-architecture.html" />
+<meta property="og:title" content="Architecture | Cluster | ArangoDB Deployment Modes | Architecture | Manual | ArangoDB Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="The Cluster architecture of ArangoDB is a CP master/master model with no single point of failure" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81053435-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-81053435-1');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5LQ7HC');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('provide', 'adblockTracker', function(tracker, opts) {
+    var ad = document.createElement('ins');
+    ad.className = 'AdSense';
+    ad.style.display = 'block';
+    ad.style.position = 'absolute';
+    ad.style.top = '-1px';
+    ad.style.height = '1px';
+    document.body.appendChild(ad);
+    tracker.set('dimension' + opts.dimensionIndex, !ad.clientHeight);
+    document.body.removeChild(ad);
+  });
+
+  ga('create', 'UA-81053435-6', 'auto');
+  ga('require', 'adblockTracker', {dimensionIndex: 1});
+  ga('send', 'pageview');
+</script>
+
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  twq('init','nz793');
+  twq('track','PageView');
+</script>
+
+<script type="text/javascript">
+  _linkedin_partner_id = "499017";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(){var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})();
+</script>
+
+<link rel="shortcut icon" href="../../wp-content/uploads/2018/07/www.arangodb.com-favicon.png">
+<link rel="stylesheet" href="../styles/gitbook/style.css">
+<link rel="stylesheet" href="../styles/gitbook/highlight-website.css">
+<link rel="stylesheet" href="../styles/gitbook/fontsettings-website.css">
+<link rel="stylesheet" href="../styles/website.css">
+<link rel="stylesheet" href="../styles/header.css">
+<link rel="stylesheet" href="../styles/navbar.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/pygments-vs.css">
+<script src="../js/jquery-3.4.0.min.js"></script>
+<script src="../js/site.js"></script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ7HC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=499017&fmt=gif" /></noscript>
+
+<div class="arangodb-header">
+  <div class="arangodb-logo">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <div class="arangodb-logo-small">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_small_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <select class="arangodb-version-switcher">
+      <option value="devel">3.8</option>
+      <option value="stable">3.7</option>
+      <option value="3.6">3.6</option>
+      <option value="3.5">3.5</option>
+      <option value="3.4">3.4</option>
+      <option value="3.3" disabled>3.3</option>
+  </select>
+  <script type="text/javascript">
+    var versionAliases = {"stable":"3.7","devel":"3.8"};
+    var current = location.href;
+
+    var selectedVersion = current.split('/')[4];
+    var switcher = document.querySelector(".arangodb-version-switcher");
+
+    for (var i = 0; i < switcher.options.length; i++) {
+      var value = switcher.options.item(i).value;
+      if (value == selectedVersion) {
+        switcher.value = value;
+      } else if (versionAliases[value] == selectedVersion) {
+        switcher.value = value;
+      }
+    }
+    
+    switcher.addEventListener('change', function(event) {
+      var current = location.href;
+      var urlElements = current.split('/');
+      urlElements[4] = event.target.value;
+      var newUrl = urlElements.join("/");
+      location.href = newUrl;
+    });
+  </script>
+  <ul class="arangodb-navmenu">
+    <li class="active-tab">
+      <a href="index.html" data-book="Manual">Manual</a>
+    </li>
+    <li>
+      <a href="aql/index.html" data-book="AQL">AQL</a>
+    </li>
+    <li>
+      <a href="http/index.html" data-book="HTTP">HTTP</a>
+    </li>
+    <li>
+      <a href="drivers/index.html" data-book="Drivers">Drivers</a>
+    </li>
+    <li>
+      <a href="oasis/index.html" data-book="Oasis">Oasis</a>
+    </li>
+    <li class="socialIcons" title="GitHub">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons" title="StackOverflow">
+      <a href="https://stackoverflow.com/questions/tagged/arangodb" target="_blank">
+        <i class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups" title="Google Groups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="_blank">
+        <img alt="Google Groups" src="../assets/googlegroupsIcon.png">
+      </a>
+    </li>
+    <li class="socialIcons" title="Slack">
+      <a href="https://slack.arangodb.com" target="_blank">
+        <i class="fa fa-slack"></i>
+      </a>
+    </li>
+    <li>
+      <div class="searchbar">
+        <div id="search-searchbar"></div>
+      </div>
+    </li>
+    <li class="placeholder">
+      <div style="width: 15px"></div>
+    </li>
+  </ul>
+  <div id="search-hits"></div>
+</div>
+ 
+  <div class="book with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+      <nav role="navigation">
+    <ul class="summary">
+  <li class="chapter">
+  <a href="index.html">Introduction</a>
+  </li>
+  <li class="chapter">
+  <a href="highlights.html">Highlights</a>
+  </li>
+  <li class="header">GETTING FAMILIAR</li>
+  <li class="chapter">
+  <a href="getting-started.html">Getting Started</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="getting-started-installation.html">Installation</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-authentication.html">Authentication</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-web-interface.html">Web Interface</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-databases-collections-documents.html">Databases, Collections and Documents</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-querying-the-database.html">Querying the Database</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-coming-from-sql.html">Coming from SQL</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-next-steps.html">Next Steps</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="tutorials.html">Tutorials</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="tutorials-reduce-memory-footprint.html">Reduce Memory Footprint</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-starter.html">ArangoDB Starter</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-dc2-dc.html">Datacenter to datacenter Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes.html">Kubernetes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="tutorials-kubernetes-eks.html">Amazon EKS</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-gke.html">Google GKE</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-aks.html">Azure AKS</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes-dc2-dc.html">DC2DC on Kubernetes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="programs.html">Programs & Tools</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="programs-arangod.html">ArangoDB Server</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangod-options.html">Options</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="programs-arangod-global.html">Global</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-agency.html">Agency</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-arangosearch.html">ArangoSearch</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-audit.html">Audit</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cache.html">Cache</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-backup.html">Backup</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-compaction.html">Compaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-database.html">Database</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-foxx.html">Foxx</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-frontend.html">Frontend</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-http.html">HTTP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-javascript.html">JavaScript</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ldap.html">LDAP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-log.html">Log</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-network.html">Network</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-nonce.html">Nonce</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-query.html">Query</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-random.html">Random</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-replication.html">Replication</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rclone.html">Rclone</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rocksdb.html">RocksDB</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-server.html">Server</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ssl.html">SSL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-tcp.html">TCP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-temp.html">Temp</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-transaction.html">Transaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ttl.html">TTL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-vst.html">VST</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-wal.html">WAL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangod-env-vars.html">Environment variables</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-web-interface.html">Web Interface</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-web-interface-dashboard.html">Dashboard</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-cluster.html">Cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-collections.html">Collections</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-document.html">Document</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-aql-editor.html">Queries</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-graphs.html">Graphs</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-services.html">Services</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-users.html">Users</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-logs.html">Logs</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangosh.html">ArangoDB Shell</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangosh-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-starter.html">ArangoDB Starter</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-starter-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-security.html">Security</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-architecture.html">Architecture</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangodump.html">Arangodump</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangodump-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-maskings.html">Maskings</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-limitations.html">Limitations</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangorestore.html">Arangorestore</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangorestore-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-fast-cluster-restore.html">Fast Cluster Restore</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobackup.html">Arangobackup</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobackup-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobackup-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoimport.html">Arangoimport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-json.html">Examples JSON</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-csv.html">Examples CSV</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoexport.html">Arangoexport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoexport-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoexport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobench.html">Arangobench</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobench-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobench-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoinspect.html">Arangoinspect</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoinspect-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoinspect-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-foxx-cli.html">Foxx CLI</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-foxx-cli-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="header">CORE TOPICS</li>
+  <li class="chapter">
+  <a href="data-modeling.html">Data models & modeling</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="data-modeling-concepts.html">Concepts</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-databases.html">Databases</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-databases-working-with.html">Working with Databases</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-databases-notes.html">Notes about Databases</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-collections.html">Collections</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-collections-collection-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-collections-database-methods.html">Database Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-documents.html">Documents</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-documents-document-address.html">Basics and Terminology</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-document-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-schema-validation.html">Schema Validation</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-monetary-data-without-precision-loss.html">Monetary data without precision loss</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-graphs-vertices-edges.html">Graphs, Vertices & Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-views.html">Views</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-views-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-views-view-methods.html">View Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-naming-conventions.html">Naming Conventions</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-database-names.html">Database Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-collection-and-view-names.html">Collection and View Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-document-keys.html">Document Keys</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-attribute-names.html">Attribute Names</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-operational-factors.html">Operational Factors</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="indexing.html">Indexing</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="indexing-index-basics.html">Index Basics</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-which-index.html">Which index to use when</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-index-utilization.html">Index Utilization</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-working-with-indexes.html">Working with Indexes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="indexing-persistent.html">Persistent</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-ttl.html">TTL Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-fulltext.html">Fulltext Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-geo.html">Geo-spatial Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-vertex-centric.html">Vertex Centric Indexes</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="transactions.html">Transactions</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="transactions-transaction-invocation.html">Transaction invocation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-passing.html">Passing parameters</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-locking-and-isolation.html">Locking and isolation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-durability.html">Durability</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-limitations.html">Limitations</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="graphs.html">Graphs</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="graphs-general-graphs.html">General Graphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-general-graphs-management.html">Graph Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-general-graphs-functions.html">Graph Functions</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-satellite-graphs.html">SatelliteGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-management.html">Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-smart-graphs.html">SmartGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-smart-graphs-management.html">SmartGraph Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-traversals.html">Traversals</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-traversals-using-traversal-objects.html">Using Traversal Objects</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-traversals-example-data.html">Example Data</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-edges.html">Working with Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="graphs-pregel.html">Pregel</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="arangosearch.html">ArangoSearch</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="arangosearch-views.html">Views</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-analyzers.html">Analyzers</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-examples.html">Examples</a>
+      </li>
+    </ul>
+  </li>
+  <li class="header">ADVANCED TOPICS</li>
+  <li class="chapter selected">
+  <a href="architecture.html">Architecture</a>
+    <ul class="articles">
+      <li class="chapter selected">
+      <a href="architecture-deployment-modes.html">ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="architecture-deployment-modes-single-instance.html">Single Instance</a>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter selected">
+          <a href="architecture-deployment-modes-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter selected active">
+              <a href="architecture-deployment-modes-cluster-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-data-models.html">Data Models</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-sharding.html">Data Sharding</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-dc2-dc.html">Datacenter to datacenter replication</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-introduction.html">Introduction</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-applicability.html">Applicability</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-requirements.html">Requirements</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="architecture-single-instance-vs-cluster.html">Single Instance vs. Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-storage-engines.html">Storage Engines</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-replication.html">Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-write-ahead-log.html">Write-ahead log</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="foxx.html">Foxx Microservices</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="foxx-getting-started.html">Getting started</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-guides.html">Guides</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-guides-routing.html">Working with routers</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-collections.html">Working with collections</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-queries.html">Writing queries</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-development-mode.html">Development mode</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-testing.html">Testing Foxx services</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-cluster.html">Foxx in a cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-scripts.html">Scripts and scheduling</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-bundled-node-modules.html">Using Node modules</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-webpack.html">Using Webpack with Foxx</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-auth.html">Authentication and sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-dependencies.html">Linking services together</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-files.html">Working with files</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-making-requests.html">Making requests</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-browser.html">Access from the browser</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-legacy-mode.html">Working with 2.x services</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-reference.html">Reference</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-reference-manifest.html">Service manifest</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-context.html">Service context</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-routers.html">Routers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-routers-endpoints.html">Endpoints</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-middleware.html">Middleware</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-request.html">Request</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-sessions.html">Sessions middleware</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-sessions-storages.html">Session storages</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-collection.html">Collection storage</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-jwt.html">JWT storage</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-sessions-transports.html">Session transports</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-cookie.html">Cookie transport</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-header.html">Header transport</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-modules.html">Related modules</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-modules-auth.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth1.html">OAuth 1.0a</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth2.html">OAuth 2.0</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-graph-ql.html">GraphQL</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-queues.html">Queues</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-deployment.html">Deployment</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-migrating2x.html">Migrating 2.x services</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-migrating2x-wayback.html">Migrating from pre-2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-manifest.html">manifest.json</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-context.html">applicationContext</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-repositories.html">Repositories and Models</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-controllers.html">Controllers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-endpoints.html">Request context</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-errors.html">Error handling</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-middleware.html">Before/After/Around</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-request.html">Request object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-response.html">Response object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-io-c.html">Dependency Injection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-sessions.html">Sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-auth.html">Auth and OAuth2</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-queries.html">Foxx Queries</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="satellites.html">SatelliteCollections</a>
+  </li>
+  <li class="chapter">
+  <a href="smartjoins.html">SmartJoins</a>
+  </li>
+  <li class="header">OPERATIONS</li>
+  <li class="chapter">
+  <a href="installation.html">Installation</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="installation-linux.html">Linux</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-linux-osconfiguration.html">Operating System Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-linux-ostuning-scripts.html">Linux OS Tuning Script Examples</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="installation-mac-osx.html">macOS</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-windows.html">Windows</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-compiling.html">Compiling</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-compiling-debian.html">Compile on Debian</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-windows.html">Compile on Windows</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-running-custom-build.html">Running Custom Build</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-jemalloc.html">Recompiling jemalloc</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="uninstallation.html">Uninstallation</a>
+  </li>
+  <li class="chapter">
+  <a href="deployment.html">Deployment</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="deployment-modes.html">By ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-single-instance.html">Single Instance</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-single-instance-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-single-instance-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-master-slave-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-active-failover-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-active-failover-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-cluster-preliminary-information.html">Preliminary Information</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-manual-start.html">Manual Start</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-kubernetes.html">Kubernetes</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-dc2-dc.html">Multiple Datacenters</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-dc2-dc-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-master.html">ArangoSync Master</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-workers.html">ArangoSync Workers</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-prometheus-grafana.html">Prometheus & Grafana</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-standalone-agency.html">Standalone Agency</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-technology.html">By Technology</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-manually.html">Manually</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-arango-dbstarter.html">ArangoDB Starter</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-docker.html">Docker</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-kubernetes.html">Kubernetes</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-kubernetes-usage.html">Using the Operator</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-dashboards.html">Dashboards</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-resource.html">Deployment Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-resource.html">Backup Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-policy-resource.html">BackupPolicy Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-driver-configuration.html">Driver Configuration</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-helm.html">Helm</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-authentication.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-scaling.html">Scaling</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-drain.html">Draining Nodes</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-upgrading.html">Upgrading</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-config-and-secrets.html">ArangoDB Configuration & Secrets</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-metrics.html">Metrics</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-services-and-load-balancer.html">Services & Load balancer</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-replication-resource.html">Deployment Replication Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage.html">Storage</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage-resource.html">Storage Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-tls.html">TLS</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-troubleshooting.html">Troubleshooting</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-cloud.html">In the Cloud</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-cloud-aws.html">AWS</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cloud-azure.html">Azure</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-production-checklist.html">Production Checklist</a>
+      </li>
+      <li class="chapter">
+      <a href="deployment-migrating-single-instance-cluster.html">Migrating Single Instance to Cluster</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="backup-restore.html">Backup & Restore</a>
+  </li>
+  <li class="chapter">
+  <a href="upgrading.html">Upgrading</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="upgrading-general-info.html">General Upgrade Information</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-community-to-enterprise.html">Community to Enterprise Upgrade</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-osspecific-info.html">OS-specific Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-linux.html">Upgrading on Linux</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-mac-os.html">Upgrading on macOS</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-windows.html">Upgrading on Windows</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-starter.html">Upgrading Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-manually.html">Upgrading Manual Deployments</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-manually-active-failover.html">Upgrading an Active Failover deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-manually-cluster.html">Upgrading a Cluster</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-kubernetes.html">Upgrading Kubernetes Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-version-specific.html">Version Specific Upgrade Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading34.html">Upgrading to 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading33.html">Upgrading to 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading32.html">Upgrading to 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading31.html">Upgrading to 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading30.html">Upgrading to 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading28.html">Upgrading to 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading26.html">Upgrading to 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading25.html">Upgrading to 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading24.html">Upgrading to 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading23.html">Upgrading to 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading22.html">Upgrading to 2.2</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="downgrading.html">Downgrading</a>
+  </li>
+  <li class="chapter">
+  <a href="scaling.html">Scaling</a>
+  </li>
+  <li class="chapter">
+  <a href="administration.html">Administration</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="administration-configuration.html">Configuration</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-import-export.html">Import & Export</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-managing-users.html">User Management</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-managing-users-in-arangosh.html">In Arangosh</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-engine-switch-engine.html">Switch Storage Engine</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-master-slave.html">Master/Slave</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-master-slave-setting-up.html">Setting up</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="administration-master-slave-replication-applier.html">Replication Applier</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-database-setup.html">Per-Database Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-server-level-setup.html">Server-Level Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-initialize-from-backup.html">Speeding Up Slave Initialization</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="administration-master-slave-syncing-collections.html">Syncing Collections</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-active-failover.html">Active Failover</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-cluster.html">Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-starter.html">ArangoDB Starter Administration</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-starter-removal.html">Removal Procedure</a>
+          </li>
+          <li class="chapter">
+          <a href="administration-starter-recovery.html">Recovery Procedure</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="security.html">Security</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="security-security-options.html">Security Options</a>
+      </li>
+      <li class="chapter">
+      <a href="security-change-root-password.html">Change Root Password</a>
+      </li>
+      <li class="chapter">
+      <a href="security-encryption.html">Encryption at Rest</a>
+      </li>
+      <li class="chapter">
+      <a href="security-auditing.html">Auditing</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="security-auditing-audit-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="security-auditing-audit-events.html">Events</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="security-starter.html">Securing Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="security-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="monitoring.html">Monitoring</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="monitoring-log-levels.html">Log Levels</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-collectd.html">Collectd</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="monitoring-collectd-slave-status.html">Replication Slaves</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-traffic-with-ipaccounting.html">Network usage</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-other-relevant-metrics.html">More metrics</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-foxx-apps.html">Monitoring Foxx</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="troubleshooting.html">Troubleshooting</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="troubleshooting-arangod.html">arangod</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-emergency-console.html">Emergency Console</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-cluster.html">Cluster</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="troubleshooting-cluster-agency-dump.html">Agency Dump</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li><hr/></li>
+  <li class="chapter">
+  <a href="release-notes.html">Release Notes</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="release-notes-37.html">Version 3.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features37.html">What's New in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues37.html">Known Issues in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes37.html">Incompatible changes in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-api-changes37.html">API changes in 3.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-36.html">Version 3.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features36.html">What's New in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues36.html">Known Issues in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes36.html">Incompatible changes in 3.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-35.html">Version 3.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features35.html">What's New in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues35.html">Known Issues in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes35.html">Incompatible changes in 3.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-34.html">Version 3.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features34.html">What's New in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues34.html">Known Issues in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes34.html">Incompatible changes in 3.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-33.html">Version 3.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features33.html">What's New in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues33.html">Known Issues in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes33.html">Incompatible changes in 3.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-32.html">Version 3.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features32.html">What's New in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues32.html">Known Issues in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes32.html">Incompatible changes in 3.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-31.html">Version 3.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features31.html">What's New in 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes31.html">Incompatible changes in 3.1</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-30.html">Version 3.0</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features30.html">What's New in 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes30.html">Incompatible changes in 3.0</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-28.html">Version 2.8</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features28.html">What's New in 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes28.html">Incompatible changes in 2.8</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-27.html">Version 2.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features27.html">What's New in 2.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes27.html">Incompatible changes in 2.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-26.html">Version 2.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features26.html">What's New in 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes26.html">Incompatible changes in 2.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-25.html">Version 2.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features25.html">What's New in 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes25.html">Incompatible changes in 2.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-24.html">Version 2.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features24.html">What's New in 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes24.html">Incompatible changes in 2.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-23.html">Version 2.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features23.html">What's New in 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes23.html">Incompatible changes in 2.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-22.html">Version 2.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features22.html">What's New in 2.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-21.html">Version 2.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features21.html">What's New in 2.1</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="appendix.html">Appendix</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="appendix-references.html">References</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-references-dbobject.html">db</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-collection-object.html">collection</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-cursor-object.html">cursor</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-java-script-modules.html">JavaScript Modules</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-java-script-modules-arango-db.html">@arangodb</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-analyzers.html">analyzers</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-console.html">console</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-crypto.html">crypto</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-file-system.html">fs</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-request.html">request</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-actions.html">actions</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-queries.html">queries</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-wal.html">Write-ahead log</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-tasks.html">Task Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-deprecated.html">Deprecated</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-deprecated-simple-queries.html">Simple Queries</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-pagination.html">Pagination</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-modification-queries.html">Modification Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-geo-queries.html">Geo Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-fulltext-queries.html">Fulltext Queries</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-error-codes.html">Error codes and meanings</a>
+      </li>
+      <li class="chapter">
+      <a href="appendix-glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</nav>
+    </div>
+    <div class="book-body">
+      <script type="text/javascript">
+          var availableVersions = ["devel","stable","3.6","3.5","3.4",];
+          versionSwitcherSetAvailable(availableVersions);
+      </script>
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <a class="btn pull-left js-toolbar-action hamburger" aria-label=""><i class="fa fa-align-justify"></i></a>
+          <a class="btn pull-left js-toolbar-action" aria-label="" href="https://github.com/arangodb/docs/edit/master/3.7/architecture-deployment-modes-cluster-architecture.md" target="_blank"><i class="fa fa-github"></i> Contribute</a>
+        </div>
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+            <section class="normal markdown-section">
+              <h1 id="cluster-architecture">Cluster Architecture</h1>
+
+<p>The Cluster architecture of ArangoDB is a <em>CP</em> master/master model with no
+single point of failure.</p>
+
+<p>With “CP” in terms of the <a href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank">CAP theorem</a>
+we mean that in the presence of a
+network partition, the database prefers internal consistency over
+availability. With “master/master” we mean that clients can send their
+requests to an arbitrary node, and experience the same view on the
+database regardless. “No single point of failure” means that the cluster
+can continue to serve requests, even if one machine fails completely.</p>
+
+<p>In this way, ArangoDB has been designed as a distributed multi-model
+database. This section gives a short outline on the Cluster architecture and
+how the above features and capabilities are achieved.</p>
+
+<h2 id="structure-of-an-arangodb-cluster">Structure of an ArangoDB Cluster</h2>
+
+<p>An ArangoDB Cluster consists of a number of ArangoDB instances
+which talk to each other over the network. They play different roles,
+which will be explained in detail below.</p>
+
+<p>The current configuration
+of the Cluster is held in the <em>Agency</em>, which is a highly-available
+resilient key/value store based on an odd number of ArangoDB instances
+running <a href="https://raft.github.io/" target="_blank">Raft Consensus Protocol</a>.</p>
+
+<p>For the various instances in an ArangoDB Cluster there are three distinct
+roles:</p>
+
+<ul>
+  <li><em>Agents</em></li>
+  <li><em>Coordinators</em></li>
+  <li><em>DB-Servers</em>.</li>
+</ul>
+
+<p>In the following sections we will shed light on each of them.</p>
+
+<p><img src="images/cluster_topology.png" alt="ArangoDB Cluster" /></p>
+
+<h3 id="agents">Agents</h3>
+
+<p>One or multiple <em>Agents</em> form the <em>Agency</em> in an ArangoDB Cluster. The
+<em>Agency</em> is the central place to store the configuration in a Cluster. It
+performs leader elections and provides other synchronization services for
+the whole Cluster. Without the <em>Agency</em> none of the other components can
+operate.</p>
+
+<p>While generally invisible to the outside the <em>Agency</em> is the heart of the
+Cluster. As such, fault tolerance is of course a must have for the
+<em>Agency</em>. To achieve that the <em>Agents</em> are using the
+<a href="https://raft.github.io/" target="_blank">Raft Consensus Algorithm</a>.
+The algorithm formally guarantees
+conflict free configuration management within the ArangoDB Cluster.</p>
+
+<p>At its core the <em>Agency</em> manages a big configuration tree. It supports
+transactional read and write operations on this tree, and other servers
+can subscribe to HTTP callbacks for all changes to the tree.</p>
+
+<h3 id="coordinators">Coordinators</h3>
+
+<p><em>Coordinators</em> should be accessible from the outside. These are the ones
+the clients talk to. They will coordinate cluster tasks like
+executing queries and running Foxx services. They know where the
+data is stored and will optimize where to run user supplied queries or
+parts thereof. <em>Coordinators</em> are stateless and can thus easily be shut down
+and restarted as needed.</p>
+
+<h3 id="db-servers">DB-Servers</h3>
+
+<p><em>DB-Servers</em> are the ones where the data is actually hosted. They
+host shards of data and using synchronous replication a <em>DB-Server</em> may
+either be <em>leader</em> or <em>follower</em> for a shard. Document operations are first
+applied on the <em>leader</em> and then synchronously replicated to 
+all followers.</p>
+
+<p>Shards must not be accessed from the outside but indirectly through the
+<em>Coordinators</em>. They may also execute queries in part or as a whole when
+asked by a <em>Coordinator</em>.</p>
+
+<p>See <a href="architecture-deployment-modes-cluster-architecture.html#sharding">Sharding</a> below for more information.</p>
+
+<h2 id="many-sensible-configurations">Many sensible configurations</h2>
+
+<p>This architecture is very flexible and thus allows many configurations,
+which are suitable for different usage scenarios:</p>
+
+<ol>
+  <li>The default configuration is to run exactly one <em>Coordinator</em> and
+one <em>DB-Server</em> on each machine. This achieves the classical
+master/master setup, since there is a perfect symmetry between the
+different nodes, clients can equally well talk to any one of the
+<em>Coordinators</em> and all expose the same view to the data store. <em>Agents</em>
+can run on separate, less powerful machines.</li>
+  <li>One can deploy more <em>Coordinators</em> than <em>DB-Servers</em>. This is a sensible
+approach if one needs a lot of CPU power for the Foxx services,
+because they run on the <em>Coordinators</em>.</li>
+  <li>One can deploy more <em>DB-Servers</em> than <em>Coordinators</em> if more data capacity
+is needed and the query performance is the lesser bottleneck</li>
+  <li>One can deploy a <em>Coordinator</em> on each machine where an application
+server (e.g. a node.js server) runs, and the <em>Agents</em> and <em>DB-Servers</em>
+on a separate set of machines elsewhere. This avoids a network hop
+between the application server and the database and thus decreases
+latency. Essentially, this moves some of the database distribution
+logic to the machine where the client runs.</li>
+</ol>
+
+<p>As you can see, the <em>Coordinator</em> layer can be scaled and deployed independently
+from the <em>DB-Server</em> layer.</p>
+
+<div class="alert alert-warning" style="display: flex"><i class="fa fa-exclamation-triangle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>It is a best practice and a recommended approach to run <em>Agent</em> instances
+on different machines than <em>DB-Server</em> instances.</p>
+<p>When deploying using the tool <a href="deployment-arango-dbstarter.html"><em>Starter</em></a>
+this can be achieved by using the options <code class="language-plaintext highlighter-rouge">--cluster.start-dbserver=false</code> and
+<code class="language-plaintext highlighter-rouge">--cluster.start-coordinator=false</code> on the first three machines where the <em>Starter</em>
+is started, if the desired <em>Agency</em> <em>size</em> is 3, or on the first 5 machines
+if the desired <em>Agency</em> <em>size</em> is 5.</p>
+</div></div>
+
+<div class="alert alert-info" style="display: flex"><i class="fa fa-info-circle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>The different instances that form a Cluster are supposed to be run in the same
+<em>Data Center</em> (DC), with reliable and high-speed network connection between
+all the machines participating to the Cluster.</p>
+<p>Multi-datacenter Clusters, where the entire structure and content of a Cluster located
+in a specific DC is replicated to others Clusters located in different DCs, are
+possible as well. See <a href="architecture-deployment-modes-dc2-dc.html">Datacenter to datacenter replication</a>
+(DC2DC) for further details.</p>
+</div></div>
+
+<h2 id="sharding">Sharding</h2>
+
+<p>Using the roles outlined above an ArangoDB Cluster is able to distribute
+data in so called <em>shards</em> across multiple <em>DB-Servers</em>. Sharding
+allows to use multiple machines to run a cluster of ArangoDB
+instances that together constitute a single database. This enables
+you to store much more data, since ArangoDB distributes the data
+automatically to the different servers. In many situations one can
+also reap a benefit in data throughput, again because the load can
+be distributed to multiple machines.</p>
+
+<p><img src="images/cluster_sharding.jpg" alt="Cluster Sharding" /></p>
+
+<p>From the outside this process is fully transparent:
+An application may talk to any <em>Coordinator</em>  and
+it will automatically figure out where the data is currently stored (read-case) 
+or is to be stored (write-case). The information about the <em>shards</em> 
+is shared across all <em>Coordinators</em> using the <em>Agency</em>.</p>
+
+<p><em>Shards</em> are configured per <em>collection</em> so multiple <em>shards</em> of data form
+the <em>collection</em> as a whole. To determine in which <em>shard</em> the data is to
+be stored ArangoDB performs a hash across the values. By default this
+hash is being created from the document <em>_key</em>.</p>
+
+<p>For further information, please refer to the
+<a href="architecture-deployment-modes-cluster-sharding.html"><em>Cluster Sharding</em></a> section.</p>
+
+<h2 id="oneshard">OneShard</h2>
+
+<div class="alert alert-info" style="display: flex"><i class="fa fa-info-circle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>The OneShard option is only available in the
+<a href="https://www.arangodb.com/why-arangodb/arangodb-enterprise/" target="_blank"><strong>Enterprise Edition</strong></a>
+and in the <a href="https://cloud.arangodb.com/home?utm_source=docs&amp;utm_medium=ee_pages&amp;utm_campaign=docs_traffic" target="_blank"><strong>ArangoDB Cloud</strong></a>.
+Take this feature for a spin in just a few clicks with the
+<a href="https://cloud.arangodb.com/home?utm_source=docs&amp;utm_medium=ee_pages&amp;utm_campaign=docs_traffic" target="_blank">14-day free trial</a>.</p></div></div>
+
+<p>A OneShard deployment offers a practicable solution that enables significant
+performance improvements by massively reducing cluster-internal communication
+and allows running transactions with ACID guarantees on shard leaders.</p>
+
+<p>By restricting collections to a single shard and placing them on one DB-Server
+node, whole queries can be pushed to and executed on that server. The
+Coordinator will only get back the final result. This setup is highly
+recommended for most graph use cases and join-heavy queries.</p>
+
+<div class="alert alert-info" style="display: flex"><i class="fa fa-info-circle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>For graphs larger than what fits on a single DB-Server node, you can use the
+<a href="graphs-smart-graphs.html"><strong>SmartGraphs</strong></a> feature to efficiently limit the
+network hops between Coordinator and DB-Servers.</p></div></div>
+
+<p>Without the OneShard feature query processing works as follows in a cluster:</p>
+
+<ul>
+  <li>The Coordinator accepts and analyzes the query.</li>
+  <li>If collections are accessed then the Coordinator distributes the accesses
+to collections to different DB-Servers that hold parts (shards) of the
+collections in question.</li>
+  <li>This distributed access requires network-traffic from Coordinator to
+DB-Servers and back from DB-Servers to Coordinators and is therefore
+expensive.</li>
+</ul>
+
+<p>Another cost factor is the memory and CPU time required on the Coordinator
+when it has to process several concurrent complex queries. In such
+situations Coordinators may become a bottleneck in query processing,
+because they need to send and receive data on several connections, build up
+results for collection accesses from the received parts followed by further
+processing.</p>
+
+<p><img src="images/cluster-sharded-oneshard.png" alt="OneShard vs. Sharded Cluster Setup" /></p>
+
+<p>If the database involved in a query is a OneShard database,
+then the OneShard optimization is applied to run the
+query on the responsible node like on a single server. However, it still being
+a cluster setup means collections can be replicated synchronously to ensure
+resilience etc.</p>
+
+<h3 id="how-to-use-the-oneshard-feature">How to use the OneShard feature?</h3>
+
+<p>The OneShard feature is enabled by default if you use the ArangoDB
+Enterprise Edition and if the database is sharded as <code class="language-plaintext highlighter-rouge">"single"</code>. In this case the
+optimizer rule <code class="language-plaintext highlighter-rouge">cluster-one-shard</code> is applied automatically. 
+There are two ways to achieve this:</p>
+
+<ul>
+  <li>
+    <p>If you want your entire cluster to be a OneShard deployment, use the
+<a href="programs-arangod-options.html#cluster">startup option</a>
+<code class="language-plaintext highlighter-rouge">--cluster.force-one-shard</code>. It sets the immutable <code class="language-plaintext highlighter-rouge">sharding</code> database
+property to <code class="language-plaintext highlighter-rouge">"single"</code> for all newly created databases, which in turn
+enforces the OneShard conditions for collections that will be created in it.
+The <code class="language-plaintext highlighter-rouge">_graphs</code> system collection will be used for <code class="language-plaintext highlighter-rouge">distributeShardsLike</code>.</p>
+  </li>
+  <li>
+    <p>For individual OneShard databases, set the <code class="language-plaintext highlighter-rouge">sharding</code> database property to <code class="language-plaintext highlighter-rouge">"single"</code>
+to enforce the OneShard condition. The <code class="language-plaintext highlighter-rouge">_graphs</code> system collection will be used for
+<code class="language-plaintext highlighter-rouge">distributeShardsLike</code>. It is not possible to change the <code class="language-plaintext highlighter-rouge">sharding</code> database
+property afterwards or overwrite this setting for individual collections.
+For non-OneShard databases the value of the <code class="language-plaintext highlighter-rouge">sharding</code> database property is
+either <code class="language-plaintext highlighter-rouge">""</code> or <code class="language-plaintext highlighter-rouge">"flexible"</code>.</p>
+  </li>
+</ul>
+
+<div class="alert alert-info" style="display: flex"><i class="fa fa-info-circle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>The prototype collection does not only control the sharding, but also the
+replication factor for all collections which follow its example. If the
+<code class="language-plaintext highlighter-rouge">_graphs</code> system collection is used for <code class="language-plaintext highlighter-rouge">distributeShardsLike</code>, then the
+replication factor can be adjusted by changing the <code class="language-plaintext highlighter-rouge">replicationFactor</code>
+property of the <code class="language-plaintext highlighter-rouge">_graphs</code> collection (affecting this and all following
+collections) or via the startup option <code class="language-plaintext highlighter-rouge">--cluster.system-replication-factor</code>
+(affecting all system collections and all following collections).</p></div></div>
+
+<p><strong>Example</strong></p>
+
+<p>The easiest way to make use of the OneShard feature is to create a database
+with the extra option <code class="language-plaintext highlighter-rouge">{ sharding: "single" }</code>. As done in the following
+example:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">arangosh</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_createDatabase</span><span class="p">(</span><span class="dl">"</span><span class="s2">oneShardDB</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">sharding</span><span class="p">:</span> <span class="dl">"</span><span class="s2">single</span><span class="dl">"</span> <span class="p">}</span> <span class="p">)</span>
+
+<span class="nx">arangosh</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_useDatabase</span><span class="p">(</span><span class="dl">"</span><span class="s2">oneShardDB</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">arangosh</span><span class="p">@</span><span class="nd">oneShardDB</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_properties</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">6010005</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">oneShardDB</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">isSystem</span><span class="dl">"</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">sharding</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">single</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">replicationFactor</span><span class="dl">"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">writeConcern</span><span class="dl">"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">path</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">""</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now we can go ahead and create a collection as usual:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">arangosh</span><span class="p">@</span><span class="nd">oneShardDB</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_create</span><span class="p">(</span><span class="dl">"</span><span class="s2">example1</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">arangosh</span><span class="p">@</span><span class="nd">oneShardDB</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">example1</span><span class="p">.</span><span class="nx">properties</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="dl">"</span><span class="s2">isSmart</span><span class="dl">"</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">isSystem</span><span class="dl">"</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">waitForSync</span><span class="dl">"</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">shardKeys</span><span class="dl">"</span> <span class="p">:</span> <span class="p">[</span>
+    <span class="dl">"</span><span class="s2">_key</span><span class="dl">"</span>
+  <span class="p">],</span>
+  <span class="dl">"</span><span class="s2">numberOfShards</span><span class="dl">"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">keyOptions</span><span class="dl">"</span> <span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">allowUserKeys</span><span class="dl">"</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">traditional</span><span class="dl">"</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">replicationFactor</span><span class="dl">"</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">minReplicationFactor</span><span class="dl">"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">writeConcern</span><span class="dl">"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">distributeShardsLike</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">_graphs</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">shardingStrategy</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">hash</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">cacheEnabled</span><span class="dl">"</span> <span class="p">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>As you can see the <code class="language-plaintext highlighter-rouge">numberOfShards</code> is set to <code class="language-plaintext highlighter-rouge">1</code> and <code class="language-plaintext highlighter-rouge">distributeShardsLike</code>
+is set to <code class="language-plaintext highlighter-rouge">_graphs</code>. These attributes have been automatically been set
+because we specified the <code class="language-plaintext highlighter-rouge">{ "sharding": "single" }</code> options object when
+creating the database.</p>
+
+<p>To do this manually for individual collections, use <code class="language-plaintext highlighter-rouge">{ "sharding": "flexible" }</code>
+on the database level and then create a collection in the following way:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">_create</span><span class="p">(</span><span class="dl">"</span><span class="s2">example2</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">numberOfShards</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span> <span class="p">,</span> <span class="dl">"</span><span class="s2">distributeShardsLike</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">_graphs</span><span class="dl">"</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>Here we used the <code class="language-plaintext highlighter-rouge">_graphs</code> collection again, but any other existing
+collection that has not been created with the <code class="language-plaintext highlighter-rouge">distributeShardsLike</code>
+option itself can be used as well in a flexibly sharded database.</p>
+
+<h3 id="running-queries">Running Queries</h3>
+
+<p>For this arangosh example, we first insert a few documents into a collection,
+then create a query and explain it to inspect the execution plan.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">arangosh</span><span class="p">@</span><span class="nd">oneShardDB</span><span class="o">&gt;</span> <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="nx">db</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span> <span class="p">:</span> <span class="nx">i</span> <span class="p">});</span> <span class="p">}</span>
+
+<span class="nx">arangosh</span><span class="p">@</span><span class="nd">oneShardDB</span><span class="o">&gt;</span> <span class="nx">q</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">FOR doc IN @@collection FILTER doc.value % 2 == 0 SORT doc.value ASC LIMIT 10 RETURN doc</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">arangosh</span><span class="p">@</span><span class="nd">oneShardDB</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_explain</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">@collection</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">example</span><span class="dl">"</span> <span class="p">})</span>
+
+<span class="nx">Query</span> <span class="nb">String</span> <span class="p">(</span><span class="mi">88</span> <span class="nx">chars</span><span class="p">,</span> <span class="nx">cacheable</span><span class="p">:</span> <span class="kc">true</span><span class="p">):</span>
+ <span class="nx">FOR</span> <span class="nx">doc</span> <span class="nx">IN</span> <span class="p">@@</span><span class="nd">collection</span> <span class="nx">FILTER</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="nx">SORT</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">value</span> <span class="nx">ASC</span> <span class="nx">LIMIT</span> <span class="mi">10</span> <span class="nx">RETURN</span> <span class="nx">doc</span>
+
+<span class="nx">Execution</span> <span class="nx">plan</span><span class="p">:</span>
+ <span class="nx">Id</span>   <span class="nx">NodeType</span>                  <span class="nx">Site</span>   <span class="nx">Est</span><span class="p">.</span>   <span class="nx">Comment</span>
+  <span class="mi">1</span>   <span class="nx">SingletonNode</span>             <span class="nx">DBS</span>       <span class="mi">1</span>   <span class="o">*</span> <span class="nx">ROOT</span>
+  <span class="mi">2</span>   <span class="nx">EnumerateCollectionNode</span>   <span class="nx">DBS</span>   <span class="mi">10000</span>     <span class="o">-</span> <span class="nx">FOR</span> <span class="nx">doc</span> <span class="nx">IN</span> <span class="nx">example</span>   <span class="cm">/* full collection scan, 1 shard(s) */</span>   <span class="nx">FILTER</span> <span class="p">((</span><span class="nx">doc</span><span class="p">.</span><span class="s2">`value`</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>   <span class="cm">/* early pruning */</span>
+  <span class="mi">5</span>   <span class="nx">CalculationNode</span>           <span class="nx">DBS</span>   <span class="mi">10000</span>       <span class="o">-</span> <span class="nx">LET</span> <span class="err">#</span><span class="mi">3</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="s2">`value`</span>   <span class="cm">/* attribute expression */</span>   <span class="cm">/* collections used: doc : example */</span>
+  <span class="mi">6</span>   <span class="nx">SortNode</span>                  <span class="nx">DBS</span>   <span class="mi">10000</span>       <span class="o">-</span> <span class="nx">SORT</span> <span class="err">#</span><span class="mi">3</span> <span class="nx">ASC</span>   <span class="cm">/* sorting strategy: constrained heap */</span>
+  <span class="mi">7</span>   <span class="nx">LimitNode</span>                 <span class="nx">DBS</span>      <span class="mi">10</span>       <span class="o">-</span> <span class="nx">LIMIT</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span>
+  <span class="mi">9</span>   <span class="nx">RemoteNode</span>                <span class="nx">COOR</span>     <span class="mi">10</span>       <span class="o">-</span> <span class="nx">REMOTE</span>
+ <span class="mi">10</span>   <span class="nx">GatherNode</span>                <span class="nx">COOR</span>     <span class="mi">10</span>       <span class="o">-</span> <span class="nx">GATHER</span>
+  <span class="mi">8</span>   <span class="nx">ReturnNode</span>                <span class="nx">COOR</span>     <span class="mi">10</span>       <span class="o">-</span> <span class="nx">RETURN</span> <span class="nx">doc</span>
+
+<span class="nx">Indexes</span> <span class="nx">used</span><span class="p">:</span>
+ <span class="nx">none</span>
+
+<span class="nx">Optimization</span> <span class="nx">rules</span> <span class="nx">applied</span><span class="p">:</span>
+ <span class="nx">Id</span>   <span class="nx">RuleName</span>
+  <span class="mi">1</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">calculations</span><span class="o">-</span><span class="nx">up</span>
+  <span class="mi">2</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">filters</span><span class="o">-</span><span class="nx">up</span>
+  <span class="mi">3</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">calculations</span><span class="o">-</span><span class="nx">up</span><span class="o">-</span><span class="mi">2</span>
+  <span class="mi">4</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">filters</span><span class="o">-</span><span class="nx">up</span><span class="o">-</span><span class="mi">2</span>
+  <span class="mi">5</span>   <span class="nx">cluster</span><span class="o">-</span><span class="nx">one</span><span class="o">-</span><span class="nx">shard</span>
+  <span class="mi">6</span>   <span class="nx">sort</span><span class="o">-</span><span class="nx">limit</span>
+  <span class="mi">7</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">filters</span><span class="o">-</span><span class="nx">into</span><span class="o">-</span><span class="nx">enumerate</span>
+
+</code></pre></div></div>
+
+<p>As it can be seen in the explain output almost the complete query is
+executed on the DB-Server (<code class="language-plaintext highlighter-rouge">DBS</code> for nodes 1-7) and only 10 documents are
+transferred to the Coordinator. In case we do the same with a collection
+that consists of several shards we get a different result:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">arangosh</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_createDatabase</span><span class="p">(</span><span class="dl">"</span><span class="s2">shardedDB</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">arangosh</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_useDatabase</span><span class="p">(</span><span class="dl">"</span><span class="s2">shardedDB</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">arangosh</span><span class="p">@</span><span class="nd">shardedDB</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_properties</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">6010017</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">shardedDB</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">isSystem</span><span class="dl">"</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">sharding</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">flexible</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">replicationFactor</span><span class="dl">"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">writeConcern</span><span class="dl">"</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">path</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">""</span>
+<span class="p">}</span>
+
+<span class="nx">arangosh</span><span class="p">@</span><span class="nd">shardedDB</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_create</span><span class="p">(</span><span class="dl">"</span><span class="s2">example</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">numberOfShards</span> <span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+
+<span class="nx">arangosh</span><span class="p">@</span><span class="nd">shardedDB</span><span class="o">&gt;</span> <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10000</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="nx">db</span><span class="p">.</span><span class="nx">example</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span> <span class="p">:</span> <span class="nx">i</span> <span class="p">});</span> <span class="p">}</span>
+
+<span class="nx">arangosh</span><span class="p">@</span><span class="nd">shardedDB</span><span class="o">&gt;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_explain</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">@collection</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">example</span><span class="dl">"</span> <span class="p">})</span>
+
+<span class="nx">Query</span> <span class="nb">String</span> <span class="p">(</span><span class="mi">88</span> <span class="nx">chars</span><span class="p">,</span> <span class="nx">cacheable</span><span class="p">:</span> <span class="kc">true</span><span class="p">):</span>
+ <span class="nx">FOR</span> <span class="nx">doc</span> <span class="nx">IN</span> <span class="p">@@</span><span class="nd">collection</span> <span class="nx">FILTER</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="nx">SORT</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">value</span> <span class="nx">ASC</span> <span class="nx">LIMIT</span> <span class="mi">10</span> <span class="nx">RETURN</span> <span class="nx">doc</span>
+
+<span class="nx">Execution</span> <span class="nx">plan</span><span class="p">:</span>
+ <span class="nx">Id</span>   <span class="nx">NodeType</span>                  <span class="nx">Site</span>   <span class="nx">Est</span><span class="p">.</span>   <span class="nx">Comment</span>
+  <span class="mi">1</span>   <span class="nx">SingletonNode</span>             <span class="nx">DBS</span>       <span class="mi">1</span>   <span class="o">*</span> <span class="nx">ROOT</span>
+  <span class="mi">2</span>   <span class="nx">EnumerateCollectionNode</span>   <span class="nx">DBS</span>   <span class="mi">10000</span>     <span class="o">-</span> <span class="nx">FOR</span> <span class="nx">doc</span> <span class="nx">IN</span> <span class="nx">example</span>   <span class="cm">/* full collection scan, 5 shard(s) */</span>   <span class="nx">FILTER</span> <span class="p">((</span><span class="nx">doc</span><span class="p">.</span><span class="s2">`value`</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>   <span class="cm">/* early pruning */</span>
+  <span class="mi">5</span>   <span class="nx">CalculationNode</span>           <span class="nx">DBS</span>   <span class="mi">10000</span>       <span class="o">-</span> <span class="nx">LET</span> <span class="err">#</span><span class="mi">3</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="s2">`value`</span>   <span class="cm">/* attribute expression */</span>   <span class="cm">/* collections used: doc : example */</span>
+  <span class="mi">6</span>   <span class="nx">SortNode</span>                  <span class="nx">DBS</span>   <span class="mi">10000</span>       <span class="o">-</span> <span class="nx">SORT</span> <span class="err">#</span><span class="mi">3</span> <span class="nx">ASC</span>   <span class="cm">/* sorting strategy: constrained heap */</span>
+ <span class="mi">11</span>   <span class="nx">RemoteNode</span>                <span class="nx">COOR</span>  <span class="mi">10000</span>       <span class="o">-</span> <span class="nx">REMOTE</span>
+ <span class="mi">12</span>   <span class="nx">GatherNode</span>                <span class="nx">COOR</span>  <span class="mi">10000</span>       <span class="o">-</span> <span class="nx">GATHER</span> <span class="err">#</span><span class="mi">3</span> <span class="nx">ASC</span>  <span class="cm">/* parallel, sort mode: heap */</span>
+  <span class="mi">7</span>   <span class="nx">LimitNode</span>                 <span class="nx">COOR</span>     <span class="mi">10</span>       <span class="o">-</span> <span class="nx">LIMIT</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span>
+  <span class="mi">8</span>   <span class="nx">ReturnNode</span>                <span class="nx">COOR</span>     <span class="mi">10</span>       <span class="o">-</span> <span class="nx">RETURN</span> <span class="nx">doc</span>
+
+<span class="nx">Indexes</span> <span class="nx">used</span><span class="p">:</span>
+ <span class="nx">none</span>
+
+<span class="nx">Optimization</span> <span class="nx">rules</span> <span class="nx">applied</span><span class="p">:</span>
+ <span class="nx">Id</span>   <span class="nx">RuleName</span>
+  <span class="mi">1</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">calculations</span><span class="o">-</span><span class="nx">up</span>
+  <span class="mi">2</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">filters</span><span class="o">-</span><span class="nx">up</span>
+  <span class="mi">3</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">calculations</span><span class="o">-</span><span class="nx">up</span><span class="o">-</span><span class="mi">2</span>
+  <span class="mi">4</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">filters</span><span class="o">-</span><span class="nx">up</span><span class="o">-</span><span class="mi">2</span>
+  <span class="mi">5</span>   <span class="nx">scatter</span><span class="o">-</span><span class="k">in</span><span class="o">-</span><span class="nx">cluster</span>
+  <span class="mi">6</span>   <span class="nx">distribute</span><span class="o">-</span><span class="nx">filtercalc</span><span class="o">-</span><span class="nx">to</span><span class="o">-</span><span class="nx">cluster</span>
+  <span class="mi">7</span>   <span class="nx">distribute</span><span class="o">-</span><span class="nx">sort</span><span class="o">-</span><span class="nx">to</span><span class="o">-</span><span class="nx">cluster</span>
+  <span class="mi">8</span>   <span class="nx">remove</span><span class="o">-</span><span class="nx">unnecessary</span><span class="o">-</span><span class="nx">remote</span><span class="o">-</span><span class="nx">scatter</span>
+  <span class="mi">9</span>   <span class="nx">sort</span><span class="o">-</span><span class="nx">limit</span>
+ <span class="mi">10</span>   <span class="nx">move</span><span class="o">-</span><span class="nx">filters</span><span class="o">-</span><span class="nx">into</span><span class="o">-</span><span class="nx">enumerate</span>
+ <span class="mi">11</span>   <span class="nx">parallelize</span><span class="o">-</span><span class="nx">gather</span>
+</code></pre></div></div>
+
+<div class="alert alert-success" style="display: flex"><i class="fa fa-check" style="margin-right: 10px; margin-top: 4px;"></i><div><p>It can be checked whether the OneShard feature is active or not by
+inspecting the explain output. If the list of rules contains
+<code class="language-plaintext highlighter-rouge">cluster-one-shard</code> then the feature is active for the given query.</p></div></div>
+
+<p>Without the OneShard feature all documents have potentially to be sent to
+the Coordinator for further processing. With this simple query this is actually
+not true, because some other optimizations are performed that reduce the number
+of documents. But still, a considerable amount of documents has to be
+transferred from DB-Server to Coordinator only to apply a <code class="language-plaintext highlighter-rouge">LIMIT</code> of 10
+documents there. The estimate for the <em>RemoteNode</em> is 10,000 in this example,
+whereas it is 10 in the OneShard case.</p>
+
+<h3 id="acid-transactions-on-leader-shards">ACID Transactions on Leader Shards</h3>
+
+<p>ArangoDB’s transactional guarantees are tunable. For transactions to be ACID
+on the leader shards in a cluster, a few things need to be considered:</p>
+
+<ul>
+  <li>The AQL query or <a href="https://www.arangodb.com/docs/stable/http/transaction-stream-transaction.html">Stream Transaction</a>
+must be eligible for the OneShard optimization, so that it is executed on a
+single DB-Server node.</li>
+  <li>To ensure durability, enable <code class="language-plaintext highlighter-rouge">waitForSync</code> on query level to wait until data
+modifications have been written to disk.</li>
+  <li>The collection option <code class="language-plaintext highlighter-rouge">writeConcern: 2</code> makes sure that a transaction is only
+successful if at least one replica is in sync.</li>
+  <li>The RocksDB engine supports intermediate commits for larger document
+operations, potentially breaking the atomicity of transactions. To prevent
+this for individual queries you can increase <code class="language-plaintext highlighter-rouge">intermediateCommitSize</code>
+(default 512 MB) and <code class="language-plaintext highlighter-rouge">intermediateCommitCount</code> accordingly as query option.</li>
+</ul>
+
+<h2 id="synchronous-replication">Synchronous replication</h2>
+
+<p>In an ArangoDB Cluster, the replication among the data stored by the <em>DB-Servers</em>
+is synchronous.</p>
+
+<p>Synchronous replication works on a per-shard basis. Using the option <em>replicationFactor</em>,
+one configures for each <em>collection</em> how many copies of each <em>shard</em> are kept in the Cluster.</p>
+
+<div class="alert alert-danger" style="display: flex"><i class="fa fa-times-circle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>If a collection has a <em>replication factor</em> of 1, its data is <strong>not</strong>
+replicated to other <em>DB-Servers</em>. This exposes you to a risk of data loss, if
+the machine running the <em>DB-Server</em> with the only copy of the data fails permanently.</p>
+<p>The <em>replication factor</em> has to be set to a value equals or higher than 2
+to achieve minimal data redundancy via the synchronous replication.</p>
+
+<p>An equal-or-higher-than 2 <em>replication factor</em> has to be set <strong>explicitly</strong>
+when the collection is created, or can be set later at run time if you forgot
+to set it at creation time.</p>
+
+<p>When using a Cluster, please make sure all the collections that are important
+(and should not be lost in any case) have a <em>replication factor</em> equal or higher
+than 2.</p>
+</div></div>
+
+<p>At any given time, one of the copies is declared to be the <em>leader</em> and
+all other replicas are <em>followers</em>. Internally, write operations for this <em>shard</em>
+are always sent to the <em>DB-Server</em> which happens to hold the <em>leader</em> copy,
+which in turn replicates the changes to all <em>followers</em> before the operation
+is considered to be done and reported back to the <em>Coordinator</em>.
+Internally, read operations are all served by the <em>DB-Server</em> holding the <em>leader</em> copy,
+this allows to provide snapshot semantics for complex transactions.</p>
+
+<p>Using synchronous replication alone will guarantee consistency and high availability
+at the cost of reduced performance: write requests will have a higher latency
+(due to every write-request having to be executed on the <em>followers</em>) and
+read requests will not scale out as only the <em>leader</em> is being asked.</p>
+
+<p>In a Cluster, synchronous replication will be managed by the <em>Coordinators</em> for the client. 
+The data will always be stored on the <em>DB-Servers</em>.</p>
+
+<p>The following example will give you an idea of how synchronous operation
+has been implemented in ArangoDB Cluster:</p>
+
+<ol>
+  <li>Connect to a <em>Coordinator</em> via <a href="programs-arangosh.html"><em>arangosh</em></a></li>
+  <li>
+    <p>Create a collection</p>
+
+    <p>127.0.0.1:8530@_system&gt; db._create(“test”, {“replicationFactor”: 2})</p>
+  </li>
+  <li>The <em>Coordinator</em> will figure out a <em>leader</em> and one <em>follower</em> and create
+one <em>shard</em> (as this is the default)</li>
+  <li>
+    <p>Insert data</p>
+
+    <p>127.0.0.1:8530@_system&gt; db.test.insert({“foo”: “bar”})</p>
+  </li>
+  <li>The <em>Coordinator</em> will write the data to the <em>leader</em>, which in turn will
+replicate it to the <em>follower</em>.</li>
+  <li>
+    <p>Only when both were successful the result is reported to be successful:</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"test/7987"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"_key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"7987"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"_rev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"7987"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Obviously, synchronous replication comes at the cost of an increased latency for
+write operations, simply because there is one more network hop within the
+Cluster for every request. Therefore the user can set the <em>replicationFactor</em>
+to 1, which means that only one copy of each shard is kept, thereby
+switching off synchronous replication. This is a suitable setting for
+less important or easily recoverable data for which low latency write
+operations matter.</p>
+
+<h2 id="automatic-failover">Automatic failover</h2>
+
+<h3 id="failure-of-a-follower">Failure of a follower</h3>
+
+<p>If a <em>DB-Server</em> that holds a <em>follower</em> copy of a <em>shard</em> fails, then the <em>leader</em>
+can no longer synchronize its changes to that <em>follower</em>. After a short timeout
+(3 seconds), the <em>leader</em> gives up on the <em>follower</em> and declares it to be
+out of sync.</p>
+
+<p>One of the following two cases can happen:</p>
+
+<p><strong>a)</strong> If another <em>DB-Server</em> (that does not hold a <em>replica</em> for this <em>shard</em> already)
+       is available in the Cluster, a new <em>follower</em> will automatically
+       be created on this other <em>DB-Server</em> (so the <em>replication factor</em> constraint is
+       satisfied again).</p>
+
+<p><strong>b)</strong> If no other <em>DB-Server</em> (that does not hold a <em>replica</em> for this <em>shard</em> already)
+       is available, the service continues with one <em>follower</em> less than the number
+       prescribed by the <em>replication factor</em>.</p>
+
+<p>If the old <em>DB-Server</em> with the <em>follower</em> copy comes back, one of the following
+two cases can happen:</p>
+
+<p><strong>a)</strong> If previously we were in case a), the <em>DB-Server</em> recognizes that there is a new
+      <em>follower</em> that was elected in the meantime, so it will no longer be a <em>follower</em>
+       for that <em>shard</em>.</p>
+
+<p><strong>b)</strong> If previously we were in case b), the <em>DB-Server</em> automatically resynchronizes its
+       data with the <em>leader</em>. The <em>replication factor</em> constraint is now satisfied again
+       and order is restored.</p>
+
+<h3 id="failure-of-a-leader">Failure of a leader</h3>
+
+<p>If a <em>DB-Server</em> that holds a <em>leader</em> copy of a shard fails, then the <em>leader</em>
+can no longer serve any requests. It will no longer send a heartbeat to
+the <em>Agency</em>. Therefore, a <em>supervision</em> process running in the <em>Raft</em> <em>leader</em>
+of the Agency, can take the necessary action (after 15 seconds of missing
+heartbeats), namely to promote one of the <em>DB-Servers</em> that hold in-sync
+replicas of the <em>shard</em> to <em>leader</em> for that <em>shard</em>. This involves a
+reconfiguration in the <em>Agency</em> and leads to the fact that <em>Coordinators</em>
+now contact a different <em>DB-Server</em> for requests to this <em>shard</em>. Service
+resumes. The other surviving <em>replicas</em> automatically resynchronize their
+data with the new <em>leader</em>.</p>
+
+<p>In addition to the above, one of the following two cases cases can happen:</p>
+
+<p>a) If another <em>DB-Server</em> (that does not hold a <em>replica</em> for this <em>shard</em> already)
+   is available in the Cluster, a new <em>follower</em> will automatically
+   be created on this other <em>DB-Server</em> (so the <em>replication factor</em> constraint is
+   satisfied again).
+b) If no other <em>DB-Server</em> (that does not hold a <em>replica</em> for this <em>shard</em> already)
+   is available the service continues with one <em>follower</em> less than the number
+   prescribed by the <em>replication factor</em>.</p>
+
+<p>When the <em>DB-Server</em> with the original <em>leader</em> copy comes back, it recognizes
+that a new <em>leader</em> was elected in the meantime, and one of the following
+two cases can happen:</p>
+
+<p>a) If previously we were in case a), since also a new <em>follower</em> was created and
+   the <em>replication factor</em> constraint is satisfied, the <em>DB-Server</em> will no
+   longer be a <em>follower</em> for that <em>shard</em>.
+b) If previously we were in case b), the <em>DB-Server</em> notices that it now holds
+   a <em>follower</em> <em>replica</em> of that <em>shard</em> and it resynchronizes its data with the
+   new <em>leader</em>. The <em>replication factor</em> constraint is now satisfied again, 
+   and order is restored.</p>
+
+<p>The following example will give you an idea of how <em>failover</em>
+has been implemented in ArangoDB Cluster:</p>
+
+<ol>
+  <li>The <em>leader</em> of a <em>shard</em> (let’s name it <em>DBServer001</em>) is going down.</li>
+  <li>
+    <p>A <em>Coordinator</em> is asked to return a document:</p>
+
+    <p>127.0.0.1:8530@_system&gt; db.test.document(“100069”)</p>
+  </li>
+  <li>The <em>Coordinator</em> determines which server is responsible for this document
+and finds <em>DBServer001</em></li>
+  <li>The <em>Coordinator</em> tries to contact <em>DBServer001</em> and timeouts because it is
+not reachable.</li>
+  <li>After a short while the <em>supervision</em> (running in parallel on the <em>Agency</em>)
+will see that <em>heartbeats</em> from <em>DBServer001</em> are not coming in</li>
+  <li>The <em>supervision</em> promotes one of the <em>followers</em> (say <em>DBServer002</em>), that
+is in sync, to be <em>leader</em> and makes <em>DBServer001</em> a <em>follower</em>.</li>
+  <li>As the <em>Coordinator</em> continues trying to fetch the document it will see that
+the <em>leader</em> changed to <em>DBServer002</em></li>
+  <li>
+    <p>The <em>Coordinator</em> tries to contact the new <em>leader</em> (<em>DBServer002</em>) and returns
+the result:</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"_key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"100069"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"test/100069"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"_rev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"513"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"foo"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>After a while the <em>supervision</em> declares <em>DBServer001</em> to be completely dead.</li>
+  <li>A new <em>follower</em> is determined from the pool of <em>DB-Servers</em>.</li>
+  <li>The new <em>follower</em> syncs its data from the <em>leader</em> and order is restored.</li>
+</ol>
+
+<p>Please note that there may still be timeouts. Depending on when exactly
+the request has been done (in regard to the <em>supervision</em>) and depending
+on the time needed to reconfigure the Cluster the <em>Coordinator</em> might fail
+with a timeout error.</p>
+
+<h2 id="shard-movement-and-resynchronization">Shard movement and resynchronization</h2>
+
+<p>All <em>shard</em> data synchronizations are done in an incremental way, such that
+resynchronizations are quick. This technology allows to move shards
+(<em>follower</em> and <em>leader</em> ones) between <em>DB-Servers</em> without service interruptions.
+Therefore, an ArangoDB Cluster can move all the data on a specific <em>DB-Server</em>
+to other <em>DB-Servers</em> and then shut down that server in a controlled way.
+This allows to scale down an ArangoDB Cluster without service interruption,
+loss of fault tolerance or data loss. Furthermore, one can re-balance the
+distribution of the <em>shards</em>, either manually or automatically.</p>
+
+<p>All these operations can be triggered via a REST/JSON API or via the
+graphical web UI. All fail-over operations are completely handled within
+the ArangoDB Cluster.</p>
+
+<h2 id="microservices-and-zero-administation">Microservices and zero administation</h2>
+
+<p>The design and capabilities of ArangoDB are geared towards usage in
+modern microservice architectures of applications. With the
+<a href="foxx.html">Foxx services</a> it is very easy to deploy a data
+centric microservice within an ArangoDB Cluster.</p>
+
+<p>In addition, one can deploy multiple instances of ArangoDB within the
+same project. One part of the project might need a scalable document
+store, another might need a graph database, and yet another might need
+the full power of a multi-model database actually mixing the various
+data models. There are enormous efficiency benefits to be reaped by
+being able to use a single technology for various roles in a project.</p>
+
+<p>To simplify life of the <em>devops</em> in such a scenario we try as much as
+possible to use a <em>zero administration</em> approach for ArangoDB. A running
+ArangoDB Cluster is resilient against failures and essentially repairs
+itself in case of temporary failures.</p>
+
+<h2 id="deployment">Deployment</h2>
+
+<p>An ArangoDB Cluster can be deployed in several ways, e.g. by manually
+starting all the needed instances, by using the tool
+<a href="programs-starter.html"><em>Starter</em></a>, in Docker and in Kubernetes.</p>
+
+<p>See the <a href="deployment-cluster.html">Cluster Deployment</a>
+chapter for instructions.</p>
+
+<p>ArangoDB is also available as
+<a href="https://cloud.arangodb.com/home?utm_source=docs&amp;utm_medium=cluster_pages&amp;utm_campaign=docs_traffic" target="_blank">cloud service - <strong>ArangoDB Oasis</strong></a>.
+You can fire up your cluster in just a few clicks with the
+<a href="https://cloud.arangodb.com/home?utm_source=docs&amp;utm_medium=cluster_pages&amp;utm_campaign=docs_traffic" target="_blank">14-day free trial</a>.</p>
+
+<h2 id="cluster-id">Cluster ID</h2>
+
+<p>Every ArangoDB instance in a Cluster is assigned a unique
+ID during its startup. Using its ID a node is identifiable
+throughout the Cluster. All cluster operations will communicate
+via this ID.</p>
+
+            </section>
+            
+<section class="page-nav">
+  <a href="architecture-deployment-modes-cluster.html">&#x276e;&nbsp;&nbsp;Cluster</a>
+  <a class="next" href="architecture-deployment-modes-cluster-data-models.html">Data Models&nbsp;&nbsp;&#x276f;</a>
+  <div style="clear: both"></div>
+</section>
+            <div id="page-footer" class="localized-footer">
+              <hr>
+              <p>© ArangoDB - the native multi-model NoSQL database</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var disablePageToc = null;
+          if (!disablePageToc) {
+            generateToc();
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+  <!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'IOUJQ85602',
+  indexName: 'dev_DOCS',
+  apiKey: '1fc63d8ff5b71963f0354561b770b591',
+  searchFunction: function(helper) {
+    var container = document.querySelector('#search-hits');
+
+    if (helper.state.query === '') {
+        container.style.display = 'none';
+    } else {
+        container.style.display = '';
+    }
+
+    helper.search();
+  }
+});
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-searchbar',
+    placeholder: 'Search Documentation...',
+    poweredBy: false // This is required if you're on the free Community plan
+  })
+);
+search.addWidget(
+    instantsearch.widgets.hits({
+        container: '#search-hits',
+        templates: {
+            item: function(hit) {
+                return '<div class="post-item">' +
+                    '<a class="post-link" href="https://www.arangodb.com/docs'&#32;+&#32;hit.url&#32;+&#32;'"><div>' + (hit.headings[0] || "ArangoDB Documentation") + '</div>' +
+                    '<div class="post-snippet">' + hit.excerpt_text + '</div></a>' +
+                    '</div>';
+            },
+        },
+    })
+);
+
+// Starting the search
+search.start();
+</script>
+  <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/2482448.js"></script>
+</body>
+</html>

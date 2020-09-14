@@ -1,6 +1,6 @@
 #!/bin/bash
 
-archives=("ArangoDB" "ArangoDB-Cookbook")
+archives=("ArangoDB")
 
 function build {
     python arango_dash.py -t "${1}"

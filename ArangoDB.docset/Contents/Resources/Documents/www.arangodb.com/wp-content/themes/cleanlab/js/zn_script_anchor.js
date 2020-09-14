@@ -1,0 +1,2 @@
+function offsetAnchor(){if(location.hash.length!==0){window.scrollTo(window.scrollX,window.scrollY-140);}}
+jQuery(window).on("hashchange",function(){offsetAnchor();});window.setTimeout(function(){offsetAnchor();},1);

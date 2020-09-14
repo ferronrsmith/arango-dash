@@ -1,0 +1,2858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="programs-arangodump-maskings.html">
+<title>Arangodump Data Masking | ArangoDB Documentation</title>
+<meta itemprop="description" name="description" content="This feature allows you to define how sensitive data shall be dumped." />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:url" content="https://www.arangodb.com/docs/stable/programs-arangodump-maskings.html" />
+<meta property="og:title" content="Arangodump Data Masking | ArangoDB Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="This feature allows you to define how sensitive data shall be dumped." />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81053435-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-81053435-1');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5LQ7HC');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('provide', 'adblockTracker', function(tracker, opts) {
+    var ad = document.createElement('ins');
+    ad.className = 'AdSense';
+    ad.style.display = 'block';
+    ad.style.position = 'absolute';
+    ad.style.top = '-1px';
+    ad.style.height = '1px';
+    document.body.appendChild(ad);
+    tracker.set('dimension' + opts.dimensionIndex, !ad.clientHeight);
+    document.body.removeChild(ad);
+  });
+
+  ga('create', 'UA-81053435-6', 'auto');
+  ga('require', 'adblockTracker', {dimensionIndex: 1});
+  ga('send', 'pageview');
+</script>
+
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  twq('init','nz793');
+  twq('track','PageView');
+</script>
+
+<script type="text/javascript">
+  _linkedin_partner_id = "499017";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(){var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})();
+</script>
+
+<link rel="shortcut icon" href="../../wp-content/uploads/2018/07/www.arangodb.com-favicon.png">
+<link rel="stylesheet" href="../styles/gitbook/style.css">
+<link rel="stylesheet" href="../styles/gitbook/highlight-website.css">
+<link rel="stylesheet" href="../styles/gitbook/fontsettings-website.css">
+<link rel="stylesheet" href="../styles/website.css">
+<link rel="stylesheet" href="../styles/header.css">
+<link rel="stylesheet" href="../styles/navbar.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/pygments-vs.css">
+<script src="../js/jquery-3.4.0.min.js"></script>
+<script src="../js/site.js"></script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ7HC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=499017&fmt=gif" /></noscript>
+
+<div class="arangodb-header">
+  <div class="arangodb-logo">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <div class="arangodb-logo-small">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_small_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <select class="arangodb-version-switcher">
+      <option value="devel">3.8</option>
+      <option value="stable">3.7</option>
+      <option value="3.6">3.6</option>
+      <option value="3.5">3.5</option>
+      <option value="3.4">3.4</option>
+      <option value="3.3" disabled>3.3</option>
+  </select>
+  <script type="text/javascript">
+    var versionAliases = {"stable":"3.7","devel":"3.8"};
+    var current = location.href;
+
+    var selectedVersion = current.split('/')[4];
+    var switcher = document.querySelector(".arangodb-version-switcher");
+
+    for (var i = 0; i < switcher.options.length; i++) {
+      var value = switcher.options.item(i).value;
+      if (value == selectedVersion) {
+        switcher.value = value;
+      } else if (versionAliases[value] == selectedVersion) {
+        switcher.value = value;
+      }
+    }
+    
+    switcher.addEventListener('change', function(event) {
+      var current = location.href;
+      var urlElements = current.split('/');
+      urlElements[4] = event.target.value;
+      var newUrl = urlElements.join("/");
+      location.href = newUrl;
+    });
+  </script>
+  <ul class="arangodb-navmenu">
+    <li class="active-tab">
+      <a href="index.html" data-book="Manual">Manual</a>
+    </li>
+    <li>
+      <a href="aql/index.html" data-book="AQL">AQL</a>
+    </li>
+    <li>
+      <a href="http/index.html" data-book="HTTP">HTTP</a>
+    </li>
+    <li>
+      <a href="drivers/index.html" data-book="Drivers">Drivers</a>
+    </li>
+    <li>
+      <a href="oasis/index.html" data-book="Oasis">Oasis</a>
+    </li>
+    <li class="socialIcons" title="GitHub">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons" title="StackOverflow">
+      <a href="https://stackoverflow.com/questions/tagged/arangodb" target="_blank">
+        <i class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups" title="Google Groups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="_blank">
+        <img alt="Google Groups" src="../assets/googlegroupsIcon.png">
+      </a>
+    </li>
+    <li class="socialIcons" title="Slack">
+      <a href="https://slack.arangodb.com" target="_blank">
+        <i class="fa fa-slack"></i>
+      </a>
+    </li>
+    <li>
+      <div class="searchbar">
+        <div id="search-searchbar"></div>
+      </div>
+    </li>
+    <li class="placeholder">
+      <div style="width: 15px"></div>
+    </li>
+  </ul>
+  <div id="search-hits"></div>
+</div>
+ 
+  <div class="book with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+      <nav role="navigation">
+    <ul class="summary">
+  <li class="chapter">
+  <a href="index.html">Introduction</a>
+  </li>
+  <li class="chapter">
+  <a href="highlights.html">Highlights</a>
+  </li>
+  <li class="header">GETTING FAMILIAR</li>
+  <li class="chapter">
+  <a href="getting-started.html">Getting Started</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="getting-started-installation.html">Installation</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-authentication.html">Authentication</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-web-interface.html">Web Interface</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-databases-collections-documents.html">Databases, Collections and Documents</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-querying-the-database.html">Querying the Database</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-coming-from-sql.html">Coming from SQL</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-next-steps.html">Next Steps</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="tutorials.html">Tutorials</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="tutorials-reduce-memory-footprint.html">Reduce Memory Footprint</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-starter.html">ArangoDB Starter</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-dc2-dc.html">Datacenter to datacenter Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes.html">Kubernetes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="tutorials-kubernetes-eks.html">Amazon EKS</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-gke.html">Google GKE</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-aks.html">Azure AKS</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes-dc2-dc.html">DC2DC on Kubernetes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter selected">
+  <a href="programs.html">Programs & Tools</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="programs-arangod.html">ArangoDB Server</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangod-options.html">Options</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="programs-arangod-global.html">Global</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-agency.html">Agency</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-arangosearch.html">ArangoSearch</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-audit.html">Audit</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cache.html">Cache</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-backup.html">Backup</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-compaction.html">Compaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-database.html">Database</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-foxx.html">Foxx</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-frontend.html">Frontend</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-http.html">HTTP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-javascript.html">JavaScript</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ldap.html">LDAP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-log.html">Log</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-network.html">Network</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-nonce.html">Nonce</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-query.html">Query</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-random.html">Random</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-replication.html">Replication</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rclone.html">Rclone</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rocksdb.html">RocksDB</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-server.html">Server</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ssl.html">SSL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-tcp.html">TCP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-temp.html">Temp</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-transaction.html">Transaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ttl.html">TTL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-vst.html">VST</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-wal.html">WAL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangod-env-vars.html">Environment variables</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-web-interface.html">Web Interface</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-web-interface-dashboard.html">Dashboard</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-cluster.html">Cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-collections.html">Collections</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-document.html">Document</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-aql-editor.html">Queries</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-graphs.html">Graphs</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-services.html">Services</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-users.html">Users</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-logs.html">Logs</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangosh.html">ArangoDB Shell</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangosh-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-starter.html">ArangoDB Starter</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-starter-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-security.html">Security</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-architecture.html">Architecture</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter selected">
+      <a href="programs-arangodump.html">Arangodump</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangodump-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-options.html">Options</a>
+          </li>
+          <li class="chapter selected active">
+          <a href="programs-arangodump-maskings.html">Maskings</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-limitations.html">Limitations</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangorestore.html">Arangorestore</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangorestore-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-fast-cluster-restore.html">Fast Cluster Restore</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobackup.html">Arangobackup</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobackup-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobackup-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoimport.html">Arangoimport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-json.html">Examples JSON</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-csv.html">Examples CSV</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoexport.html">Arangoexport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoexport-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoexport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobench.html">Arangobench</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobench-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobench-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoinspect.html">Arangoinspect</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoinspect-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoinspect-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-foxx-cli.html">Foxx CLI</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-foxx-cli-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="header">CORE TOPICS</li>
+  <li class="chapter">
+  <a href="data-modeling.html">Data models & modeling</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="data-modeling-concepts.html">Concepts</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-databases.html">Databases</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-databases-working-with.html">Working with Databases</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-databases-notes.html">Notes about Databases</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-collections.html">Collections</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-collections-collection-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-collections-database-methods.html">Database Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-documents.html">Documents</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-documents-document-address.html">Basics and Terminology</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-document-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-schema-validation.html">Schema Validation</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-monetary-data-without-precision-loss.html">Monetary data without precision loss</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-graphs-vertices-edges.html">Graphs, Vertices & Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-views.html">Views</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-views-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-views-view-methods.html">View Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-naming-conventions.html">Naming Conventions</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-database-names.html">Database Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-collection-and-view-names.html">Collection and View Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-document-keys.html">Document Keys</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-attribute-names.html">Attribute Names</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-operational-factors.html">Operational Factors</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="indexing.html">Indexing</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="indexing-index-basics.html">Index Basics</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-which-index.html">Which index to use when</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-index-utilization.html">Index Utilization</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-working-with-indexes.html">Working with Indexes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="indexing-persistent.html">Persistent</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-ttl.html">TTL Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-fulltext.html">Fulltext Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-geo.html">Geo-spatial Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-vertex-centric.html">Vertex Centric Indexes</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="transactions.html">Transactions</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="transactions-transaction-invocation.html">Transaction invocation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-passing.html">Passing parameters</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-locking-and-isolation.html">Locking and isolation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-durability.html">Durability</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-limitations.html">Limitations</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="graphs.html">Graphs</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="graphs-general-graphs.html">General Graphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-general-graphs-management.html">Graph Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-general-graphs-functions.html">Graph Functions</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-satellite-graphs.html">SatelliteGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-management.html">Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-smart-graphs.html">SmartGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-smart-graphs-management.html">SmartGraph Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-traversals.html">Traversals</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-traversals-using-traversal-objects.html">Using Traversal Objects</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-traversals-example-data.html">Example Data</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-edges.html">Working with Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="graphs-pregel.html">Pregel</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="arangosearch.html">ArangoSearch</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="arangosearch-views.html">Views</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-analyzers.html">Analyzers</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-examples.html">Examples</a>
+      </li>
+    </ul>
+  </li>
+  <li class="header">ADVANCED TOPICS</li>
+  <li class="chapter">
+  <a href="architecture.html">Architecture</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="architecture-deployment-modes.html">ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="architecture-deployment-modes-single-instance.html">Single Instance</a>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-data-models.html">Data Models</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-sharding.html">Data Sharding</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-dc2-dc.html">Datacenter to datacenter replication</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-introduction.html">Introduction</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-applicability.html">Applicability</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-requirements.html">Requirements</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="architecture-single-instance-vs-cluster.html">Single Instance vs. Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-storage-engines.html">Storage Engines</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-replication.html">Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-write-ahead-log.html">Write-ahead log</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="foxx.html">Foxx Microservices</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="foxx-getting-started.html">Getting started</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-guides.html">Guides</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-guides-routing.html">Working with routers</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-collections.html">Working with collections</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-queries.html">Writing queries</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-development-mode.html">Development mode</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-testing.html">Testing Foxx services</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-cluster.html">Foxx in a cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-scripts.html">Scripts and scheduling</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-bundled-node-modules.html">Using Node modules</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-webpack.html">Using Webpack with Foxx</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-auth.html">Authentication and sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-dependencies.html">Linking services together</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-files.html">Working with files</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-making-requests.html">Making requests</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-browser.html">Access from the browser</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-legacy-mode.html">Working with 2.x services</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-reference.html">Reference</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-reference-manifest.html">Service manifest</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-context.html">Service context</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-routers.html">Routers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-routers-endpoints.html">Endpoints</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-middleware.html">Middleware</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-request.html">Request</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-sessions.html">Sessions middleware</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-sessions-storages.html">Session storages</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-collection.html">Collection storage</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-jwt.html">JWT storage</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-sessions-transports.html">Session transports</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-cookie.html">Cookie transport</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-header.html">Header transport</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-modules.html">Related modules</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-modules-auth.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth1.html">OAuth 1.0a</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth2.html">OAuth 2.0</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-graph-ql.html">GraphQL</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-queues.html">Queues</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-deployment.html">Deployment</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-migrating2x.html">Migrating 2.x services</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-migrating2x-wayback.html">Migrating from pre-2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-manifest.html">manifest.json</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-context.html">applicationContext</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-repositories.html">Repositories and Models</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-controllers.html">Controllers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-endpoints.html">Request context</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-errors.html">Error handling</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-middleware.html">Before/After/Around</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-request.html">Request object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-response.html">Response object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-io-c.html">Dependency Injection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-sessions.html">Sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-auth.html">Auth and OAuth2</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-queries.html">Foxx Queries</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="satellites.html">SatelliteCollections</a>
+  </li>
+  <li class="chapter">
+  <a href="smartjoins.html">SmartJoins</a>
+  </li>
+  <li class="header">OPERATIONS</li>
+  <li class="chapter">
+  <a href="installation.html">Installation</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="installation-linux.html">Linux</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-linux-osconfiguration.html">Operating System Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-linux-ostuning-scripts.html">Linux OS Tuning Script Examples</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="installation-mac-osx.html">macOS</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-windows.html">Windows</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-compiling.html">Compiling</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-compiling-debian.html">Compile on Debian</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-windows.html">Compile on Windows</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-running-custom-build.html">Running Custom Build</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-jemalloc.html">Recompiling jemalloc</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="uninstallation.html">Uninstallation</a>
+  </li>
+  <li class="chapter">
+  <a href="deployment.html">Deployment</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="deployment-modes.html">By ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-single-instance.html">Single Instance</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-single-instance-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-single-instance-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-master-slave-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-active-failover-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-active-failover-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-cluster-preliminary-information.html">Preliminary Information</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-manual-start.html">Manual Start</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-kubernetes.html">Kubernetes</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-dc2-dc.html">Multiple Datacenters</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-dc2-dc-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-master.html">ArangoSync Master</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-workers.html">ArangoSync Workers</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-prometheus-grafana.html">Prometheus & Grafana</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-standalone-agency.html">Standalone Agency</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-technology.html">By Technology</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-manually.html">Manually</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-arango-dbstarter.html">ArangoDB Starter</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-docker.html">Docker</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-kubernetes.html">Kubernetes</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-kubernetes-usage.html">Using the Operator</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-dashboards.html">Dashboards</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-resource.html">Deployment Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-resource.html">Backup Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-policy-resource.html">BackupPolicy Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-driver-configuration.html">Driver Configuration</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-helm.html">Helm</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-authentication.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-scaling.html">Scaling</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-drain.html">Draining Nodes</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-upgrading.html">Upgrading</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-config-and-secrets.html">ArangoDB Configuration & Secrets</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-metrics.html">Metrics</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-services-and-load-balancer.html">Services & Load balancer</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-replication-resource.html">Deployment Replication Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage.html">Storage</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage-resource.html">Storage Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-tls.html">TLS</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-troubleshooting.html">Troubleshooting</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-cloud.html">In the Cloud</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-cloud-aws.html">AWS</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cloud-azure.html">Azure</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-production-checklist.html">Production Checklist</a>
+      </li>
+      <li class="chapter">
+      <a href="deployment-migrating-single-instance-cluster.html">Migrating Single Instance to Cluster</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="backup-restore.html">Backup & Restore</a>
+  </li>
+  <li class="chapter">
+  <a href="upgrading.html">Upgrading</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="upgrading-general-info.html">General Upgrade Information</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-community-to-enterprise.html">Community to Enterprise Upgrade</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-osspecific-info.html">OS-specific Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-linux.html">Upgrading on Linux</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-mac-os.html">Upgrading on macOS</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-windows.html">Upgrading on Windows</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-starter.html">Upgrading Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-manually.html">Upgrading Manual Deployments</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-manually-active-failover.html">Upgrading an Active Failover deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-manually-cluster.html">Upgrading a Cluster</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-kubernetes.html">Upgrading Kubernetes Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-version-specific.html">Version Specific Upgrade Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading34.html">Upgrading to 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading33.html">Upgrading to 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading32.html">Upgrading to 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading31.html">Upgrading to 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading30.html">Upgrading to 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading28.html">Upgrading to 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading26.html">Upgrading to 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading25.html">Upgrading to 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading24.html">Upgrading to 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading23.html">Upgrading to 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading22.html">Upgrading to 2.2</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="downgrading.html">Downgrading</a>
+  </li>
+  <li class="chapter">
+  <a href="scaling.html">Scaling</a>
+  </li>
+  <li class="chapter">
+  <a href="administration.html">Administration</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="administration-configuration.html">Configuration</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-import-export.html">Import & Export</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-managing-users.html">User Management</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-managing-users-in-arangosh.html">In Arangosh</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-engine-switch-engine.html">Switch Storage Engine</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-master-slave.html">Master/Slave</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-master-slave-setting-up.html">Setting up</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="administration-master-slave-replication-applier.html">Replication Applier</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-database-setup.html">Per-Database Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-server-level-setup.html">Server-Level Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-initialize-from-backup.html">Speeding Up Slave Initialization</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="administration-master-slave-syncing-collections.html">Syncing Collections</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-active-failover.html">Active Failover</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-cluster.html">Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-starter.html">ArangoDB Starter Administration</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-starter-removal.html">Removal Procedure</a>
+          </li>
+          <li class="chapter">
+          <a href="administration-starter-recovery.html">Recovery Procedure</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="security.html">Security</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="security-security-options.html">Security Options</a>
+      </li>
+      <li class="chapter">
+      <a href="security-change-root-password.html">Change Root Password</a>
+      </li>
+      <li class="chapter">
+      <a href="security-encryption.html">Encryption at Rest</a>
+      </li>
+      <li class="chapter">
+      <a href="security-auditing.html">Auditing</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="security-auditing-audit-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="security-auditing-audit-events.html">Events</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="security-starter.html">Securing Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="security-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="monitoring.html">Monitoring</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="monitoring-log-levels.html">Log Levels</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-collectd.html">Collectd</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="monitoring-collectd-slave-status.html">Replication Slaves</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-traffic-with-ipaccounting.html">Network usage</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-other-relevant-metrics.html">More metrics</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-foxx-apps.html">Monitoring Foxx</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="troubleshooting.html">Troubleshooting</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="troubleshooting-arangod.html">arangod</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-emergency-console.html">Emergency Console</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-cluster.html">Cluster</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="troubleshooting-cluster-agency-dump.html">Agency Dump</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li><hr/></li>
+  <li class="chapter">
+  <a href="release-notes.html">Release Notes</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="release-notes-37.html">Version 3.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features37.html">What's New in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues37.html">Known Issues in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes37.html">Incompatible changes in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-api-changes37.html">API changes in 3.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-36.html">Version 3.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features36.html">What's New in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues36.html">Known Issues in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes36.html">Incompatible changes in 3.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-35.html">Version 3.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features35.html">What's New in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues35.html">Known Issues in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes35.html">Incompatible changes in 3.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-34.html">Version 3.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features34.html">What's New in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues34.html">Known Issues in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes34.html">Incompatible changes in 3.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-33.html">Version 3.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features33.html">What's New in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues33.html">Known Issues in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes33.html">Incompatible changes in 3.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-32.html">Version 3.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features32.html">What's New in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues32.html">Known Issues in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes32.html">Incompatible changes in 3.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-31.html">Version 3.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features31.html">What's New in 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes31.html">Incompatible changes in 3.1</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-30.html">Version 3.0</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features30.html">What's New in 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes30.html">Incompatible changes in 3.0</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-28.html">Version 2.8</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features28.html">What's New in 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes28.html">Incompatible changes in 2.8</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-27.html">Version 2.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features27.html">What's New in 2.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes27.html">Incompatible changes in 2.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-26.html">Version 2.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features26.html">What's New in 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes26.html">Incompatible changes in 2.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-25.html">Version 2.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features25.html">What's New in 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes25.html">Incompatible changes in 2.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-24.html">Version 2.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features24.html">What's New in 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes24.html">Incompatible changes in 2.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-23.html">Version 2.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features23.html">What's New in 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes23.html">Incompatible changes in 2.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-22.html">Version 2.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features22.html">What's New in 2.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-21.html">Version 2.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features21.html">What's New in 2.1</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="appendix.html">Appendix</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="appendix-references.html">References</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-references-dbobject.html">db</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-collection-object.html">collection</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-cursor-object.html">cursor</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-java-script-modules.html">JavaScript Modules</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-java-script-modules-arango-db.html">@arangodb</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-analyzers.html">analyzers</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-console.html">console</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-crypto.html">crypto</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-file-system.html">fs</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-request.html">request</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-actions.html">actions</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-queries.html">queries</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-wal.html">Write-ahead log</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-tasks.html">Task Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-deprecated.html">Deprecated</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-deprecated-simple-queries.html">Simple Queries</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-pagination.html">Pagination</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-modification-queries.html">Modification Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-geo-queries.html">Geo Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-fulltext-queries.html">Fulltext Queries</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-error-codes.html">Error codes and meanings</a>
+      </li>
+      <li class="chapter">
+      <a href="appendix-glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</nav>
+    </div>
+    <div class="book-body">
+      <script type="text/javascript">
+          var availableVersions = ["devel","stable","3.6","3.5","3.4",];
+          versionSwitcherSetAvailable(availableVersions);
+      </script>
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <a class="btn pull-left js-toolbar-action hamburger" aria-label=""><i class="fa fa-align-justify"></i></a>
+          <a class="btn pull-left js-toolbar-action" aria-label="" href="https://github.com/arangodb/docs/edit/master/3.7/programs-arangodump-maskings.md" target="_blank"><i class="fa fa-github"></i> Contribute</a>
+        </div>
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+            <section class="normal markdown-section">
+              <h1 id="arangodump-data-maskings">Arangodump Data Maskings</h1>
+
+<p><em>--maskings path-of-config</em></p>
+
+<p>This feature allows you to define how sensitive data shall be dumped.
+It is possible to exclude collections entirely, limit the dump to the
+structural information of a collection (name, indexes, sharding etc.)
+or to obfuscate certain fields for a dump. A JSON configuration file is
+used to define which collections and fields to mask and how.</p>
+
+<p>The general structure of the configuration file looks like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">"</span><span class="s2">&lt;collection-name-1&gt;</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;masking-type&gt;</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">maskings</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span> <span class="c1">// if masking-type is "masked"</span>
+      <span class="p">{</span> <span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;attr1&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;masking-function&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span> <span class="c1">// rule 1</span>
+      <span class="p">{</span> <span class="dl">"</span><span class="s2">path</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;attr2&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;masking-function&gt;</span><span class="dl">"</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span> <span class="c1">// rule 2</span>
+      <span class="p">...</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">&lt;collection-name-2&gt;</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">&lt;collection-name-3&gt;</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">*</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>At the top level, there is an object with collection names. The masking to be
+applied to the respective collection is defined by the <code class="language-plaintext highlighter-rouge">type</code> sub-attribute.
+If the <code class="language-plaintext highlighter-rouge">type</code> is <code class="language-plaintext highlighter-rouge">"masked"</code>, then a sibling <code class="language-plaintext highlighter-rouge">maskings</code> attribute is available
+to define rules for obfuscating documents.</p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">"*"</code> as collection name defines a default behavior for collections
+not listed explicitly.</p>
+
+<h2 id="masking-types">Masking Types</h2>
+
+<p><code class="language-plaintext highlighter-rouge">type</code> is a string describing how to mask the given collection.
+Possible values are:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">"exclude"</code>: the collection is ignored completely and not even the
+structure data is dumped.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">"structure"</code>: only the collection structure is dumped, but no data at all
+(the file <code class="language-plaintext highlighter-rouge">&lt;collection-name&gt;.data.json</code> or <code class="language-plaintext highlighter-rouge">&lt;collection-name&gt;.data.json.gz</code>
+respectively is still created, but will not contain data).</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">"masked"</code>: the collection structure and all data is dumped. However, the data
+is subject to obfuscation defined in the attribute <code class="language-plaintext highlighter-rouge">maskings</code>. It is an array
+of objects, with one object per masking rule. Each object needs at least a
+<code class="language-plaintext highlighter-rouge">path</code> and a <code class="language-plaintext highlighter-rouge">type</code> attribute to <a href="programs-arangodump-maskings.html#path">define which field to mask</a> and which
+<a href="programs-arangodump-maskings.html#masking-functions">masking function</a> to apply. Depending on the
+masking type, there may exist additional attributes to control the masking
+function behavior.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">"full"</code>: the collection structure and all data is dumped. No masking is
+applied to this collection at all.</p>
+  </li>
+</ul>
+
+<p><strong>Example</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"private"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exclude"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+  </span><span class="nl">"temperature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"full"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+  </span><span class="nl">"log"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"structure"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
+  </span><span class="nl">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unmaskedLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".security_id"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unmaskedLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li>The collection called <em>private</em> is completely ignored.</li>
+  <li>Only the structure of the collection <em>log</em> is dumped, but not the data itself.</li>
+  <li>The structure and data of the <em>temperature</em> collection is dumped without any
+obfuscation of document attributes.</li>
+  <li>The collection <em>person</em> is dumped completely but with maskings applied:
+    <ul>
+      <li>The <em>name</em> field is masked if it occurs on the top-level.</li>
+      <li>It also masks fields with the name <em>security_id</em> anywhere in the document.</li>
+      <li>The masking function is of type <a href="programs-arangodump-maskings.html#xify-front"><em>xifyFront</em></a> in both cases.
+The additional setting <code class="language-plaintext highlighter-rouge">unmaskedLength</code> is specific so <em>xifyFront</em>.</li>
+    </ul>
+  </li>
+  <li>All additional collections that might exist in the targeted database will
+be ignored (like the collection <em>private</em>), as there is no attribute key
+<code class="language-plaintext highlighter-rouge">"*"</code> to specify a different default type for the remaining collections.</li>
+</ul>
+
+<h3 id="masking-vs-dump-data-option">Masking vs. dump-data option</h3>
+
+<p><em>arangodump</em> also supports a very coarse masking with the option
+<code class="language-plaintext highlighter-rouge">--dump-data false</code>, which leaves out all data for the dump.</p>
+
+<p>You can either use <code class="language-plaintext highlighter-rouge">--maskings</code> or <code class="language-plaintext highlighter-rouge">--dump-data false</code>, but not both.</p>
+
+<h3 id="masking-vs-collection-option">Masking vs. collection option</h3>
+
+<p><em>arangodump</em> also supports a very coarse masking with the option
+<code class="language-plaintext highlighter-rouge">--collection</code>. This will restrict the collections that are
+dumped to the ones explicitly listed.</p>
+
+<p>It is possible to combine <code class="language-plaintext highlighter-rouge">--maskings</code> and <code class="language-plaintext highlighter-rouge">--collection</code>.
+This will take the intersection of exportable collections.</p>
+
+<h2 id="path">Path</h2>
+
+<p><code class="language-plaintext highlighter-rouge">path</code> defines which field to obfuscate. There can only be a single
+path per masking, but an unlimited amount of maskings per collection.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"collection1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attr1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attr2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"randomString"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"collection2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"attr3"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that the top-level <strong>system attributes</strong> like <code class="language-plaintext highlighter-rouge">_key</code>, <code class="language-plaintext highlighter-rouge">_from</code> are
+never masked.</p>
+
+<p>To mask a top-level attribute value, the path is simply the attribute
+name, for instance <code class="language-plaintext highlighter-rouge">"name"</code> to mask the value <code class="language-plaintext highlighter-rouge">"foobar"</code>:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foobar"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The path to a nested attribute <code class="language-plaintext highlighter-rouge">name</code> with a top-level attribute <code class="language-plaintext highlighter-rouge">person</code>
+as its parent is <code class="language-plaintext highlighter-rouge">"person.name"</code> (here: <code class="language-plaintext highlighter-rouge">"foobar"</code>):</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"foobar"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Example masking definition:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"&lt;collection-name&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"person.name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;masking-function&gt;"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If the path starts with a <code class="language-plaintext highlighter-rouge">.</code> then it matches any path ending in <code class="language-plaintext highlighter-rouge">name</code>.
+For example, <code class="language-plaintext highlighter-rouge">.name</code> will match the field <code class="language-plaintext highlighter-rouge">name</code> of all leaf attributes
+in the document. Leaf attributes are attributes whose value is <code class="language-plaintext highlighter-rouge">null</code>,
+<code class="language-plaintext highlighter-rouge">true</code>, <code class="language-plaintext highlighter-rouge">false</code>, or of data type <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">number</code> or <code class="language-plaintext highlighter-rouge">array</code>.
+That means, it matches <code class="language-plaintext highlighter-rouge">name</code> at the top level as well as at any nested level
+(e.g. <code class="language-plaintext highlighter-rouge">foo.bar.name</code>), but not nested objects themselves.</p>
+
+<p>On the other hand, <code class="language-plaintext highlighter-rouge">name</code> will only match leaf attributes
+at top level. <code class="language-plaintext highlighter-rouge">person.name</code> will match the attribute <code class="language-plaintext highlighter-rouge">name</code> of a leaf
+in the top-level object <code class="language-plaintext highlighter-rouge">person</code>. If <code class="language-plaintext highlighter-rouge">person</code> was itself an object,
+then the masking settings for this path would be ignored, because it
+is not a leaf attribute.</p>
+
+<p>If the attribute value is an <strong>array</strong> then the masking is applied to
+<strong>all array elements individually</strong>.</p>
+
+<p>If you have an attribute key that contains a dot or a top-level attribute
+with a single asterisk as full name (<code class="language-plaintext highlighter-rouge">"*": ...</code>) then you need to quote the
+name in ticks or backticks to escape it. For example:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"path": "´name.with.dots´"
+</code></pre></div></div>
+
+<p>or</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"path": "`name.with.dots`"
+</code></pre></div></div>
+
+<p><strong>Example</strong></p>
+
+<p>The following configuration will replace the value of the <code class="language-plaintext highlighter-rouge">name</code>
+attribute with an “xxxx”-masked string:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".name"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"unmaskedLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The document:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"top-level-name"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nicknames"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hugo"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="s2">"egon"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"emil"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"superman"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… will be changed as follows:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxxxxxxxxxxme"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"age"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nicknames"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxgo"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="s2">"egon"</span><span class="w"> </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"other"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">"xxil"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"superman"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The values <code class="language-plaintext highlighter-rouge">"egon"</code> and <code class="language-plaintext highlighter-rouge">"superman"</code> are not replaced, because they
+are not contained in an attribute value of which the attribute name is
+<code class="language-plaintext highlighter-rouge">name</code>.</p>
+
+<h3 id="nested-objects-and-arrays">Nested objects and arrays</h3>
+
+<p>If you specify a path and the attribute value is an array then the
+masking decision is applied to each element of the array as if this
+was the value of the attribute. This applies to arrays inside the array too.</p>
+
+<p>If the attribute value is an object, then it is ignored and the attribute
+does not get masked. To mask nested fields, specify the full path for each
+leaf attribute.</p>
+
+<div class="alert alert-success" style="display: flex"><i class="fa fa-check" style="margin-right: 10px; margin-top: 4px;"></i><div><p>If some documents have an attribute <code class="language-plaintext highlighter-rouge">mail</code> with a string as value, but other
+documents store a nested object under the same attribute name, then make sure
+to set up proper masking for the latter case, in which sub-attributes will not
+get masked if there is only a masking configured for the attribute <code class="language-plaintext highlighter-rouge">mail</code>
+but not its nested attributes.</p>
+<p>You can use the special path <code class="language-plaintext highlighter-rouge">"*"</code> to <strong>match all leaf attributes</strong> in the
+document.</p>
+</div></div>
+
+<p><strong>Examples</strong></p>
+
+<p>Masking <code class="language-plaintext highlighter-rouge">mail</code> with the <em>Xify Front</em> function:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"&lt;collection&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mail"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… will convert this document:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mail"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"mail address"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… into:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mail"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"xxil xxxxxxss"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>because <code class="language-plaintext highlighter-rouge">mail</code> is a leaf attribute. The document:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mail"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"address one"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address two"</span><span class="p">,</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"address three"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… will be converted into:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mail"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"xxxxxss xne"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"xxxxxss xwo"</span><span class="p">,</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"xxxxxss xxxee"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… because the masking is applied to each array element individually
+including the elements of the sub-array. The document:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"mail"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"mail address"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… will not be masked because <code class="language-plaintext highlighter-rouge">mail</code> is not a leaf attribute.
+To mask the mail address, you could use the paths <code class="language-plaintext highlighter-rouge">mail.address</code>
+or <code class="language-plaintext highlighter-rouge">.address</code> in the masking definition:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"&lt;collection&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>A catch-all <code class="language-plaintext highlighter-rouge">"path": "*"</code> would apply to the nested <code class="language-plaintext highlighter-rouge">address</code> attribute too,
+but it would mask all other string attributes as well, which may not be what
+you want. A syntax <code class="language-plaintext highlighter-rouge">"path": "mail.*</code> to only match the sub-attributes of the
+top-level <code class="language-plaintext highlighter-rouge">mail</code> attribute is not supported.</p>
+
+<h3 id="rule-precedence">Rule precedence</h3>
+
+<p>Masking rules may overlap, for instance if you specify the same path multiple
+times, or if you define a rule for a specific field but also one which matches
+all leaf attributes of the same name.</p>
+
+<p>The precedence is determined by the order in which the rules are defined in the
+masking configuration file in such cases, giving priority to the first matching
+rule (i.e. the rule above the other ambiguous ones).</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"&lt;collection&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Above masking definition will obfuscate the top-level attribute <code class="language-plaintext highlighter-rouge">address</code> with
+the <code class="language-plaintext highlighter-rouge">xifyFront</code> function, whereas all nested attributes with name <code class="language-plaintext highlighter-rouge">address</code>
+will use the <code class="language-plaintext highlighter-rouge">random</code> masking function. If the rules are defined in reverse
+order however, then all attributes called <code class="language-plaintext highlighter-rouge">address</code> will be obfuscated using
+<code class="language-plaintext highlighter-rouge">random</code>. The second, overlapping rule is effectively ignored:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"&lt;collection&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This behavior also applies to the catch-all path <code class="language-plaintext highlighter-rouge">"*"</code>, which means it should
+generally be placed below all other rules for a collection so that it is used
+for all unspecified attribute paths. Otherwise all document attributes will be
+processed by a single masking function, ignoring any other rules below it.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"&lt;collection&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".address"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="masking-functions">Masking Functions</h2>
+
+<div class="alert alert-info" style="display: flex"><i class="fa fa-info-circle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>The following masking functions are only available in the
+<a href="https://www.arangodb.com/why-arangodb/arangodb-enterprise/" target="_blank"><strong>Enterprise Edition</strong></a>
+and in the <a href="https://cloud.arangodb.com/home?utm_source=docs&amp;utm_medium=ee_pages&amp;utm_campaign=docs_traffic" target="_blank"><strong>ArangoDB Cloud</strong></a>.
+Take this feature for a spin in just a few clicks with the
+<a href="https://cloud.arangodb.com/home?utm_source=docs&amp;utm_medium=ee_pages&amp;utm_campaign=docs_traffic" target="_blank">14-day free trial</a>.</p></div></div>
+
+<ul>
+  <li><a href="programs-arangodump-maskings.html#xify-front">Xify Front</a></li>
+  <li><a href="programs-arangodump-maskings.html#zip">Zip</a></li>
+  <li><a href="programs-arangodump-maskings.html#datetime">Datetime</a></li>
+  <li><a href="programs-arangodump-maskings.html#integer-number">Integer Number</a></li>
+  <li><a href="programs-arangodump-maskings.html#decimal-number">Decimal Number</a></li>
+  <li><a href="programs-arangodump-maskings.html#credit-card-number">Credit Card Number</a></li>
+  <li><a href="programs-arangodump-maskings.html#phone-number">Phone Number</a></li>
+  <li><a href="programs-arangodump-maskings.html#email-address">Email Address</a></li>
+</ul>
+
+<p>The masking functions:</p>
+
+<ul>
+  <li><a href="programs-arangodump-maskings.html#random-string">Random String</a></li>
+  <li><a href="programs-arangodump-maskings.html#random">Random</a></li>
+</ul>
+
+<p>… are available in the Community Edition as well as the Enterprise Edition.</p>
+
+<h3 id="random-string">Random String</h3>
+
+<p>This masking type will replace all values of attributes whose values are strings
+with key <code class="language-plaintext highlighter-rouge">name</code> with an anonymized string. It is not guaranteed that the
+string will be of the same length. Attribute whose values are not strings
+are not modified.</p>
+
+<p>A hash of the original string is computed. If the original string is
+shorter then the hash will be used. This will result in a longer
+replacement string. If the string is longer than the hash then
+characters will be repeated as many times as needed to reach the full
+original string length.</p>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"randomString"</code></li>
+</ul>
+
+<p><strong>Example</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".name"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"randomString"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Above masking setting applies to all leaf attributes with name <code class="language-plaintext highlighter-rouge">.name</code>.
+A document like:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"My Name"</span><span class="p">,</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"other"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Hallo Name"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Name One"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Name Two"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+    </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"This is a very long name"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"deeply"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"nested"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"not-a-name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pizza"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… will be converted to:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"+y5OQiYmp/o="</span><span class="p">,</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"other"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hallo Name"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ihCTrlsKKdk="</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"yo/55hfla0U="</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+    </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hwjAfNe5BGw=hwjAfNe5BGw="</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"deeply"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"nested"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55fHctEM/wY="</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"not-a-name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pizza"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="random">Random</h3>
+
+<p>This masking type substitutes leaf attribute values of all data types with
+random values of the same kind:</p>
+
+<ul>
+  <li>Strings are replaced with <a href="programs-arangodump-maskings.html#random-string">random strings</a>.</li>
+  <li>Numbers are replaced with random integer or decimal numbers, depending on
+the original value (but not keeping sign or scientific notation).
+The generated numbers are between -1000 and 1000.</li>
+  <li>Booleans are randomly replaced with <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">null</code> values remain <code class="language-plaintext highlighter-rouge">null</code>.</li>
+</ul>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"random"</code></li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"collection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"random"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Using above masking configuration, all leaf attributes of the documents in
+<em>collection</em> would be randomized. A possible input document:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_key"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1121535"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"coll/1121535"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_rev"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"_Z3AKGjW--_"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nullValue"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bool"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"int"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"decimal"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">2.34</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"string"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"hello"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"array"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="mi">-123</span><span class="p">,</span><span class="w">
+    </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+    </span><span class="mi">6e7</span><span class="p">,</span><span class="w">
+    </span><span class="mf">-0.8e-3</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nine"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Lorem ipsum sit dolor amet."</span><span class="p">,</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="kc">false</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"obj"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"nested"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… could result in an output like this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1121535"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coll/1121535"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_rev"</span><span class="p">:</span><span class="w"> </span><span class="s2">"_Z3AKGjW--_"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nullValue"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"int"</span><span class="p">:</span><span class="w"> </span><span class="mi">-900</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"decimal"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.27</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"string"</span><span class="p">:</span><span class="w"> </span><span class="s2">"etxfOC+K0HM="</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"array"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="mi">754</span><span class="p">,</span><span class="w">
+    </span><span class="mi">-692</span><span class="p">,</span><span class="w">
+    </span><span class="mf">2.64</span><span class="p">,</span><span class="w">
+    </span><span class="mi">834</span><span class="p">,</span><span class="w">
+    </span><span class="mf">1.69</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"NGf7NKGrMYw="</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"G0czIlvaGw4=G0czIlvaGw4=G0c"</span><span class="p">,</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="kc">true</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"obj"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eCGe36xiRho="</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="xify-front">Xify Front</h3>
+
+<p>This masking type replaces the front characters with <code class="language-plaintext highlighter-rouge">x</code> and
+blanks. Alphanumeric characters, <code class="language-plaintext highlighter-rouge">_</code> and <code class="language-plaintext highlighter-rouge">-</code> are replaced by <code class="language-plaintext highlighter-rouge">x</code>,
+everything else is replaced by a blank.</p>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"xifyFront"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">unmaskedLength</code> (number, <em>default: <code class="language-plaintext highlighter-rouge">2</code></em>): how many characters to
+leave as-is on the right-hand side of each word as integer value</li>
+  <li><code class="language-plaintext highlighter-rouge">hash</code> (bool, <em>default: <code class="language-plaintext highlighter-rouge">false</code></em>): whether to append a hash value to the
+masked string to avoid possible unique constraint violations caused by
+the obfuscation</li>
+  <li><code class="language-plaintext highlighter-rouge">seed</code> (integer, <em>default: <code class="language-plaintext highlighter-rouge">0</code></em>): used as secret for computing the hash.
+A value of <code class="language-plaintext highlighter-rouge">0</code> means a random seed</li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"&lt;collection&gt;"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"masked"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maskings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unmaskedLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This will affect attributes with key <code class="language-plaintext highlighter-rouge">"name"</code> at any level by masking all
+alphanumeric characters of a word except the last two characters. Words of
+length 1 and 2 remain unmasked. If the attribute value is not a string but
+boolean or numeric, then the result will be <code class="language-plaintext highlighter-rouge">"xxxx"</code> (fixed length).
+<code class="language-plaintext highlighter-rouge">null</code> values remain <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is a test!Do you agree?"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.23</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"null"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… will become:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxis is a xxst Do xou xxxee "</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xxxx"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"null"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>There is a catch. If you have an index on the attribute the masking
+might distort the index efficiency or even cause errors in case of a
+unique index.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".name"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"unmaskedLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"hash"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This will add a hash at the end of the string.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"This is a test!Do you agree?"
+</code></pre></div></div>
+
+<p>… will become</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"xxis is a xxst Do xou xxxee  NAATm8c9hVQ="
+</code></pre></div></div>
+
+<p>Note that the hash is based on a random secret that is different for
+each run. This avoids dictionary attacks which could be used to guess
+values based pre-computations on dictionaries.</p>
+
+<p>If you need reproducible results, i.e. hashes that do not change between
+different runs of <em>arangodump</em>, you need to specify a secret as seed,
+a number which must not be <code class="language-plaintext highlighter-rouge">0</code>.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".name"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xifyFront"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"unmaskedLength"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"hash"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"seed"</span><span class="p">:</span><span class="w"> </span><span class="mi">246781478647</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="zip">Zip</h3>
+
+<p>This masking type replaces a zip code with a random one.
+It uses the following rules:</p>
+
+<ul>
+  <li>If a character of the original zip code is a digit it will be replaced
+by a random digit.</li>
+  <li>If a character of the original zip code is a letter it
+will be replaced by a random letter keeping the case.</li>
+  <li>If the attribute value is not a string then the default value is used.</li>
+</ul>
+
+<p>Note that this will generate random zip codes. Therefore there is a
+chance that the same zip code value is generated multiple times, which can
+cause unique constraint violations if a unique index is or will be
+used on the zip code attribute.</p>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"zip"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">default</code> (string, <em>default: <code class="language-plaintext highlighter-rouge">"12345"</code></em>): if the input field is not of
+data type <code class="language-plaintext highlighter-rouge">string</code>, then this value is used</li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".code"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zip"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This replaces real zip codes stored in fields called <code class="language-plaintext highlighter-rouge">code</code> at any level
+with random ones. <code class="language-plaintext highlighter-rouge">"12345"</code> is used as fallback value.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".code"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zip"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdef"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>If the original zip code is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>50674
+</code></pre></div></div>
+
+<p>… it will be replaced by e.g.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>98146
+</code></pre></div></div>
+
+<p>If the original zip code is:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SA34-EA
+</code></pre></div></div>
+
+<p>… it will be replaced by e.g.:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>OW91-JI
+</code></pre></div></div>
+
+<p>If the original zip code is <code class="language-plaintext highlighter-rouge">null</code>, <code class="language-plaintext highlighter-rouge">true</code>, <code class="language-plaintext highlighter-rouge">false</code> or a number, then the
+user-defined default value of <code class="language-plaintext highlighter-rouge">"abcdef"</code> will be used.</p>
+
+<h3 id="datetime">Datetime</h3>
+
+<p>This masking type replaces the value of the attribute with a random
+date between two configured dates in a customizable format.</p>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"datetime"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">begin</code> (string, <em>default: <code class="language-plaintext highlighter-rouge">"1970-01-01T00:00:00.000"</code></em>):
+earliest point in time to return. Date time string in ISO 8601 format.</li>
+  <li><code class="language-plaintext highlighter-rouge">end</code> (string, <em>default: now</em>):
+latest point in time to return. Date time string in ISO 8601 format.
+In case a partial date time string is provided (e.g. <code class="language-plaintext highlighter-rouge">2010-06</code> without day
+and time) the earliest date and time is assumed (<code class="language-plaintext highlighter-rouge">2010-06-01T00:00:00.000</code>).
+The default value is the current system date and time.</li>
+  <li><code class="language-plaintext highlighter-rouge">format</code> (string, <em>default: <code class="language-plaintext highlighter-rouge">""</code></em>): the formatting string format is
+described in <a href="https://www.arangodb.com/docs/stable/aql/functions-date.html#date_format">DATE_FORMAT()</a>.
+If no format is specified, then the result will be an empty string.</li>
+</ul>
+
+<p><strong>Example</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eventDate"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"datetime"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"begin"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"end"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-31"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"%yyyy-%mm-%dd"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Above example masks the field <code class="language-plaintext highlighter-rouge">eventDate</code> by returning a random date time
+string in the range of January 1st and December 31st in 2019 using a format
+like <code class="language-plaintext highlighter-rouge">2019-06-17</code>.</p>
+
+<h3 id="integer-number">Integer Number</h3>
+
+<p>This masking type replaces the value of the attribute with a random
+integer number. It will replace the value even if it is a string,
+Boolean, or <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"integer"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">lower</code> (number, <em>default: <code class="language-plaintext highlighter-rouge">-100</code></em>): smallest integer value to return</li>
+  <li><code class="language-plaintext highlighter-rouge">upper</code> (number, <em>default: <code class="language-plaintext highlighter-rouge">100</code></em>): largest integer value to return</li>
+</ul>
+
+<p><strong>Example</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"count"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"lower"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">-100</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"upper"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This masks the field <code class="language-plaintext highlighter-rouge">count</code> with a random number between
+-100 and 100 (inclusive).</p>
+
+<h3 id="decimal-number">Decimal Number</h3>
+
+<p>This masking type replaces the value of the attribute with a random
+floating point number. It will replace the value even if it is a string,
+Boolean, or <code class="language-plaintext highlighter-rouge">null</code>.</p>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"decimal"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">lower</code> (number, <em>default: <code class="language-plaintext highlighter-rouge">-1</code></em>): smallest floating point value to return</li>
+  <li><code class="language-plaintext highlighter-rouge">upper</code> (number, <em>default: <code class="language-plaintext highlighter-rouge">1</code></em>): largest floating point value to return</li>
+  <li><code class="language-plaintext highlighter-rouge">scale</code> (number, <em>default: <code class="language-plaintext highlighter-rouge">2</code></em>): maximal amount of digits in the
+decimal fraction part</li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rating"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"decimal"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"lower"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"upper"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This masks the field <code class="language-plaintext highlighter-rouge">rating</code> with a random floating point number between
+-0.3 and +0.3 (inclusive). By default, the decimal has a scale of 2.
+That means, it has at most 2 digits after the dot.</p>
+
+<p>The configuration:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rating"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"decimal"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"lower"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"upper"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"scale"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>… will generate numbers with at most 3 decimal digits.</p>
+
+<h3 id="credit-card-number">Credit Card Number</h3>
+
+<p>This masking type replaces the value of the attribute with a random
+credit card number (as integer number).
+See <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank">Luhn algorithm</a>
+for details.</p>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"creditCard"</code></li>
+</ul>
+
+<p><strong>Example</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ccNumber"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"creditCard"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This generates a random credit card number to mask field <code class="language-plaintext highlighter-rouge">ccNumber</code>,
+e.g. <code class="language-plaintext highlighter-rouge">4111111414443302</code>.</p>
+
+<h3 id="phone-number">Phone Number</h3>
+
+<p>This masking type replaces a phone number with a random one.
+It uses the following rule:</p>
+
+<ul>
+  <li>If a character of the original number is a digit
+it will be replaced by a random digit.</li>
+  <li>If it is a letter it is replaced by a random letter.</li>
+  <li>All other characters are left unchanged.</li>
+  <li>If the attribute value is not a string it is replaced by the
+default value.</li>
+</ul>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"phone"</code></li>
+  <li><code class="language-plaintext highlighter-rouge">default</code> (string, <em>default: <code class="language-plaintext highlighter-rouge">"+1234567890"</code></em>): if the input field
+is not of data type <code class="language-plaintext highlighter-rouge">string</code>, then this value is used</li>
+</ul>
+
+<p><strong>Examples</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone.landline"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This will replace an existing phone number with a random one, for instance
+<code class="language-plaintext highlighter-rouge">"+31 66-77-88-xx"</code> might get substituted by <code class="language-plaintext highlighter-rouge">"+75 10-79-52-sb"</code>.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone.landline"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+49 12345 123456789"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This masks a phone number as before, but falls back to a different default
+phone number in case the input value is not a string.</p>
+
+<h3 id="email-address">Email Address</h3>
+
+<p>This masking type takes an email address, computes a hash value and
+splits it into three equal parts <code class="language-plaintext highlighter-rouge">AAAA</code>, <code class="language-plaintext highlighter-rouge">BBBB</code>, and <code class="language-plaintext highlighter-rouge">CCCC</code>. The
+resulting email address is in the format <code class="language-plaintext highlighter-rouge">AAAA.BBBB@CCCC.invalid</code>.
+The hash is based on a random secret that is different for each run.</p>
+
+<p>Masking settings:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">path</code> (string): which field to mask</li>
+  <li><code class="language-plaintext highlighter-rouge">type</code> (string): masking function name <code class="language-plaintext highlighter-rouge">"email"</code></li>
+</ul>
+
+<p><strong>Example</strong></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">".email"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This masks every leaf attribute <code class="language-plaintext highlighter-rouge">email</code> with a random email address
+similar to <code class="language-plaintext highlighter-rouge">"EHwG.3AOg@hGU=.invalid"</code>.</p>
+
+            </section>
+            
+<section class="page-nav">
+  <a href="programs-arangodump-options.html">&#x276e;&nbsp;&nbsp;Options</a>
+  <a class="next" href="programs-arangodump-limitations.html">Limitations&nbsp;&nbsp;&#x276f;</a>
+  <div style="clear: both"></div>
+</section>
+            <div id="page-footer" class="localized-footer">
+              <hr>
+              <p>© ArangoDB - the native multi-model NoSQL database</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var disablePageToc = null;
+          if (!disablePageToc) {
+            generateToc();
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+  <!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'IOUJQ85602',
+  indexName: 'dev_DOCS',
+  apiKey: '1fc63d8ff5b71963f0354561b770b591',
+  searchFunction: function(helper) {
+    var container = document.querySelector('#search-hits');
+
+    if (helper.state.query === '') {
+        container.style.display = 'none';
+    } else {
+        container.style.display = '';
+    }
+
+    helper.search();
+  }
+});
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-searchbar',
+    placeholder: 'Search Documentation...',
+    poweredBy: false // This is required if you're on the free Community plan
+  })
+);
+search.addWidget(
+    instantsearch.widgets.hits({
+        container: '#search-hits',
+        templates: {
+            item: function(hit) {
+                return '<div class="post-item">' +
+                    '<a class="post-link" href="https://www.arangodb.com/docs'&#32;+&#32;hit.url&#32;+&#32;'"><div>' + (hit.headings[0] || "ArangoDB Documentation") + '</div>' +
+                    '<div class="post-snippet">' + hit.excerpt_text + '</div></a>' +
+                    '</div>';
+            },
+        },
+    })
+);
+
+// Starting the search
+search.start();
+</script>
+  <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/2482448.js"></script>
+</body>
+</html>

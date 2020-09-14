@@ -23,7 +23,7 @@ def main(argv):
             db = sqlite3.connect(arg + '.docset/Contents/Resources/docSet.dsidx')
             cur = db.cursor()
 
-            folder = 'docs.arangodb.com'
+            folder = 'www.arangodb.com/docs/stable'
 
             try:
                 cur.execute('DROP TABLE searchIndex;')

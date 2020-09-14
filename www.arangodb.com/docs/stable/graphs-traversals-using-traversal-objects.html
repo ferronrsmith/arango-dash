@@ -1,0 +1,2629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="graphs-traversals-using-traversal-objects.html">
+<title>Using Traversal Objects | Traversals | Graphs | Manual | ArangoDB Documentation</title>
+<meta itemprop="description" name="description" content="Using Traversal Objects" />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:url" content="https://www.arangodb.com/docs/stable/graphs-traversals-using-traversal-objects.html" />
+<meta property="og:title" content="Using Traversal Objects | Traversals | Graphs | Manual | ArangoDB Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Using Traversal Objects" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81053435-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-81053435-1');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5LQ7HC');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('provide', 'adblockTracker', function(tracker, opts) {
+    var ad = document.createElement('ins');
+    ad.className = 'AdSense';
+    ad.style.display = 'block';
+    ad.style.position = 'absolute';
+    ad.style.top = '-1px';
+    ad.style.height = '1px';
+    document.body.appendChild(ad);
+    tracker.set('dimension' + opts.dimensionIndex, !ad.clientHeight);
+    document.body.removeChild(ad);
+  });
+
+  ga('create', 'UA-81053435-6', 'auto');
+  ga('require', 'adblockTracker', {dimensionIndex: 1});
+  ga('send', 'pageview');
+</script>
+
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  twq('init','nz793');
+  twq('track','PageView');
+</script>
+
+<script type="text/javascript">
+  _linkedin_partner_id = "499017";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(){var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})();
+</script>
+
+<link rel="shortcut icon" href="../../wp-content/uploads/2018/07/www.arangodb.com-favicon.png">
+<link rel="stylesheet" href="../styles/gitbook/style.css">
+<link rel="stylesheet" href="../styles/gitbook/highlight-website.css">
+<link rel="stylesheet" href="../styles/gitbook/fontsettings-website.css">
+<link rel="stylesheet" href="../styles/website.css">
+<link rel="stylesheet" href="../styles/header.css">
+<link rel="stylesheet" href="../styles/navbar.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/pygments-vs.css">
+<script src="../js/jquery-3.4.0.min.js"></script>
+<script src="../js/site.js"></script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ7HC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=499017&fmt=gif" /></noscript>
+
+<div class="arangodb-header">
+  <div class="arangodb-logo">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <div class="arangodb-logo-small">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_small_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <select class="arangodb-version-switcher">
+      <option value="devel">3.8</option>
+      <option value="stable">3.7</option>
+      <option value="3.6">3.6</option>
+      <option value="3.5">3.5</option>
+      <option value="3.4">3.4</option>
+      <option value="3.3">3.3</option>
+  </select>
+  <script type="text/javascript">
+    var versionAliases = {"stable":"3.7","devel":"3.8"};
+    var current = location.href;
+
+    var selectedVersion = current.split('/')[4];
+    var switcher = document.querySelector(".arangodb-version-switcher");
+
+    for (var i = 0; i < switcher.options.length; i++) {
+      var value = switcher.options.item(i).value;
+      if (value == selectedVersion) {
+        switcher.value = value;
+      } else if (versionAliases[value] == selectedVersion) {
+        switcher.value = value;
+      }
+    }
+    
+    switcher.addEventListener('change', function(event) {
+      var current = location.href;
+      var urlElements = current.split('/');
+      urlElements[4] = event.target.value;
+      var newUrl = urlElements.join("/");
+      location.href = newUrl;
+    });
+  </script>
+  <ul class="arangodb-navmenu">
+    <li class="active-tab">
+      <a href="index.html" data-book="Manual">Manual</a>
+    </li>
+    <li>
+      <a href="aql/index.html" data-book="AQL">AQL</a>
+    </li>
+    <li>
+      <a href="http/index.html" data-book="HTTP">HTTP</a>
+    </li>
+    <li>
+      <a href="drivers/index.html" data-book="Drivers">Drivers</a>
+    </li>
+    <li>
+      <a href="oasis/index.html" data-book="Oasis">Oasis</a>
+    </li>
+    <li class="socialIcons" title="GitHub">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons" title="StackOverflow">
+      <a href="https://stackoverflow.com/questions/tagged/arangodb" target="_blank">
+        <i class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups" title="Google Groups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="_blank">
+        <img alt="Google Groups" src="../assets/googlegroupsIcon.png">
+      </a>
+    </li>
+    <li class="socialIcons" title="Slack">
+      <a href="https://slack.arangodb.com" target="_blank">
+        <i class="fa fa-slack"></i>
+      </a>
+    </li>
+    <li>
+      <div class="searchbar">
+        <div id="search-searchbar"></div>
+      </div>
+    </li>
+    <li class="placeholder">
+      <div style="width: 15px"></div>
+    </li>
+  </ul>
+  <div id="search-hits"></div>
+</div>
+ 
+  <div class="book with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+      <nav role="navigation">
+    <ul class="summary">
+  <li class="chapter">
+  <a href="index.html">Introduction</a>
+  </li>
+  <li class="chapter">
+  <a href="highlights.html">Highlights</a>
+  </li>
+  <li class="header">GETTING FAMILIAR</li>
+  <li class="chapter">
+  <a href="getting-started.html">Getting Started</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="getting-started-installation.html">Installation</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-authentication.html">Authentication</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-web-interface.html">Web Interface</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-databases-collections-documents.html">Databases, Collections and Documents</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-querying-the-database.html">Querying the Database</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-coming-from-sql.html">Coming from SQL</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-next-steps.html">Next Steps</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="tutorials.html">Tutorials</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="tutorials-reduce-memory-footprint.html">Reduce Memory Footprint</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-starter.html">ArangoDB Starter</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-dc2-dc.html">Datacenter to datacenter Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes.html">Kubernetes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="tutorials-kubernetes-eks.html">Amazon EKS</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-gke.html">Google GKE</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-aks.html">Azure AKS</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes-dc2-dc.html">DC2DC on Kubernetes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="programs.html">Programs & Tools</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="programs-arangod.html">ArangoDB Server</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangod-options.html">Options</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="programs-arangod-global.html">Global</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-agency.html">Agency</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-arangosearch.html">ArangoSearch</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-audit.html">Audit</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cache.html">Cache</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-backup.html">Backup</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-compaction.html">Compaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-database.html">Database</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-foxx.html">Foxx</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-frontend.html">Frontend</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-http.html">HTTP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-javascript.html">JavaScript</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ldap.html">LDAP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-log.html">Log</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-network.html">Network</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-nonce.html">Nonce</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-query.html">Query</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-random.html">Random</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-replication.html">Replication</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rclone.html">Rclone</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rocksdb.html">RocksDB</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-server.html">Server</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ssl.html">SSL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-tcp.html">TCP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-temp.html">Temp</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-transaction.html">Transaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ttl.html">TTL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-vst.html">VST</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-wal.html">WAL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangod-env-vars.html">Environment variables</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-web-interface.html">Web Interface</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-web-interface-dashboard.html">Dashboard</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-cluster.html">Cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-collections.html">Collections</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-document.html">Document</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-aql-editor.html">Queries</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-graphs.html">Graphs</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-services.html">Services</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-users.html">Users</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-logs.html">Logs</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangosh.html">ArangoDB Shell</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangosh-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-starter.html">ArangoDB Starter</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-starter-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-security.html">Security</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-architecture.html">Architecture</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangodump.html">Arangodump</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangodump-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-maskings.html">Maskings</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-limitations.html">Limitations</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangorestore.html">Arangorestore</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangorestore-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-fast-cluster-restore.html">Fast Cluster Restore</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobackup.html">Arangobackup</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobackup-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobackup-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoimport.html">Arangoimport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-json.html">Examples JSON</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-csv.html">Examples CSV</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoexport.html">Arangoexport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoexport-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoexport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobench.html">Arangobench</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobench-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobench-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoinspect.html">Arangoinspect</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoinspect-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoinspect-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-foxx-cli.html">Foxx CLI</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-foxx-cli-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="header">CORE TOPICS</li>
+  <li class="chapter">
+  <a href="data-modeling.html">Data models & modeling</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="data-modeling-concepts.html">Concepts</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-databases.html">Databases</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-databases-working-with.html">Working with Databases</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-databases-notes.html">Notes about Databases</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-collections.html">Collections</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-collections-collection-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-collections-database-methods.html">Database Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-documents.html">Documents</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-documents-document-address.html">Basics and Terminology</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-document-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-schema-validation.html">Schema Validation</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-monetary-data-without-precision-loss.html">Monetary data without precision loss</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-graphs-vertices-edges.html">Graphs, Vertices & Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-views.html">Views</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-views-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-views-view-methods.html">View Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-naming-conventions.html">Naming Conventions</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-database-names.html">Database Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-collection-and-view-names.html">Collection and View Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-document-keys.html">Document Keys</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-attribute-names.html">Attribute Names</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-operational-factors.html">Operational Factors</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="indexing.html">Indexing</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="indexing-index-basics.html">Index Basics</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-which-index.html">Which index to use when</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-index-utilization.html">Index Utilization</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-working-with-indexes.html">Working with Indexes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="indexing-persistent.html">Persistent</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-ttl.html">TTL Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-fulltext.html">Fulltext Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-geo.html">Geo-spatial Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-vertex-centric.html">Vertex Centric Indexes</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="transactions.html">Transactions</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="transactions-transaction-invocation.html">Transaction invocation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-passing.html">Passing parameters</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-locking-and-isolation.html">Locking and isolation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-durability.html">Durability</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-limitations.html">Limitations</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter selected">
+  <a href="graphs.html">Graphs</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="graphs-general-graphs.html">General Graphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-general-graphs-management.html">Graph Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-general-graphs-functions.html">Graph Functions</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-satellite-graphs.html">SatelliteGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-management.html">Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-smart-graphs.html">SmartGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-smart-graphs-management.html">SmartGraph Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter selected">
+      <a href="graphs-traversals.html">Traversals</a>
+        <ul class="articles">
+          <li class="chapter selected active">
+          <a href="graphs-traversals-using-traversal-objects.html">Using Traversal Objects</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-traversals-example-data.html">Example Data</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-edges.html">Working with Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="graphs-pregel.html">Pregel</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="arangosearch.html">ArangoSearch</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="arangosearch-views.html">Views</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-analyzers.html">Analyzers</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-examples.html">Examples</a>
+      </li>
+    </ul>
+  </li>
+  <li class="header">ADVANCED TOPICS</li>
+  <li class="chapter">
+  <a href="architecture.html">Architecture</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="architecture-deployment-modes.html">ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="architecture-deployment-modes-single-instance.html">Single Instance</a>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-data-models.html">Data Models</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-sharding.html">Data Sharding</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-dc2-dc.html">Datacenter to datacenter replication</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-introduction.html">Introduction</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-applicability.html">Applicability</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-requirements.html">Requirements</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="architecture-single-instance-vs-cluster.html">Single Instance vs. Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-storage-engines.html">Storage Engines</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-replication.html">Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-write-ahead-log.html">Write-ahead log</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="foxx.html">Foxx Microservices</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="foxx-getting-started.html">Getting started</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-guides.html">Guides</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-guides-routing.html">Working with routers</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-collections.html">Working with collections</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-queries.html">Writing queries</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-development-mode.html">Development mode</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-testing.html">Testing Foxx services</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-cluster.html">Foxx in a cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-scripts.html">Scripts and scheduling</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-bundled-node-modules.html">Using Node modules</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-webpack.html">Using Webpack with Foxx</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-auth.html">Authentication and sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-dependencies.html">Linking services together</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-files.html">Working with files</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-making-requests.html">Making requests</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-browser.html">Access from the browser</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-legacy-mode.html">Working with 2.x services</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-reference.html">Reference</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-reference-manifest.html">Service manifest</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-context.html">Service context</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-routers.html">Routers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-routers-endpoints.html">Endpoints</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-middleware.html">Middleware</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-request.html">Request</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-sessions.html">Sessions middleware</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-sessions-storages.html">Session storages</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-collection.html">Collection storage</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-jwt.html">JWT storage</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-sessions-transports.html">Session transports</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-cookie.html">Cookie transport</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-header.html">Header transport</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-modules.html">Related modules</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-modules-auth.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth1.html">OAuth 1.0a</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth2.html">OAuth 2.0</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-graph-ql.html">GraphQL</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-queues.html">Queues</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-deployment.html">Deployment</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-migrating2x.html">Migrating 2.x services</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-migrating2x-wayback.html">Migrating from pre-2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-manifest.html">manifest.json</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-context.html">applicationContext</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-repositories.html">Repositories and Models</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-controllers.html">Controllers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-endpoints.html">Request context</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-errors.html">Error handling</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-middleware.html">Before/After/Around</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-request.html">Request object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-response.html">Response object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-io-c.html">Dependency Injection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-sessions.html">Sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-auth.html">Auth and OAuth2</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-queries.html">Foxx Queries</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="satellites.html">SatelliteCollections</a>
+  </li>
+  <li class="chapter">
+  <a href="smartjoins.html">SmartJoins</a>
+  </li>
+  <li class="header">OPERATIONS</li>
+  <li class="chapter">
+  <a href="installation.html">Installation</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="installation-linux.html">Linux</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-linux-osconfiguration.html">Operating System Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-linux-ostuning-scripts.html">Linux OS Tuning Script Examples</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="installation-mac-osx.html">macOS</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-windows.html">Windows</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-compiling.html">Compiling</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-compiling-debian.html">Compile on Debian</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-windows.html">Compile on Windows</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-running-custom-build.html">Running Custom Build</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-jemalloc.html">Recompiling jemalloc</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="uninstallation.html">Uninstallation</a>
+  </li>
+  <li class="chapter">
+  <a href="deployment.html">Deployment</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="deployment-modes.html">By ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-single-instance.html">Single Instance</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-single-instance-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-single-instance-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-master-slave-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-active-failover-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-active-failover-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-cluster-preliminary-information.html">Preliminary Information</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-manual-start.html">Manual Start</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-kubernetes.html">Kubernetes</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-dc2-dc.html">Multiple Datacenters</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-dc2-dc-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-master.html">ArangoSync Master</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-workers.html">ArangoSync Workers</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-prometheus-grafana.html">Prometheus & Grafana</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-standalone-agency.html">Standalone Agency</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-technology.html">By Technology</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-manually.html">Manually</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-arango-dbstarter.html">ArangoDB Starter</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-docker.html">Docker</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-kubernetes.html">Kubernetes</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-kubernetes-usage.html">Using the Operator</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-dashboards.html">Dashboards</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-resource.html">Deployment Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-resource.html">Backup Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-policy-resource.html">BackupPolicy Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-driver-configuration.html">Driver Configuration</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-helm.html">Helm</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-authentication.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-scaling.html">Scaling</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-drain.html">Draining Nodes</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-upgrading.html">Upgrading</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-config-and-secrets.html">ArangoDB Configuration & Secrets</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-metrics.html">Metrics</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-services-and-load-balancer.html">Services & Load balancer</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-replication-resource.html">Deployment Replication Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage.html">Storage</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage-resource.html">Storage Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-tls.html">TLS</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-troubleshooting.html">Troubleshooting</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-cloud.html">In the Cloud</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-cloud-aws.html">AWS</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cloud-azure.html">Azure</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-production-checklist.html">Production Checklist</a>
+      </li>
+      <li class="chapter">
+      <a href="deployment-migrating-single-instance-cluster.html">Migrating Single Instance to Cluster</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="backup-restore.html">Backup & Restore</a>
+  </li>
+  <li class="chapter">
+  <a href="upgrading.html">Upgrading</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="upgrading-general-info.html">General Upgrade Information</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-community-to-enterprise.html">Community to Enterprise Upgrade</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-osspecific-info.html">OS-specific Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-linux.html">Upgrading on Linux</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-mac-os.html">Upgrading on macOS</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-windows.html">Upgrading on Windows</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-starter.html">Upgrading Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-manually.html">Upgrading Manual Deployments</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-manually-active-failover.html">Upgrading an Active Failover deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-manually-cluster.html">Upgrading a Cluster</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-kubernetes.html">Upgrading Kubernetes Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-version-specific.html">Version Specific Upgrade Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading34.html">Upgrading to 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading33.html">Upgrading to 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading32.html">Upgrading to 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading31.html">Upgrading to 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading30.html">Upgrading to 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading28.html">Upgrading to 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading26.html">Upgrading to 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading25.html">Upgrading to 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading24.html">Upgrading to 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading23.html">Upgrading to 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading22.html">Upgrading to 2.2</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="downgrading.html">Downgrading</a>
+  </li>
+  <li class="chapter">
+  <a href="scaling.html">Scaling</a>
+  </li>
+  <li class="chapter">
+  <a href="administration.html">Administration</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="administration-configuration.html">Configuration</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-import-export.html">Import & Export</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-managing-users.html">User Management</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-managing-users-in-arangosh.html">In Arangosh</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-engine-switch-engine.html">Switch Storage Engine</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-master-slave.html">Master/Slave</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-master-slave-setting-up.html">Setting up</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="administration-master-slave-replication-applier.html">Replication Applier</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-database-setup.html">Per-Database Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-server-level-setup.html">Server-Level Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-initialize-from-backup.html">Speeding Up Slave Initialization</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="administration-master-slave-syncing-collections.html">Syncing Collections</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-active-failover.html">Active Failover</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-cluster.html">Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-starter.html">ArangoDB Starter Administration</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-starter-removal.html">Removal Procedure</a>
+          </li>
+          <li class="chapter">
+          <a href="administration-starter-recovery.html">Recovery Procedure</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="security.html">Security</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="security-security-options.html">Security Options</a>
+      </li>
+      <li class="chapter">
+      <a href="security-change-root-password.html">Change Root Password</a>
+      </li>
+      <li class="chapter">
+      <a href="security-encryption.html">Encryption at Rest</a>
+      </li>
+      <li class="chapter">
+      <a href="security-auditing.html">Auditing</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="security-auditing-audit-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="security-auditing-audit-events.html">Events</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="security-starter.html">Securing Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="security-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="monitoring.html">Monitoring</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="monitoring-log-levels.html">Log Levels</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-collectd.html">Collectd</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="monitoring-collectd-slave-status.html">Replication Slaves</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-traffic-with-ipaccounting.html">Network usage</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-other-relevant-metrics.html">More metrics</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-foxx-apps.html">Monitoring Foxx</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="troubleshooting.html">Troubleshooting</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="troubleshooting-arangod.html">arangod</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-emergency-console.html">Emergency Console</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-cluster.html">Cluster</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="troubleshooting-cluster-agency-dump.html">Agency Dump</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li><hr/></li>
+  <li class="chapter">
+  <a href="release-notes.html">Release Notes</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="release-notes-37.html">Version 3.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features37.html">What's New in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues37.html">Known Issues in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes37.html">Incompatible changes in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-api-changes37.html">API changes in 3.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-36.html">Version 3.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features36.html">What's New in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues36.html">Known Issues in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes36.html">Incompatible changes in 3.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-35.html">Version 3.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features35.html">What's New in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues35.html">Known Issues in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes35.html">Incompatible changes in 3.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-34.html">Version 3.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features34.html">What's New in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues34.html">Known Issues in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes34.html">Incompatible changes in 3.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-33.html">Version 3.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features33.html">What's New in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues33.html">Known Issues in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes33.html">Incompatible changes in 3.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-32.html">Version 3.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features32.html">What's New in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues32.html">Known Issues in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes32.html">Incompatible changes in 3.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-31.html">Version 3.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features31.html">What's New in 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes31.html">Incompatible changes in 3.1</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-30.html">Version 3.0</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features30.html">What's New in 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes30.html">Incompatible changes in 3.0</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-28.html">Version 2.8</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features28.html">What's New in 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes28.html">Incompatible changes in 2.8</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-27.html">Version 2.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features27.html">What's New in 2.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes27.html">Incompatible changes in 2.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-26.html">Version 2.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features26.html">What's New in 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes26.html">Incompatible changes in 2.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-25.html">Version 2.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features25.html">What's New in 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes25.html">Incompatible changes in 2.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-24.html">Version 2.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features24.html">What's New in 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes24.html">Incompatible changes in 2.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-23.html">Version 2.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features23.html">What's New in 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes23.html">Incompatible changes in 2.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-22.html">Version 2.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features22.html">What's New in 2.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-21.html">Version 2.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features21.html">What's New in 2.1</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="appendix.html">Appendix</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="appendix-references.html">References</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-references-dbobject.html">db</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-collection-object.html">collection</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-cursor-object.html">cursor</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-java-script-modules.html">JavaScript Modules</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-java-script-modules-arango-db.html">@arangodb</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-analyzers.html">analyzers</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-console.html">console</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-crypto.html">crypto</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-file-system.html">fs</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-request.html">request</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-actions.html">actions</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-queries.html">queries</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-wal.html">Write-ahead log</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-tasks.html">Task Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-deprecated.html">Deprecated</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-deprecated-simple-queries.html">Simple Queries</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-pagination.html">Pagination</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-modification-queries.html">Modification Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-geo-queries.html">Geo Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-fulltext-queries.html">Fulltext Queries</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-error-codes.html">Error codes and meanings</a>
+      </li>
+      <li class="chapter">
+      <a href="appendix-glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</nav>
+    </div>
+    <div class="book-body">
+      <script type="text/javascript">
+          var availableVersions = ["devel","stable","3.6","3.5","3.4","3.3",];
+          versionSwitcherSetAvailable(availableVersions);
+      </script>
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <a class="btn pull-left js-toolbar-action hamburger" aria-label=""><i class="fa fa-align-justify"></i></a>
+          <a class="btn pull-left js-toolbar-action" aria-label="" href="https://github.com/arangodb/docs/edit/master/3.7/graphs-traversals-using-traversal-objects.md" target="_blank"><i class="fa fa-github"></i> Contribute</a>
+        </div>
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+            <section class="normal markdown-section">
+              <h1 id="using-traversal-objects">Using Traversal Objects</h1>
+
+<div class="alert alert-warning" style="display: flex"><i class="fa fa-exclamation-triangle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>The JavaScript module <code class="language-plaintext highlighter-rouge">@arangodb/graph/traversal</code> (<em>traversal module</em> for short)
+is deprecated from version 3.4.0 on. The preferred way to traverse graphs is with AQL.</p></div></div>
+
+<p>To use a traversal object, we first need to require the <em>traversal</em> module:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">traversal</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb/graph/traversal</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">examples</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb/graph-examples/example-graph.js</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">examples</span><span class="p">.</span><span class="nx">loadGraph</span><span class="p">(</span><span class="dl">"</span><span class="s2">worldCountry</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>We then need to setup a configuration for the traversal and determine at which vertex to 
+start the traversal:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">datasource</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">generalGraphDatasourceFactory</span><span class="p">(</span><span class="dl">"</span><span class="s2">worldCountry</span><span class="dl">"</span><span class="p">),</span>
+  <span class="na">strategy</span><span class="p">:</span> <span class="dl">"</span><span class="s2">depthfirst</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">order</span><span class="p">:</span> <span class="dl">"</span><span class="s2">preorder</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">visitAllFilter</span><span class="p">,</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">inboundExpander</span><span class="p">,</span>
+  <span class="na">maxDepth</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">startVertex</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_document</span><span class="p">(</span><span class="dl">"</span><span class="s2">v/world</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Note</strong>: The startVertex needs to be a document, not only a document id.</p>
+
+<p>We can then create a traverser and start the traversal by calling its <em>traverse</em> method.
+Note that <em>traverse</em> needs a <em>result</em> object, which it can modify in place:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">visited</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">vertices</span><span class="p">:</span> <span class="p">[</span> <span class="p">],</span>
+    <span class="na">paths</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">traverser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">Traverser</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="nx">traverser</span><span class="p">.</span><span class="nx">traverse</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">startVertex</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Finally, we can print the contents of the <em>results</em> object, limited to the visited vertices.
+We will only print the name and type of each visited vertex for brevity:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb</span><span class="dl">"</span><span class="p">).</span><span class="nx">print</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">visited</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> (</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">type</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}));</span>
+</code></pre></div></div>
+
+<p>The full script, which includes all steps carried out so far is thus:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">traversal</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb/graph/traversal</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">datasource</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">generalGraphDatasourceFactory</span><span class="p">(</span><span class="dl">"</span><span class="s2">worldCountry</span><span class="dl">"</span><span class="p">),</span>
+  <span class="na">strategy</span><span class="p">:</span> <span class="dl">"</span><span class="s2">depthfirst</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">order</span><span class="p">:</span> <span class="dl">"</span><span class="s2">preorder</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">visitAllFilter</span><span class="p">,</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">inboundExpander</span><span class="p">,</span>
+  <span class="na">maxDepth</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">startVertex</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_document</span><span class="p">(</span><span class="dl">"</span><span class="s2">v/world</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">visited</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">vertices</span><span class="p">:</span> <span class="p">[</span> <span class="p">],</span>
+    <span class="na">paths</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">traverser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">Traverser</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="nx">traverser</span><span class="p">.</span><span class="nx">traverse</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">startVertex</span><span class="p">);</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb</span><span class="dl">"</span><span class="p">).</span><span class="nx">print</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">visited</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> (</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">type</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}));</span>
+</code></pre></div></div>
+
+<p>The result is an array of vertices that were visited during the traversal, starting at the
+start vertex (i.e. <em>v/world</em> in our example):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="dl">"</span><span class="s2">World (root)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Africa (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Asia (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Australia (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Europe (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">North America (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">South America (continent)</span><span class="dl">"</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p><strong>Note</strong>: The result is limited to vertices directly connected to the start vertex. We
+achieved this by setting the <em>maxDepth</em> attribute to <em>1</em>. Not setting it would return the
+full array of vertices.</p>
+
+<h2 id="traversal-direction">Traversal Direction</h2>
+
+<p>For the examples contained in this manual, we’ll be starting the traversals at vertex
+<em>v/world</em>. Vertices in our graph are connected like this:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">v</span><span class="o">/</span><span class="nx">world</span> <span class="o">&lt;-</span> <span class="nx">is</span><span class="o">-</span><span class="k">in</span> <span class="o">&lt;-</span> <span class="nx">continent</span> <span class="p">(</span><span class="nx">Africa</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nx">is</span><span class="o">-</span><span class="k">in</span> <span class="o">&lt;-</span> <span class="nx">country</span> <span class="p">(</span><span class="nx">Algeria</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nx">is</span><span class="o">-</span><span class="k">in</span> <span class="o">&lt;-</span> <span class="nx">capital</span> <span class="p">(</span><span class="nx">Algiers</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>To get any meaningful results, we must traverse the graph in <strong>inbound</strong> order. This means,
+we’ll be following all incoming edges of to a vertex. In the traversal configuration, we
+have specified this via the <em>expander</em> attribute:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">inboundExpander</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>For other graphs, we might want to traverse via the <strong>outgoing</strong> edges. For this, we can
+use the <em>outboundExpander</em>. There is also an <em>anyExpander</em>, which will follow both outgoing
+and incoming edges. This should be used with care and the traversal should always be
+limited to a maximum number of iterations (e.g. using the <em>maxIterations</em> attribute) in
+order to terminate at some point.</p>
+
+<p>To invoke the default outbound expander for a graph, simply use the predefined function:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">outboundExpander</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Please note the outbound expander will not produce any output for the examples if we still
+start the traversal at the <em>v/world</em> vertex.</p>
+
+<p>Still, we can use the outbound expander if we start somewhere else in the graph, e.g.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">traversal</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb/graph/traversal</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">datasource</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">generalGraphDatasourceFactory</span><span class="p">(</span><span class="dl">"</span><span class="s2">world_graph</span><span class="dl">"</span><span class="p">),</span>
+  <span class="na">strategy</span><span class="p">:</span> <span class="dl">"</span><span class="s2">depthfirst</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">order</span><span class="p">:</span> <span class="dl">"</span><span class="s2">preorder</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">visitAllFilter</span><span class="p">,</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">outboundExpander</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">startVertex</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">_document</span><span class="p">(</span><span class="dl">"</span><span class="s2">v/capital-algiers</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">visited</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">vertices</span><span class="p">:</span> <span class="p">[</span> <span class="p">],</span>
+    <span class="na">paths</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">traverser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">Traverser</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="nx">traverser</span><span class="p">.</span><span class="nx">traverse</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">startVertex</span><span class="p">);</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb</span><span class="dl">"</span><span class="p">).</span><span class="nx">print</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">visited</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> (</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">type</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}));</span>
+</code></pre></div></div>
+
+<p>The result is:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="dl">"</span><span class="s2">Algiers (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Algeria (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Africa (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">World (root)</span><span class="dl">"</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>which confirms that now we’re going outbound.</p>
+
+<h2 id="traversal-strategy">Traversal Strategy</h2>
+
+<h3 id="depth-first-traversals">Depth-first traversals</h3>
+
+<p>The visitation order of vertices is determined by the <em>strategy</em> and <em>order</em> attributes set
+in the configuration. We chose <em>depthfirst</em> and <em>preorder</em>, meaning the traverser will 
+visit each vertex <strong>before</strong> handling connected edges (pre-order), and descend into any 
+connected edges before processing other vertices on the same level (depth-first).</p>
+
+<p>Let’s remove the <em>maxDepth</em> attribute now. We’ll now be getting all vertices (directly
+and indirectly connected to the start vertex):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">datasource</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">generalGraphDatasourceFactory</span><span class="p">(</span><span class="dl">"</span><span class="s2">world_graph</span><span class="dl">"</span><span class="p">),</span>
+  <span class="na">strategy</span><span class="p">:</span> <span class="dl">"</span><span class="s2">depthfirst</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">order</span><span class="p">:</span> <span class="dl">"</span><span class="s2">preorder</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">visitAllFilter</span><span class="p">,</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">inboundExpander</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">visited</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">vertices</span><span class="p">:</span> <span class="p">[</span> <span class="p">],</span>
+    <span class="na">paths</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">traverser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">Traverser</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="nx">traverser</span><span class="p">.</span><span class="nx">traverse</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">startVertex</span><span class="p">);</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb</span><span class="dl">"</span><span class="p">).</span><span class="nx">print</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">visited</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">vertex</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">"</span><span class="s2"> (</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">type</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}));</span>
+</code></pre></div></div>
+
+<p>The result will be a longer array, assembled in depth-first, pre-order order. For 
+each continent found, the traverser will descend into linked countries, and then into
+the linked capital:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="dl">"</span><span class="s2">World (root)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Africa (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Algeria (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Algiers (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Angola (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Luanda (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Botswana (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Gaborone (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Burkina Faso (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Ouagadougou (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Let’s switch the <em>order</em> attribute from <em>preorder</em> to <em>postorder</em>. This will make the
+traverser visit vertices <strong>after</strong> all connected vertices were visited (i.e. most distant
+vertices will be emitted first):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="dl">"</span><span class="s2">Algiers (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Algeria (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Luanda (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Angola (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Gaborone (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Botswana (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Ouagadougou (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Burkina Faso (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Bujumbura (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Burundi (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Yaounde (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Cameroon (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">N'Djamena (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Chad (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Yamoussoukro (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Cote d'Ivoire (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Cairo (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Egypt (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Asmara (capital)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Eritrea (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Africa (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<h3 id="breadth-first-traversals">Breadth-first traversals</h3>
+
+<p>If we go back to <em>preorder</em>, but change the strategy to <em>breadth-first</em> and re-run the 
+traversal, we’ll see that the return order changes, and items on the same level will be 
+returned adjacently:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="dl">"</span><span class="s2">World (root)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Africa (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Asia (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Australia (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Europe (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">North America (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">South America (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Burkina Faso (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Burundi (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Cameroon (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Chad (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Algeria (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Angola (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p><strong>Note</strong>: The order of items returned for the same level is undefined.
+This is because there is no natural order of edges for a vertex with
+multiple connected edges. To explicitly set the order for edges on the
+same level, you can specify an edge comparator function with the <em>sort</em>
+attribute:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">sort</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">l</span><span class="p">.</span><span class="nx">_key</span> <span class="o">&lt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">_key</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The arguments l and r are edge documents.
+This will traverse edges of the same vertex in backward <em>_key</em> order:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
+  <span class="dl">"</span><span class="s2">World (root)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">South America (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">North America (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Europe (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Australia (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Asia (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Africa (continent)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Ecuador (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Colombia (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Chile (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Brazil (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Bolivia (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">Argentina (country)</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p><strong>Note</strong>: This attribute only works for the usual expanders
+<em>traversal.inboundExpander</em>, <em>traversal.outboundExpander</em>,
+<em>traversal.anyExpander</em> and their corresponding “WithLabels” variants.
+If you are using custom expanders
+you have to organize the sorting within the specified expander.</p>
+
+<h3 id="writing-custom-visitors">Writing Custom Visitors</h3>
+
+<p>So far we have used much of the traverser’s default functions. The traverser is very
+configurable and many of the default functions can be overridden with custom functionality.</p>
+
+<p>For example, we have been using the default visitor function (which is always used if
+the configuration does not contain the <em>visitor</em> attribute). The default visitor function
+is called for each vertex in a traversal, and will push it into the result.
+This is the reason why the <em>result</em> variable looked different after the traversal, and
+needed to be initialized before the traversal was started.</p>
+
+<p>Note that the default visitor (named <code class="language-plaintext highlighter-rouge">trackingVisitor</code>) will add every visited vertex
+into the result, including the full paths from the start vertex. This is useful for learning and
+debugging purposes, but should be avoided in production because it might produce (and
+copy) huge amounts of data. Instead, only those data should be copied into the result 
+that are actually necessary.</p>
+
+<p>The traverser comes with the following predefined visitors:</p>
+<ul>
+  <li><em>trackingVisitor</em>: this is the default visitor. It will copy all data of each visited
+vertex plus the full path information into the result. This can be slow if the result
+set is huge or vertices contain a lot of data.</li>
+  <li><em>countingVisitor</em>: this is a very lightweight visitor: all it does is increase a
+counter in the result for each vertex visited. Vertex data and paths will not be copied
+into the result.</li>
+  <li><em>doNothingVisitor</em>: if no action shall be carried out when a vertex is visited, this
+visitor can be employed. It will not do anything and will thus be fast. It can be used
+for performance comparisons with other visitors.</li>
+</ul>
+
+<p>We can also write our own visitor function if we want to. The general function signature for
+visitor functions is as follows:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">visitor</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">connected</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Note: the <em>connected</em> parameter value will only be set if the traversal order is
+set to <em>preorder-expander</em>. Otherwise, this parameter won’t be set by the traverser.</p>
+
+<p>Visitor functions are not expected to return any values. Instead, they can modify the
+<em>result</em> variable (e.g. by pushing the current vertex into it), or do anything else.
+For example, we can create a simple visitor function that only prints information about
+the current vertex as we traverse:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">datasource</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">generalGraphDatasourceFactory</span><span class="p">(</span><span class="dl">"</span><span class="s2">world_graph</span><span class="dl">"</span><span class="p">),</span>
+  <span class="na">strategy</span><span class="p">:</span> <span class="dl">"</span><span class="s2">depthfirst</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">order</span><span class="p">:</span> <span class="dl">"</span><span class="s2">preorder</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">visitAllFilter</span><span class="p">,</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">inboundExpander</span><span class="p">,</span>
+  <span class="na">visitor</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb</span><span class="dl">"</span><span class="p">).</span><span class="nx">print</span><span class="p">(</span><span class="dl">"</span><span class="s2">visiting vertex</span><span class="dl">"</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">traverser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">Traverser</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+<span class="nx">traverser</span><span class="p">.</span><span class="nx">traverse</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">startVertex</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>To write a visitor that increments a counter each time a vertex is visited,
+we could write the following custom visitor:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">config</span><span class="p">.</span><span class="nx">visitor</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">connected</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">result</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="dl">'</span><span class="s1">count</span><span class="dl">'</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">result</span><span class="p">.</span><span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="o">++</span><span class="nx">result</span><span class="p">.</span><span class="nx">count</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that such visitor is already predefined (it’s the countingVisitor described
+above). It can be used as follows:</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">config</span><span class="p">.</span><span class="nx">visitor</span> <span class="o">=</span> <span class="nx">traversal</span><span class="p">.</span><span class="nx">countingVisitor</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Another example of a visitor is one that collects the <code class="language-plaintext highlighter-rouge">_id</code> values of all vertices 
+visited:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">config</span><span class="p">.</span><span class="nx">visitor</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">connected</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">result</span> <span class="o">=</span> <span class="p">{</span> <span class="p">};</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">result</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="dl">"</span><span class="s2">visited</span><span class="dl">"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">result</span><span class="p">.</span><span class="nx">visited</span> <span class="o">=</span> <span class="p">{</span> <span class="na">vertices</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span> <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nx">result</span><span class="p">.</span><span class="nx">visited</span><span class="p">.</span><span class="nx">vertices</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">vertex</span><span class="p">.</span><span class="nx">_id</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>When the traversal order is set to <em>preorder-expander</em>, the traverser will pass
+a fifth parameter value into the visitor function. This parameter contains the
+connected edges of the visited vertex as an array. This can be handy because in this
+case the visitor will get all information about the vertex and the connected edges
+together.</p>
+
+<p>For example, the following visitor can be used to print only leaf nodes (that
+do not have any further connected edges):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">config</span><span class="p">.</span><span class="nx">visitor</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">connected</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">connected</span> <span class="o">&amp;&amp;</span> <span class="nx">connected</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">@arangodb</span><span class="dl">"</span><span class="p">).</span><span class="nx">print</span><span class="p">(</span><span class="dl">"</span><span class="s2">found a leaf-node: </span><span class="dl">"</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Note that for this visitor to work, the traversal <em>order</em> attribute needs to be
+set to the value <em>preorder-expander</em>.</p>
+
+<h2 id="filtering-vertices-and-edges">Filtering Vertices and Edges</h2>
+
+<h3 id="filtering-vertices">Filtering Vertices</h3>
+
+<p>So far we have printed or returned all vertices that were visited during the traversal. 
+This is not always required. If the result shall be restrict to just specific vertices, 
+we can use a filter function for vertices. It can be defined by setting the <em>filter</em> 
+attribute of a traversal configuration, e.g.:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">vertex</span><span class="p">.</span><span class="nx">type</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">capital</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">'</span><span class="s1">exclude</span><span class="dl">'</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The above filter function will exclude all vertices that do not have a <em>type</em> value of
+<em>capital</em>. The filter function will be called for each vertex found during the traversal.
+It will receive the traversal configuration, the current vertex, and the full path from 
+the traversal start vertex to the current vertex. The path consists of an array of edges, 
+and an array of vertices. We could also filter everything but capitals by checking the
+length of the path from the start vertex to the current vertex. Capitals will have a
+distance of 3 from the <em>v/world</em> start vertex
+(capital → is-in → country → is-in → continent → is-in → world):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">edges</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">'</span><span class="s1">exclude</span><span class="dl">'</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Note</strong>: If a filter function returns nothing (or <em>undefined</em>), the current vertex
+will be included, and all connected edges will be followed. If a filter function
+returns <em>exclude</em> the current vertex will be excluded from the result, and all still
+all connected edges will be followed. If a filter function returns <em>prune</em>, the
+current vertex will be included, but no connected edges will be followed.</p>
+
+<p>For example, the following filter function will not descend into connected edges of
+continents, limiting the depth of the traversal. Still, continent vertices will be
+included in the result:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">vertex</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">continent</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="dl">'</span><span class="s1">prune</span><span class="dl">'</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It is also possible to combine <em>exclude</em> and <em>prune</em> by returning an array with both
+values:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="p">[</span> <span class="dl">'</span><span class="s1">exclude</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">prune</span><span class="dl">'</span> <span class="p">];</span>
+</code></pre></div></div>
+
+<h2 id="filtering-edges">Filtering Edges</h2>
+
+<p>It is possible to exclude certain edges from the traversal. To filter on edges, a
+filter function can be defined via the <em>expandFilter</em> attribute. The <em>expandFilter</em>
+is a function which is called for each edge during a traversal.</p>
+
+<p>It will receive the current edge (<em>edge</em> variable) and the vertex which the edge
+connects to (in the direction of the traversal). It also receives the current path
+from the start vertex up to the current vertex (excluding the current edge and the
+vertex the edge points to).</p>
+
+<p>If the function returns <em>true</em>, the edge will be followed. If the function returns
+<em>false</em>, the edge will not be followed.
+Here is a very simple custom edge filter function implementation, which simply
+includes edges if the (edges) path length is less than 1, and will exclude any
+other edges. This will effectively terminate the traversal after the first level 
+of edges:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">expandFilter</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">edge</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">edges</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="writing-custom-expanders">Writing Custom Expanders</h2>
+
+<p>The edges connected to a vertex are determined by the expander. So far we have used a 
+default expander (the default inbound expander to be precise). The default inbound 
+expander simply enumerates all connected ingoing edges for a vertex, based on the
+<a href="appendix-glossary.html#edge-collection">edge collection</a> specified in the traversal configuration.</p>
+
+<p>There is also a default outbound expander, which will enumerate all connected outgoing
+edges. Finally, there is an any expander, which will follow both ingoing and outgoing
+edges.</p>
+
+<p>If connected edges must be determined in some different fashion for whatever reason, a
+custom expander can be written and registered by setting the <em>expander</em> attribute of the 
+configuration. The expander function signature is as follows:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It is the expander’s responsibility to return all edges and vertices directly
+connected to the current vertex (which is passed via the <em>vertex</em> variable).
+The full path from the start vertex up to the current vertex is also supplied via
+the <em>path</em> variable.
+An expander is expected to return an array of objects, which need to have an <em>edge</em>
+and a <em>vertex</em> attribute each.</p>
+
+<p><strong>Note</strong>: If you want to rely on a particular order in which the edges
+are traversed, you have to sort the edges returned by your expander
+within the code of the expander. The functions to get outbound, inbound
+or any edges from a vertex do not guarantee any particular order!</p>
+
+<p>A custom implementation of an inbound expander could look like this (this is a
+non-deterministic expander, which randomly decides whether or not to include
+connected edges):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">connected</span> <span class="o">=</span> <span class="p">[</span> <span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">datasource</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">datasource</span><span class="p">;</span>
+    <span class="nx">datasource</span><span class="p">.</span><span class="nx">getInEdges</span><span class="p">(</span><span class="nx">vertex</span><span class="p">.</span><span class="nx">_id</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">edge</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">connected</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="na">edge</span><span class="p">:</span> <span class="nx">edge</span><span class="p">,</span> <span class="na">vertex</span><span class="p">:</span> <span class="p">(</span><span class="nx">edge</span><span class="p">.</span><span class="nx">_from</span><span class="p">)</span> <span class="p">});</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">connected</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>A custom expander can also be used as an edge filter because it has full control
+over which edges will be returned.</p>
+
+<p>Following are two examples of custom expanders that pick edges based on attributes
+of the edges and the connected vertices.</p>
+
+<p>Finding the connected edges / vertices based on an attribute <em>when</em> in the
+connected vertices. The goal is to follow the edge that leads to the vertex
+with the highest value in the <em>when</em> attribute:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">datasource</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">datasource</span><span class="p">;</span>
+    <span class="c1">// determine all outgoing edges</span>
+    <span class="kd">var</span> <span class="nx">outEdges</span> <span class="o">=</span> <span class="nx">datasource</span><span class="p">.</span><span class="nx">getOutEdges</span><span class="p">(</span><span class="nx">vertex</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">outEdges</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">[</span> <span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[</span> <span class="p">];</span>
+    <span class="nx">outEdges</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">edge</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">data</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="na">edge</span><span class="p">:</span> <span class="nx">edge</span><span class="p">,</span> <span class="na">vertex</span><span class="p">:</span> <span class="nx">datasource</span><span class="p">.</span><span class="nx">getInVertex</span><span class="p">(</span><span class="nx">edge</span><span class="p">)</span> <span class="p">});</span>
+    <span class="p">});</span>
+
+    <span class="c1">// sort outgoing vertices according to "when" attribute value</span>
+    <span class="nx">data</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">vertex</span><span class="p">.</span><span class="nx">when</span> <span class="o">===</span> <span class="nx">r</span><span class="p">.</span><span class="nx">vertex</span><span class="p">.</span><span class="nx">when</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">vertex</span><span class="p">.</span><span class="nx">when</span> <span class="o">&lt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">vertex</span><span class="p">.</span><span class="nx">when</span> <span class="p">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">// pick first vertex found (with highest "when" attribute value)</span>
+    <span class="k">return</span> <span class="p">[</span> <span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">];</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Finding the connected edges / vertices based on an attribute <em>when</em> in the
+edge itself. The goal is to pick the one edge (out of potentially many) that
+has the highest <em>when</em> attribute value:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="na">expander</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">vertex</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">datasource</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">datasource</span><span class="p">;</span>
+    <span class="c1">// determine all outgoing edges</span>
+    <span class="kd">var</span> <span class="nx">outEdges</span> <span class="o">=</span> <span class="nx">datasource</span><span class="p">.</span><span class="nx">getOutEdges</span><span class="p">(</span><span class="nx">vertex</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">outEdges</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">[</span> <span class="p">];</span> <span class="c1">// return an empty array</span>
+    <span class="p">}</span>
+
+    <span class="c1">// sort all outgoing edges according to "when" attribute</span>
+    <span class="nx">outEdges</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">when</span> <span class="o">===</span> <span class="nx">r</span><span class="p">.</span><span class="nx">when</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">when</span> <span class="o">&lt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">when</span> <span class="p">?</span> <span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="c1">// return first edge (the one with highest "when" value)</span>
+    <span class="kd">var</span> <span class="nx">edge</span> <span class="o">=</span> <span class="nx">outEdges</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">datasource</span><span class="p">.</span><span class="nx">getInVertex</span><span class="p">(</span><span class="nx">edge</span><span class="p">);</span>
+      <span class="k">return</span> <span class="p">[</span> <span class="p">{</span> <span class="na">edge</span><span class="p">:</span> <span class="nx">edge</span><span class="p">,</span> <span class="na">vertex</span><span class="p">:</span> <span class="nx">v</span> <span class="p">}</span> <span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">[</span> <span class="p">];</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="handling-uniqueness">Handling Uniqueness</h2>
+
+<p>Graphs may contain cycles. To be on top of what happens when a traversal encounters a vertex
+or an edge it has already visited, there are configuration options.</p>
+
+<p>The default configuration is to visit every vertex, regardless of whether it was already visited
+in the same traversal. However, edges will by default only be followed if they are not already 
+present in the current path.</p>
+
+<p>Imagine the following graph which contains a cycle:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A -&gt; B -&gt; C -&gt; A
+</code></pre></div></div>
+
+<p>When the traversal finds the edge from <em>C</em> to <em>A</em>, it will by default follow it. This is because
+we have not seen this edge yet. It will also visit vertex <em>A</em> again. This is because by default
+all vertices will be visited, regardless of whether already visited or not.</p>
+
+<p>However, the traversal will not again following the outgoing edge from <em>A</em> to <em>B</em>. This is because
+we already have the edge from <em>A</em> to <em>B</em> in our current path.</p>
+
+<p>These default settings will prevent infinite traversals.</p>
+
+<p>To adjust the uniqueness for visiting vertices, there are the following options for <em>uniqueness.vertices</em>:</p>
+
+<ul>
+  <li><em>“none”</em>: always visit a vertices, regardless of whether it was already visited or not</li>
+  <li><em>“global”</em>: visit a vertex only if it was not visited in the traversal</li>
+  <li><em>“path”</em>: visit a vertex if it is not included in the current path</li>
+</ul>
+
+<p>To adjust the uniqueness for following edges, there are the following options for <em>uniqueness.edges</em>:</p>
+
+<ul>
+  <li><em>“none”</em>: always follow an edge, regardless of whether it was followed before</li>
+  <li><em>“global”</em>: follow an edge only if it wasn’t followed in the traversal</li>
+  <li><em>“path”</em>: follow an edge if it is not included in the current path</li>
+</ul>
+
+<p>Note that uniqueness checking will have some effect on both runtime and memory usage. For example, when
+uniqueness checks are set to <em>“global”</em>, arrays of visited vertices and edges must be kept in memory while the
+traversal is executed. Global uniqueness should thus only be used when a traversal is expected to visit
+few nodes.</p>
+
+<p>In terms of runtime, turning off uniqueness checks (by setting both options to <em>“none”</em>) is the best choice,
+but it is only safe for graphs that do not contain cycles. When uniqueness checks are deactivated in a graph
+with cycles, the traversal might not abort in a sensible amount of time.</p>
+
+<h2 id="optimizations">Optimizations</h2>
+
+<p>There are a few options for making a traversal run faster.</p>
+
+<p>The best option is to make the amount of visited vertices and followed edges as small as possible. This can
+be achieved by writing custom filter and expander functions. Such functions should only include vertices of
+interest, and only follow edges that might be interesting.</p>
+
+<p>Traversal depth can also be bounded with the <em>minDepth</em> and <em>maxDepth</em> options.</p>
+
+<p>Another way to speed up traversals is to write a custom visitor function. The default visitor function 
+(<em>trackingVisitor</em>) will copy every visited vertex into the result. If vertices contain lots of data, 
+this might be expensive. It is therefore recommended to only copy such data into the result that is actually 
+needed. The default visitor function will also copy the full path to the visited document into the result. 
+This is even more expensive and should be avoided if possible.</p>
+
+<p>If the goal of a traversal is to only count the number of visited vertices, the prefab <em>countingVisitor</em><br />
+will be much more efficient than the default visitor.</p>
+
+<p>For graphs that are known to not contain any cycles, uniqueness checks should be turned off. This can achieved
+via the <em>uniqueness</em> configuration options. Note that uniqueness checks should not be turned off for graphs
+that are known contain cycles or if there is no information about the graph’s structure.</p>
+
+<p>By default, a traversal will only process a limited number of vertices. This is protect the user from
+unintentionally run a never-ending traversal on a graph with cyclic data. How many vertices will be processed
+at most is determined by the <em>maxIterations</em> configuration option. If a traversal hits the cap specified 
+by <em>maxIterations</em>, it will abort and throw a <em>too many iterations</em> exception. If this error is encountered,
+the <em>maxIterations</em> value should be increased if it is made sure that the other traversal configuration
+parameters are sane and the traversal will abort naturally at some point.</p>
+
+<p>Finally, the <em>buildVertices</em> configuration option can be set to <em>false</em> to avoid looking up and fully constructing
+vertex data. If all that’s needed from vertices are the <em>_id</em> or <em>_key</em> attributes, the <em>buildvertices</em> 
+option can be set to <em>false</em>. If visitor, filter or expandFilter functions need to access other vertex
+attributes, the option should not be changed.</p>
+
+<h2 id="configuration-overview">Configuration Overview</h2>
+
+<p>This section summarizes the configuration attributes for the traversal object. The
+configuration can consist of the following attributes:</p>
+
+<ul>
+  <li>
+    <p><em>visitor</em>: visitor function for vertices. It will be called for all non-excluded vertices. The
+general visitor function signature is <em>function (config, result, vertex, path)</em>. If the traversal
+order is <em>preorder-expander</em>, the connecting edges of the visited vertex will be passed as the
+fifth parameter, extending the function signature to: <em>function (config, result, vertex, path, edges)</em>.</p>
+
+    <p>Visitor functions are not expected to return values, but they may modify the <em>result</em> variable as 
+needed (e.g. by pushing vertex data into the result).</p>
+  </li>
+  <li><em>expander</em>: expander function that is responsible for returning edges and vertices
+directly connected to a vertex. The function signature is <em>function (config, vertex, path)</em>.
+The expander function is required to return an array of connection objects, consisting of an
+<em>edge</em> and <em>vertex</em> attribute each. If there are no connecting edges, the expander is expected to
+return an empty array.</li>
+  <li><em>filter</em>: vertex filter function. The function signature is <em>function (config, vertex, path)</em>. It
+may return one of the following values:
+    <ul>
+      <li><em>undefined</em>: vertex will be included in the result and connected edges will be traversed</li>
+      <li><em>“exclude”</em>: vertex will not be included in the result and connected edges will be traversed</li>
+      <li><em>“prune”</em>: vertex will be included in the result but connected edges will not be traversed</li>
+      <li>
+        <p>be returned</p>
+      </li>
+    </ul>
+  </li>
+  <li><em>expandFilter</em>: filter function applied on each edge/vertex combination determined by the expander.
+The function signature is <em>function (config, vertex, edge, path)</em>. The function should return
+<em>true</em> if the edge/vertex combination should be processed, and <em>false</em> if it should be ignored.</li>
+  <li><em>sort</em>: a filter function to determine the order in which connected edges are processed. The
+function signature is <em>function (l, r)</em>. The function is required to return one of the following
+values:
+    <ul>
+      <li><em>-1</em> if <em>l</em> should have a sort value less than <em>r</em></li>
+      <li><em>1</em> if <em>l</em> should have a higher sort value than <em>r</em></li>
+      <li><em>0</em> if <em>l</em> and <em>r</em> have the same sort value</li>
+    </ul>
+  </li>
+  <li><em>strategy</em>: determines the visitation strategy. Possible values are <em>depthfirst</em> and <em>breadthfirst</em>.</li>
+  <li><em>order</em>: determines the visitation order. Possible values are <em>preorder</em>, <em>postorder</em>, and
+<em>preorder-expander</em>. <em>preorder-expander</em> is the same as <em>preorder</em>, except that the signature of
+the <em>visitor</em> function will change as described above.</li>
+  <li><em>itemOrder</em>: determines the order in which connections returned by the expander will be processed. 
+Possible values are <em>forward</em> and <em>backward</em>.</li>
+  <li><em>maxDepth</em>: if set to a value greater than <em>0</em>, this will limit the traversal to this maximum depth.</li>
+  <li><em>minDepth</em>: if set to a value greater than <em>0</em>, all vertices found on a level below the <em>minDepth</em>
+level will not be included in the result.</li>
+  <li><em>maxIterations</em>: the maximum number of iterations that the traversal is allowed to perform. It is
+sensible to set this number so unbounded traversals will terminate at some point.</li>
+  <li><em>uniqueness</em>: an object that defines how repeated visitations of vertices should be handled.
+The <em>uniqueness</em> object can have a sub-attribute <em>vertices</em>, and a sub-attribute <em>edges</em>. Each
+sub-attribute can have one of the following values:
+    <ul>
+      <li><em>“none”</em>: no uniqueness constraints</li>
+      <li><em>“path”</em>: element is excluded if it is already contained in the current path. This setting may be
+sensible for graphs that contain cycles (e.g. A → B → C → A).</li>
+      <li><em>“global”</em>: element is excluded if it was already found/visited at any point during the traversal.</li>
+    </ul>
+  </li>
+  <li><em>buildVertices</em>: this attribute controls whether vertices encountered during the traversal will be
+looked up in the database and will be made available to visitor, filter, and expandFilter functions.
+By default, vertices will be looked up and made available. However, there are some special use
+cases when fully constructing vertex objects is not necessary and can be avoided. For example, if
+a traversal is meant to only count the number of visited vertices but do not read any data from 
+vertices, this option might be set to <em>true</em>.</li>
+</ul>
+
+            </section>
+            
+<section class="page-nav">
+  <a href="graphs-traversals.html">&#x276e;&nbsp;&nbsp;Traversals</a>
+  <a class="next" href="graphs-traversals-example-data.html">Example Data&nbsp;&nbsp;&#x276f;</a>
+  <div style="clear: both"></div>
+</section>
+            <div id="page-footer" class="localized-footer">
+              <hr>
+              <p>© ArangoDB - the native multi-model NoSQL database</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var disablePageToc = null;
+          if (!disablePageToc) {
+            generateToc();
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+  <!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'IOUJQ85602',
+  indexName: 'dev_DOCS',
+  apiKey: '1fc63d8ff5b71963f0354561b770b591',
+  searchFunction: function(helper) {
+    var container = document.querySelector('#search-hits');
+
+    if (helper.state.query === '') {
+        container.style.display = 'none';
+    } else {
+        container.style.display = '';
+    }
+
+    helper.search();
+  }
+});
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-searchbar',
+    placeholder: 'Search Documentation...',
+    poweredBy: false // This is required if you're on the free Community plan
+  })
+);
+search.addWidget(
+    instantsearch.widgets.hits({
+        container: '#search-hits',
+        templates: {
+            item: function(hit) {
+                return '<div class="post-item">' +
+                    '<a class="post-link" href="https://www.arangodb.com/docs'&#32;+&#32;hit.url&#32;+&#32;'"><div>' + (hit.headings[0] || "ArangoDB Documentation") + '</div>' +
+                    '<div class="post-snippet">' + hit.excerpt_text + '</div></a>' +
+                    '</div>';
+            },
+        },
+    })
+);
+
+// Starting the search
+search.start();
+</script>
+  <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/2482448.js"></script>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="index.html">
+<title>ArangoDB Oasis - The ArangoDB Cloud | ArangoDB Documentation</title>
+<meta itemprop="description" name="description" content="Oasis provides the entire functionality of ArangoDB as a service, without the need to run or manage databases yourself." />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:url" content="https://www.arangodb.com/docs/stable/oasis/" />
+<meta property="og:title" content="ArangoDB Oasis - The ArangoDB Cloud | ArangoDB Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Oasis provides the entire functionality of ArangoDB as a service, without the need to run or manage databases yourself." />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81053435-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-81053435-1');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5LQ7HC');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('provide', 'adblockTracker', function(tracker, opts) {
+    var ad = document.createElement('ins');
+    ad.className = 'AdSense';
+    ad.style.display = 'block';
+    ad.style.position = 'absolute';
+    ad.style.top = '-1px';
+    ad.style.height = '1px';
+    document.body.appendChild(ad);
+    tracker.set('dimension' + opts.dimensionIndex, !ad.clientHeight);
+    document.body.removeChild(ad);
+  });
+
+  ga('create', 'UA-81053435-6', 'auto');
+  ga('require', 'adblockTracker', {dimensionIndex: 1});
+  ga('send', 'pageview');
+</script>
+
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  twq('init','nz793');
+  twq('track','PageView');
+</script>
+
+<script type="text/javascript">
+  _linkedin_partner_id = "499017";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(){var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})();
+</script>
+
+<link rel="shortcut icon" href="../../../wp-content/uploads/2018/07/www.arangodb.com-favicon.png">
+<link rel="stylesheet" href="../../styles/gitbook/style.css">
+<link rel="stylesheet" href="../../styles/gitbook/highlight-website.css">
+<link rel="stylesheet" href="../../styles/gitbook/fontsettings-website.css">
+<link rel="stylesheet" href="../../styles/website.css">
+<link rel="stylesheet" href="../../styles/header.css">
+<link rel="stylesheet" href="../../styles/navbar.css">
+<link rel="stylesheet" href="../../styles/site.css">
+<link rel="stylesheet" href="../../styles/pygments-vs.css">
+<script src="../../js/jquery-3.4.0.min.js"></script>
+<script src="../../js/site.js"></script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ7HC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=499017&fmt=gif" /></noscript>
+
+<div class="arangodb-header">
+  <div class="arangodb-logo">
+    <a href="https://arangodb.com/">
+      <img src="../../assets/arangodb_logo_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <div class="arangodb-logo-small">
+    <a href="https://arangodb.com/">
+      <img src="../../assets/arangodb_logo_small_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <select class="arangodb-version-switcher">
+      <option value="devel">3.8</option>
+      <option value="stable">3.7</option>
+      <option value="3.6">3.6</option>
+      <option value="3.5">3.5</option>
+      <option value="3.4" disabled>3.4</option>
+      <option value="3.3" disabled>3.3</option>
+  </select>
+  <script type="text/javascript">
+    var versionAliases = {"stable":"3.7","devel":"3.8"};
+    var current = location.href;
+
+    var selectedVersion = current.split('/')[4];
+    var switcher = document.querySelector(".arangodb-version-switcher");
+
+    for (var i = 0; i < switcher.options.length; i++) {
+      var value = switcher.options.item(i).value;
+      if (value == selectedVersion) {
+        switcher.value = value;
+      } else if (versionAliases[value] == selectedVersion) {
+        switcher.value = value;
+      }
+    }
+    
+    switcher.addEventListener('change', function(event) {
+      var current = location.href;
+      var urlElements = current.split('/');
+      urlElements[4] = event.target.value;
+      var newUrl = urlElements.join("/");
+      location.href = newUrl;
+    });
+  </script>
+  <ul class="arangodb-navmenu">
+    <li>
+      <a href="../index.html" data-book="Manual">Manual</a>
+    </li>
+    <li>
+      <a href="../aql/index.html" data-book="AQL">AQL</a>
+    </li>
+    <li>
+      <a href="../http/index.html" data-book="HTTP">HTTP</a>
+    </li>
+    <li>
+      <a href="../drivers/index.html" data-book="Drivers">Drivers</a>
+    </li>
+    <li class="active-tab">
+      <a href="index.html" data-book="Oasis">Oasis</a>
+    </li>
+    <li class="socialIcons" title="GitHub">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons" title="StackOverflow">
+      <a href="https://stackoverflow.com/questions/tagged/arangodb" target="_blank">
+        <i class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups" title="Google Groups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="_blank">
+        <img alt="Google Groups" src="../../assets/googlegroupsIcon.png">
+      </a>
+    </li>
+    <li class="socialIcons" title="Slack">
+      <a href="https://slack.arangodb.com" target="_blank">
+        <i class="fa fa-slack"></i>
+      </a>
+    </li>
+    <li>
+      <div class="searchbar">
+        <div id="search-searchbar"></div>
+      </div>
+    </li>
+    <li class="placeholder">
+      <div style="width: 15px"></div>
+    </li>
+  </ul>
+  <div id="search-hits"></div>
+</div>
+ 
+  <div class="book with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+      <nav role="navigation">
+    <ul class="summary">
+  <li class="chapter selected active">
+  <a href="https://www.arangodb.com/docs/stable/oasis/index.html">Introduction</a>
+  </li>
+  <li class="header">GUIDES</li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/getting-started.html">Getting Started</a>
+  </li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/organizations.html">Organizations</a>
+  </li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/projects.html">Projects</a>
+  </li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/deployments.html">Deployments</a>
+  </li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/my-account.html">My Account</a>
+  </li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/users.html">Users & Groups</a>
+  </li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/access-control.html">Access Control</a>
+  </li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/backups.html">Backups</a>
+  </li>
+  <li class="header">API</li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/api.html">Oasis API</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/api-getting-started.html">Getting started with API</a>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-getting-started.html">Getting started with Oasisctl</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl.html">Oasisctl</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-options.html">Options</a>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-accept.html">Accept</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-accept-organization.html">Accept Organization</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-accept-organization-invite.html">Accept Organization Invite</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-add.html">Add</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-add-group.html">Add Group</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-add-group-members.html">Add Group Members</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-backup.html">Backup</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-backup-download.html">Backup Download</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-clone.html">Clone</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-clone-deployment.html">Clone Deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-clone-deployment-backup.html">Clone Deployment Backup</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-completion.html">Completion</a>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create.html">Create</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-apikey.html">Create API Key</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-backup.html">Create Backup</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-cacertificate.html">Create CA Certificate</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-deployment.html">Create Deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-example.html">Create Example</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-example-installation.html">Create Example Installation</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-group.html">Create Group</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-ipallowlist.html">Create IP Allowlist</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-organization.html">Create Organization</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-organization-invite.html">Create Organization Invite</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-project.html">Create Project</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-create-role.html">Create Role</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete.html">Delete</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-apikey.html">Delete API Key</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-backup.html">Delete Backup</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-cacertificate.html">Delete CA Certificate</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-deployment.html">Delete Deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-example.html">Delete Example</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-example-installation.html">Delete Example Installation</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-group.html">Delete Group</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-group-members.html">Delete Group Members</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-ipallowlist.html">Delete IP Allowlist</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-organization.html">Delete Organization</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-organization-invite.html">Delete Organization Invite</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-organization-members.html">Delete Organization Members</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-project.html">Delete Project</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-delete-role.html">Delete Role</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-generate-docs.html">Generate Docs</a>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get.html">Get</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-backup.html">Get Backup</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-cacertificate.html">Get CA Certificate</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-deployment.html">Get Deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-example.html">Get Example</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-example-installation.html">Get Example Installation</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-group.html">Get Group</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-ipallowlist.html">Get IP Allowlist</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-organization.html">Get Organization</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-organization-invite.html">Get Organization Invite</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-policy.html">Get Policy</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-project.html">Get Project</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-provider.html">Get Provider</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-region.html">Get Region</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-role.html">Get Role</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-self.html">Get Self</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-server.html">Get Server</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-server-status.html">Get Server Status</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-get-tandc.html">Get Terms & Conditions</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-import.html">Import</a>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list.html">List</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-apikeys.html">List API Keys</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-arangodb.html">List ArangoDB</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-arangodb-versions.html">List ArangoDB Versions</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-backups.html">List Backups</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-cacertificates.html">List CA Certificates</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-cpusizes.html">List CPU Sizes</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-deployments.html">List Deployments</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-effective.html">List Effective</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-effective-permissions.html">List Effective Permissions</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-example.html">List Example</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-example-installations.html">List Example Installations</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-examples.html">List Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-group.html">List Group</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-group-members.html">List Group Members</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-groups.html">List Groups</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-ipallowlists.html">List IP Allowlists</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-nodesizes.html">List Node Sizes</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-organization.html">List Organization</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-organization-invites.html">List Organization Invites</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-organization-members.html">List Organization Members</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-organizations.html">List Organizations</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-permissions.html">List Permissions</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-projects.html">List Projects</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-providers.html">List Providers</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-regions.html">List Regions</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-roles.html">List Roles</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-list-servers.html">List Servers</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-login.html">Login</a>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-logs.html">Logs</a>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-reject.html">Reject</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-reject-organization.html">Reject Organization</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-reject-organization-invite.html">Reject Organization Invite</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-renew.html">Renew</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-renew-apikey.html">Renew API Key</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-renew-apikey-token.html">Renew API Key Token</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-resume.html">Resume</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-resume-deployment.html">Resume Deployment</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-revoke.html">Revoke</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-revoke-apikey.html">Revoke API Key</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-revoke-apikey-token.html">Revoke API Key Token</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update.html">Update</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-backup.html">Update Backup</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-cacertificate.html">Update CA Certificate</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-deployment.html">Update Deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-group.html">Update Group</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-ipallowlist.html">Update IP Allowlist</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-organization.html">Update Organization</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-policy.html">Update Policy</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-policy-add.html">Update Policy Add</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-policy-add-binding.html">Update Policy Add Binding</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-policy-delete.html">Update Policy Delete</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-policy-delete-binding.html">Update Policy Delete Binding</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-project.html">Update Project</a>
+          </li>
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-update-role.html">Update Role</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-version.html">Version</a>
+      </li>
+      <li class="chapter">
+      <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-wait.html">Wait</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="https://www.arangodb.com/docs/stable/oasis/oasisctl-wait-deployment.html">Wait Deployment</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</nav>
+    </div>
+    <div class="book-body">
+      <script type="text/javascript">
+          var availableVersions = ["devel","stable","3.6","3.5",];
+          versionSwitcherSetAvailable(availableVersions);
+      </script>
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <a class="btn pull-left js-toolbar-action hamburger" aria-label=""><i class="fa fa-align-justify"></i></a>
+          <a class="btn pull-left js-toolbar-action" aria-label="" href="https://github.com/arangodb/docs/edit/master/3.7/oasis/index.md" target="_blank"><i class="fa fa-github"></i> Contribute</a>
+        </div>
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+            <section class="normal markdown-section">
+              <p><img src="images/arangodb-oasis-logo-right.svg" alt="ArangoDB Oasis Logo" class="center-image" style="width: 66%; margin-bottom: 80px;" /></p>
+
+<p><a href="https://cloud.arangodb.com/home?utm_source=docs&amp;utm_medium=cluster_pages&amp;utm_campaign=docs_traffic" target="_blank">ArangoDB Oasis</a>,
+the ArangoDB Cloud, provides ArangoDB databases as a Service (DBaaS).
+It enables you to use the entire functionality of an ArangoDB cluster
+deployment without the need to run or manage the system yourself.</p>
+
+<p>The ArangoDB Cloud…</p>
+
+<ul>
+  <li>
+    <p>runs your databases in data centers of the cloud provider
+of your choice: Google Cloud Platform (GCP), Amazon Web Services (AWS),
+Microsoft Azure. This optimizes performance and reduces cost.</p>
+  </li>
+  <li>
+    <p>ensures that your databases are always available and
+healthy by monitoring them 24/7.</p>
+  </li>
+  <li>
+    <p>ensures that your databases are kept up to date by
+installing new versions without service interruption.</p>
+  </li>
+  <li>
+    <p>ensures that your data is safe by providing encryption &amp;
+audit logs and making frequent data backups.</p>
+  </li>
+  <li>
+    <p>guarantees that your data always remains your property and
+access to it is protected with industry standard safeguards.</p>
+  </li>
+</ul>
+
+<p>For more information see
+<a href="https://cloud.arangodb.com/home?utm_source=docs&amp;utm_medium=cluster_pages&amp;utm_campaign=docs_traffic" target="_blank">cloud.arangodb.com</a></p>
+
+            </section>
+            
+<section class="page-nav">
+  
+  <a class="next" href="https://www.arangodb.com/docs/stable/oasis/getting-started.html">Getting Started&nbsp;&nbsp;&#x276f;</a>
+  <div style="clear: both"></div>
+</section>
+            <div id="page-footer" class="localized-footer">
+              <hr>
+              <p>© ArangoDB - the native multi-model NoSQL database</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var disablePageToc = true;
+          if (!disablePageToc) {
+            generateToc();
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+  <!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'IOUJQ85602',
+  indexName: 'dev_DOCS',
+  apiKey: '1fc63d8ff5b71963f0354561b770b591',
+  searchFunction: function(helper) {
+    var container = document.querySelector('#search-hits');
+
+    if (helper.state.query === '') {
+        container.style.display = 'none';
+    } else {
+        container.style.display = '';
+    }
+
+    helper.search();
+  }
+});
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-searchbar',
+    placeholder: 'Search Documentation...',
+    poweredBy: false // This is required if you're on the free Community plan
+  })
+);
+search.addWidget(
+    instantsearch.widgets.hits({
+        container: '#search-hits',
+        templates: {
+            item: function(hit) {
+                return '<div class="post-item">' +
+                    '<a class="post-link" href="https://www.arangodb.com/docs'&#32;+&#32;hit.url&#32;+&#32;'"><div>' + (hit.headings[0] || "ArangoDB Documentation") + '</div>' +
+                    '<div class="post-snippet">' + hit.excerpt_text + '</div></a>' +
+                    '</div>';
+            },
+        },
+    })
+);
+
+// Starting the search
+search.start();
+</script>
+  <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/2482448.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+# robots.txt for www.arangodb.com
+
+User-agent: *
+Disallow: /manuals/*
+Disallow: /wp-content/themes/*
+Disallow: /readme/*
+Disallow: /wp-admin/*
+Disallow: /wp-includes/*
+Disallow: *.pdf$
+
+
+Sitemap: https://www.arangodb.com/sitemap_index.xml
+Sitemap: https://www.arangodb.com/docs/sitemap.xml

@@ -1,0 +1,2470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="indexing-index-basics.html">
+<title>Index Basics | Indexing | Manual | ArangoDB Documentation</title>
+<meta itemprop="description" name="description" content="Indexes allow fast access to documents, provided the indexed attribute(s) are used in a query" />
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="og:url" content="https://www.arangodb.com/docs/stable/indexing-index-basics.html" />
+<meta property="og:title" content="Index Basics | Indexing | Manual | ArangoDB Documentation" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="Indexes allow fast access to documents, provided the indexed attribute(s) are used in a query" />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-81053435-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-81053435-1');
+</script>
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5LQ7HC');
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('provide', 'adblockTracker', function(tracker, opts) {
+    var ad = document.createElement('ins');
+    ad.className = 'AdSense';
+    ad.style.display = 'block';
+    ad.style.position = 'absolute';
+    ad.style.top = '-1px';
+    ad.style.height = '1px';
+    document.body.appendChild(ad);
+    tracker.set('dimension' + opts.dimensionIndex, !ad.clientHeight);
+    document.body.removeChild(ad);
+  });
+
+  ga('create', 'UA-81053435-6', 'auto');
+  ga('require', 'adblockTracker', {dimensionIndex: 1});
+  ga('send', 'pageview');
+</script>
+
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  twq('init','nz793');
+  twq('track','PageView');
+</script>
+
+<script type="text/javascript">
+  _linkedin_partner_id = "499017";
+  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+  window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+  </script><script type="text/javascript">
+  (function(){var s = document.getElementsByTagName("script")[0];
+  var b = document.createElement("script");
+  b.type = "text/javascript";b.async = true;
+  b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+  s.parentNode.insertBefore(b, s);})();
+</script>
+
+<link rel="shortcut icon" href="../../wp-content/uploads/2018/07/www.arangodb.com-favicon.png">
+<link rel="stylesheet" href="../styles/gitbook/style.css">
+<link rel="stylesheet" href="../styles/gitbook/highlight-website.css">
+<link rel="stylesheet" href="../styles/gitbook/fontsettings-website.css">
+<link rel="stylesheet" href="../styles/website.css">
+<link rel="stylesheet" href="../styles/header.css">
+<link rel="stylesheet" href="../styles/navbar.css">
+<link rel="stylesheet" href="../styles/site.css">
+<link rel="stylesheet" href="../styles/pygments-vs.css">
+<script src="../js/jquery-3.4.0.min.js"></script>
+<script src="../js/site.js"></script>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LQ7HC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=499017&fmt=gif" /></noscript>
+
+<div class="arangodb-header">
+  <div class="arangodb-logo">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <div class="arangodb-logo-small">
+    <a href="https://arangodb.com/">
+      <img src="../assets/arangodb_logo_small_2016.png" alt="ArangoDB Logo">
+    </a>
+  </div>
+  <select class="arangodb-version-switcher">
+      <option value="devel">3.8</option>
+      <option value="stable">3.7</option>
+      <option value="3.6">3.6</option>
+      <option value="3.5">3.5</option>
+      <option value="3.4">3.4</option>
+      <option value="3.3">3.3</option>
+  </select>
+  <script type="text/javascript">
+    var versionAliases = {"stable":"3.7","devel":"3.8"};
+    var current = location.href;
+
+    var selectedVersion = current.split('/')[4];
+    var switcher = document.querySelector(".arangodb-version-switcher");
+
+    for (var i = 0; i < switcher.options.length; i++) {
+      var value = switcher.options.item(i).value;
+      if (value == selectedVersion) {
+        switcher.value = value;
+      } else if (versionAliases[value] == selectedVersion) {
+        switcher.value = value;
+      }
+    }
+    
+    switcher.addEventListener('change', function(event) {
+      var current = location.href;
+      var urlElements = current.split('/');
+      urlElements[4] = event.target.value;
+      var newUrl = urlElements.join("/");
+      location.href = newUrl;
+    });
+  </script>
+  <ul class="arangodb-navmenu">
+    <li class="active-tab">
+      <a href="index.html" data-book="Manual">Manual</a>
+    </li>
+    <li>
+      <a href="aql/index.html" data-book="AQL">AQL</a>
+    </li>
+    <li>
+      <a href="http/index.html" data-book="HTTP">HTTP</a>
+    </li>
+    <li>
+      <a href="drivers/index.html" data-book="Drivers">Drivers</a>
+    </li>
+    <li>
+      <a href="oasis/index.html" data-book="Oasis">Oasis</a>
+    </li>
+    <li class="socialIcons" title="GitHub">
+      <a href="https://github.com/ArangoDB/ArangoDB/issues" target="_blank">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="socialIcons" title="StackOverflow">
+      <a href="https://stackoverflow.com/questions/tagged/arangodb" target="_blank">
+        <i class="fa fa-stack-overflow"></i>
+      </a>
+    </li>
+    <li class="socialIcons socialIcons-googlegroups" title="Google Groups">
+      <a href="https://groups.google.com/forum/#!forum/arangodb" target="_blank">
+        <img alt="Google Groups" src="../assets/googlegroupsIcon.png">
+      </a>
+    </li>
+    <li class="socialIcons" title="Slack">
+      <a href="https://slack.arangodb.com" target="_blank">
+        <i class="fa fa-slack"></i>
+      </a>
+    </li>
+    <li>
+      <div class="searchbar">
+        <div id="search-searchbar"></div>
+      </div>
+    </li>
+    <li class="placeholder">
+      <div style="width: 15px"></div>
+    </li>
+  </ul>
+  <div id="search-hits"></div>
+</div>
+ 
+  <div class="book with-summary font-size-2 font-family-1">
+    <div class="book-summary">
+      <nav role="navigation">
+    <ul class="summary">
+  <li class="chapter">
+  <a href="index.html">Introduction</a>
+  </li>
+  <li class="chapter">
+  <a href="highlights.html">Highlights</a>
+  </li>
+  <li class="header">GETTING FAMILIAR</li>
+  <li class="chapter">
+  <a href="getting-started.html">Getting Started</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="getting-started-installation.html">Installation</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-authentication.html">Authentication</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-web-interface.html">Web Interface</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-databases-collections-documents.html">Databases, Collections and Documents</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-querying-the-database.html">Querying the Database</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-coming-from-sql.html">Coming from SQL</a>
+      </li>
+      <li class="chapter">
+      <a href="getting-started-next-steps.html">Next Steps</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="tutorials.html">Tutorials</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="tutorials-reduce-memory-footprint.html">Reduce Memory Footprint</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-starter.html">ArangoDB Starter</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-dc2-dc.html">Datacenter to datacenter Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes.html">Kubernetes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="tutorials-kubernetes-eks.html">Amazon EKS</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-gke.html">Google GKE</a>
+          </li>
+          <li class="chapter">
+          <a href="tutorials-kubernetes-aks.html">Azure AKS</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="tutorials-kubernetes-dc2-dc.html">DC2DC on Kubernetes</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="programs.html">Programs & Tools</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="programs-arangod.html">ArangoDB Server</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangod-options.html">Options</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="programs-arangod-global.html">Global</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-agency.html">Agency</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-arangosearch.html">ArangoSearch</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-audit.html">Audit</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cache.html">Cache</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-backup.html">Backup</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-compaction.html">Compaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-database.html">Database</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-foxx.html">Foxx</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-frontend.html">Frontend</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-http.html">HTTP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-javascript.html">JavaScript</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ldap.html">LDAP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-log.html">Log</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-network.html">Network</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-nonce.html">Nonce</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-query.html">Query</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-random.html">Random</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-replication.html">Replication</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rclone.html">Rclone</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-rocksdb.html">RocksDB</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-server.html">Server</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ssl.html">SSL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-tcp.html">TCP</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-temp.html">Temp</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-transaction.html">Transaction</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-ttl.html">TTL</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-vst.html">VST</a>
+              </li>
+              <li class="chapter">
+              <a href="programs-arangod-wal.html">WAL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangod-env-vars.html">Environment variables</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-web-interface.html">Web Interface</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-web-interface-dashboard.html">Dashboard</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-cluster.html">Cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-collections.html">Collections</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-document.html">Document</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-aql-editor.html">Queries</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-graphs.html">Graphs</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-services.html">Services</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-users.html">Users</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-web-interface-logs.html">Logs</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangosh.html">ArangoDB Shell</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangosh-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangosh-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-starter.html">ArangoDB Starter</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-starter-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-security.html">Security</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-starter-architecture.html">Architecture</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangodump.html">Arangodump</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangodump-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-options.html">Options</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-maskings.html">Maskings</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangodump-limitations.html">Limitations</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangorestore.html">Arangorestore</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangorestore-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-fast-cluster-restore.html">Fast Cluster Restore</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangorestore-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobackup.html">Arangobackup</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobackup-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobackup-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoimport.html">Arangoimport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-json.html">Examples JSON</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-examples-csv.html">Examples CSV</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-details.html">Details</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoimport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoexport.html">Arangoexport</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoexport-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoexport-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangobench.html">Arangobench</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangobench-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangobench-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-arangoinspect.html">Arangoinspect</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-arangoinspect-examples.html">Examples</a>
+          </li>
+          <li class="chapter">
+          <a href="programs-arangoinspect-options.html">Options</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="programs-foxx-cli.html">Foxx CLI</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="programs-foxx-cli-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="header">CORE TOPICS</li>
+  <li class="chapter">
+  <a href="data-modeling.html">Data models & modeling</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="data-modeling-concepts.html">Concepts</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-databases.html">Databases</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-databases-working-with.html">Working with Databases</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-databases-notes.html">Notes about Databases</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-collections.html">Collections</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-collections-collection-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-collections-database-methods.html">Database Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-documents.html">Documents</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-documents-document-address.html">Basics and Terminology</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-document-methods.html">Collection Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-documents-schema-validation.html">Schema Validation</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-monetary-data-without-precision-loss.html">Monetary data without precision loss</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-graphs-vertices-edges.html">Graphs, Vertices & Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-views.html">Views</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-views-database-methods.html">Database Methods</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-views-view-methods.html">View Methods</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-naming-conventions.html">Naming Conventions</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-database-names.html">Database Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-collection-and-view-names.html">Collection and View Names</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-document-keys.html">Document Keys</a>
+          </li>
+          <li class="chapter">
+          <a href="data-modeling-naming-conventions-attribute-names.html">Attribute Names</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="data-modeling-operational-factors.html">Operational Factors</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter selected">
+  <a href="indexing.html">Indexing</a>
+    <ul class="articles">
+      <li class="chapter selected active">
+      <a href="indexing-index-basics.html">Index Basics</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-which-index.html">Which index to use when</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-index-utilization.html">Index Utilization</a>
+      </li>
+      <li class="chapter">
+      <a href="indexing-working-with-indexes.html">Working with Indexes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="indexing-persistent.html">Persistent</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-ttl.html">TTL Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-fulltext.html">Fulltext Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-geo.html">Geo-spatial Indexes</a>
+          </li>
+          <li class="chapter">
+          <a href="indexing-vertex-centric.html">Vertex Centric Indexes</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="transactions.html">Transactions</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="transactions-transaction-invocation.html">Transaction invocation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-passing.html">Passing parameters</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-locking-and-isolation.html">Locking and isolation</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-durability.html">Durability</a>
+      </li>
+      <li class="chapter">
+      <a href="transactions-limitations.html">Limitations</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="graphs.html">Graphs</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="graphs-general-graphs.html">General Graphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-general-graphs-management.html">Graph Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-general-graphs-functions.html">Graph Functions</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-satellite-graphs.html">SatelliteGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-management.html">Management</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-satellite-graphs-details.html">Details</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-smart-graphs.html">SmartGraphs</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-smart-graphs-management.html">SmartGraph Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-traversals.html">Traversals</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="graphs-traversals-using-traversal-objects.html">Using Traversal Objects</a>
+          </li>
+          <li class="chapter">
+          <a href="graphs-traversals-example-data.html">Example Data</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="graphs-edges.html">Working with Edges</a>
+      </li>
+      <li class="chapter">
+      <a href="graphs-pregel.html">Pregel</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="arangosearch.html">ArangoSearch</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="arangosearch-views.html">Views</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-analyzers.html">Analyzers</a>
+      </li>
+      <li class="chapter">
+      <a href="arangosearch-examples.html">Examples</a>
+      </li>
+    </ul>
+  </li>
+  <li class="header">ADVANCED TOPICS</li>
+  <li class="chapter">
+  <a href="architecture.html">Architecture</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="architecture-deployment-modes.html">ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="architecture-deployment-modes-single-instance.html">Single Instance</a>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-master-slave-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-active-failover-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-architecture.html">Architecture</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-data-models.html">Data Models</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-sharding.html">Data Sharding</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-cluster-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="architecture-deployment-modes-dc2-dc.html">Datacenter to datacenter replication</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-introduction.html">Introduction</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-applicability.html">Applicability</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-requirements.html">Requirements</a>
+              </li>
+              <li class="chapter">
+              <a href="architecture-deployment-modes-dc2-dc-limitations.html">Limitations</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="architecture-single-instance-vs-cluster.html">Single Instance vs. Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-storage-engines.html">Storage Engines</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-replication.html">Replication</a>
+      </li>
+      <li class="chapter">
+      <a href="architecture-write-ahead-log.html">Write-ahead log</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="foxx.html">Foxx Microservices</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="foxx-getting-started.html">Getting started</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-guides.html">Guides</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-guides-routing.html">Working with routers</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-collections.html">Working with collections</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-queries.html">Writing queries</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-development-mode.html">Development mode</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-testing.html">Testing Foxx services</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-cluster.html">Foxx in a cluster</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-scripts.html">Scripts and scheduling</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-bundled-node-modules.html">Using Node modules</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-webpack.html">Using Webpack with Foxx</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-auth.html">Authentication and sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-dependencies.html">Linking services together</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-files.html">Working with files</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-making-requests.html">Making requests</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-browser.html">Access from the browser</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-guides-legacy-mode.html">Working with 2.x services</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-reference.html">Reference</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-reference-manifest.html">Service manifest</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-context.html">Service context</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-routers.html">Routers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-routers-endpoints.html">Endpoints</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-middleware.html">Middleware</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-request.html">Request</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-routers-response.html">Response</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-sessions.html">Sessions middleware</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-sessions-storages.html">Session storages</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-collection.html">Collection storage</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-storages-jwt.html">JWT storage</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-sessions-transports.html">Session transports</a>
+                <ul class="articles">
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-cookie.html">Cookie transport</a>
+                  </li>
+                  <li class="chapter">
+                  <a href="foxx-reference-sessions-transports-header.html">Header transport</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-reference-modules.html">Related modules</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-reference-modules-auth.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth1.html">OAuth 1.0a</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-oauth2.html">OAuth 2.0</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-graph-ql.html">GraphQL</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-reference-modules-queues.html">Queues</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="foxx-deployment.html">Deployment</a>
+      </li>
+      <li class="chapter">
+      <a href="foxx-migrating2x.html">Migrating 2.x services</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="foxx-migrating2x-wayback.html">Migrating from pre-2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-manifest.html">manifest.json</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-context.html">applicationContext</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-repositories.html">Repositories and Models</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-controllers.html">Controllers</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-endpoints.html">Request context</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-errors.html">Error handling</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-middleware.html">Before/After/Around</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-request.html">Request object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-response.html">Response object</a>
+              </li>
+              <li class="chapter">
+              <a href="foxx-migrating2x-controllers-io-c.html">Dependency Injection</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-sessions.html">Sessions</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-auth.html">Auth and OAuth2</a>
+          </li>
+          <li class="chapter">
+          <a href="foxx-migrating2x-queries.html">Foxx Queries</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="satellites.html">SatelliteCollections</a>
+  </li>
+  <li class="chapter">
+  <a href="smartjoins.html">SmartJoins</a>
+  </li>
+  <li class="header">OPERATIONS</li>
+  <li class="chapter">
+  <a href="installation.html">Installation</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="installation-linux.html">Linux</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-linux-osconfiguration.html">Operating System Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-linux-ostuning-scripts.html">Linux OS Tuning Script Examples</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="installation-mac-osx.html">macOS</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-windows.html">Windows</a>
+      </li>
+      <li class="chapter">
+      <a href="installation-compiling.html">Compiling</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="installation-compiling-debian.html">Compile on Debian</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-windows.html">Compile on Windows</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-running-custom-build.html">Running Custom Build</a>
+          </li>
+          <li class="chapter">
+          <a href="installation-compiling-jemalloc.html">Recompiling jemalloc</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="uninstallation.html">Uninstallation</a>
+  </li>
+  <li class="chapter">
+  <a href="deployment.html">Deployment</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="deployment-modes.html">By ArangoDB Deployment Modes</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-single-instance.html">Single Instance</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-single-instance-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-single-instance-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-master-slave.html">Master/Slave</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-master-slave-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-active-failover.html">Active Failover</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-active-failover-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-active-failover-manual-start.html">Manual Start</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cluster.html">Cluster</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-cluster-preliminary-information.html">Preliminary Information</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-using-the-starter.html">Using the ArangoDB Starter</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-manual-start.html">Manual Start</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-cluster-kubernetes.html">Kubernetes</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-dc2-dc.html">Multiple Datacenters</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-dc2-dc-cluster.html">Cluster</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-master.html">ArangoSync Master</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-arango-sync-workers.html">ArangoSync Workers</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-dc2-dc-prometheus-grafana.html">Prometheus & Grafana</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="deployment-standalone-agency.html">Standalone Agency</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-technology.html">By Technology</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-manually.html">Manually</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-arango-dbstarter.html">ArangoDB Starter</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-docker.html">Docker</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-kubernetes.html">Kubernetes</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="deployment-kubernetes-usage.html">Using the Operator</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-dashboards.html">Dashboards</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-resource.html">Deployment Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-resource.html">Backup Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-backup-policy-resource.html">BackupPolicy Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-driver-configuration.html">Driver Configuration</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-helm.html">Helm</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-authentication.html">Authentication</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-scaling.html">Scaling</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-drain.html">Draining Nodes</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-upgrading.html">Upgrading</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-config-and-secrets.html">ArangoDB Configuration & Secrets</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-metrics.html">Metrics</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-services-and-load-balancer.html">Services & Load balancer</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-deployment-replication-resource.html">Deployment Replication Resource Reference</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage.html">Storage</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-storage-resource.html">Storage Resource</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-tls.html">TLS</a>
+              </li>
+              <li class="chapter">
+              <a href="deployment-kubernetes-troubleshooting.html">Troubleshooting</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-cloud.html">In the Cloud</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="deployment-cloud-aws.html">AWS</a>
+          </li>
+          <li class="chapter">
+          <a href="deployment-cloud-azure.html">Azure</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="deployment-production-checklist.html">Production Checklist</a>
+      </li>
+      <li class="chapter">
+      <a href="deployment-migrating-single-instance-cluster.html">Migrating Single Instance to Cluster</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="backup-restore.html">Backup & Restore</a>
+  </li>
+  <li class="chapter">
+  <a href="upgrading.html">Upgrading</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="upgrading-general-info.html">General Upgrade Information</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-community-to-enterprise.html">Community to Enterprise Upgrade</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-osspecific-info.html">OS-specific Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-linux.html">Upgrading on Linux</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-mac-os.html">Upgrading on macOS</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-osspecific-info-windows.html">Upgrading on Windows</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-starter.html">Upgrading Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-manually.html">Upgrading Manual Deployments</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-manually-active-failover.html">Upgrading an Active Failover deployment</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-manually-cluster.html">Upgrading a Cluster</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-kubernetes.html">Upgrading Kubernetes Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="upgrading-version-specific.html">Version Specific Upgrade Information</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading34.html">Upgrading to 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading33.html">Upgrading to 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading32.html">Upgrading to 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading31.html">Upgrading to 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading30.html">Upgrading to 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading28.html">Upgrading to 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading26.html">Upgrading to 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading25.html">Upgrading to 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading24.html">Upgrading to 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading23.html">Upgrading to 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="upgrading-version-specific-upgrading22.html">Upgrading to 2.2</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="downgrading.html">Downgrading</a>
+  </li>
+  <li class="chapter">
+  <a href="scaling.html">Scaling</a>
+  </li>
+  <li class="chapter">
+  <a href="administration.html">Administration</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="administration-configuration.html">Configuration</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-import-export.html">Import & Export</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-managing-users.html">User Management</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-managing-users-in-arangosh.html">In Arangosh</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-engine-switch-engine.html">Switch Storage Engine</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-master-slave.html">Master/Slave</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-master-slave-setting-up.html">Setting up</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="administration-master-slave-replication-applier.html">Replication Applier</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-database-setup.html">Per-Database Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-server-level-setup.html">Server-Level Setup</a>
+              </li>
+              <li class="chapter">
+              <a href="administration-master-slave-initialize-from-backup.html">Speeding Up Slave Initialization</a>
+              </li>
+            </ul>
+          </li>
+          <li class="chapter">
+          <a href="administration-master-slave-syncing-collections.html">Syncing Collections</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="administration-active-failover.html">Active Failover</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-cluster.html">Cluster</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="administration-starter.html">ArangoDB Starter Administration</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="administration-starter-removal.html">Removal Procedure</a>
+          </li>
+          <li class="chapter">
+          <a href="administration-starter-recovery.html">Recovery Procedure</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="security.html">Security</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="security-security-options.html">Security Options</a>
+      </li>
+      <li class="chapter">
+      <a href="security-change-root-password.html">Change Root Password</a>
+      </li>
+      <li class="chapter">
+      <a href="security-encryption.html">Encryption at Rest</a>
+      </li>
+      <li class="chapter">
+      <a href="security-auditing.html">Auditing</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="security-auditing-audit-configuration.html">Configuration</a>
+          </li>
+          <li class="chapter">
+          <a href="security-auditing-audit-events.html">Events</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="security-starter.html">Securing Starter Deployments</a>
+      </li>
+      <li class="chapter">
+      <a href="security-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="monitoring.html">Monitoring</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="monitoring-log-levels.html">Log Levels</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+      <li class="chapter">
+      <a href="monitoring-collectd.html">Collectd</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="monitoring-collectd-slave-status.html">Replication Slaves</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-traffic-with-ipaccounting.html">Network usage</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-other-relevant-metrics.html">More metrics</a>
+          </li>
+          <li class="chapter">
+          <a href="monitoring-collectd-foxx-apps.html">Monitoring Foxx</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="troubleshooting.html">Troubleshooting</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="troubleshooting-arangod.html">arangod</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-emergency-console.html">Emergency Console</a>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-cluster.html">Cluster</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="troubleshooting-cluster-agency-dump.html">Agency Dump</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="troubleshooting-dc2-dc.html">Datacenter to datacenter replication</a>
+      </li>
+    </ul>
+  </li>
+  <li><hr/></li>
+  <li class="chapter">
+  <a href="release-notes.html">Release Notes</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="release-notes-37.html">Version 3.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features37.html">What's New in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues37.html">Known Issues in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes37.html">Incompatible changes in 3.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-api-changes37.html">API changes in 3.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-36.html">Version 3.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features36.html">What's New in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues36.html">Known Issues in 3.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes36.html">Incompatible changes in 3.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-35.html">Version 3.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features35.html">What's New in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues35.html">Known Issues in 3.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes35.html">Incompatible changes in 3.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-34.html">Version 3.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features34.html">What's New in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues34.html">Known Issues in 3.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes34.html">Incompatible changes in 3.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-33.html">Version 3.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features33.html">What's New in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues33.html">Known Issues in 3.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes33.html">Incompatible changes in 3.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-32.html">Version 3.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features32.html">What's New in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-known-issues32.html">Known Issues in 3.2</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes32.html">Incompatible changes in 3.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-31.html">Version 3.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features31.html">What's New in 3.1</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes31.html">Incompatible changes in 3.1</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-30.html">Version 3.0</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features30.html">What's New in 3.0</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes30.html">Incompatible changes in 3.0</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-28.html">Version 2.8</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features28.html">What's New in 2.8</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes28.html">Incompatible changes in 2.8</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-27.html">Version 2.7</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features27.html">What's New in 2.7</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes27.html">Incompatible changes in 2.7</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-26.html">Version 2.6</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features26.html">What's New in 2.6</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes26.html">Incompatible changes in 2.6</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-25.html">Version 2.5</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features25.html">What's New in 2.5</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes25.html">Incompatible changes in 2.5</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-24.html">Version 2.4</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features24.html">What's New in 2.4</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes24.html">Incompatible changes in 2.4</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-23.html">Version 2.3</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features23.html">What's New in 2.3</a>
+          </li>
+          <li class="chapter">
+          <a href="release-notes-upgrading-changes23.html">Incompatible changes in 2.3</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-22.html">Version 2.2</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features22.html">What's New in 2.2</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="release-notes-21.html">Version 2.1</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="release-notes-new-features21.html">What's New in 2.1</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li class="chapter">
+  <a href="appendix.html">Appendix</a>
+    <ul class="articles">
+      <li class="chapter">
+      <a href="appendix-references.html">References</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-references-dbobject.html">db</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-collection-object.html">collection</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-references-cursor-object.html">cursor</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-java-script-modules.html">JavaScript Modules</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-java-script-modules-arango-db.html">@arangodb</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-analyzers.html">analyzers</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-console.html">console</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-crypto.html">crypto</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-file-system.html">fs</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-request.html">request</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-actions.html">actions</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-queries.html">queries</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-wal.html">Write-ahead log</a>
+          </li>
+          <li class="chapter">
+          <a href="appendix-java-script-modules-tasks.html">Task Management</a>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-deprecated.html">Deprecated</a>
+        <ul class="articles">
+          <li class="chapter">
+          <a href="appendix-deprecated-simple-queries.html">Simple Queries</a>
+            <ul class="articles">
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-pagination.html">Pagination</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-modification-queries.html">Modification Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-geo-queries.html">Geo Queries</a>
+              </li>
+              <li class="chapter">
+              <a href="appendix-deprecated-simple-queries-fulltext-queries.html">Fulltext Queries</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="chapter">
+      <a href="appendix-error-codes.html">Error codes and meanings</a>
+      </li>
+      <li class="chapter">
+      <a href="appendix-glossary.html">Glossary</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</nav>
+    </div>
+    <div class="book-body">
+      <script type="text/javascript">
+          var availableVersions = ["devel","stable","3.6","3.5","3.4","3.3",];
+          versionSwitcherSetAvailable(availableVersions);
+      </script>
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <a class="btn pull-left js-toolbar-action hamburger" aria-label=""><i class="fa fa-align-justify"></i></a>
+          <a class="btn pull-left js-toolbar-action" aria-label="" href="https://github.com/arangodb/docs/edit/master/3.7/indexing-index-basics.md" target="_blank"><i class="fa fa-github"></i> Contribute</a>
+        </div>
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+            <section class="normal markdown-section">
+              <h1 id="index-basics">Index basics</h1>
+
+<p>Indexes allow fast access to documents, provided the indexed attribute(s)
+are used in a query. While ArangoDB automatically indexes some system
+attributes, users are free to create extra indexes on non-system attributes
+of documents.</p>
+
+<p>User-defined indexes can be created on collection level. Most user-defined indexes 
+can be created by specifying the names of the index attributes.
+Some index types allow indexing just one attribute (e.g. <em>fulltext</em> index) whereas 
+other index types allow indexing multiple attributes at the same time.</p>
+
+<p>Learn how to use different indexes efficiently by going through the
+<a href="https://www.arangodb.com/arangodb-performance-course/" target="_blank">ArangoDB Performance Course</a>.</p>
+
+<p>The system attributes <code class="language-plaintext highlighter-rouge">_id</code>, <code class="language-plaintext highlighter-rouge">_key</code>, <code class="language-plaintext highlighter-rouge">_from</code> and <code class="language-plaintext highlighter-rouge">_to</code> are automatically indexed
+by ArangoDB, without the user being required to create extra indexes for them.
+<code class="language-plaintext highlighter-rouge">_id</code> and <code class="language-plaintext highlighter-rouge">_key</code> are covered by a collection’s primary key, and <code class="language-plaintext highlighter-rouge">_from</code> and <code class="language-plaintext highlighter-rouge">_to</code>
+are covered by an edge collection’s edge index automatically.</p>
+
+<p>Using the system attribute <code class="language-plaintext highlighter-rouge">_id</code> in user-defined indexes is not possible, but 
+indexing <code class="language-plaintext highlighter-rouge">_key</code>, <code class="language-plaintext highlighter-rouge">_rev</code>, <code class="language-plaintext highlighter-rouge">_from</code>, and <code class="language-plaintext highlighter-rouge">_to</code> is.</p>
+
+<p>Creating new indexes is by default done under an exclusive collection lock. The collection is not
+available while the index is being created. This “foreground” index creation can be undesirable, 
+if you have to perform it on a live system without a dedicated maintenance window.</p>
+
+<p>For potentially long running index creation operations the <em>RocksDB</em> storage-engine also supports 
+creating indexes in “background”. The collection remains (mostly) available during the index creation, 
+see the section <a href="indexing-index-basics.html#creating-indexes-in-background">Creating Indexes in Background</a> for more information.</p>
+
+<p>ArangoDB provides the following index types:</p>
+
+<h2 id="primary-index">Primary Index</h2>
+
+<p>For each collection there will always be a <em>primary index</em> which is a persistent index
+for the <a href="appendix-glossary.html#document-key">document keys</a> (<code class="language-plaintext highlighter-rouge">_key</code> attribute)
+of all documents in the collection. The primary index allows quick selection
+of documents in the collection using either the <code class="language-plaintext highlighter-rouge">_key</code> or <code class="language-plaintext highlighter-rouge">_id</code> attributes. It will
+be used from within AQL queries automatically when performing equality lookups on
+<code class="language-plaintext highlighter-rouge">_key</code> or <code class="language-plaintext highlighter-rouge">_id</code>.</p>
+
+<p>There are also dedicated functions to find a document given its <code class="language-plaintext highlighter-rouge">_key</code> or <code class="language-plaintext highlighter-rouge">_id</code>
+that will always make use of the primary index:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nb">document</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;document-key&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">_document</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;document-id&gt;</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The primary index can be used for range queries and sorting as persistent
+indexes are sorted.</p>
+
+<p>The primary index of a collection cannot be dropped or changed, and there is no
+mechanism to create user-defined primary indexes.</p>
+
+<h2 id="edge-index">Edge Index</h2>
+
+<p>Every <a href="appendix-glossary.html#edge-collection">edge collection</a> also has an 
+automatically created <em>edge index</em>. The edge index provides quick access to
+documents by either their <code class="language-plaintext highlighter-rouge">_from</code> or <code class="language-plaintext highlighter-rouge">_to</code> attributes. It can therefore be
+used to quickly find connections between vertex documents and is invoked when 
+the connecting edges of a vertex are queried.</p>
+
+<p>Edge indexes are used from within AQL when performing equality lookups on <code class="language-plaintext highlighter-rouge">_from</code>
+or <code class="language-plaintext highlighter-rouge">_to</code> values in an edge collections. There are also dedicated functions to 
+find edges given their <code class="language-plaintext highlighter-rouge">_from</code> or <code class="language-plaintext highlighter-rouge">_to</code> values that will always make use of the 
+edge index:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">edges</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;from-value&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">edges</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;to-value&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">outEdges</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;from-value&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">outEdges</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;to-value&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">inEdges</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;from-value&gt;</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">inEdges</span><span class="p">(</span><span class="dl">"</span><span class="s2">&lt;to-value&gt;</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The edge index stores the union of all <code class="language-plaintext highlighter-rouge">_from</code> and <code class="language-plaintext highlighter-rouge">_to</code> attributes.
+It can be used for equality lookups, but not for range queries or for sorting.
+Edge indexes are automatically created for edge collections.</p>
+
+<p>It is not possible to create user-defined edge indexes.
+However, it is possible to freely use the <code class="language-plaintext highlighter-rouge">_from</code> and <code class="language-plaintext highlighter-rouge">_to</code> attributes in
+user-defined indexes.</p>
+
+<p>An edge index cannot be dropped or changed.</p>
+
+<!-- TODO: Remove, possibly reuse some of the information for persistent index
+A hash index can be used to quickly find documents with specific attribute values.
+The hash index is unsorted, so it supports equality lookups but no range queries or sorting.
+
+A hash index can be created on one or multiple document attributes. A hash index will 
+only be used by a query if all index attributes are present in the search condition,
+and if all attributes are compared using the equality (`==`) operator. Hash indexes are 
+used from within AQL and several query functions, e.g. `byExample`, `firstExample` etc.
+
+Hash indexes can optionally be declared unique, then disallowing saving the same
+value(s) in the indexed attribute(s). Hash indexes can optionally be sparse.
+
+The different types of hash indexes have the following characteristics:
+
+- **unique hash index**: all documents in the collection must have different values for 
+  the attributes covered by the unique index. Trying to insert a document with the same 
+  key value as an already existing document will lead to a unique constraint 
+  violation. 
+
+  This type of index is not sparse. Documents that do not contain the index attributes or 
+  that have a value of `null` in the index attribute(s) will still be indexed. 
+  A key value of `null` may only occur once in the index, so this type of index cannot 
+  be used for optional attributes.
+
+  The unique option can also be used to ensure that
+  [no duplicate edges](indexing-hash.html#ensure-uniqueness-of-relations-in-edge-collections) are
+  created, by adding a combined index for the fields `_from` and `_to` to an edge collection.
+
+- **unique, sparse hash index**: all documents in the collection must have different 
+  values for the attributes covered by the unique index. Documents in which at least one
+  of the index attributes is not set or has a value of `null` are not included in the 
+  index. This type of index can be used to ensure that there are no duplicate keys in
+  the collection for documents which have the indexed attributes set. As the index will
+  exclude documents for which the indexed attributes are `null` or not set, it can be
+  used for optional attributes.
+
+- **non-unique hash index**: all documents in the collection will be indexed. This type
+  of index is not sparse. Documents that do not contain the index attributes or that have 
+  a value of `null` in the index attribute(s) will still be indexed. Duplicate key values 
+  can occur and do not lead to unique constraint violations.
+ 
+- **non-unique, sparse hash index**: only those documents will be indexed that have all
+  the indexed attributes set to a value other than `null`. It can be used for optional
+  attributes.
+
+The amortized complexity of lookup, insert, update, and removal operations in unique hash 
+indexes is O(1). 
+
+Non-unique hash indexes have an amortized complexity of O(1) for insert, update, and
+removal operations. That means non-unique hash indexes can be used on attributes with 
+low cardinality. 
+
+If a hash index is created on an attribute that is missing in all or many of the documents,
+the behavior is as follows:
+
+- if the index is sparse, the documents missing the attribute will not be indexed and not
+  use index memory. These documents will not influence the update or removal performance
+  for the index.
+
+- if the index is non-sparse, the documents missing the attribute will be contained in the
+  index with a key value of `null`. 
+
+Hash indexes support [indexing array values](#indexing-array-values) if the index
+attribute name is extended with a `[*]`.
+
+
+
+A skiplist is a sorted index structure. It can be used to quickly find documents 
+with specific attribute values, for range queries and for returning documents from
+the index in sorted order. Skiplists will be used from within AQL and several query 
+functions, e.g. `byExample`, `firstExample` etc.
+
+Skiplist indexes will be used for lookups, range queries and sorting only if either all
+index attributes are provided in a query, or if a leftmost prefix of the index attributes
+is specified.
+
+For example, if a skiplist index is created on attributes `value1` and `value2`, the 
+following filter conditions can use the index (note: the `<=` and `>=` operators are 
+intentionally omitted here for the sake of brevity):
+
+```js
+FILTER doc.value1 == ...
+FILTER doc.value1 < ...
+FILTER doc.value1 > ...
+FILTER doc.value1 > ... && doc.value1 < ...
+
+FILTER doc.value1 == ... && doc.value2 == ...
+FILTER doc.value1 == ... && doc.value2 > ...
+FILTER doc.value1 == ... && doc.value2 > ... && doc.value2 < ...
+```
+
+In order to use a skiplist index for sorting, the index attributes must be specified in
+the `SORT` clause of the query in the same order as they appear in the index definition.
+Skiplist indexes are always created in ascending order, but they can be used to access
+the indexed elements in both ascending or descending order. However, for a combined index
+(an index on multiple attributes) this requires that the sort orders in a single query
+as specified in the `SORT` clause must be either all ascending (optionally omitted 
+as ascending is the default) or all descending. 
+
+For example, if the skiplist index is created on attributes `value1` and `value2` 
+(in this order), then the following sorts clauses can use the index for sorting:
+
+- `SORT value1 ASC, value2 ASC` (and its equivalent `SORT value1, value2`)
+- `SORT value1 DESC, value2 DESC`
+- `SORT value1 ASC` (and its equivalent `SORT value1`)
+- `SORT value1 DESC`
+
+The following sort clauses cannot make use of the index order, and require an extra
+sort step:
+
+- `SORT value1 ASC, value2 DESC`
+- `SORT value1 DESC, value2 ASC`
+- `SORT value2` (and its equivalent `SORT value2 ASC`)
+- `SORT value2 DESC` (because first indexed attribute `value1` is not used in sort clause)
+
+Note: the latter two sort clauses cannot use the index because the sort clause does not
+refer to a leftmost prefix of the index attributes.
+
+Skiplists can optionally be declared unique, disallowing saving the same value in the indexed 
+attribute. They can be sparse or non-sparse.
+
+The different types of skiplist indexes have the following characteristics:
+
+- **unique skiplist index**: all documents in the collection must have different values for 
+  the attributes covered by the unique index. Trying to insert a document with the same 
+  key value as an already existing document will lead to a unique constraint 
+  violation. 
+
+  This type of index is not sparse. Documents that do not contain the index attributes or 
+  that have a value of `null` in the index attribute(s) will still be indexed. 
+  A key value of `null` may only occur once in the index, so this type of index cannot 
+  be used for optional attributes.
+
+- **unique, sparse skiplist index**: all documents in the collection must have different 
+  values for the attributes covered by the unique index. Documents in which at least one
+  of the index attributes is not set or has a value of `null` are not included in the 
+  index. This type of index can be used to ensure that there are no duplicate keys in
+  the collection for documents which have the indexed attributes set. As the index will
+  exclude documents for which the indexed attributes are `null` or not set, it can be
+  used for optional attributes.
+
+- **non-unique skiplist index**: all documents in the collection will be indexed. This type
+  of index is not sparse. Documents that do not contain the index attributes or that have 
+  a value of `null` in the index attribute(s) will still be indexed. Duplicate key values 
+  can occur and do not lead to unique constraint violations.
+ 
+- **non-unique, sparse skiplist index**: only those documents will be indexed that have all
+  the indexed attributes set to a value other than `null`. It can be used for optional
+  attributes.
+
+The operational amortized complexity for skiplist indexes is logarithmically correlated
+with the number of documents in the index.
+
+Skiplist indexes support [indexing array values](#indexing-array-values) if the index
+attribute name is extended with a `[*]``.
+
+-->
+
+<h2 id="persistent-index">Persistent Index</h2>
+
+<p>The persistent index is a sorted index with persistence. The index entries are written to
+disk when documents are stored or updated. That means the index entries do not need to be
+rebuilt from the collection data when the server is restarted or the indexed collection
+is initially loaded. Thus using persistent indexes may reduce collection loading times.</p>
+
+<p>The persistent index type can be used for secondary indexes at the moment. That means the
+persistent index currently cannot be made the only index for a collection, because there
+will always be the in-memory primary index for the collection in addition, and potentially
+more indexes (such as the edges index for an edge collection).</p>
+
+<p>The index implementation is using the RocksDB engine, and it provides logarithmic complexity
+for insert, update, and remove operations. As the persistent index is not an in-memory
+index, it does not store pointers into the primary index as all the in-memory indexes do,
+but instead it stores a document’s primary key. To retrieve a document via a persistent
+index via an index value lookup, there will therefore be an additional O(1) lookup into 
+the primary index to fetch the actual document.</p>
+
+<p>As the persistent index is sorted, it can be used for point lookups, range queries and sorting
+operations, but only if either all index attributes are provided in a query, or if a leftmost 
+prefix of the index attributes is specified.</p>
+
+<!-- TODO
+
+Ensure uniqueness of relations in edge collections
+--------------------------------------------------
+It is possible to create secondary indexes using the edge attributes `_from`
+and `_to`, starting with ArangoDB 3.0. A combined index over both fields together
+with the unique option enabled can be used to prevent duplicate relations from
+being created.
+For example, a document collection *verts* might contain vertices with the document
+handles `verts/A`, `verts/B` and `verts/C`. Relations between these documents can
+be stored in an edge collection *edges* for instance. Now, you may want to make sure
+that the vertex `verts/A` is never linked to `verts/B` by an edge more than once.
+This can be achieved by adding a unique, non-sparse persistent index for the fields `_from`
+and `_to`:
+    db.edges.ensureIndex({ type: "persistent", fields: [ "_from", "_to" ], unique: true });
+Creating an edge `{ _from: "verts/A", _to: "verts/B" }` in *edges* will be accepted,
+but only once. Another attempt to store an edge with the relation **A** → **B** will
+be rejected by the server with a *unique constraint violated* error. This includes
+updates to the `_from` and `_to` fields.
+Note that adding a relation **B** → **A** is still possible, so is **A** → **A**
+and **B** → **B**, because they are all different relations in a directed graph.
+Each one can only occur once however.
+
+-->
+
+<h2 id="ttl-time-to-live-index">TTL (time-to-live) Index</h2>
+
+<p>The TTL index type provided by ArangoDB can be used for automatically removing expired documents 
+from a collection.</p>
+
+<p>A TTL index is set up by setting an <code class="language-plaintext highlighter-rouge">expireAfter</code> value and by picking a single 
+document attribute which contains the documents’ creation date and time. Documents 
+are expired after <code class="language-plaintext highlighter-rouge">expireAfter</code> seconds after their creation time. The creation time
+is specified as either a numeric timestamp (Unix timestamp) or a date string in format
+<code class="language-plaintext highlighter-rouge">YYYY-MM-DDTHH:MM:SS</code>, optionally with milliseconds after a decimal point in the
+format <code class="language-plaintext highlighter-rouge">YYYY-MM-DDTHH:MM:SS.MMM</code> and an optional timezone offset. All date strings
+without a timezone offset will be interpreted as UTC dates.</p>
+
+<p>For example, if <code class="language-plaintext highlighter-rouge">expireAfter</code> is set to 600 seconds (10 minutes) and the index
+attribute is “creationDate” and there is the following document:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ "creationDate" : 1550165973 }
+</code></pre></div></div>
+
+<p>This document will be indexed with a creation date time value of <code class="language-plaintext highlighter-rouge">1550165973</code>,
+which translates to the human-readable date <code class="language-plaintext highlighter-rouge">2019-02-14T17:39:33.000Z</code>. The document
+will expire 600 seconds afterwards, which is at timestamp <code class="language-plaintext highlighter-rouge">1550166573</code> (or
+<code class="language-plaintext highlighter-rouge">2019-02-14T17:49:33.000Z</code> in the human-readable version).</p>
+
+<p>The actual removal of expired documents will not necessarily happen immediately. 
+Expired documents will eventually removed by a background thread that is periodically
+going through all TTL indexes and removing the expired documents. The frequency for
+invoking this background thread can be configured using the <code class="language-plaintext highlighter-rouge">--ttl.frequency</code>
+startup option.</p>
+
+<p>There is no guarantee when exactly the removal of expired documents will be carried
+out, so queries may still find and return documents that have already expired. These
+will eventually be removed when the background thread kicks in and has capacity to
+remove the expired documents. It is guaranteed however that only documents which are 
+past their expiration time will actually be removed.</p>
+
+<p>Please note that the numeric date time values for the index attribute has to be
+specified <strong>in seconds</strong> since January 1st 1970 (Unix timestamp). To calculate the current 
+timestamp from JavaScript in this format, there is <code class="language-plaintext highlighter-rouge">Date.now() / 1000</code>; to calculate it
+from an arbitrary Date instance, there is <code class="language-plaintext highlighter-rouge">Date.getTime() / 1000</code>. In AQL you can do
+<code class="language-plaintext highlighter-rouge">DATE_NOW() / 1000</code> or divide an arbitrary Unix timestamp in milliseconds by 1000 to
+convert it to seconds.</p>
+
+<p>Alternatively, the index attribute values can be specified as a date string in format
+<code class="language-plaintext highlighter-rouge">YYYY-MM-DDTHH:MM:SS</code>, optionally with milliseconds after a decimal point in the
+format <code class="language-plaintext highlighter-rouge">YYYY-MM-DDTHH:MM:SS.MMM</code> and an optional timezone offset. All date strings
+without a timezone offset will be interpreted as UTC dates.</p>
+
+<p>The above example document using a datestring attribute value would be</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ "creationDate" : "2019-02-14T17:39:33.000Z" }
+</code></pre></div></div>
+
+<p>In case the index attribute does not contain a numeric value nor a proper date string,
+the document will not be stored in the TTL index and thus will not become a candidate 
+for expiration and removal. Providing either a non-numeric value or even no value for 
+the index attribute is a supported way of keeping documents from being expired and removed.</p>
+
+<h2 id="geo-index">Geo Index</h2>
+
+<p>Users can create additional geo indexes on one or multiple attributes in collections. 
+A geo index is used to find places on the surface of the earth fast.</p>
+
+<p>The geo index stores two-dimensional coordinates. It can be created on either two 
+separate document attributes (latitude and longitude) or a single array attribute that
+contains both latitude and longitude. Latitude and longitude must be numeric values.</p>
+
+<p>The geo index provides operations to find documents with coordinates nearest to a given 
+comparison coordinate, and to find documents with coordinates that are within a specifiable
+radius around a comparison coordinate.</p>
+
+<p>The geo index is used via dedicated functions in AQL, the simple queries
+functions and it is implicitly applied when in AQL a SORT or FILTER is used with
+the distance function. Otherwise it will not be used for other types of queries
+or conditions.</p>
+
+<h2 id="fulltext-index">Fulltext Index</h2>
+
+<p>A fulltext index can be used to find words, or prefixes of words inside documents. 
+A fulltext index can be created on a single attribute only, and will index all words 
+contained in documents that have a textual value in that attribute. Only words with a (specifiable) 
+minimum length are indexed. Word tokenization is done using the word boundary analysis 
+provided by libicu, which is taking into account the selected language provided at 
+server start. Words are indexed in their lower-cased form. The index supports complete 
+match queries (full words) and prefix queries, plus basic logical operations such as 
+<code class="language-plaintext highlighter-rouge">and</code>, <code class="language-plaintext highlighter-rouge">or</code> and <code class="language-plaintext highlighter-rouge">not</code> for combining partial results.</p>
+
+<p>The fulltext index is sparse, meaning it will only index documents for which the index
+attribute is set and contains a string value. Additionally, only words with a configurable
+minimum length will be included in the index.</p>
+
+<p>The fulltext index is used via dedicated functions in AQL or the simple queries, but will
+not be enabled for other types of queries or conditions.</p>
+
+<div class="alert alert-success" style="display: flex"><i class="fa fa-check" style="margin-right: 10px; margin-top: 4px;"></i><div><p>For advanced full-text search capabilities consider <a href="arangosearch.html">ArangoSearch</a>.</p></div></div>
+
+<h2 id="indexing-attributes-and-sub-attributes">Indexing attributes and sub-attributes</h2>
+
+<p>Top-level as well as nested attributes can be indexed. For attributes at the top level,
+the attribute names alone are required. To index a single field, pass an array with a
+single element (string of the attribute key) to the <em>fields</em> parameter of the
+<a href="indexing-working-with-indexes.html#creating-an-index">ensureIndex() method</a>. To create a
+combined index over multiple fields, simply add more members to the <em>fields</em> array:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// { name: "Smith", age: 35 }</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span> <span class="p">]</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">age</span><span class="dl">"</span> <span class="p">]</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>To index sub-attributes, specify the attribute path using the dot notation:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// { name: {last: "Smith", first: "John" } }</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">name.last</span><span class="dl">"</span> <span class="p">]</span> <span class="p">})</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">name.last</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">name.first</span><span class="dl">"</span> <span class="p">]</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h2 id="indexing-array-values">Indexing array values</h2>
+
+<p>If an index attribute contains an array, ArangoDB will store the entire array as the index value
+by default. Accessing individual members of the array via the index is not possible this
+way.</p>
+
+<p>To make an index insert the individual array members into the index instead of the entire array
+value, a special array index needs to be created for the attribute. Array indexes can be set up 
+like regular persistent indexes using the <code class="language-plaintext highlighter-rouge">collection.ensureIndex()</code> function. To make a 
+persistent index an array index, the index attribute name needs to be extended with <code class="language-plaintext highlighter-rouge">[*]</code>
+when creating the index and when filtering in an AQL query using the <code class="language-plaintext highlighter-rouge">IN</code> operator.</p>
+
+<p>The following example creates an persistent array index on the <code class="language-plaintext highlighter-rouge">tags</code> attribute in a collection named
+<code class="language-plaintext highlighter-rouge">posts</code>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">tags[*]</span><span class="dl">"</span> <span class="p">]</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="na">tags</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">foobar</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">baz</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">quux</span><span class="dl">"</span> <span class="p">]</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<p>This array index can then be used for looking up individual <code class="language-plaintext highlighter-rouge">tags</code> values from AQL queries via 
+the <code class="language-plaintext highlighter-rouge">IN</code> operator:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">FOR</span> <span class="nx">doc</span> <span class="nx">IN</span> <span class="nx">posts</span>
+  <span class="nx">FILTER</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span> <span class="nx">IN</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">tags</span>
+  <span class="nx">RETURN</span> <span class="nx">doc</span>
+</code></pre></div></div>
+
+<p>It is possible to add the <a href="https://www.arangodb.com/docs/stable/aql/advanced-array-operators.html#array-expansion">array expansion operator</a>
+<code class="language-plaintext highlighter-rouge">[*]</code>, but it is not mandatory. You may use it to indicate that an array index is used,
+it is purely cosmetic however:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">FOR</span> <span class="nx">doc</span> <span class="nx">IN</span> <span class="nx">posts</span>
+  <span class="nx">FILTER</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span> <span class="nx">IN</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">tags</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+  <span class="nx">RETURN</span> <span class="nx">doc</span>
+</code></pre></div></div>
+
+<p>The following FILTER conditions will <strong>not use</strong> the array index:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">FILTER</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">tags</span> <span class="nx">ANY</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span>
+<span class="nx">FILTER</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">tags</span> <span class="nx">ANY</span> <span class="nx">IN</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span>
+<span class="nx">FILTER</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">tags</span> <span class="nx">IN</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span>
+<span class="nx">FILTER</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">tags</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span>
+<span class="nx">FILTER</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span> <span class="o">==</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">tags</span>
+</code></pre></div></div>
+
+<p>It is also possible to create an index on subattributes of array values. This makes sense
+if the index attribute is an array of objects, e.g.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">tags[*].name</span><span class="dl">"</span> <span class="p">]</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="na">tags</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">foobar</span><span class="dl">"</span> <span class="p">},</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">baz</span><span class="dl">"</span> <span class="p">},</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">quux</span><span class="dl">"</span> <span class="p">}</span> <span class="p">]</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<p>The following query will then use the array index (this does require the
+<a href="https://www.arangodb.com/docs/stable/aql/advanced-array-operators.html#array-expansion">array expansion operator</a>):</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">FOR</span> <span class="nx">doc</span> <span class="nx">IN</span> <span class="nx">posts</span>
+  <span class="nx">FILTER</span> <span class="dl">'</span><span class="s1">foobar</span><span class="dl">'</span> <span class="nx">IN</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">tags</span><span class="p">[</span><span class="o">*</span><span class="p">].</span><span class="nx">name</span>
+  <span class="nx">RETURN</span> <span class="nx">doc</span>
+</code></pre></div></div>
+
+<p>If you store a document having the array which does contain elements not having
+the subattributes this document will also be indexed with the value <code class="language-plaintext highlighter-rouge">null</code>, which
+in ArangoDB is equal to attribute not existing.</p>
+
+<p>ArangoDB supports creating array indexes with a single <code class="language-plaintext highlighter-rouge">[*]</code> operator per index 
+attribute. For example, creating an index as follows is <strong>not supported</strong>:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">tags[*].name[*].value</span><span class="dl">"</span> <span class="p">]</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Array values will automatically be de-duplicated before being inserted into an array index.
+For example, if the following document is inserted into the collection, the duplicate array
+value <code class="language-plaintext highlighter-rouge">bar</code> will be inserted only once:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="na">tags</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">foobar</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bar</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bar</span><span class="dl">"</span> <span class="p">]</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<p>This is done to avoid redundant storage of the same index value for the same document, which
+would not provide any benefit.</p>
+
+<p>If an array index is declared <strong>unique</strong>, the de-duplication of array values will happen before 
+inserting the values into the index, so the above insert operation with two identical values
+<code class="language-plaintext highlighter-rouge">bar</code> will not necessarily fail</p>
+
+<p>It will always fail if the index already contains an instance of the <code class="language-plaintext highlighter-rouge">bar</code> value. However, if
+the value <code class="language-plaintext highlighter-rouge">bar</code> is not already present in the index, then the de-duplication of the array values will
+effectively lead to <code class="language-plaintext highlighter-rouge">bar</code> being inserted only once.</p>
+
+<p>To turn off the deduplication of array values, it is possible to set the <strong>deduplicate</strong> attribute
+on the array index to <code class="language-plaintext highlighter-rouge">false</code>. The default value for <strong>deduplicate</strong> is <code class="language-plaintext highlighter-rouge">true</code> however, so 
+de-duplication will take place if not explicitly turned off.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">tags[*]</span><span class="dl">"</span> <span class="p">],</span> <span class="na">deduplicate</span><span class="p">:</span> <span class="kc">false</span> <span class="p">});</span>
+
+<span class="c1">// will fail now</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="na">tags</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">foobar</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bar</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">bar</span><span class="dl">"</span> <span class="p">]</span> <span class="p">});</span> 
+</code></pre></div></div>
+
+<p>If an array index is declared and you store documents that do not have an array at the specified attribute
+this document will not be inserted in the index. Hence the following objects will not be indexed:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">tags[*]</span><span class="dl">"</span> <span class="p">]</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="na">something</span><span class="p">:</span> <span class="dl">"</span><span class="s2">else</span><span class="dl">"</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="na">tags</span><span class="p">:</span> <span class="kc">null</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="na">tags</span><span class="p">:</span> <span class="dl">"</span><span class="s2">this is no array</span><span class="dl">"</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span> <span class="na">tags</span><span class="p">:</span> <span class="p">{</span> <span class="na">content</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="p">}</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<p>An array index is able to index explicit <code class="language-plaintext highlighter-rouge">null</code> values. When queried for <code class="language-plaintext highlighter-rouge">null</code>values, it 
+will only return those documents having explicitly <code class="language-plaintext highlighter-rouge">null</code> stored in the array, it will not 
+return any documents that do not have the array at all.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">tags[*]</span><span class="dl">"</span> <span class="p">]</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="kc">null</span><span class="p">})</span> <span class="c1">// Will not be indexed</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="p">[]})</span>  <span class="c1">// Will not be indexed</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="kc">null</span><span class="p">]});</span> <span class="c1">// Will be indexed for null</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]});</span> <span class="c1">// Will be indexed for null, 1 and 2</span>
+</code></pre></div></div>
+
+<p>Declaring an array index as <strong>sparse</strong> does not have an effect on the array part of the index,
+this in particular means that explicit <code class="language-plaintext highlighter-rouge">null</code> values are also indexed in the <strong>sparse</strong> version.
+If an index is combined from an array and a normal attribute the sparsity will apply for the attribute e.g.:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">tags[*]</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span> <span class="p">],</span> <span class="na">sparse</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">alice</span><span class="dl">"</span><span class="p">})</span> <span class="c1">// Will not be indexed</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="p">[],</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">alice</span><span class="dl">"</span><span class="p">})</span> <span class="c1">// Will not be indexed</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span> <span class="c1">// Will not be indexed</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="na">name</span><span class="p">:</span> <span class="kc">null</span><span class="p">})</span> <span class="c1">// Will not be indexed</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">alice</span><span class="dl">"</span><span class="p">})</span>
+<span class="c1">// Will be indexed for [1, "alice"], [2, "alice"], [3, "alice"]</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">insert</span><span class="p">({</span><span class="na">tags</span><span class="p">:</span> <span class="p">[</span><span class="kc">null</span><span class="p">],</span> <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bob</span><span class="dl">"</span><span class="p">})</span>
+<span class="c1">// Will be indexed for [null, "bob"] </span>
+</code></pre></div></div>
+
+<p>Please note that filtering using array indexes only works from within AQL queries and
+only if the query filters on the indexed attribute using the <code class="language-plaintext highlighter-rouge">IN</code> operator. The other
+comparison operators (<code class="language-plaintext highlighter-rouge">==</code>, <code class="language-plaintext highlighter-rouge">!=</code>, <code class="language-plaintext highlighter-rouge">&gt;</code>, <code class="language-plaintext highlighter-rouge">&gt;=</code>, <code class="language-plaintext highlighter-rouge">&lt;</code>, <code class="language-plaintext highlighter-rouge">&lt;=</code>, <code class="language-plaintext highlighter-rouge">ANY</code>, <code class="language-plaintext highlighter-rouge">ALL</code>, <code class="language-plaintext highlighter-rouge">NONE</code>)
+cannot use array indexes currently.</p>
+
+<h2 id="vertex-centric-indexes">Vertex centric indexes</h2>
+
+<p>As mentioned above, the most important indexes for graphs are the edge
+indexes, indexing the <code class="language-plaintext highlighter-rouge">_from</code> and <code class="language-plaintext highlighter-rouge">_to</code> attributes of edge collections.
+They provide very quick access to all edges originating in or arriving
+at a given vertex, which allows to quickly find all neighbors of a vertex
+in a graph.</p>
+
+<p>In many cases one would like to run more specific queries, for example
+finding amongst the edges originating from a given vertex only those
+with a timestamp greater than or equal to some date and time. Exactly this
+is achieved with “vertex centric indexes”. In a sense these are localized
+indexes for an edge collection, which sit at every single vertex.</p>
+
+<p>Technically, they are implemented in ArangoDB as indexes, which sort the 
+complete edge collection first by <code class="language-plaintext highlighter-rouge">_from</code> and then by other attributes
+for <em>OUTBOUND</em> traversals, or first by <code class="language-plaintext highlighter-rouge">_to</code> and then by other attributes
+for <em>INBOUND</em> traversals. For traversals in <em>ANY</em> direction two indexes
+are needed, one with <code class="language-plaintext highlighter-rouge">_from</code> and the other with <code class="language-plaintext highlighter-rouge">_to</code> as first indexed field.</p>
+
+<p>If we for example have a persistent index on the attributes <code class="language-plaintext highlighter-rouge">_from</code> and 
+<code class="language-plaintext highlighter-rouge">timestamp</code> of an edge collection, we can answer the above question
+very quickly with a single range lookup in the index.</p>
+
+<p>Since ArangoDB 3.0 one can create sorted indexes (type
+“persistent”) that index the special edge attributes <code class="language-plaintext highlighter-rouge">_from</code> or <code class="language-plaintext highlighter-rouge">_to</code>
+and additionally other attributes. Since ArangoDB 3.1, these are used
+in graph traversals, when appropriate <code class="language-plaintext highlighter-rouge">FILTER</code> statements are found
+by the optimizer.</p>
+
+<p>For example, to create a vertex centric index of the above type, you 
+would simply do</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">edges</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span><span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span><span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">fields</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">_from</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">timestamp</span><span class="dl">"</span><span class="p">]});</span>
+</code></pre></div></div>
+
+<p>in arangosh. Then, queries like</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">FOR</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">p</span> <span class="nx">IN</span> <span class="mi">1</span><span class="p">..</span><span class="mi">1</span> <span class="nx">OUTBOUND</span> <span class="dl">"</span><span class="s2">V/1</span><span class="dl">"</span> <span class="nx">edges</span>
+  <span class="nx">FILTER</span> <span class="nx">e</span><span class="p">.</span><span class="nx">timestamp</span> <span class="o">&gt;=</span> <span class="dl">"</span><span class="s2">2018-07-09</span><span class="dl">"</span>
+  <span class="nx">RETURN</span> <span class="nx">p</span>
+</code></pre></div></div>
+
+<p>will be considerably faster in case there are many edges originating
+from vertex <code class="language-plaintext highlighter-rouge">"V/1"</code> but only few with a recent time stamp. Note that the
+optimizer may prefer the default edge index over vertex centric indexes
+based on the costs it estimates, even if a vertex centric index might
+in fact be faster. Vertex centric indexes are more likely to be chosen
+for highly connected graphs and with RocksDB storage engine.</p>
+
+<h2 id="creating-indexes-in-background">Creating Indexes in Background</h2>
+
+<p><small>Introduced in: v3.5.0</small></p>
+
+<p>Creating new indexes is by default done under an exclusive collection lock. This means
+that the collection (or the respective shards) are not available for write operations
+as long as the index is being created. This “foreground” index creation can be undesirable,
+if you have to perform it on a live system without a dedicated maintenance window.</p>
+
+<p>Indexes can also be created in “background”, not using an 
+exclusive lock during the entire index creation. The collection remains basically available, 
+so that other CRUD operations can run on the collection while the index is being created.
+This can be achieved by setting the <em>inBackground</em> attribute when creating an index.</p>
+
+<p>To create an index in the background in <em>arangosh</em> just specify <code class="language-plaintext highlighter-rouge">inBackground: true</code>, 
+like in the following examples:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// create the persistent index in the background</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">value</span><span class="dl">"</span> <span class="p">],</span> <span class="na">unique</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">inBackground</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">persistent</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span> <span class="p">],</span> <span class="na">unique</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">inBackground</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+
+<span class="c1">// also supported for geo and fulltext indexes</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">geo</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">latitude</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">longitude</span><span class="dl">"</span><span class="p">],</span> <span class="na">inBackground</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">geo</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">latitude</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">longitude</span><span class="dl">"</span><span class="p">],</span> <span class="na">inBackground</span><span class="p">:</span> <span class="kc">true</span> <span class="p">});</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">.</span><span class="nx">ensureIndex</span><span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">fulltext</span><span class="dl">"</span><span class="p">,</span> <span class="na">fields</span><span class="p">:</span> <span class="p">[</span> <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="p">],</span> <span class="na">minLength</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">inBackground</span><span class="p">:</span> <span class="kc">true</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="behavior">Behavior</h3>
+
+<p>Indexes that are still in the build process will not be visible via the ArangoDB APIs. 
+Nevertheless it is not possible to create the same index twice via the <em>ensureIndex</em> API 
+while an index is still begin created. AQL queries also will not use these indexes until
+the index reports back as fully created. Note that the initial <em>ensureIndex</em> call or HTTP 
+request will still block until the index is completely ready. Existing single-threaded 
+client programs can thus safely set the <em>inBackground</em> option to <em>true</em> and continue to 
+work as before.</p>
+
+<div class="alert alert-info" style="display: flex"><i class="fa fa-info-circle" style="margin-right: 10px; margin-top: 4px;"></i><div><p>Should you be building an index in the background you cannot rename or drop the collection.
+These operations will block until the index creation is finished. This is equally the case
+with foreground indexing.</p></div></div>
+
+<p>After an interrupted index build (i.e. due to a server crash) the partially built index
+will the removed. In the ArangoDB cluster the index might then be automatically recreated 
+on affected shards.</p>
+
+<h3 id="performance">Performance</h3>
+
+<p>Background index creation might be slower than the “foreground” index creation and require 
+more RAM. Under a write heavy load (specifically many remove, update or replace operations), 
+the background index creation needs to keep a list of removed documents in RAM. This might 
+become unsustainable if this list grows to tens of millions of entries.</p>
+
+<p>Building an index is always a write heavy operation (internally), it is always a good idea to build indexes
+during times with less load.</p>
+
+
+            </section>
+            
+<section class="page-nav">
+  <a href="indexing.html">&#x276e;&nbsp;&nbsp;Indexing</a>
+  <a class="next" href="indexing-which-index.html">Which index to use when&nbsp;&nbsp;&#x276f;</a>
+  <div style="clear: both"></div>
+</section>
+            <div id="page-footer" class="localized-footer">
+              <hr>
+              <p>© ArangoDB - the native multi-model NoSQL database</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          var disablePageToc = null;
+          if (!disablePageToc) {
+            generateToc();
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+  <!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.6.0/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'IOUJQ85602',
+  indexName: 'dev_DOCS',
+  apiKey: '1fc63d8ff5b71963f0354561b770b591',
+  searchFunction: function(helper) {
+    var container = document.querySelector('#search-hits');
+
+    if (helper.state.query === '') {
+        container.style.display = 'none';
+    } else {
+        container.style.display = '';
+    }
+
+    helper.search();
+  }
+});
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '#search-searchbar',
+    placeholder: 'Search Documentation...',
+    poweredBy: false // This is required if you're on the free Community plan
+  })
+);
+search.addWidget(
+    instantsearch.widgets.hits({
+        container: '#search-hits',
+        templates: {
+            item: function(hit) {
+                return '<div class="post-item">' +
+                    '<a class="post-link" href="https://www.arangodb.com/docs'&#32;+&#32;hit.url&#32;+&#32;'"><div>' + (hit.headings[0] || "ArangoDB Documentation") + '</div>' +
+                    '<div class="post-snippet">' + hit.excerpt_text + '</div></a>' +
+                    '</div>';
+            },
+        },
+    })
+);
+
+// Starting the search
+search.start();
+</script>
+  <script type="text/javascript" id="hs-script-loader" async defer src="https://js.hs-scripts.com/2482448.js"></script>
+</body>
+</html>
