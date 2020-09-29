@@ -3,6 +3,6 @@
     <ios_version>1</ios_version>
     <url>https://github.com/ferronrsmith/arango-dash/releases/download/3.7.2/ArangoDB.tgz</url>
      <other-versions>
-        <version><name>2.8.9</name></version>
+        <version><name>3.7.2</name></version>
      </other-versions>
 </entry>
